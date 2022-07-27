@@ -62,5 +62,5 @@ html_short_title = "Language Specification"
 
 # -- I18N -------------------------------------------------
 
-locale_dirs = ['../locales/']
+locale_dirs = ["../locales/"]
 # language="zh_CN"
