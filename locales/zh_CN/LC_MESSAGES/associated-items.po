@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/associated-items.rst:9
+msgid "Associated Items"
+msgstr ""
+
+#: ../../src/associated-items.rst:12
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/associated-items.rst:26
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/associated-items.rst:27
+msgid ""
+":dp:`fls_ckzd25qd213t` An :t:`associated item` is an :t:`item` that "
+"appears within an :t:`implementation` or a :t:`trait`."
+msgstr ""
+
+#: ../../src/associated-items.rst:31
+msgid ""
+":dp:`fls_5y6ae0xqux57` An :t:`associated constant` is a :t:`constant` "
+"that appears as an :t:`associated item`."
+msgstr ""
+
+#: ../../src/associated-items.rst:35
+msgid ""
+":dp:`fls_lj7492aq7fzo` An :t:`associated function` is a :t:`function` "
+"that appears as an :t:`associated item`."
+msgstr ""
+
+#: ../../src/associated-items.rst:39
+msgid ""
+":dp:`fls_8cz4rdrklaj4` An :t:`associated type` is a :t:`type alias` that "
+"appears as an :t:`associated item`."
+msgstr ""
+
+#: ../../src/associated-items.rst:43
+msgid ""
+":dp:`fls_w8nu8suy7t5` An :t:`associated type` shall not be used in the :t"
+":`path-in-expression` of a :t:`struct expression`\\ ``.``"
+msgstr ""
+
+#: ../../src/associated-items.rst:47
+msgid ""
+":dp:`fls_wasocqdnuzd1` An :t:`associated type` with a :s:`TypeBoundList` "
+"shall appear only as an :t:`associated trait type`."
+msgstr ""
+
+#: ../../src/associated-items.rst:51
+msgid ""
+":dp:`fls_l3iwn56n1uz8` An :t:`associated implementation constant` is an "
+":t:`associated constant` that appears within an :t:`implementation`."
+msgstr ""
+
+#: ../../src/associated-items.rst:55
+msgid ""
+":dp:`fls_4ftfefcotb4g` An :t:`associated implementation constant` shall "
+"have a :t:`constant initializer`."
+msgstr ""
+
+#: ../../src/associated-items.rst:59
+msgid ""
+":dp:`fls_qb5qpfe0uwk` An :t:`associated implementation function` is an "
+":t:`associated function` that appears within an :t:`implementation`."
+msgstr ""
+
+#: ../../src/associated-items.rst:63
+msgid ""
+":dp:`fls_1zlkeb6fz10j` An :t:`associated implementation function` shall "
+"have a :t:`function body`."
+msgstr ""
+
+#: ../../src/associated-items.rst:66
+msgid ""
+":dp:`fls_tw8u0cc5867l` An :t:`associated implementation type` is an "
+":t:`associated type` that appears within an :t:`implementation`."
+msgstr ""
+
+#: ../../src/associated-items.rst:70
+msgid ""
+":dp:`fls_bx7931x4155h` An :t:`associated implementation type` shall have "
+"an :t:`initialization type`."
+msgstr ""
+
+#: ../../src/associated-items.rst:73
+msgid ""
+":dp:`fls_x564isbhobym` An :t:`associated trait constant` is an "
+":t:`associated constant` that appears within a :t:`trait`."
+msgstr ""
+
+#: ../../src/associated-items.rst:77
+msgid ""
+":dp:`fls_b6nns7oqvdpm` An :t:`associated trait function` is an "
+":t:`associated function` that appears within a :t:`trait`."
+msgstr ""
+
+#: ../../src/associated-items.rst:81
+msgid ""
+":dp:`fls_yyhebj4qyk34` An :t:`associated trait type` is an :t:`associated"
+" type` that appears within a :t:`trait`."
+msgstr ""
+
+#: ../../src/associated-items.rst:85
+msgid ""
+":dp:`fls_kl9p3ycl5mzf` An :t:`associated trait type` shall not have an "
+":t:`initialization type`."
+msgstr ""
+
+#: ../../src/associated-items.rst:88
+msgid ""
+":dp:`fls_a5prbmuruma4` An :t:`associated trait type` has an implicit "
+":std:`core::marker::Sized` :t:`bound`."
+msgstr ""
+
+#: ../../src/associated-items.rst:92
+msgid ":dp:`fls_vp2ov6ykueue` An :t:`associated trait type` of the form"
+msgstr ""
+
+#: ../../src/associated-items.rst:101
+msgid ""
+":dp:`fls_5uf74nvdm64o` is equivalent to a :t:`where clause` of the "
+"following form:"
+msgstr ""
+
+#: ../../src/associated-items.rst:110
+msgid ""
+":dp:`fls_oy92gzxgc273` A :t:`method` is an :t:`associated function` with "
+"a :t:`receiver`."
+msgstr ""
+
+#: ../../src/associated-items.rst:114
+msgid "Examples"
+msgstr ""
+

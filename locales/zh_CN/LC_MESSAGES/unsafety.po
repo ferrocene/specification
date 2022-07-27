@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/unsafety.rst:9
+msgid "Unsafety"
+msgstr ""
+
+#: ../../src/unsafety.rst:12
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/unsafety.rst:13
+msgid ""
+":dp:`fls_8kqo952gjhaf` :t:`Unsafety` is the presence of :t:`[unsafe "
+"operation]s` in program text."
+msgstr ""
+
+#: ../../src/unsafety.rst:16
+msgid ""
+":dp:`fls_ovn9czwnwxue` An :t:`unsafe operation` is an operation that can "
+"potentially violate the memory-safety guarantees of Rust. :t:`[Unsafe "
+"operation]s` are referred to as :t:`unsafe Rust`."
+msgstr ""
+
+#: ../../src/unsafety.rst:21
+msgid ":dp:`fls_pfhmcafsjyf7` The :t:`[unsafe operation]s` are:"
+msgstr ""
+
+#: ../../src/unsafety.rst:24
+msgid ""
+":dp:`fls_jd1inwz7ulyw` Dereferencing a :t:`value` of a :t:`raw pointer "
+"type`."
+msgstr ""
+
+#: ../../src/unsafety.rst:27
+msgid ":dp:`fls_3ra8s1v1vbek` Reading or writing an :t:`external static`."
+msgstr ""
+
+#: ../../src/unsafety.rst:30
+msgid ":dp:`fls_6ipl0xo5qjyl` Reading or writing a :t:`mutable static`."
+msgstr ""
+
+#: ../../src/unsafety.rst:33
+msgid ""
+":dp:`fls_ucghxcnpaq2t` Accessing a :t:`field` of a :t:`union`, other than"
+" to assign to it."
+msgstr ""
+
+#: ../../src/unsafety.rst:36
+msgid ":dp:`fls_ljocmnaz2m49` Calling an :t:`unsafe function`."
+msgstr ""
+
+#: ../../src/unsafety.rst:39
+msgid ""
+":dp:`fls_jb6krd90tjmc` An :t:`unsafe context` is either an :t:`unsafe "
+"block` or an :t:`unsafe function`."
+msgstr ""
+
+#: ../../src/unsafety.rst:43
+msgid ""
+":dp:`fls_ybnpe7ppq1vh` An :t:`unsafe operation` shall be used only within"
+" an :t:`unsafe context`."
+msgstr ""
+

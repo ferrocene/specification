@@ -1,0 +1,283 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/ffi.rst:9
+msgid "FFI"
+msgstr ""
+
+#: ../../src/ffi.rst:12 ../../src/ffi.rst:53 ../../src/ffi.rst:145
+#: ../../src/ffi.rst:175 ../../src/ffi.rst:210
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/ffi.rst:13
+msgid ""
+":dp:`fls_djlglv2eaihl` :t:`Foreign Function Interface` or :t:`FFI` "
+"employs :t:`ABI`, :t:`[attribute]s`, :t:`external blocks`, :t:`[external "
+"function]s`, linkage, and :t:`type` :t:`layout` to interface a Rust "
+"program with foreign code."
+msgstr ""
+
+#: ../../src/ffi.rst:18
+msgid ":dp:`fls_k1hiwghzxtfa` The following :t:`[attribute]s` affect :t:`FFI`:"
+msgstr ""
+
+#: ../../src/ffi.rst:21
+msgid ":dp:`fls_3cgtdk4698hm` :t:`Attribute` :c:`export_name`."
+msgstr ""
+
+#: ../../src/ffi.rst:24
+msgid ":dp:`fls_shzmgci4f7o5` :t:`Attribute` :c:`link`."
+msgstr ""
+
+#: ../../src/ffi.rst:27
+msgid ":dp:`fls_m7x5odt4nb23` :t:`Attribute` :c:`link_section`"
+msgstr ""
+
+#: ../../src/ffi.rst:30
+msgid ":dp:`fls_4akfvpq1yg4g` :t:`Attribute` :c:`no_mangle`."
+msgstr ""
+
+#: ../../src/ffi.rst:33
+msgid ":dp:`fls_9d8v0xeyi0f` :t:`Attribute` :c:`used`."
+msgstr ""
+
+#: ../../src/ffi.rst:39
+msgid "ABI"
+msgstr ""
+
+#: ../../src/ffi.rst:42 ../../src/ffi.rst:126
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/ffi.rst:54
+msgid ""
+":dp:`fls_xangrq3tfze0` :t:`Application Binary Interface` or :t:`ABI` is a"
+" set of conventions that dictate how data and computation cross language "
+"boundaries."
+msgstr ""
+
+#: ../../src/ffi.rst:58
+msgid ""
+":dp:`fls_2w0xi6rxw3uz` The :t:`ABI kind` indicates the :t:`ABI` of a "
+":t:`construct`."
+msgstr ""
+
+#: ../../src/ffi.rst:61
+msgid ":dp:`fls_9zitf1fvvfk8` The following :t:`[ABI]s` are supported:"
+msgstr ""
+
+#: ../../src/ffi.rst:64
+msgid ""
+":dp:`fls_x7ct9k82fpgn` ``extern \"C\"`` - The default :t:`ABI` of C code,"
+" referred to as :dt:`extern C ABI`."
+msgstr ""
+
+#: ../../src/ffi.rst:68
+msgid ""
+":dp:`fls_a2d8ltpgtvn6` ``extern \"Rust\"`` - The default :t:`ABI` of a "
+"Rust program, referred to as :dt:`Rust ABI`."
+msgstr ""
+
+#: ../../src/ffi.rst:72
+msgid ""
+":dp:`fls_8m7pc3riokst` ``extern \"system\"`` - The operating system-"
+"dependent :t:`ABI`, referred to as :dt:`external system ABI`."
+msgstr ""
+
+#: ../../src/ffi.rst:76
+msgid ""
+":dp:`fls_r2drzo3dixe4` A :t:`function` without an explicit :t:`ABI` has "
+"implicit :t:`Rust ABI`, unless it appears within an :t:`external block`."
+msgstr ""
+
+#: ../../src/ffi.rst:80
+msgid ""
+":dp:`fls_z2kzyin8dyr7` A :t:`function` with an :t:`ABI` but without a "
+"specified :t:`ABI kind` has implicit :t:`external C ABI`."
+msgstr ""
+
+#: ../../src/ffi.rst:85
+msgid "Implementation Permissions"
+msgstr ""
+
+#: ../../src/ffi.rst:86
+msgid ""
+":dp:`fls_j6pqchx27ast` A tool is allowed to specify additional "
+":t:`[ABI]s`. These :t:`[ABI]s` may include, but may not be limited to, "
+"the following:"
+msgstr ""
+
+#: ../../src/ffi.rst:90
+msgid ":dp:`fls_dbbfqaqa80r8` ``extern \"aapcs\"`` - The ARM :t:`ABI`."
+msgstr ""
+
+#: ../../src/ffi.rst:93
+msgid ""
+":dp:`fls_36qrs2fxxvi7` ``extern \"cdecl\"`` - The x86_32 :t:`ABI` of C "
+"code."
+msgstr ""
+
+#: ../../src/ffi.rst:96
+msgid ""
+":dp:`fls_6rtj6rwqxojh` ``extern \"fastcall\"`` - The ``fastcall`` "
+":t:`ABI` that corresponds to MSVC's ``__fastcall`` and GCC and clang's "
+"``__attribute__((fastcall))``."
+msgstr ""
+
+#: ../../src/ffi.rst:100
+msgid ""
+":dp:`fls_d3nmpc5mtg27` ``extern \"stdcall\"`` - The x86_32 :t:`ABI` of "
+"the Win32 API."
+msgstr ""
+
+#: ../../src/ffi.rst:103
+msgid ""
+":dp:`fls_7t7yxh94wnbl` ``extern \"sysv64\"`` - The x86_64 non-Windows "
+":t:`ABI` of C code."
+msgstr ""
+
+#: ../../src/ffi.rst:106
+msgid ""
+":dp:`fls_sxj4vy39sj4g` ``extern \"vectorcall\"`` - The ``vectorcall`` "
+":t:`ABI` that corresponds to MSVC's ``__vectorcall`` and clang's "
+"``__attribute__((vectorcall))``."
+msgstr ""
+
+#: ../../src/ffi.rst:110
+msgid ""
+":dp:`fls_tyjs1x4j8ovp` ``extern \"win64\"`` - The x86_64 Windows :t:`ABI`"
+" of C code."
+msgstr ""
+
+#: ../../src/ffi.rst:114 ../../src/ffi.rst:155
+msgid "Examples"
+msgstr ""
+
+#: ../../src/ffi.rst:123
+msgid "External Blocks"
+msgstr ""
+
+#: ../../src/ffi.rst:146
+msgid ""
+":dp:`fls_4dje9t5y2dia` An :t:`external block` is a :t:`construct` that "
+"provides the declarations of foreign :t:`[function]s` as unchecked "
+"imports."
+msgstr ""
+
+#: ../../src/ffi.rst:150
+msgid ""
+":dp:`fls_iaimuqcclstl` The ``unsafe`` :t:`keyword` of an :t:`external "
+"block` is rejected, but may still be consumed by :t:`[macro]s`."
+msgstr ""
+
+#: ../../src/ffi.rst:172
+msgid "External Functions"
+msgstr ""
+
+#: ../../src/ffi.rst:176
+msgid ""
+":dp:`fls_w00qi1gx204e` :t:`[External function]s` and :t:`[external "
+"static]s` inherit the :t:`ABI` of their enclosing :t:`external block`."
+msgstr ""
+
+#: ../../src/ffi.rst:180
+msgid ""
+":dp:`fls_v24ino4hix3m` An :t:`external function` is an unchecked import "
+"of a foreign :t:`function`."
+msgstr ""
+
+#: ../../src/ffi.rst:183
+msgid ""
+":dp:`fls_l88r9fj82650` An :t:`external function` shall be invoked from an"
+" :t:`unsafe context`."
+msgstr ""
+
+#: ../../src/ffi.rst:186
+msgid ""
+":dp:`fls_qwchgvvnp0qe` An :t:`external function` shall not specify a "
+":s:`FunctionQualifierList`."
+msgstr ""
+
+#: ../../src/ffi.rst:189
+msgid ""
+":dp:`fls_m7tu4w4lk8v` An :t:`external function` shall not specify a "
+":s:`GenericParameterList` containing :t:`[constant parameter]s` or "
+":t:`[type parameter]s`."
+msgstr ""
+
+#: ../../src/ffi.rst:193
+msgid ""
+":dp:`fls_rdu4723vp0oo` An :t:`external function` shall not specify a "
+":s:`FunctionBody`."
+msgstr ""
+
+#: ../../src/ffi.rst:196
+msgid ""
+":dp:`fls_9div9yusw64h` An :t:`external function` shall not specify "
+"patterns other than identifier patterns and underscore patterns."
+msgstr ""
+
+#: ../../src/ffi.rst:200
+msgid ""
+":dp:`fls_juob30rst11r` Only the last parameter :s:`FunctionParameter` of "
+"an :t:`external function` may specify a "
+":s:`FunctionParameterVariadicPart`."
+msgstr ""
+
+#: ../../src/ffi.rst:207
+msgid "External Statics"
+msgstr ""
+
+#: ../../src/ffi.rst:211
+msgid ""
+":dp:`fls_8ddsytjr4il6` An :t:`external static` is an import of a foreign "
+":t:`variable`."
+msgstr ""
+
+#: ../../src/ffi.rst:214
+msgid ""
+":dp:`fls_fo9with6xumo` An :t:`external static` shall be referenced from "
+"an :t:`unsafe context`."
+msgstr ""
+
+#: ../../src/ffi.rst:217
+msgid ""
+":dp:`fls_tr7purzcldn0` An :t:`external static` shall not specify a "
+":t:`StaticInitializer`."
+msgstr ""
+
+#: ../../src/ffi.rst:221
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/ffi.rst:222
+msgid ""
+":dp:`fls_en2h09ehj0j3` An :t:`immutable` :t:`external static` shall be "
+"initialized before Rust code is executed."
+msgstr ""
+

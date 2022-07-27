@@ -1,0 +1,339 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:9
+msgid "Values and Objects"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:12 ../../src/values-and-objects.rst:63
+#: ../../src/values-and-objects.rst:132 ../../src/values-and-objects.rst:210
+#: ../../src/values-and-objects.rst:221
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:13
+msgid ""
+":dp:`fls_buyaqara7am4` A :t:`value` is either a :t:`literal` or the "
+"result of a computation, that may be stored in a memory location, and "
+"interpreted based on some :t:`type`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:17
+msgid ":dp:`fls_rixdyyc525xp` Two :t:`[value]s` :t:`overlap` when"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:20
+msgid ":dp:`fls_m6ctqq70vcxr` Both :t:`[value]s` are the same, or"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:23
+msgid ""
+":dp:`fls_s231d18x5eay` One :t:`value` is of an :t:`abstract data type` "
+"and the other denotes a :t:`field` of the same :t:`value`, or"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:27
+msgid ""
+":dp:`fls_dfr4yqo93fsn` One :t:`value` denotes an :t:`array` and the other"
+" denotes an element of the same :t:`array`, or"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:31
+msgid ""
+":dp:`fls_eoak5mdl6ma` Both :t:`[value]s` are elements of the same "
+":t:`array`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:34
+msgid ""
+":dp:`fls_jmwhiz1qrtmy` An :t:`object` relates a :t:`value` to a "
+":t:`name`, and dictates how the :t:`value` is initialized and modified."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:38
+msgid ""
+":dp:`fls_prxicw2q70lj` An :t:`object` is :t:`valid` when it has been "
+":t:`initialized` by all reachable control flow paths."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:43 ../../src/values-and-objects.rst:193
+msgid "Undefined Behavior"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:44
+msgid ""
+":dp:`fls_6lg0oaaopc26` It is undefined behavior to create a :t:`value` "
+"from uninitialized memory."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:50
+msgid "Constants"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:53 ../../src/values-and-objects.rst:122
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:64
+msgid ""
+":dp:`fls_5o5iu4j8in4l` A :t:`constant` is an :t:`immutable` :t:`object` "
+"that is not associated with a specific memory location. The address of a "
+":t:`constant` may differ from other :t:`[object]s` derived from the same "
+":t:`constant`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:69
+msgid ""
+":dp:`fls_3mhj0kkupwuz` An :t:`unnamed constant` is a :t:`constant` "
+"declared with character 0x5F (low line)."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:73
+msgid ""
+":dp:`fls_ka4y2yd100dx` The :t:`type specification` of a :t:`constant` "
+"shall have a :t:`static lifetime`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:77
+msgid ""
+":dp:`fls_vt9tlkd676ql` The :t:`type` of a :t:`constant` shall implement "
+"the :std:`core::marker::Sized` :t:`trait`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:81
+msgid ""
+":dp:`fls_ndmfqxjpvsqy` A :t:`constant initializer` is a :t:`construct` "
+"that provides the :t:`value` of its related :t:`constant`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:85
+msgid ""
+":dp:`fls_6rxwbbhf5tc5` A :t:`constant` shall have a :t:`constant "
+"initializer`, unless it is an :t:`associated trait constant`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:89
+msgid ""
+":dp:`fls_vnc3ttnid1qr` The :t:`expression` of a :t:`constant initializer`"
+" shall be a :t:`constant expression`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:93
+msgid ""
+":dp:`fls_deuo1pn8cjd6` The value of a :t:`constant` is determined by "
+"evaluating its :t:`constant initializer`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:97
+msgid ""
+":dp:`fls_5x0jv4cgbolx` A use of a :t:`constant` is a :t:`value "
+"expression` and creates a copy of the constant's value."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:102 ../../src/values-and-objects.rst:178
+#: ../../src/values-and-objects.rst:246
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:103
+msgid ""
+":dp:`fls_xezt9hl069h4` The :t:`elaboration` of a :t:`constant` evaluates "
+"its :t:`constant initializer`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:106
+msgid ""
+":dp:`fls_ndobth7s92if` A :t:`path` that refers to a :t:`constant` is "
+"replaced with the :t:`value` of the :t:`constant`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:111 ../../src/values-and-objects.rst:199
+msgid "Examples"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:119
+msgid "Statics"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:133
+msgid ""
+":dp:`fls_ibrmiwfypldh` A :t:`static` is an :t:`object` that is associated"
+" with a specific memory location."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:137
+msgid ""
+":dp:`fls_mt94jvoot9dx` A :t:`static` defined within a :t:`generic` is "
+"declared once and shared between all :t:`[instantiation]s`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:141
+msgid ""
+":dp:`fls_k0r2c6uq29tu` The :t:`type specification` of a :t:`static` shall"
+" have a :t:`static lifetime`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:144
+msgid ""
+":dp:`fls_b6ods85htuyn` The :t:`type` of a :t:`static` shall implement the"
+" :std:`core::marker::Sized` :t:`trait`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:148
+msgid ""
+":dp:`fls_doi4z6u55bi7` A :t:`mutable static` is a :t:`static` whose "
+":t:`value` can be modified."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:151
+msgid ""
+":dp:`fls_74hp208pto22` Access to a :t:`mutable static` shall require "
+":t:`unsafe context`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:154
+msgid ""
+":dp:`fls_jfde2vg6mtww` An :t:`immutable static` is a :t:`static` whose "
+":t:`value` cannot be modified."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:157
+msgid ""
+":dp:`fls_k4tyqb1j6zjo` The type of an :t:`immutable static` shall "
+"implement the :std:`core::marker::Sync` :t:`trait`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:161
+msgid ""
+":dp:`fls_t17h5h6a6v4c` A :t:`static initializer` is a :t:`construct` that"
+" provides the :t:`value` of its related :t:`static`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:165
+msgid ""
+":dp:`fls_yq0hpy4jx2qb` A :t:`static` shall have a :t:`static "
+"initializer`, unless it is an :t:`external static`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:169
+msgid ""
+":dp:`fls_vgidvfwzm4ks` The :t:`expression` of a :t:`static initializer` "
+"shall be a :t:`constant expression`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:173
+msgid ""
+":dp:`fls_8dcldbvu7lav` A use of a :t:`static` is a :t:`place expression` "
+"referring to the unique location of the :t:`static`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:179
+msgid ""
+":dp:`fls_w0nb0mphho7b` The :t:`elaboration` of a :t:`static` evaluates "
+"its :t:`static initializer`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:182
+msgid ""
+":dp:`fls_eeocxst9vafn` All :t:`[path]s` that refer to a :t:`static` refer"
+" to the same memory location."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:185
+msgid ""
+":dp:`fls_47khd5ljsxeq` A :t:`static` is not :t:`dropped` during "
+":t:`destruction`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:188
+msgid ""
+":dp:`fls_dowxbphqvk3n` A :t:`mutable static` whose :t:`type` is not "
+":t:`interiorly mutable` may reside in read-only memory."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:194
+msgid ""
+":dp:`fls_b5wsmii7vz3v` It is undefined behavior to mutate an "
+":t:`immutable static` that is not :t:`interiorly mutable`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:207
+msgid "Temporaries"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:211
+msgid ""
+":dp:`fls_awpw61yofckz` A :t:`temporary` is an anonymous :t:`object` that "
+"holds the result of some intermediate computation."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:218
+msgid "Variables"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:222
+msgid ""
+":dp:`fls_hl5tnd9yy252` A :t:`variable` is an :t:`object` that is a "
+"component of a stack frame."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:225
+msgid ""
+":dp:`fls_vgi0gh5zmoiu` The following :t:`[construct]s` are "
+":t:`[variable]s`:"
+msgstr ""
+
+#: ../../src/values-and-objects.rst:228
+msgid ":dp:`fls_3p0sb9ppmg3w` An anonymous :t:`temporary`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:231
+msgid ":dp:`fls_81dlbula47nu` A named :t:`binding`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:234
+msgid ":dp:`fls_adqfhc5k051x` A named :t:`function parameter`."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:237
+msgid ""
+":dp:`fls_xfiuc52r672i` A :t:`local variable` is a :t:`variable` that "
+"refers to a :t:`value` allocated directly on the stack."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:241
+msgid ""
+":dp:`fls_r9km9f969bu8` A :t:`local variable` shall be used only after it "
+"has been initialized through all reachable control flow paths."
+msgstr ""
+
+#: ../../src/values-and-objects.rst:247
+msgid ""
+":dp:`fls_g8etd5lsgn9j` A :t:`local variable` is not initialized when "
+"allocated."
+msgstr ""
+

@@ -1,0 +1,590 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/general.rst:9
+msgid "General"
+msgstr ""
+
+#: ../../src/general.rst:11
+msgid ""
+":dp:`fls_c4ry0kgmvk9z` This document is influenced by the `Ada Reference "
+"Manual <http://www.ada-auth.org/standards/2xrm/html/RM-TTL.html>`_ Ada "
+"202x edition, as well as the `Rust Language Reference <https://doc.rust-"
+"lang.org/stable/reference/>`_, the `Rust Guidebook <https://doc.rust-"
+"lang.org/book/>`_ and the `Rustonomicon <https://doc.rust-"
+"lang.org/nomicon/>`_."
+msgstr ""
+
+#: ../../src/general.rst:19
+msgid ""
+":dp:`fls_gxqbj0qoiaio` Parts of these documents have been copied, in "
+"whole or in part, in particular but not limited to:"
+msgstr ""
+
+#: ../../src/general.rst:23
+msgid ":dp:`fls_u8k9zr8da30` The outline and structure of the documents;"
+msgstr ""
+
+#: ../../src/general.rst:26
+msgid ""
+":dp:`fls_8mt9iigoboba` The title, outline, organization, and numbering of"
+" chapters;"
+msgstr ""
+
+#: ../../src/general.rst:29
+msgid ""
+":dp:`fls_suhf2g3fatfa` The structure, formality, wording, and numbering "
+"of paragraphs;"
+msgstr ""
+
+#: ../../src/general.rst:32
+msgid ":dp:`fls_jjr5kbn0wuco` The definitions and uses of terms;"
+msgstr ""
+
+#: ../../src/general.rst:35
+msgid ":dp:`fls_4dfcjyprkzbx` The categories of syntactic and semantic rules."
+msgstr ""
+
+#: ../../src/general.rst:38
+msgid ""
+":dp:`fls_tq9jcv5ddvwn` Consult :doc:`licenses` for the relevant copyright"
+" notices and licenses."
+msgstr ""
+
+#: ../../src/general.rst:44
+msgid "Scope"
+msgstr ""
+
+#: ../../src/general.rst:46
+msgid ""
+":dp:`fls_srdq4mota5pr` This document specifies the form and meaning of "
+"programs written in the programming language Rust, as implemented by the "
+":c:`rustc` compiler shipped with Ferrocene. It documents the current "
+"understanding for the purposes of compiler validation. As such, given any"
+" doubt, it prefers documenting behavior of :c:`rustc` as included in the "
+"associated Ferrocene release over claiming correctness as a "
+"specification."
+msgstr ""
+
+#: ../../src/general.rst:54
+msgid ""
+":dp:`fls_dv1qish8svc` This document is made available for contribution "
+"and review as it is useful outside of the Ferrocene effort and can be a "
+"place of shared understanding. It is not intended as a discussion ground "
+"for language evolution. It is also not intended as a document enabling "
+"conformance between compilers."
+msgstr ""
+
+#: ../../src/general.rst:60
+msgid ""
+":dp:`fls_osh9tiwpnsn1` Contribution and review is managed by the "
+"Ferrocene project developers."
+msgstr ""
+
+#: ../../src/general.rst:66
+msgid "Extent"
+msgstr ""
+
+#: ../../src/general.rst:68
+msgid ":dp:`fls_x78yd1sszydv` This document specifies:"
+msgstr ""
+
+#: ../../src/general.rst:71
+msgid ":dp:`fls_9e032738udnb` The form of a program written in Rust;"
+msgstr ""
+
+#: ../../src/general.rst:74
+msgid ""
+":dp:`fls_jk7scu5xs17z` The effect of translating and executing such a "
+"program;"
+msgstr ""
+
+#: ../../src/general.rst:77
+msgid ""
+":dp:`fls_jiryupa5fxgf` The manner in which :t:`[module]s` and "
+":t:`[crate]s` may be combined to form Rust programs;"
+msgstr ""
+
+#: ../../src/general.rst:81
+msgid ""
+":dp:`fls_sph1a3sapinh` The language-defined libraries that a conforming "
+"tool is required to supply;"
+msgstr ""
+
+#: ../../src/general.rst:84
+msgid ""
+":dp:`fls_7tm19jxtffc8` The violations that a conforming tool is required "
+"to detect, and the effect of attempting to translate or execute a program"
+" containing such violations;"
+msgstr ""
+
+#: ../../src/general.rst:88
+msgid ""
+":dp:`fls_5pbrl8lhuth1` The violations that a conforming implementation is"
+" not required to detect."
+msgstr ""
+
+#: ../../src/general.rst:91
+msgid ":dp:`fls_o8fc3e53vp7g` This document does not specify:"
+msgstr ""
+
+#: ../../src/general.rst:94
+msgid ""
+":dp:`fls_rw0y5t13y6gs` The means by which a Rust program is transformed "
+"into object code executable by a processor;"
+msgstr ""
+
+#: ../../src/general.rst:98
+msgid ""
+":dp:`fls_x7c3o621qj9z` The means by which translation or execution of "
+"Rust programs is invoked and the executing units are controlled;"
+msgstr ""
+
+#: ../../src/general.rst:102
+msgid ""
+":dp:`fls_5y2b6yjcl1vz` The size or speed of the object code, or the "
+"relative execution speed of different language constructs;"
+msgstr ""
+
+#: ../../src/general.rst:106
+msgid ""
+":dp:`fls_8dennhk2dha` The form or contents of any listings produced by a "
+"tool; in particular, the form or contents of error or warning messages;"
+msgstr ""
+
+#: ../../src/general.rst:110
+msgid ":dp:`fls_j2gs3hrbxtyx` The effect of undefined behavior;"
+msgstr ""
+
+#: ../../src/general.rst:113
+msgid ""
+":dp:`fls_gy2c7vfwkd8j` The size of a program or program unit that will "
+"exceed the capacity of a conforming tool."
+msgstr ""
+
+#: ../../src/general.rst:120
+msgid "Structure"
+msgstr ""
+
+#: ../../src/general.rst:122
+msgid ""
+":dp:`fls_6lrqailxjb02` This document contains 21 chapters, 4 appendices, "
+"and an index."
+msgstr ""
+
+#: ../../src/general.rst:125
+msgid ""
+":dp:`fls_tys7ciqnp8bn` The specification of the Rust language is "
+"separated into:"
+msgstr ""
+
+#: ../../src/general.rst:128
+msgid ":dp:`fls_3ubhkaheu8i1` Chapters 1 through 21,"
+msgstr ""
+
+#: ../../src/general.rst:131
+msgid ":dp:`fls_xw3grr2g5zgi` :doc:`licenses`"
+msgstr ""
+
+#: ../../src/general.rst:134
+msgid ":dp:`fls_k6obg07c1i71` :doc:`glossary`"
+msgstr ""
+
+#: ../../src/general.rst:137
+msgid ":dp:`fls_az3jhtedgvyi` Syntax Summary"
+msgstr ""
+
+#: ../../src/general.rst:140
+msgid ""
+":dp:`fls_6srbinvnyd54` The specification is normative, except for the "
+"material in each of the items listed below, which is informative:"
+msgstr ""
+
+#: ../../src/general.rst:144
+msgid ":dp:`fls_ciixfg9jhv42` Text under an Examples heading."
+msgstr ""
+
+#: ../../src/general.rst:147
+msgid ""
+":dp:`fls_ej94lm2682kg` Each subchapter whose title starts with the word "
+"\"Example\" or \"Examples\"."
+msgstr ""
+
+#: ../../src/general.rst:150
+msgid ":dp:`fls_xgk91jrbpyoc` The following appendices are informative:"
+msgstr ""
+
+#: ../../src/general.rst:153
+msgid ":dp:`fls_enkvrkfqwyt8` :doc:`licenses`"
+msgstr ""
+
+#: ../../src/general.rst:156
+msgid ":dp:`fls_yfyiaipc9omp` :doc:`glossary`"
+msgstr ""
+
+#: ../../src/general.rst:159
+msgid ":dp:`fls_qt3pzt1xhoup` Syntax Summary"
+msgstr ""
+
+#: ../../src/general.rst:162
+msgid ""
+":dp:`fls_jc4upf6685bw` Each chapter is divided into subchapters that have"
+" a common structure. Each chapter is divided into subchapters that have a"
+" common structure. Each chapter and subchapter is then organized to "
+"include the following segments as is relevant to the topic:"
+msgstr ""
+
+#: ../../src/general.rst:169
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/general.rst:170
+msgid ":dp:`fls_oxzjqxgejx9t` The syntax representation of a :t:`construct`."
+msgstr ""
+
+#: ../../src/general.rst:174
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/general.rst:175
+msgid ""
+":dp:`fls_gmx688d6ek1o` Compile-time rules and facts for each "
+":t:`construct`. A :t:`construct` is legal if it obeys all of the Legality"
+" Rules."
+msgstr ""
+
+#: ../../src/general.rst:179
+msgid ""
+":dp:`fls_5zdjikp1jhc` Legality Rules are verified after :t:`macro "
+"expansion` takes place."
+msgstr ""
+
+#: ../../src/general.rst:183
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/general.rst:184
+msgid ":dp:`fls_as5bhc5t285g` Run-time effects of each :t:`construct`."
+msgstr ""
+
+#: ../../src/general.rst:188
+msgid "Undefined Behavior"
+msgstr ""
+
+#: ../../src/general.rst:189
+msgid ":dp:`fls_70qjvaqoz007` Situations that result in unbounded errors."
+msgstr ""
+
+#: ../../src/general.rst:193 ../../src/general.rst:209
+msgid "Implementation Requirements"
+msgstr ""
+
+#: ../../src/general.rst:194
+msgid ":dp:`fls_o4rdsbc7u98` Additional requirements for conforming tools."
+msgstr ""
+
+#: ../../src/general.rst:198
+msgid "Examples"
+msgstr ""
+
+#: ../../src/general.rst:199
+msgid ""
+":dp:`fls_w8j575w2hmc8` Examples illustrating the possible forms of a "
+":t:`construct`. This material is informative."
+msgstr ""
+
+#: ../../src/general.rst:206
+msgid "Conformity"
+msgstr ""
+
+#: ../../src/general.rst:210
+msgid ":dp:`fls_kdyqtnc6loam` A conforming tool shall:"
+msgstr ""
+
+#: ../../src/general.rst:213
+msgid ""
+":dp:`fls_ctwsz8sl7lbq` Translate and correctly execute legal programs "
+"written in Rust, provided that they are not so large as to exceed the "
+"capacity of the tool,"
+msgstr ""
+
+#: ../../src/general.rst:217
+msgid ""
+":dp:`fls_bvpekhdaxctq` Identify all programs or program units that are so"
+" large as to exceed the capacity of the tool (or raise an appropriate "
+"exception at run time),"
+msgstr ""
+
+#: ../../src/general.rst:221
+msgid ""
+":dp:`fls_kfs8gsd36d91` Identify all programs or program units that "
+"contain errors whose detection is required by this document,"
+msgstr ""
+
+#: ../../src/general.rst:225
+msgid ""
+":dp:`fls_k5sozk8jhrmg` Supply all language-defined library units required"
+" by this document,"
+msgstr ""
+
+#: ../../src/general.rst:228
+msgid ""
+":dp:`fls_nwx1fdq6b4mg` Contain no variations except those explicitly "
+"permitted by this document, or those that are impossible or impractical "
+"to avoid given the tool's execution environment,"
+msgstr ""
+
+#: ../../src/general.rst:233
+msgid ""
+":dp:`fls_n3ypaile1a36` Specify all such variations in the manner "
+"prescribed by this document."
+msgstr ""
+
+#: ../../src/general.rst:236
+msgid ""
+":dp:`fls_nnmx2qsu14ft` The external effect of the execution of a Rust "
+"program is defined in terms of its interactions with its external "
+"environment. The following are defined as external interactions:"
+msgstr ""
+
+#: ../../src/general.rst:241
+msgid ""
+":dp:`fls_gu3331rmv2ho` Any call on an foreign :t:`function`, including "
+"any :t:`[argument operand]s` passed to it;"
+msgstr ""
+
+#: ../../src/general.rst:245
+msgid ""
+":dp:`fls_3iekobt8qqi` Any result returned or :t:`panic` propagated from a"
+" :t:`main function` or an exported :t:`function` to an external caller;"
+msgstr ""
+
+#: ../../src/general.rst:249
+msgid ""
+":dp:`fls_qx9fxf4py0j0` The :t:`[value]s` of imported and exported "
+":t:`[object]s` at the time of any other interaction with the external "
+"environment."
+msgstr ""
+
+#: ../../src/general.rst:253
+msgid ""
+":dp:`fls_pl0fyjcwslqm` A tool that conforms to this document shall "
+"produce for the execution of a given Rust program a set of interactions "
+"with the external environment whose order and timing are consistent with "
+"the definitions and requirements of this document for the semantics of "
+"the given program."
+msgstr ""
+
+#: ../../src/general.rst:259
+msgid ""
+":dp:`fls_lkdm0mdghppv` A tool that conforms to this document shall "
+"support each capability required by the language as specified."
+msgstr ""
+
+#: ../../src/general.rst:263
+msgid ""
+":dp:`fls_d07x1mbhgpsd` A tool that conforms to this document may provide "
+"additional :t:`[attribute]s` as long as their names are not the same as "
+"the names of :t:`[built-in attribute]s`."
+msgstr ""
+
+#: ../../src/general.rst:271
+msgid "Method of Description and Syntax Notation"
+msgstr ""
+
+#: ../../src/general.rst:273
+msgid ""
+":dp:`fls_mc4a28do6kcp` The form of a Rust program is described by means "
+"of a context-free syntax together with context-dependent requirements "
+"expressed by narrative rules."
+msgstr ""
+
+#: ../../src/general.rst:277
+msgid ""
+":dp:`fls_ioyp4wux6skt` The meaning of a Rust program is described by "
+"means of narrative rules defining both the effects of each construct and "
+"the composition rules for constructs."
+msgstr ""
+
+#: ../../src/general.rst:281
+msgid ""
+":dp:`fls_jsflt7691ye4` The context-free syntax of Rust is described using"
+" a simple variant of the Backus-Naur form. In particular:"
+msgstr ""
+
+#: ../../src/general.rst:285
+msgid ":dp:`fls_98fm7z04lq9` A ``monospaced`` font is used to denote Rust syntax."
+msgstr ""
+
+#: ../../src/general.rst:288
+msgid ""
+":dp:`fls_ceb5a8t6cakr` Words in PascalCase font are used to denote a "
+"syntactic category, for example:"
+msgstr ""
+
+#: ../../src/general.rst:295
+msgid ""
+":dp:`fls_pts29mb5ld68` Words in **bold** font are used to indicate "
+"literal words and :t:`[keyword]s`, for example:"
+msgstr ""
+
+#: ../../src/general.rst:306
+msgid ""
+":dp:`fls_gqjo5oh7vn3b` Characters in **bold** font are used to indicate "
+"literal characters and literal punctuation, for example:"
+msgstr ""
+
+#: ../../src/general.rst:318
+msgid ""
+":dp:`fls_1dz634xp8xp5` A character preceded by ``\\`` (bold reverse "
+"solidus) is used to denote an :t:`escaped character`, for example:"
+msgstr ""
+
+#: ../../src/general.rst:327
+msgid ""
+":dp:`fls_pp9vtjlyblrl` A prefix followed by ``?`` (question mark) is used"
+" to denote an optional prefix, for example:"
+msgstr ""
+
+#: ../../src/general.rst:335
+msgid ""
+":dp:`fls_6e2vd9fvhsmk` A prefix followed by ``*`` (asterisk) is used to "
+"denote zero or more repetitions of the prefix, for example:"
+msgstr ""
+
+#: ../../src/general.rst:343
+msgid ""
+":dp:`fls_4onq0kkrt6qv` A prefix followed by ``+`` (plus sign) is used to "
+"denote one or more repetitions of the prefix, for example:"
+msgstr ""
+
+#: ../../src/general.rst:351
+msgid ""
+":dp:`fls_qu4rsmnq659w` A prefix followed by ``L-H`` is used to denote the"
+" number of repetitions of the prefix within the range from L to H, "
+"inclusive. For example:"
+msgstr ""
+
+#: ../../src/general.rst:359
+msgid ""
+":dp:`fls_rllu7aksf17e` ``[ ]`` (square brackets) indicate any character "
+"within, for example:"
+msgstr ""
+
+#: ../../src/general.rst:366
+msgid ""
+":dp:`fls_blvsfqeevosr` ``~[ ]`` (square brackets preceded by tilde) "
+"indicate any character except the characters within, for example:"
+msgstr ""
+
+#: ../../src/general.rst:374
+msgid ""
+":dp:`fls_lwcjq3wzjyvb` ``[ - ]`` indicates any character within the "
+"specified range, inclusive. For example:"
+msgstr ""
+
+#: ../../src/general.rst:382
+msgid ""
+":dp:`fls_v7wd5yk00im6` A ``|`` (vertical line) separates alternative "
+"items, for example:"
+msgstr ""
+
+#: ../../src/general.rst:389
+msgid ""
+":dp:`fls_nf8alga8uz6c` ``( )`` (parentheses) are used to group items, for"
+" example:"
+msgstr ""
+
+#: ../../src/general.rst:396
+msgid ""
+":dp:`fls_u5ryccs9cpex` Whenever the run-time semantics define certain "
+"actions to happen in an arbitrary order, this means that a tool arranges "
+"for these actions to occur in a way that is equivalent to some sequential"
+" order, following the rules that result from that sequential order. This "
+"can happen, for example, if two parameters of a given call expression "
+"have side effects."
+msgstr ""
+
+#: ../../src/general.rst:406
+msgid "Versioning"
+msgstr ""
+
+#: ../../src/general.rst:408
+msgid ""
+":dp:`fls_l80e3kdwnldc` Ferrocene is a qualified compiler and this is the "
+"accompanying language specification for the qualified version of the "
+"compiler. This document will be updated with each qualification to "
+"accurately reflect the behavior of the compiler qualified under that "
+"version of Ferrocene."
+msgstr ""
+
+#: ../../src/general.rst:417
+msgid "Definitions"
+msgstr ""
+
+#: ../../src/general.rst:419
+msgid ""
+":dp:`fls_sm2kexes5pr7` Terms are defined throughout this document, "
+"indicated by *italic* type. Terms explicitly defined in this document are"
+" not to be presumed to refer implicitly to similar terms defined "
+"elsewhere."
+msgstr ""
+
+#: ../../src/general.rst:424
+msgid ""
+":dp:`fls_2o98zw29xc46` Mathematical terms not defined in this document "
+"are to be interpreted according to the CRC Concise Encyclopedia of "
+"Mathematics, Second Edition."
+msgstr ""
+
+#: ../../src/general.rst:428
+msgid ""
+":dp:`fls_lon5qffd65fi` Other terms not defined in this document are to be"
+" interpreted according to the Webster's Third New International "
+"Dictionary of the English Language."
+msgstr ""
+
+#: ../../src/general.rst:432
+msgid ""
+":dp:`fls_qeolgxvcy75` The definitions of terms are available in "
+":doc:`glossary`."
+msgstr ""
+
+#: ../../src/general.rst:435
+msgid ""
+":dp:`fls_h2m244agxaxs` A rule is a requirement imposed on the programmer,"
+" stated in normative language such as \"shall\", \"shall not\", \"must\","
+" \"must not\", except for text under Implementation Requirements heading."
+msgstr ""
+
+#: ../../src/general.rst:440
+msgid ""
+":dp:`fls_47svine904xk` A fact is a requirement imposed on a conforming "
+"tool, stated in informative language such as \"is\", \"is not\", \"can\","
+" \"cannot\"."
+msgstr ""
+

@@ -1,0 +1,315 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/concurrency.rst:9
+msgid "Concurrency"
+msgstr ""
+
+#: ../../src/concurrency.rst:11
+msgid ""
+":dp:`fls_opt7v0mopxc8` The Rust programming language provides features "
+"for concurrent programming without :t:`[data race]s`, whose rules are "
+"presented in this chapter."
+msgstr ""
+
+#: ../../src/concurrency.rst:16 ../../src/concurrency.rst:33
+#: ../../src/concurrency.rst:71 ../../src/concurrency.rst:128
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/concurrency.rst:17
+msgid ""
+":dp:`fls_tx4b8r6i93n4` A :t:`data race` is a scenario where two or more "
+"threads access a shared memory location concurrently without any "
+"synchronization, where one of the accesses is a modification."
+msgstr ""
+
+#: ../../src/concurrency.rst:23
+msgid "Undefined Behavior"
+msgstr ""
+
+#: ../../src/concurrency.rst:24
+msgid ""
+":dp:`fls_isypweqewe78` It is undefined behavior if two or more threads "
+"engage in a :t:`data race`."
+msgstr ""
+
+#: ../../src/concurrency.rst:30
+msgid "Send and Sync"
+msgstr ""
+
+#: ../../src/concurrency.rst:34
+msgid ""
+":dp:`fls_n5l17mlglq11` The Rust programming language provides "
+"synchronization facilities for :t:`[type]s` through the "
+":std:`core::marker::Send` :t:`trait` and the :std:`core::marker::Sync` "
+":t:`trait`."
+msgstr ""
+
+#: ../../src/concurrency.rst:39
+msgid ""
+":dp:`fls_2jujsujpjp3w` A :t:`send type` is a :t:`type` that implements "
+"the :std:`core::marker::Send` :t:`trait`."
+msgstr ""
+
+#: ../../src/concurrency.rst:43
+msgid ""
+":dp:`fls_cax6fe4em23k` An :t:`abstract data type` automatically "
+"implements the :std:`core::marker::Send` :t:`trait` if the :t:`[type]s` "
+"of all its :t:`[field]s` are :t:`[send type]s`."
+msgstr ""
+
+#: ../../src/concurrency.rst:48
+msgid ""
+":dp:`fls_4ypqdehn7b0v` A :t:`send type` shall have :t:`[value]s` that are"
+" safe to transfer across thread boundaries."
+msgstr ""
+
+#: ../../src/concurrency.rst:52
+msgid ""
+":dp:`fls_dekskhk4g895` A :t:`sync type` is a :t:`type` that implements "
+"the :std:`core::marker::Sync` :t:`trait`."
+msgstr ""
+
+#: ../../src/concurrency.rst:56
+msgid ""
+":dp:`fls_y0iqr5ibnbfe` An :t:`abstract data type` automatically "
+"implements the :std:`core::marker::Sync` :t:`trait` if the :t:`[type]s` "
+"of all its :t:`[field]s` are :t:`[sync type]s`."
+msgstr ""
+
+#: ../../src/concurrency.rst:61
+msgid ""
+":dp:`fls_zgemofbs5q2x` A :t:`sync type` shall have :t:`[reference]s` that"
+" are safe to transfer across thread boundaries."
+msgstr ""
+
+#: ../../src/concurrency.rst:68
+msgid "Atomics"
+msgstr ""
+
+#: ../../src/concurrency.rst:72
+msgid ""
+":dp:`fls_3pjla9s93mhd` An :t:`atomic type` is a :t:`type` defined in "
+":t:`module` :std:`core::sync::atomic`. :t:`[Atomic type]s` provide "
+"primitive shared-memory communication between threads."
+msgstr ""
+
+#: ../../src/concurrency.rst:77
+msgid ""
+":dp:`fls_wn4ynaio8u47` :t:`[Atomic type]s` are related to :t:`[type]s` as"
+" follows:"
+msgstr ""
+
+#: ../../src/concurrency.rst:82
+msgid ":dp:`fls_q7mn6pdd8bix`"
+msgstr ""
+
+#: ../../src/concurrency.rst:83
+msgid "**Type**"
+msgstr ""
+
+#: ../../src/concurrency.rst:84
+msgid "**Atomic Type**"
+msgstr ""
+
+#: ../../src/concurrency.rst:85
+msgid ":dp:`fls_jx0784jzxy00`"
+msgstr ""
+
+#: ../../src/concurrency.rst:86
+msgid ":c:`bool`"
+msgstr ""
+
+#: ../../src/concurrency.rst:87
+msgid ":std:`core::sync::atomic::AtomicBool`"
+msgstr ""
+
+#: ../../src/concurrency.rst:88
+msgid ":dp:`fls_vzuwnpx7mt08`"
+msgstr ""
+
+#: ../../src/concurrency.rst:89
+msgid ":c:`i8`"
+msgstr ""
+
+#: ../../src/concurrency.rst:90
+msgid ":std:`core::sync::atomic::AtomicI8`"
+msgstr ""
+
+#: ../../src/concurrency.rst:91
+msgid ":dp:`fls_cpcd0vexfbhj`"
+msgstr ""
+
+#: ../../src/concurrency.rst:92
+msgid ":c:`i16`"
+msgstr ""
+
+#: ../../src/concurrency.rst:93
+msgid ":std:`core::sync::atomic::AtomicI16`"
+msgstr ""
+
+#: ../../src/concurrency.rst:94
+msgid ":dp:`fls_jt7rfq9atbiv`"
+msgstr ""
+
+#: ../../src/concurrency.rst:95
+msgid ":c:`i32`"
+msgstr ""
+
+#: ../../src/concurrency.rst:96
+msgid ":std:`core::sync::atomic::AtomicI32`"
+msgstr ""
+
+#: ../../src/concurrency.rst:97
+msgid ":dp:`fls_2hqmfwswc6k`"
+msgstr ""
+
+#: ../../src/concurrency.rst:98
+msgid ":c:`i64`"
+msgstr ""
+
+#: ../../src/concurrency.rst:99
+msgid ":std:`core::sync::atomic::AtomicI64`"
+msgstr ""
+
+#: ../../src/concurrency.rst:100
+msgid ":dp:`fls_5ab2sw3gwmt3`"
+msgstr ""
+
+#: ../../src/concurrency.rst:101
+msgid ":c:`isize`"
+msgstr ""
+
+#: ../../src/concurrency.rst:102
+msgid ":std:`core::sync::atomic::AtomicIsize`"
+msgstr ""
+
+#: ../../src/concurrency.rst:103
+msgid ":dp:`fls_w2mw833g28eb`"
+msgstr ""
+
+#: ../../src/concurrency.rst:104
+msgid "``*mut T``"
+msgstr ""
+
+#: ../../src/concurrency.rst:105
+msgid ":std:`core::sync::atomic::AtomicPtr`"
+msgstr ""
+
+#: ../../src/concurrency.rst:106
+msgid ":dp:`fls_mjq1l1y0vmz4`"
+msgstr ""
+
+#: ../../src/concurrency.rst:107
+msgid ":c:`u8`"
+msgstr ""
+
+#: ../../src/concurrency.rst:108
+msgid ":std:`core::sync::atomic::AtomicU8`"
+msgstr ""
+
+#: ../../src/concurrency.rst:109
+msgid ":dp:`fls_906978wtss6n`"
+msgstr ""
+
+#: ../../src/concurrency.rst:110
+msgid ":c:`u16`"
+msgstr ""
+
+#: ../../src/concurrency.rst:111
+msgid ":std:`core::sync::atomic::AtomicU16`"
+msgstr ""
+
+#: ../../src/concurrency.rst:112
+msgid ":dp:`fls_4urmnh4mfehl`"
+msgstr ""
+
+#: ../../src/concurrency.rst:113
+msgid ":c:`u32`"
+msgstr ""
+
+#: ../../src/concurrency.rst:114
+msgid ":std:`core::sync::atomic::AtomicU32`"
+msgstr ""
+
+#: ../../src/concurrency.rst:115
+msgid ":dp:`fls_2qkrcd5eovpe`"
+msgstr ""
+
+#: ../../src/concurrency.rst:116
+msgid ":c:`u64`"
+msgstr ""
+
+#: ../../src/concurrency.rst:117
+msgid ":std:`core::sync::atomic::AtomicU64`"
+msgstr ""
+
+#: ../../src/concurrency.rst:118
+msgid ":dp:`fls_cry1e78gp19q`"
+msgstr ""
+
+#: ../../src/concurrency.rst:119
+msgid ":c:`usize`"
+msgstr ""
+
+#: ../../src/concurrency.rst:120
+msgid ":std:`core::sync::atomic::AtomicUsize`"
+msgstr ""
+
+#: ../../src/concurrency.rst:125
+msgid "Asynchronous Computation"
+msgstr ""
+
+#: ../../src/concurrency.rst:129
+msgid ""
+":dp:`fls_g40xp4andj5g` The Rust programming language provides "
+"asynchronous computation through :t:`module` :std:`core::task` and the "
+":std:`core::future::Future` :t:`trait`."
+msgstr ""
+
+#: ../../src/concurrency.rst:133
+msgid ""
+":dp:`fls_fte085hi1yqj` A :t:`future` represents a :t:`value` of a "
+":t:`type` that implements the :std:`core::future::Future` :t:`trait` "
+"which may not have finished computing yet."
+msgstr ""
+
+#: ../../src/concurrency.rst:138
+msgid ""
+":dp:`fls_7muubin2wn1v` The computed :t:`value` of a :t:`future` is "
+"obtained by using an :t:`await expression` or by invoking "
+":std:`core::future::Future::poll`."
+msgstr ""
+
+#: ../../src/concurrency.rst:142
+msgid ""
+":dp:`fls_ftzey2156ha` :std:`core::future::Future::poll` shall not be "
+"invoked on a :t:`future` that has already returned "
+":std:`core::task::Poll::Ready`."
+msgstr ""
+

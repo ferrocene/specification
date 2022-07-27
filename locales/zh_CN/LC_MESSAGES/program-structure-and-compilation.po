@@ -1,0 +1,280 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:9
+msgid "Program Structure and Compilation"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:14
+msgid "Source Files"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:17
+#: ../../src/program-structure-and-compilation.rst:50
+#: ../../src/program-structure-and-compilation.rst:149
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:35
+#: ../../src/program-structure-and-compilation.rst:69
+#: ../../src/program-structure-and-compilation.rst:129
+#: ../../src/program-structure-and-compilation.rst:160
+#: ../../src/program-structure-and-compilation.rst:195
+#: ../../src/program-structure-and-compilation.rst:213
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:36
+msgid ""
+":dp:`fls_4vicosdeaqmp` A :t:`source file` contains the program text "
+"consisting of :t:`[inner attribute]s`, :t:`[inner doc comment]s` and "
+":t:`[item]s`. The location of a :t:`source file` is tool defined."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:41
+msgid ""
+":dp:`fls_ann3cha1xpek` A :s:`Shebang` does not have an effect on the "
+"compilation."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:47
+msgid "Modules"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:70
+msgid ""
+":dp:`fls_odd1hj3y1mgu` A :t:`module` is a container for zero or more "
+":t:`[item]s`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:73
+msgid ""
+":dp:`fls_l4ne3w8dgghv` An :t:`unsafe module` is a :t:`module` subject to "
+":t:`keyword` ``unsafe``."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:76
+msgid ""
+":dp:`fls_whgv72emrm47` The ``unsafe`` :t:`keyword` of an :t:`unsafe "
+"module` is rejected, but may still be consumed by :t:`[macro]s`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:80
+msgid ""
+":dp:`fls_qypjjpcf8uwq` An :t:`inline module` is a :t:`module` with an "
+":s:`InlineModuleSpecification`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:83
+msgid ""
+":dp:`fls_cavwpr1ybk37` An :t:`outline module` is a :t:`module` with an "
+":s:`OutlineModuleSpecification`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:86
+msgid ""
+":dp:`fls_plepew2319g4` An :t:`outline module` loads a :t:`source file` "
+"that considers the text of the :t:`source file` to be inlined within the "
+"context of the :t:`outline module`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:90
+msgid ""
+":dp:`fls_1aruwps62c4p` The location of a :t:`module` :t:`source file` can"
+" be specified using :t:`attribute` :c:`path`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:94
+msgid ""
+":dp:`fls_xtfx03s99egy` The following :t:`[attribute]s` apply to "
+":t:`[module]s`:"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:97
+msgid ":dp:`fls_na6trldagfzb` :t:`Attribute` :c:`cfg`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:100
+msgid ":dp:`fls_renjf86vcve0` :t:`Attribute` :c:`deprecated`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:103
+msgid ":dp:`fls_3dcjkx4c1ui1` :t:`Attribute` :c:`doc`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:106
+msgid ":dp:`fls_ihtj1e11hm88` :t:`Attribute` :c:`no_implicit_prelude`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:109
+msgid ":dp:`fls_3glucm48a5fy` :t:`Attribute` :c:`path`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:113
+msgid "Examples"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:126
+msgid "Crates"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:130
+msgid ""
+":dp:`fls_qwghk79ok5h0` A :t:`crate` is a unit of compilation and linking."
+" A :t:`crate` contains a tree of nested :t:`module` :t:`[scope]s`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:134
+msgid ""
+":dp:`fls_9ub6ks8qrang` A :t:`binary crate` is a :t:`crate` that contains "
+"a :t:`main function`. A tool can compile a :t:`binary crate` to an "
+"executable."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:138
+msgid ""
+":dp:`fls_d9nn4yuiw1ja` A :t:`library crate` is either a :t:`crate` "
+"without a :t:`main function` or a :t:`crate` subject to :t:`attribute` "
+":c:`no_main`. A tool is free to compile a :t:`library crate` to a shared "
+"library."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:146
+msgid "External Crates"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:161
+msgid ""
+":dp:`fls_d0pa807s5d5h` A :t:`crate import` specifies a required "
+"dependency on an external :t:`crate`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:164
+msgid ""
+":dp:`fls_ft860vkz0lkc` A :t:`crate import` binds an external :t:`crate` "
+"to its :s:`CrateIndication`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:167
+msgid ""
+":dp:`fls_k90qtnf8kgu1` :s:`CrateIndication` ``self`` shall require a "
+":t:`renaming`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:170
+msgid ""
+":dp:`fls_siv8bl6s2ndu` A :t:`crate import` with a :t:`renaming` binds the"
+" external :t:`crate` to a local :t:`name` and introduces the local "
+":t:`name` into the enclosing :t:`scope`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:175
+msgid ""
+":dp:`fls_7vz5n3x6jo1s` If a :t:`crate import` appears at the :t:`crate "
+"root module`, then the :t:`crate indication` is added to the :t:`external"
+" prelude`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:179
+msgid ""
+":dp:`fls_3bgpc8m8yk4p` A :s:`CrateIndication` shall resolve to an "
+"external :t:`crate`. The process of resolving a :s:`CrateIndication` to "
+"an external :t:`crate` is tool-defined."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:183
+msgid ""
+":dp:`fls_bfxkmm9px6k8` The following :t:`[attribute]s` apply to "
+":t:`[crate import]s`:"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:186
+msgid ":dp:`fls_d6eu6xiczpxk` :t:`Attribute` :c:`no_link`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:192
+msgid "Compilation Roots"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:196
+msgid ""
+":dp:`fls_fhiqvgdamq5` A :t:`crate root module` is the root of the nested "
+":t:`module` :t:`[scope]s` tree of a :t:`crate`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:200
+msgid ""
+":dp:`fls_tk8tl2e0a34` A tool can define a :t:`crate root module` for a "
+"single :t:`crate`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:203
+msgid ""
+":dp:`fls_bsyfxdk3ap1t` A :t:`compilation root` is an input to a "
+"compilation performed by a tool. A :t:`crate root module` is a "
+":t:`compilation root`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:210
+msgid "Conditional Compilation"
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:214
+msgid ""
+":dp:`fls_9stc6nul6vq9` :t:`Conditionally-compiled source code` is source "
+"code that may or may not be considered a part of a Rust program depending"
+" on :t:`[configuration predicate]s`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:219
+msgid ""
+":dp:`fls_a0u9nnaf6drz` :t:`Conditional compilation` is the process of "
+"compiling :t:`conditionally-compiled source code`."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:223
+msgid ""
+":dp:`fls_pf1v89h7pjhh` A :t:`construct` subject to :t:`attribute` "
+":c:`cfg` where the related :t:`configuration predicate` evaluates to "
+"``false`` is not considered part of a Rust program."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:228
+msgid ""
+":dp:`fls_h6b1fuw4nvi1` An :t:`attribute` :c:`cfg_attr` where the related "
+":t:`configuration predicate` evaluates to ``false`` is not considered "
+"part of a Rust program."
+msgstr ""
+
+#: ../../src/program-structure-and-compilation.rst:232
+msgid ""
+":dp:`fls_212qrhdifs5e` An :t:`attribute` :c:`cfg_attr` where the related "
+":t:`configuration predicate` evaluates to ``true`` is replaced with a new"
+" :t:`attribute` for each :s:`AttributeContent` in the attribute's "
+":s:`AttributeContentList`."
+msgstr ""
+

@@ -1,0 +1,5804 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/expressions.rst:9
+msgid "Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:12 ../../src/expressions.rst:506
+#: ../../src/expressions.rst:547 ../../src/expressions.rst:592
+#: ../../src/expressions.rst:664 ../../src/expressions.rst:711
+#: ../../src/expressions.rst:757 ../../src/expressions.rst:784
+#: ../../src/expressions.rst:857 ../../src/expressions.rst:953
+#: ../../src/expressions.rst:1034 ../../src/expressions.rst:1135
+#: ../../src/expressions.rst:1334 ../../src/expressions.rst:1530
+#: ../../src/expressions.rst:1756 ../../src/expressions.rst:1845
+#: ../../src/expressions.rst:2047 ../../src/expressions.rst:2228
+#: ../../src/expressions.rst:2493 ../../src/expressions.rst:2523
+#: ../../src/expressions.rst:2574 ../../src/expressions.rst:2703
+#: ../../src/expressions.rst:2807 ../../src/expressions.rst:2863
+#: ../../src/expressions.rst:3298 ../../src/expressions.rst:3426
+#: ../../src/expressions.rst:3495 ../../src/expressions.rst:3626
+#: ../../src/expressions.rst:3698 ../../src/expressions.rst:3758
+#: ../../src/expressions.rst:3825 ../../src/expressions.rst:3863
+#: ../../src/expressions.rst:3920 ../../src/expressions.rst:3972
+#: ../../src/expressions.rst:3994 ../../src/expressions.rst:4088
+#: ../../src/expressions.rst:4146 ../../src/expressions.rst:4295
+#: ../../src/expressions.rst:4380 ../../src/expressions.rst:4459
+#: ../../src/expressions.rst:4629 ../../src/expressions.rst:4704
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/expressions.rst:65
+msgid ""
+":dp:`fls_pwut2jbmk66k` A :ds:`SubjectExpression` is any expression in "
+"category :s:`Expression`, except :s:`IndexedTupleStructExpression` and "
+":s:`RecordStructExpression`."
+msgstr ""
+
+#: ../../src/expressions.rst:69
+msgid ""
+":dp:`fls_361q9ljc6ybz` A :ds:`SubjectLetExpression` is any expression in "
+"category :s:`SubjectExpression`, except :s:`LazyBooleanExpression`."
+msgstr ""
+
+#: ../../src/expressions.rst:74 ../../src/expressions.rst:123
+#: ../../src/expressions.rst:160 ../../src/expressions.rst:359
+#: ../../src/expressions.rst:496 ../../src/expressions.rst:513
+#: ../../src/expressions.rst:555 ../../src/expressions.rst:604
+#: ../../src/expressions.rst:671 ../../src/expressions.rst:718
+#: ../../src/expressions.rst:774 ../../src/expressions.rst:791
+#: ../../src/expressions.rst:864 ../../src/expressions.rst:963
+#: ../../src/expressions.rst:1051 ../../src/expressions.rst:1161
+#: ../../src/expressions.rst:1360 ../../src/expressions.rst:1560
+#: ../../src/expressions.rst:1770 ../../src/expressions.rst:1852
+#: ../../src/expressions.rst:2060 ../../src/expressions.rst:2091
+#: ../../src/expressions.rst:2128 ../../src/expressions.rst:2279
+#: ../../src/expressions.rst:2500 ../../src/expressions.rst:2530
+#: ../../src/expressions.rst:2596 ../../src/expressions.rst:2716
+#: ../../src/expressions.rst:2816 ../../src/expressions.rst:2917
+#: ../../src/expressions.rst:3006 ../../src/expressions.rst:3131
+#: ../../src/expressions.rst:3240 ../../src/expressions.rst:3278
+#: ../../src/expressions.rst:3310 ../../src/expressions.rst:3436
+#: ../../src/expressions.rst:3515 ../../src/expressions.rst:3567
+#: ../../src/expressions.rst:3606 ../../src/expressions.rst:3646
+#: ../../src/expressions.rst:3711 ../../src/expressions.rst:3765
+#: ../../src/expressions.rst:3832 ../../src/expressions.rst:3873
+#: ../../src/expressions.rst:3927 ../../src/expressions.rst:3979
+#: ../../src/expressions.rst:4001 ../../src/expressions.rst:4095
+#: ../../src/expressions.rst:4182 ../../src/expressions.rst:4305
+#: ../../src/expressions.rst:4387 ../../src/expressions.rst:4483
+#: ../../src/expressions.rst:4636 ../../src/expressions.rst:4714
+#: ../../src/expressions.rst:4786 ../../src/expressions.rst:4938
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/expressions.rst:75
+msgid ""
+":dp:`fls_h5o6tgul4yor` An :t:`expression` is a :t:`construct` that "
+"produces a :t:`value`, and may have side effects at run-time."
+msgstr ""
+
+#: ../../src/expressions.rst:79
+msgid ""
+":dp:`fls_xmklb3070sp` An :t:`expression-with-block` is an :t:`expression`"
+" whose structure involves a :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:83
+msgid ""
+":dp:`fls_p15oeage4j0e` An :t:`expression-without-block` is an "
+":t:`expression` whose structure does not involve a :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:87
+msgid ""
+":dp:`fls_gwgttltgjma4` An :t:`operand` is an :t:`expression` nested "
+"within an :t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:90
+msgid ""
+":dp:`fls_1r29rtnjlkql` A :t:`left operand` is an :t:`operand` that "
+"appears on the left-hand side of a :t:`binary operator`."
+msgstr ""
+
+#: ../../src/expressions.rst:94
+msgid ""
+":dp:`fls_qxdpyf4u3hbz` A :t:`right operand` is an :t:`operand` that "
+"appears on the right-hand side of a :t:`binary operator`."
+msgstr ""
+
+#: ../../src/expressions.rst:98
+msgid ""
+":dp:`fls_2j132xueobfv` A :t:`subject expression` is an :t:`expression` "
+"that controls :t:`[for loop]s`, :t:`[if expression]s`, and :t:`[match "
+"expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:102
+msgid ""
+":dp:`fls_a243nclqqjlu` A :t:`subject let expression` is an "
+":t:`expression` that controls :t:`[if let expression]s` and :t:`[while "
+"let loop]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:107 ../../src/expressions.rst:348
+#: ../../src/expressions.rst:469 ../../src/expressions.rst:529
+#: ../../src/expressions.rst:575 ../../src/expressions.rst:639
+#: ../../src/expressions.rst:692 ../../src/expressions.rst:738
+#: ../../src/expressions.rst:834 ../../src/expressions.rst:928
+#: ../../src/expressions.rst:994 ../../src/expressions.rst:1085
+#: ../../src/expressions.rst:1251 ../../src/expressions.rst:1453
+#: ../../src/expressions.rst:1655 ../../src/expressions.rst:1799
+#: ../../src/expressions.rst:1953 ../../src/expressions.rst:2097
+#: ../../src/expressions.rst:2196 ../../src/expressions.rst:2395
+#: ../../src/expressions.rst:2552 ../../src/expressions.rst:2652
+#: ../../src/expressions.rst:2772 ../../src/expressions.rst:2844
+#: ../../src/expressions.rst:2995 ../../src/expressions.rst:3377
+#: ../../src/expressions.rst:3457 ../../src/expressions.rst:3556
+#: ../../src/expressions.rst:3670 ../../src/expressions.rst:3747
+#: ../../src/expressions.rst:3776 ../../src/expressions.rst:3839
+#: ../../src/expressions.rst:3887 ../../src/expressions.rst:3934
+#: ../../src/expressions.rst:4058 ../../src/expressions.rst:4114
+#: ../../src/expressions.rst:4269 ../../src/expressions.rst:4340
+#: ../../src/expressions.rst:4402 ../../src/expressions.rst:4554
+#: ../../src/expressions.rst:4667 ../../src/expressions.rst:4745
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/expressions.rst:108
+msgid ""
+":dp:`fls_1223lwh4nq49` :t:`Evaluation` is the process by which an "
+":t:`expression` achieves its runtime effects."
+msgstr ""
+
+#: ../../src/expressions.rst:115
+msgid "Expression Classification"
+msgstr ""
+
+#: ../../src/expressions.rst:120
+msgid "Assignee Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:124
+msgid ""
+":dp:`fls_oqj7s9fi3j3j` An :t:`assignee expression` is an :t:`expression` "
+"that appears as the :t:`left operand` of an :t:`assignment expression`. "
+"The following :t:`[expression]s` are :t:`[assignee expression]s`:"
+msgstr ""
+
+#: ../../src/expressions.rst:129
+msgid ":dp:`fls_skopz71arbwa` :t:`[Place expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:132
+msgid ":dp:`fls_vxrg6preh46x` :t:`[Underscore expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:135
+msgid ""
+":dp:`fls_yso6dmog0an2` :t:`[Array expression]s` of :t:`[assignee "
+"expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:138
+msgid ""
+":dp:`fls_hier3b8knpuq` :t:`[Tuple expression]s` of :t:`[assignee "
+"expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:141
+msgid ""
+":dp:`fls_1tsdlpgkgb2u` :t:`[Struct expression]s` of :t:`[assignee "
+"expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:144
+msgid ""
+":dp:`fls_horl3qcfdb0k` :t:`[Tuple struct expression]s` of :t:`[assignee "
+"expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:147
+msgid ":dp:`fls_nriu5ajnu2i6` :t:`[Unit struct expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:150
+msgid ""
+":dp:`fls_1smb3tj9pxsq` :t:`[Parenthesized expression]s` are allowed to "
+"appear anywhere in :t:`[assignee expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:157
+msgid "Constant Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:161
+msgid ""
+":dp:`fls_1ji7368ieg0b` A :t:`constant expression` is an :t:`expression` "
+"that can be evaluated statically. The following :t:`[construct]s` are "
+":t:`[constant expression]s` as long as their :t:`[operand]s` are also "
+":t:`[constant expression]s` and do not involve :t:`[type]s` that require "
+":t:`destruction`:"
+msgstr ""
+
+#: ../../src/expressions.rst:167
+msgid ""
+":dp:`fls_y6ore0iwx7e0` :t:`[Arithmetic expression]s` of :t:`[scalar "
+"type]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:170
+msgid ":dp:`fls_xguga84v3j8u` :t:`[Array expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:173
+msgid ":dp:`fls_rpapnm3afan8` :t:`[Array index expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:176
+msgid ":dp:`fls_idxf02p7jogu` :t:`[Assignment expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:179
+msgid ":dp:`fls_6z45ss502alt` :t:`[Bit expression]s` of :t:`[scalar type]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:182
+msgid ":dp:`fls_wqs0792nud4e` :t:`[Block expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:185
+msgid ""
+":dp:`fls_490a1b74fut6` :t:`[Call expression]s` where the callee is a "
+":t:`constant function`,"
+msgstr ""
+
+#: ../../src/expressions.rst:188
+msgid ""
+":dp:`fls_8nyu6phm1nji` :t:`[Closure expression]s` that do not "
+":t:`capture`,"
+msgstr ""
+
+#: ../../src/expressions.rst:191
+msgid ""
+":dp:`fls_8wux08bmpse` :t:`[Comparison expression]s` of :t:`[scalar "
+"type]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:194
+msgid ":dp:`fls_v1bnk7neb82a` :t:`[Compound assignment expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:197
+msgid ":dp:`fls_6fq6bvxxvhsr` :t:`[Constant parameter]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:200
+msgid ""
+":dp:`fls_to4e7imq2c0w` :t:`[Dereference expression]s` when the "
+":t:`operand` is not of a :t:`raw pointer type`,"
+msgstr ""
+
+#: ../../src/expressions.rst:204
+msgid ":dp:`fls_krtbrpwf3mh0` :t:`[Expression statement]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:207
+msgid ""
+":dp:`fls_3etom5uu8y4u` :t:`[Field access expression]s` that do not invoke"
+" the :std:`core::ops::Deref` :t:`trait`,"
+msgstr ""
+
+#: ../../src/expressions.rst:211
+msgid ":dp:`fls_qls0wj8bmupz` :t:`[If expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:214
+msgid ":dp:`fls_b5fraqx07wuo` :t:`[If let expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:217
+msgid ""
+":dp:`fls_6g7c1kjrmfnr` :t:`[Immutable borrow expression]s` where the "
+"borrowed :t:`type` is not subject to :t:`interior mutability`."
+msgstr ""
+
+#: ../../src/expressions.rst:221
+msgid ":dp:`fls_fc62yaqyjpl2` :t:`[Infinite loop expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:224
+msgid ""
+":dp:`fls_kwg8a351vc7` :t:`[Lazy boolean expression]s` of :t:`[scalar "
+"type]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:227
+msgid ":dp:`fls_7mjv1xd45qr4` :t:`[Let statement]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:230
+msgid ":dp:`fls_g7hoyfqy9mu1` :t:`[Literal expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:233
+msgid ":dp:`fls_br4g7qwfczig` :t:`[Match expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:236
+msgid ""
+":dp:`fls_w4lpq9bs8tsc` :t:`[Method call expression]s` where the callee is"
+" a :t:`constant function` or do not invoke the :std:`core::ops::Deref` "
+":t:`trait`,"
+msgstr ""
+
+#: ../../src/expressions.rst:240
+msgid ":dp:`fls_y1ezabo61nyk` :t:`[Negation expression]s` of :t:`[scalar type]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:243
+msgid ":dp:`fls_6tb74n6lu0wf` :t:`[Parenthesized expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:246
+msgid ""
+":dp:`fls_axwrv7b3zt55` :t:`[Path expression]s` that resolve to "
+":t:`[associated constant]s`, :t:`[constant]s`, :t:`[constant generic "
+"parameter]s`, :t:`[function]s`, :t:`[static]s`, :t:`[tuple struct]s`, and"
+"  :t:`[unit struct]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:251
+msgid ":dp:`fls_3bucpdj828bq` :t:`[Range expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:254
+msgid ""
+":dp:`fls_hkbwa8xx2fwx` :t:`[Shared borrow]s` that do not involve "
+":t:`[type]s` with :t:`interior mutability`,"
+msgstr ""
+
+#: ../../src/expressions.rst:258
+msgid ":dp:`fls_fobs8ebt7dhc` :t:`[Struct expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:261
+msgid ":dp:`fls_dyo3o1h3keqr` :t:`[Tuple expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:264
+msgid ""
+":dp:`fls_e0a1e8ddph7` :t:`[Type cast expression]s` that are not :t"
+":`[pointer-to-address cast]s`, :t:`[function-pointer-to-address cast]s`, "
+"and :t:`[unsized cast]s` that involve a :t:`trait object type`,"
+msgstr ""
+
+#: ../../src/expressions.rst:269
+msgid ":dp:`fls_zcuzhw7qkzkr` :t:`[Unsafe block expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:272
+msgid ":dp:`fls_pbpzkfo1fgtz` :t:`[While let loop expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:275
+msgid ":dp:`fls_qvofy4wkql0s` :t:`[While loop expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:278
+msgid ""
+":dp:`fls_3i7efddbsmn0` An :t:`expression` is not considered a "
+":t:`constant expression` when it explicitly invokes an :t:`associated "
+"trait function` or uses :t:`[arithmetic operator]s` of non-builtin "
+":t:`[type]s` that invoke :std:`core::ops` :t:`[trait]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:284
+msgid ""
+":dp:`fls_9mrrosm8jnn7` An :t:`arithmetic expression` that operates with "
+":t:`[floating point value]s` is not considered a :t:`constant expression`"
+" when it appears inside the body of a :t:`constant function`."
+msgstr ""
+
+#: ../../src/expressions.rst:289
+msgid ""
+":dp:`fls_fmqar6o1bwqk` It is a static error if the :t:`size operand` of "
+"an :t:`array repetition constructor` or an :t:`array type` depends on "
+":t:`[generic parameter]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:293
+msgid ""
+":dp:`fls_kjhma680hz3g` A :t:`constant context` is a :t:`construct` that "
+"requires a :t:`constant expression`. The following :t:`[construct]s` are "
+":t:`[constant context]s`:"
+msgstr ""
+
+#: ../../src/expressions.rst:297
+msgid ""
+":dp:`fls_ljc6jq5ksbcs` The :t:`constant initializer` of an :t:`associated"
+" constant` or a :t:`constant`,"
+msgstr ""
+
+#: ../../src/expressions.rst:301
+msgid ""
+":dp:`fls_3of516eo0kkx` The :t:`constant argument` for a :t:`constant "
+"generic parameter`,"
+msgstr ""
+
+#: ../../src/expressions.rst:304
+msgid ""
+":dp:`fls_yiks5bvojncc` The :t:`default value` of a :t:`constant generic "
+"parameter`,"
+msgstr ""
+
+#: ../../src/expressions.rst:307
+msgid ""
+":dp:`fls_66m2hwkju0vv` The :t:`discriminant initializer` of an :t:`enum "
+"variant`,"
+msgstr ""
+
+#: ../../src/expressions.rst:310
+msgid ""
+":dp:`fls_fsn32kmwg65u` The :t:`size operand` of an :t:`array repetition "
+"constructor`,"
+msgstr ""
+
+#: ../../src/expressions.rst:313
+msgid ":dp:`fls_j6kffhbxdm7o` The :t:`size operand` of an :t:`array type`,"
+msgstr ""
+
+#: ../../src/expressions.rst:316
+msgid ":dp:`fls_ib8p7dfwddx2` The :t:`static initializer` of a :t:`static`."
+msgstr ""
+
+#: ../../src/expressions.rst:319
+msgid ""
+":dp:`fls_ox6sgl9n43g2` It is a static error to create a :t:`mutable "
+"reference` in a :t:`constant context`."
+msgstr ""
+
+#: ../../src/expressions.rst:323
+msgid ""
+":dp:`fls_od0h3v40kjp6` An invocation of the ``addr_of!()`` :t:`macro` "
+"expands to a :t:`constant expression` allowed in any :t:`constant "
+"context` and :t:`constant function`, subject to the same restrictions as "
+"a :t:`shared borrow expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:328
+msgid ""
+":dp:`fls_6sc556tz4oxd` An invocation of the ``panic!()`` :t:`macro` "
+"expands to a :t:`constant expression` allowed in any :t:`constant "
+"context` and :t:`constant function`, as long as the :t:`macro` is either "
+"invoked without :t:`[argument]s`, or with a single :t:`string literal` "
+"that does not :t:`capture` formatting :t:`[argument]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:335
+msgid ""
+":dp:`fls_b1vfpvsdv38` A :t:`constant expression` is evaluated statically "
+"whenever its :t:`value` is needed."
+msgstr ""
+
+#: ../../src/expressions.rst:339
+msgid ""
+":dp:`fls_b46nyamfqxdu` The :t:`evaluation` of a :t:`constant expression` "
+"that results in arithmetic overflow :t:`[panic]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:343
+msgid ""
+":dp:`fls_ms9vey2wymqp` It is a static error if a :t:`constant expression`"
+" either :t:`[panic]s` or control reaches the invocation of :t:`macro` "
+":std:`core::panic`."
+msgstr ""
+
+#: ../../src/expressions.rst:349
+msgid ""
+":dp:`fls_tg0kya5125jt` The invocation of a :t:`constant function` follows"
+" the dynamic semantics of a :t:`non-[constant function]` invocation."
+msgstr ""
+
+#: ../../src/expressions.rst:356
+msgid "Place Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:360
+msgid ""
+":dp:`fls_qbrcg3cl9td` A :t:`place expression` is an :t:`expression` that "
+"represents a memory location. The following :t:`[expression]s` are "
+":t:`[place expression]s`:"
+msgstr ""
+
+#: ../../src/expressions.rst:364
+msgid ":dp:`fls_lj7x5dgbmg9i` :t:`[Array index expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:367
+msgid ":dp:`fls_jpmhibm4omm7` :t:`[Dereference expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:370
+msgid ":dp:`fls_none1dykbn8c` :t:`[Field access expression]s`,"
+msgstr ""
+
+#: ../../src/expressions.rst:373
+msgid ""
+":dp:`fls_anzidgx02lly` :t:`[Parenthesized expression]s` where the "
+":t:`operand` is a :t:`place expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:377
+msgid ""
+":dp:`fls_ya05djl1d154` :t:`[Path expression]s` that resolve to a "
+":t:`binding` or a :t:`static`."
+msgstr ""
+
+#: ../../src/expressions.rst:380
+msgid ""
+":dp:`fls_4vxi1ji93dxb` A :t:`place expression context` is a "
+":t:`construct` that requires a :t:`place expression`. The following "
+":t:`[construct]s` are :t:`[place expression context]s`:"
+msgstr ""
+
+#: ../../src/expressions.rst:385
+msgid ""
+":dp:`fls_qytgkbhqr5ln` The :t:`indexed array operand` of an :t:`array "
+"index expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:388
+msgid ""
+":dp:`fls_5gy92rsi2mqm` The :t:`assignee operand` of an :t:`assignment "
+"expression` or a :t:`compound assignment expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:392
+msgid ":dp:`fls_u80htrnr2ebz` The :t:`operand` of a :t:`borrow expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:395
+msgid ":dp:`fls_o0feajus3jtu` The :t:`operand` of a :t:`dereference expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:398
+msgid ""
+":dp:`fls_ffjx1d5dseo4` The :t:`container operand` of :t:`field access "
+"expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:401
+msgid ""
+":dp:`fls_9r7dopqf1nzl` The :t:`subject let expression` of an :t:`if let "
+"expression` or a :t:`while let loop expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:405
+msgid ""
+":dp:`fls_ka5b87tkf8t6` The initialization :t:`expression` of a :t:`let "
+"statement`,"
+msgstr ""
+
+#: ../../src/expressions.rst:408
+msgid ""
+":dp:`fls_brwv1zwu37e8` The :t:`subject expression` of :t:`a match "
+"expression,`"
+msgstr ""
+
+#: ../../src/expressions.rst:411
+msgid ""
+":dp:`fls_qewvbxvk81d` The :t:`base initializer` of a :t:`struct "
+"expression`,"
+msgstr ""
+
+#: ../../src/expressions.rst:414
+msgid ":dp:`fls_qaqwmxa3bxw1` The :t:`operand` of an :t:`implicit borrow`."
+msgstr ""
+
+#: ../../src/expressions.rst:417
+msgid ""
+":dp:`fls_konzgoybhfqm` A :t:`place expression` can be moved out of when "
+"it denotes"
+msgstr ""
+
+#: ../../src/expressions.rst:420
+msgid ""
+":dp:`fls_vk1xhvdaakh0` A :t:`binding` which is not currently "
+":t:`borrowed`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:423
+msgid ""
+":dp:`fls_4bnbv7mqod57` A :t:`field` of a :t:`place expression` that can "
+"be moved out of and does not implement the :std:`core::ops::Drop` "
+":t:`trait`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:427
+msgid ""
+":dp:`fls_3xk3p1unbjy5` A :t:`temporary` created for a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:430
+msgid ""
+":dp:`fls_wuqjaigxdq3r` After a :t:`place expression` is moved out, the "
+"memory location it represented is deinitialized and shall not be read "
+"from until reinitialized."
+msgstr ""
+
+#: ../../src/expressions.rst:434
+msgid ""
+":dp:`fls_ku38h562vfyl` A :t:`mutable place expression` is a :t:`place "
+"expression` whose memory location can be modified. The following "
+":t:`[place expression]s` are :t:`[mutable place expression]s`:"
+msgstr ""
+
+#: ../../src/expressions.rst:439
+msgid ""
+":dp:`fls_bt50fltfqcvn` An :t:`array index expression` whose :t:`type` "
+"implements the :std:`core::ops::IndexMut` :t:`trait`,"
+msgstr ""
+
+#: ../../src/expressions.rst:443
+msgid ""
+":dp:`fls_6b4rwkrc1ap6` A :t:`dereference expression` whose :t:`type` is "
+"``*mut T``,"
+msgstr ""
+
+#: ../../src/expressions.rst:446
+msgid ""
+":dp:`fls_s4bhrpykzmm7` A :t:`dereference expression` of a :t:`field` or "
+":t:`binding` whose :t:`type` is ``&mut T``,"
+msgstr ""
+
+#: ../../src/expressions.rst:450
+msgid ""
+":dp:`fls_1tq2o2huda9l` A :t:`dereference expression` whose :t:`type` "
+"implements the :std:`core::ops::DerefMut` :t:`trait`,"
+msgstr ""
+
+#: ../../src/expressions.rst:454
+msgid ""
+":dp:`fls_xm0gm2q27x2e` A :t:`field access expression` where the :t:`type`"
+" of the :t:`container operand` is :t:`mutable`,"
+msgstr ""
+
+#: ../../src/expressions.rst:458
+msgid ""
+":dp:`fls_m0gbw9myylv2` A :t:`path expression` that resolves to a "
+":t:`mutable binding` that is not currently borrowed,"
+msgstr ""
+
+#: ../../src/expressions.rst:462
+msgid ""
+":dp:`fls_ilaqmj3hc5uv` A :t:`path expression` that resolves to a "
+":t:`mutable static`,"
+msgstr ""
+
+#: ../../src/expressions.rst:465
+msgid ""
+":dp:`fls_dcm3yr3y9y0a` A :t:`temporary` created for a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:470
+msgid ""
+":dp:`fls_malm0kcczgyg` The :t:`evaluation` of a :t:`place expression` in "
+"the context of a :t:`value expression` or the :t:`evaluation` of a "
+":t:`place expression` that is bound *by value* in a :t:`pattern` proceeds"
+" as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:475
+msgid ""
+":dp:`fls_iuxjvxd91h06` The :t:`place expression` denotes the :t:`value` "
+"held in that memory location."
+msgstr ""
+
+#: ../../src/expressions.rst:479
+msgid ""
+":dp:`fls_oq11btd97wpz` If the :t:`type` of the held :t:`value` implements"
+" the :std:`core::marker::Copy` :t:`trait`, then the held :t:`value` is "
+"copied."
+msgstr ""
+
+#: ../../src/expressions.rst:483
+msgid ""
+":dp:`fls_zada4g3qmjqo` If the :t:`type` of the held :t:`value` implements"
+" the :std:`core::marker::Sized` :t:`trait`, then the held :t:`value` is "
+"moved."
+msgstr ""
+
+#: ../../src/expressions.rst:487
+msgid ""
+":dp:`fls_gq35gqagw35` Otherwise the :t:`evaluation` results in a static "
+"error."
+msgstr ""
+
+#: ../../src/expressions.rst:493
+msgid "Value Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:497
+msgid ""
+":dp:`fls_7q4hrt6yfr9b` A :t:`value expression` is an :t:`expression` that"
+" represents a :t:`value`."
+msgstr ""
+
+#: ../../src/expressions.rst:503
+msgid "Literal Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:514
+msgid ""
+":dp:`fls_rbwwczom3agt` A :t:`literal expression` is an :t:`expression` "
+"that denotes a :t:`literal`."
+msgstr ""
+
+#: ../../src/expressions.rst:517
+msgid ""
+":dp:`fls_utbjihhwgxr1` A :t:`literal expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:520
+msgid ""
+":dp:`fls_w30su9x4q13r` The :t:`type` of a :t:`literal expression` is the "
+":t:`type` of the corresponding :t:`literal`."
+msgstr ""
+
+#: ../../src/expressions.rst:524
+msgid ""
+":dp:`fls_wdpbg5xzgmwu` The :t:`value` of a :t:`literal expression` is the"
+" :t:`value` of the corresponding :t:`literal`."
+msgstr ""
+
+#: ../../src/expressions.rst:530
+msgid ""
+":dp:`fls_g061yzws1m45` The :t:`evaluation` of a :t:`literal expression` "
+"has no effect."
+msgstr ""
+
+#: ../../src/expressions.rst:534 ../../src/expressions.rst:580
+#: ../../src/expressions.rst:650 ../../src/expressions.rst:698
+#: ../../src/expressions.rst:744 ../../src/expressions.rst:839
+#: ../../src/expressions.rst:939 ../../src/expressions.rst:1016
+#: ../../src/expressions.rst:1107 ../../src/expressions.rst:1319
+#: ../../src/expressions.rst:1515 ../../src/expressions.rst:1731
+#: ../../src/expressions.rst:1833 ../../src/expressions.rst:2033
+#: ../../src/expressions.rst:2117 ../../src/expressions.rst:2217
+#: ../../src/expressions.rst:2472 ../../src/expressions.rst:2510
+#: ../../src/expressions.rst:2558 ../../src/expressions.rst:2677
+#: ../../src/expressions.rst:2792 ../../src/expressions.rst:2850
+#: ../../src/expressions.rst:3077 ../../src/expressions.rst:3202
+#: ../../src/expressions.rst:3261 ../../src/expressions.rst:3284
+#: ../../src/expressions.rst:3415 ../../src/expressions.rst:3471
+#: ../../src/expressions.rst:3592 ../../src/expressions.rst:3612
+#: ../../src/expressions.rst:3681 ../../src/expressions.rst:3810
+#: ../../src/expressions.rst:3850 ../../src/expressions.rst:3904
+#: ../../src/expressions.rst:3957 ../../src/expressions.rst:4070
+#: ../../src/expressions.rst:4127 ../../src/expressions.rst:4275
+#: ../../src/expressions.rst:4361 ../../src/expressions.rst:4444
+#: ../../src/expressions.rst:4611 ../../src/expressions.rst:4688
+#: ../../src/expressions.rst:4774
+msgid "Examples"
+msgstr ""
+
+#: ../../src/expressions.rst:544
+msgid "Path Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:556
+msgid ""
+":dp:`fls_gvanx4874ycy` A :t:`path expression` is an :t:`expression` that "
+"denotes a :t:`path`."
+msgstr ""
+
+#: ../../src/expressions.rst:559
+msgid ""
+":dp:`fls_t8bdzvtnv249` A :t:`path expression` that resolves to a "
+":t:`binding` or a :t:`static` is a :t:`place expression`, otherwise it is"
+" a :t:`value expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:563
+msgid ""
+":dp:`fls_gz67ju6l7uhn` A :t:`path expression` that resolves to a "
+":t:`mutable static` shall require :t:`unsafe context`."
+msgstr ""
+
+#: ../../src/expressions.rst:567
+msgid ""
+":dp:`fls_cjywisyiyti6` The :t:`type` of a :t:`path expression` is the "
+":t:`type` of the :t:`entity` that it resolved to."
+msgstr ""
+
+#: ../../src/expressions.rst:571
+msgid ""
+":dp:`fls_5ifai8nkp5ek` The :t:`value` of a :t:`path expression` is the "
+":t:`entity` that it resolved to."
+msgstr ""
+
+#: ../../src/expressions.rst:576
+msgid ""
+":dp:`fls_ed9w4jwx059` The :t:`evaluation` of a :t:`path expression` has "
+"no effect."
+msgstr ""
+
+#: ../../src/expressions.rst:589
+msgid "Block Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:605
+msgid ""
+":dp:`fls_nf65p0l0v0gr` A :t:`block expression` is an :t:`expression` that"
+" sequences :t:`[expression]s` and :t:`[statement]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:609
+msgid ""
+":dp:`fls_tn3hj7k2lliu` A :t:`tail expression` is the last :t:`expression`"
+" within a :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:613
+msgid ":dp:`fls_wiv8wpw3i79z` A :t:`block expression` is a :t:`value expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:616
+msgid ""
+":dp:`fls_u4gj2lnkq9ub` The :t:`type` of a :t:`block expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:619
+msgid ""
+":dp:`fls_ob76y2ymdd27` If the :t:`block expression` has an "
+":t:`expression`, then the :t:`type` is the :t:`type` of the "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:623
+msgid ""
+":dp:`fls_u0avbm147nyh` If the :t:`block expression` does not have an "
+":t:`expression`, then the :t:`type` is the :t:`unit type`."
+msgstr ""
+
+#: ../../src/expressions.rst:627
+msgid ""
+":dp:`fls_1hzup0sf8l7l` The :t:`value` of a :t:`block expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:630
+msgid ""
+":dp:`fls_9nmssjseq3jt` If the :t:`block expression` has an "
+":t:`expression`, then the :t:`value` is the :t:`value` of the "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:634
+msgid ""
+":dp:`fls_a3ulnvyc1ut` If the :t:`block expression` does not have an "
+":t:`expression`, then the :t:`value` of the :t:`block expression` is the "
+":t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:640
+msgid ""
+":dp:`fls_elcl73psruxw` The :t:`evaluation` of a :t:`block expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:643
+msgid ""
+":dp:`fls_13b5n127rj92` Each :t:`statement` is executed in declarative "
+"order."
+msgstr ""
+
+#: ../../src/expressions.rst:646
+msgid ":dp:`fls_nzdpw59plr2g` The :t:`expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:661
+msgid "async Blocks"
+msgstr ""
+
+#: ../../src/expressions.rst:672
+msgid ""
+":dp:`fls_hhidi5ukxo` An :t:`async block expression` is a :t:`block "
+"expression` that **???**."
+msgstr ""
+
+#: ../../src/expressions.rst:675
+msgid ""
+":dp:`fls_eam1cqbjlfs0` An :t:`async block expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:678
+msgid ""
+":dp:`fls_tzclkasinpoq` An :t:`async block expression` is subject to "
+":t:`capturing`."
+msgstr ""
+
+#: ../../src/expressions.rst:681
+msgid ""
+":dp:`fls_oisws5qykedi` An :t:`async block expression` denotes a new "
+":t:`control flow boundary`."
+msgstr ""
+
+#: ../../src/expressions.rst:684
+msgid ""
+":dp:`fls_ncd0wkgtldem` The :t:`type` of an :t:`async block expression` "
+"shall implement the :std:`core::future::Future` trait."
+msgstr ""
+
+#: ../../src/expressions.rst:688
+msgid ""
+":dp:`fls_pvnofoomgwl5` The :t:`value` of an :t:`async block expression` "
+"is a :t:`future`."
+msgstr ""
+
+#: ../../src/expressions.rst:693
+msgid ""
+":dp:`fls_9ghp5yet75y6` The :t:`evaluation` of an :t:`async block "
+"expression` produces an anonymous :t:`object` that captures the related "
+":t:`future`."
+msgstr ""
+
+#: ../../src/expressions.rst:708
+msgid "unsafe Blocks"
+msgstr ""
+
+#: ../../src/expressions.rst:719
+msgid ""
+":dp:`fls_2az5huhcxzzy` An :t:`unsafe block expression` is a :t:`block "
+"expression` that is marked as :t:`unsafe`."
+msgstr ""
+
+#: ../../src/expressions.rst:723
+msgid ""
+":dp:`fls_5ucvvja4dzoc` An :t:`unsafe block expression` allows "
+":t:`unsafety`."
+msgstr ""
+
+#: ../../src/expressions.rst:726
+msgid ""
+":dp:`fls_2nzwo1hbsg9g` An :t:`unsafe block expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:729
+msgid ""
+":dp:`fls_j3mmg317q442` The :t:`type` of the :t:`unsafe block expression` "
+"is the :t:`type` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:733
+msgid ""
+":dp:`fls_nygurv3x3wq6` The :t:`value` of the :t:`unsafe block expression`"
+" is the :t:`value` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:739
+msgid ""
+":dp:`fls_pv5gcy3tbjwo` The :t:`evaluation` of an :t:`unsafe block "
+"expression` evaluates its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:754
+msgid "Operator Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:775
+msgid ""
+":dp:`fls_ursc5ynymoy` An :t:`operator expression` is an :t:`expression` "
+"that involves an operator."
+msgstr ""
+
+#: ../../src/expressions.rst:781
+msgid "Borrow Expression"
+msgstr ""
+
+#: ../../src/expressions.rst:792
+msgid ""
+":dp:`fls_nnqfkl228hjx` A :t:`borrow expression` is an :t:`expression` "
+"that borrows the :t:`value` of its :t:`operand` and creates a "
+":t:`reference` to the memory location of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:797
+msgid ""
+":dp:`fls_r7ix8webgqlm` An :t:`immutable borrow expression` is a "
+":t:`borrow expression` that lacks :t:`keyword` ``mut``."
+msgstr ""
+
+#: ../../src/expressions.rst:801
+msgid ""
+":dp:`fls_50j167r4v61b` A :t:`mutable borrow expression` is a :t:`borrow "
+"expression` that has :t:`keyword` ``mut``."
+msgstr ""
+
+#: ../../src/expressions.rst:805
+msgid ""
+":dp:`fls_ya77l2zgtilp` When the :t:`operand` of a :t:`borrow expression` "
+"is a :t:`place expression`, the :t:`borrow expression` produces a "
+":t:`reference` to the memory location indicated by the :t:`operand`. The "
+"memory location is placed in a borrowed state, or simply :t:`borrowed`."
+msgstr ""
+
+#: ../../src/expressions.rst:811
+msgid ""
+":dp:`fls_8uhfwqurbyqf` When the :t:`operand` of a :t:`borrow expression` "
+"is a :t:`value expression`, a :t:`temporary` is allocated and the "
+":t:`borrow expression` produces a :t:`reference` to the memory location "
+"of the :t:`temporary`."
+msgstr ""
+
+#: ../../src/expressions.rst:816
+msgid ""
+":dp:`fls_xrq41zaq6bza` A :t:`borrow expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:819
+msgid ""
+":dp:`fls_chr03xll75d` The :t:`type` of a :t:`borrow expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:822
+msgid ""
+":dp:`fls_5b2x5ri2w54r` If the :t:`borrow expression` denotes a :t:`shared"
+" reference`, then the :t:`type` is ``&T`` where ``T`` is the :t:`type` of"
+" the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:826
+msgid ""
+":dp:`fls_agl09ia869rk` If the :t:`borrow expression` denotes a "
+":t:`mutable reference`, then the :t:`type` is ``&mut T`` where ``T`` is "
+"the :t:`type` of the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:830
+msgid ""
+":dp:`fls_8cvmee9bzs40` The :t:`value` of a :t:`borrow expression` is the "
+"address of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:835
+msgid ""
+":dp:`fls_2jd0mgw4zja4` The :t:`evaluation` of a :t:`borrow expression` "
+"evaluates its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:844
+msgid ":dp:`fls_350qejoq9i23` Mutable borrow."
+msgstr ""
+
+#: ../../src/expressions.rst:854
+msgid "Dereference Expression"
+msgstr ""
+
+#: ../../src/expressions.rst:865
+msgid ""
+":dp:`fls_f6wktzofzdn1` A :t:`dereference expression` is an "
+":t:`expression` that obtains the pointed-to memory location of its "
+":t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:869
+msgid ""
+":dp:`fls_aeh5pzpcjveq` When the :t:`operand` of a :t:`dereference "
+"expression` is of a :t:`pointer type`, the :t:`dereference expression` "
+"denotes the pointed-to memory location of the :t:`operand`, or the "
+":t:`dereference` of the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:874
+msgid ":dp:`fls_9cc0ml2sru6x` The :t:`dereference` is assignable when"
+msgstr ""
+
+#: ../../src/expressions.rst:877
+msgid ""
+":dp:`fls_m0cc62tcf6b7` The :t:`operand` is of :t:`type` ``&mut T`` or "
+"``*mut T``, and"
+msgstr ""
+
+#: ../../src/expressions.rst:880
+msgid ""
+":dp:`fls_llzt4s3uwt95` The :t:`operand` is a :t:`binding` or a possibly "
+"nested :t:`field` of a :t:`binding`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:884
+msgid ""
+":dp:`fls_908xdt291via` The :t:`operand` denotes a :t:`mutable place "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:887
+msgid ""
+":dp:`fls_b96mek2ojcl` The :t:`operand` is of another :t:`type` that "
+"implements the :std:`core::ops::DerefMut` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:891
+msgid ""
+":dp:`fls_8i4jzksxlrw0` Dereferencing a :t:`raw pointer` shall require "
+":t:`unsafe context`."
+msgstr ""
+
+#: ../../src/expressions.rst:894
+msgid ""
+":dp:`fls_d68ddlse4zp` If the context of a :t:`dereference expression` is "
+"an :t:`immutable place expression`, then the :t:`dereference expression` "
+"is equivalent to :t:`expression` ``*core::ops::Deref::deref(&operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:899
+msgid ""
+":dp:`fls_g73vguanbs1x` If the context of a :t:`dereference expression` is"
+" a :t:`mutable place expression`, then the :t:`dereference expression` is"
+" equivalent to :t:`expression` ``*core::ops::DerefMut::deref_mut(&mut "
+"operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:904
+msgid ""
+":dp:`fls_8ibfqxtnahzx` The :t:`type` of a :t:`dereference expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:907
+msgid ""
+":dp:`fls_7e7tka4f2f1a` If the :t:`type` of the :t:`operand` is ``&mut "
+"T``, ``&T``, ``*mut T``, or ``*const T``, then the :t:`type` is ``T``\\ "
+"``.``"
+msgstr ""
+
+#: ../../src/expressions.rst:911
+msgid ""
+":dp:`fls_y9bc691kkh6v` Otherwise the :t:`type` is :t:`associated type` "
+":std:`core::ops::Deref::Target`."
+msgstr ""
+
+#: ../../src/expressions.rst:915
+msgid ""
+":dp:`fls_gw49nukfveib` The :t:`value` of a :t:`dereference expression` is"
+" determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:918
+msgid ""
+":dp:`fls_jjf3sz9ddfhy` If the :t:`type` of the :t:`operand` is ``&mut "
+"T``, ``&T``, ``*mut T``, or ``*const T``, then the :t:`value` is the "
+"pointed-to :t:`value`\\ ``.``"
+msgstr ""
+
+#: ../../src/expressions.rst:922
+msgid ""
+":dp:`fls_fyend8kkpqq4` Otherwise the :t:`value` is the result of "
+"evaluating :t:`expression` ``*core::ops::Deref::deref(&operand)`` or "
+":t:`expression` ``*core::ops::DerefMut::deref_mut(&mut operand)`` "
+"respectively."
+msgstr ""
+
+#: ../../src/expressions.rst:929
+msgid ""
+":dp:`fls_72bpdsxxbgeq` The :t:`evaluation` of a :t:`dereference "
+"expression` evaluates its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:933 ../../src/expressions.rst:1313
+#: ../../src/expressions.rst:2464 ../../src/expressions.rst:3409
+#: ../../src/expressions.rst:3586
+msgid "Undefined Behavior"
+msgstr ""
+
+#: ../../src/expressions.rst:934
+msgid ""
+":dp:`fls_9wgldua1u8yt` It is undefined behavior to dereference a :t:`raw "
+"pointer` that is either :t:`dangling` or unaligned."
+msgstr ""
+
+#: ../../src/expressions.rst:940
+msgid ""
+":dp:`fls_9ifaterm8nop` See :p:`6.4.1. <fls_ltflbfba9d5r>` for the "
+"declaration of ``ref_answer``."
+msgstr ""
+
+#: ../../src/expressions.rst:950
+msgid "Error Propagation Expression"
+msgstr ""
+
+#: ../../src/expressions.rst:964
+msgid ""
+":dp:`fls_8q59wbumrt5s` An :t:`error propagation expression` is an "
+":t:`expression` that either evaluates to a :t:`value` of its :t:`operand`"
+" or returns a value to the next control flow boundary."
+msgstr ""
+
+#: ../../src/expressions.rst:969
+msgid ""
+":dp:`fls_mq2h4seoxah` An :t:`error propagation expression` shall appear "
+"within a :t:`control flow boundary`."
+msgstr ""
+
+#: ../../src/expressions.rst:973
+msgid ""
+":dp:`fls_ab4vhq4nwn7f` The :t:`type` of an :t:`error propagation "
+"expression` is :t:`associated type` :std:`core::ops::Try::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:977
+msgid ""
+":dp:`fls_z4zikxy2b1em` The :t:`value` of an :t:`error propagation "
+"expression` is determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:980
+msgid ""
+":dp:`fls_a09614kgsspt` If the :t:`evaluation` of the :t:`error "
+"propagation expression` executed ``core::ops::Try::branch(operand)``, "
+"then the :t:`value` is the :t:`value` of the "
+":std:`core::ops::ControlFlow::Continue` variant."
+msgstr ""
+
+#: ../../src/expressions.rst:985
+msgid ""
+":dp:`fls_8df018q7y6g` Otherwise control flow is returned to the end of "
+"the enclosing :t:`control flow boundary`."
+msgstr ""
+
+#: ../../src/expressions.rst:989
+msgid ""
+":dp:`fls_9sriwut951xv` The expression context for the :t:`operand` of the"
+" :t:`error propagation expression` is a :t:`value expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:995
+msgid ""
+":dp:`fls_alk4qvfprnvy` The :t:`evaluation` of an :t:`error propagation "
+"operator` of the form"
+msgstr ""
+
+#: ../../src/expressions.rst:1002
+msgid ""
+":dp:`fls_1nnhjcgy8kdh` is equivalent to the :t:`evaluation` the following"
+" :t:`expression`:"
+msgstr ""
+
+#: ../../src/expressions.rst:1031
+msgid "Negation Expression"
+msgstr ""
+
+#: ../../src/expressions.rst:1052
+msgid ""
+":dp:`fls_pfa81kv2mru8` A :t:`negation expression` is an :t:`expression` "
+"that negates its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:1055
+msgid ""
+":dp:`fls_plcut8vzdwox` The :t:`type` of the :t:`operand` of a "
+":t:`negation expression` with a :s:`BitwiseNegationOperator` shall "
+"implement the :std:`core::ops::Not` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:1060
+msgid ""
+":dp:`fls_ohu0kljfexd3` The :t:`type` of a :t:`negation expression` with a"
+" :s:`BitwiseNegationOperator` is :t:`associated type` "
+":std:`core::ops::Not::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1064
+msgid ""
+":dp:`fls_ghqvj8q71o97` The :t:`value` of a :t:`negation expression` with "
+"a :s:`BitwiseNegationOperator` is the result of "
+"``core::ops::Not::not(operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1068
+msgid ""
+":dp:`fls_3m4mgqnzqhri` The :t:`type` of the :t:`operand` of a "
+":t:`negation expression` with a :s:`SignNegationOperator` shall implement"
+" the :std:`core::ops::Neg` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:1072
+msgid ""
+":dp:`fls_u7gzm6n75rzm` The :t:`type` of a :t:`negation expression` with a"
+" :s:`SignNegationOperator` shall be :t:`associated type` "
+":std:`core::ops::Neg::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1076
+msgid ""
+":dp:`fls_9rmq7iaf092d` The :t:`value` of a :t:`negation expression` with "
+"a :s:`SignNegationOperator` is the result of "
+"``core::ops::Neg::neg(operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1080
+msgid ""
+":dp:`fls_2eou0x2lxmk6` The expression context for the :t:`operand` of the"
+" :t:`negation expression` is a :t:`value expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:1086
+msgid ""
+":dp:`fls_yzt6pcsvj3a` The :t:`evaluation` of a :t:`negation expression` "
+"with a :s:`BitwiseNegationOperator` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1090
+msgid ":dp:`fls_8tgxtprtifrr` The :t:`operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1093
+msgid ":dp:`fls_gn3dnuxm2h8m` ``core::ops::Not::not(operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1096
+msgid ""
+":dp:`fls_tsou6yz4mfte` The :t:`evaluation` of a :t:`negation expression` "
+"with a :s:`SignNegationOperator` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1100
+msgid ":dp:`fls_zdfgqky85r1f` The :t:`operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1103
+msgid ":dp:`fls_uldh10k77sng` ``core::ops::Neg::neg(operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1108
+msgid ":dp:`fls_uo6vv2yf8usx` Sign negation."
+msgstr ""
+
+#: ../../src/expressions.rst:1115
+msgid ":dp:`fls_hbrg0d98jak5` Bitwise negation."
+msgstr ""
+
+#: ../../src/expressions.rst:1122
+msgid ":dp:`fls_kqtr9c3jorvg` Logical negation."
+msgstr ""
+
+#: ../../src/expressions.rst:1132
+msgid "Arithmetic Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:1162
+msgid ""
+":dp:`fls_asibqpe3z95h` An :t:`arithmetic expression` is an "
+":t:`expression` that computes a :t:`value` from two :t:`[operand]s` using"
+" arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1166
+msgid ""
+":dp:`fls_dstca76y08ge` A :t:`division expression` is an :t:`arithmetic "
+"expression` that uses division."
+msgstr ""
+
+#: ../../src/expressions.rst:1169
+msgid ""
+":dp:`fls_kf41bphvlse3` A :t:`multiplication expression` is an "
+":t:`arithmetic expression` that uses multiplication."
+msgstr ""
+
+#: ../../src/expressions.rst:1173
+msgid ""
+":dp:`fls_3de9ulyzuoa` A :t:`remainder expression` is an :t:`arithmetic "
+"expression` that uses remainder division."
+msgstr ""
+
+#: ../../src/expressions.rst:1177
+msgid ""
+":dp:`fls_aalxhbvu8kdi` A :t:`subtraction expression` is an :t:`arithmetic"
+" expression` that uses subtraction."
+msgstr ""
+
+#: ../../src/expressions.rst:1181
+msgid ""
+":dp:`fls_8imzo7agyx0k` The :t:`type` of the :t:`left operand` of an "
+":t:`addition expression` shall implement the :std:`core::ops::Add` "
+":t:`trait` with the :t:`type` of the :t:`right operand` as the :t:`trait "
+"implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1186
+msgid ""
+":dp:`fls_vk17mfv47wk9` The :t:`type` of an :t:`addition expression` is "
+":t:`associated type` :std:`core::ops::Add::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1190
+msgid ""
+":dp:`fls_ryzhdpxgm7ii` The :t:`value` of an :t:`addition expression` is "
+"the result of ``core::ops::Add::add(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1194
+msgid ""
+":dp:`fls_f1puss9t4btz` The :t:`type` of the :t:`left operand` of a "
+":t:`division expression` shall implement the :std:`core::ops::Div` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1199
+msgid ""
+":dp:`fls_5rdrkvspw57z` The :t:`type` of a :t:`division expression` is "
+":t:`associated type` :std:`core::ops::Div::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1203
+msgid ""
+":dp:`fls_thyq4h55mx55` The :t:`value` of a :t:`division expression` is "
+"the result of ``core::ops::Div::div(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1207
+msgid ""
+":dp:`fls_hrml95g2txcj` The :t:`type` of the :t:`left operand` of a "
+":t:`multiplication expression` shall implement the :std:`core::ops::Mul` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1212
+msgid ""
+":dp:`fls_ittf4yggk7do` The :t:`type` of a :t:`multiplication expression` "
+"is :t:`associated type` :std:`core::ops::Mul::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1216
+msgid ""
+":dp:`fls_ylqm6wucq2sw` The :t:`value` of a :t:`multiplication expression`"
+" is the result of ``core::ops::Mul::mul(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1220
+msgid ""
+":dp:`fls_8fbhreyynhid` The :t:`type` of the :t:`left operand` of a "
+":t:`remainder expression` shall implement the :std:`core::ops::Rem` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1225
+msgid ""
+":dp:`fls_u3jwnrqun5kl` The :t:`type` of a :t:`remainder expression` is "
+":t:`associated type` :std:`core::ops::Rem::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1229
+msgid ""
+":dp:`fls_2ude3wrxji2p` The :t:`value` of a :t:`remainder expression` is "
+"the result of ``core::ops::Rem::rem(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1233
+msgid ""
+":dp:`fls_fjcv1nm8tlgf` The :t:`type` of the :t:`left operand` of a "
+":t:`subtraction expression` shall implement the :std:`core::ops::Sub` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1238
+msgid ""
+":dp:`fls_9x2i1zlsm364` The :t:`type` of a :t:`subtraction expression` is "
+":t:`associated type` :std:`core::ops::Sub::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1242
+msgid ""
+":dp:`fls_v8vekngd27sz` The :t:`value` of a :t:`subtraction expression` is"
+" the result of ``core::ops::Sub::sub(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1246
+msgid ""
+":dp:`fls_69r1m88mxzx5` The expression context for the :t:`[operand]s` of "
+"an :t:`arithmetic expression` is a :t:`value expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:1252
+msgid ""
+":dp:`fls_5nsa9zefz9cv` The :t:`evaluation` of an :t:`addition expression`"
+" proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1255
+msgid ":dp:`fls_u3pstd6xe43y` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1258
+msgid ":dp:`fls_jjmc1xgny77` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1261
+msgid ""
+":dp:`fls_cayhj5hcuhcg` ``core::ops::Add::add(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1264
+msgid ""
+":dp:`fls_43knkymqpj7t` The :t:`evaluation` of a :t:`division expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1267
+msgid ":dp:`fls_62gpbubfj30w` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1270
+msgid ":dp:`fls_bveocgaagk1n` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1273
+msgid ""
+":dp:`fls_qd6ggdgq2hob` ``core::ops::Div::div(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1276
+msgid ""
+":dp:`fls_lr2a21v5en59` The :t:`evaluation` of a :t:`multiplication "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1279
+msgid ":dp:`fls_kpbxcdaflb06` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1282
+msgid ":dp:`fls_b94ojbfukhvd` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1285
+msgid ""
+":dp:`fls_blyr18iao20n` ``core::ops::Mul::mul(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1288
+msgid ""
+":dp:`fls_g28igfbnwfe0` The :t:`evaluation` of a :t:`remainder expression`"
+" proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1291
+msgid ":dp:`fls_thcumw8n8xbw` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1294
+msgid ":dp:`fls_gld1u9fnsj6d` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1297
+msgid ""
+":dp:`fls_k7lmxvpkxtub` ``core::ops::Rem::rem(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1300
+msgid ""
+":dp:`fls_bndpd66973ev` The :t:`evaluation` of a :t:`subtraction "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1303
+msgid ":dp:`fls_izmfimd4yg27` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1306
+msgid ":dp:`fls_ad9tc6ki8vcq` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1309
+msgid ""
+":dp:`fls_b9g0r9vc4rou` ``core::ops::Rem::rem(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1314
+msgid ""
+":dp:`fls_8dkygceg0oo` It is undefined behavior for an :t:`arithmetic "
+"operation` to cause overflow with :t:`[value]s` of :t:`[numeric type]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:1331
+msgid "Bit Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:1361
+msgid ""
+":dp:`fls_3zd59yuywz6l` A :t:`bit expression` is an :t:`expression` that "
+"computes a :t:`value` from two :t:`[operand]s` using bit arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1365
+msgid ""
+":dp:`fls_f6mmva3lbj1i` A :t:`bit and expression` is a :t:`bit expression`"
+" that uses bit and arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1368
+msgid ""
+":dp:`fls_3136k1y6x3cu` A :t:`bit or expression` is a :t:`bit expression` "
+"that uses bit or arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1371
+msgid ""
+":dp:`fls_j7ujcuthga1i` A :t:`bit xor expression` is a :t:`bit expression`"
+" that uses bit exclusive or arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1375
+msgid ""
+":dp:`fls_caxn774ij8lk` A :t:`shift left expression` is a :t:`bit "
+"expression` that uses bit shift left arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1379
+msgid ""
+":dp:`fls_t709sl4co3al` A :t:`shift right expression` is a :t:`bit "
+"expression` that uses bit shift right arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1383
+msgid ""
+":dp:`fls_cmowpfrcelke` The :t:`type` of the :t:`left operand` of a "
+":t:`bit and expression` shall implement the :std:`core::ops::BitAnd` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1388
+msgid ""
+":dp:`fls_kchprk9z6xun` The :t:`type` of a :t:`bit and expression` is "
+":t:`associated type` :std:`core::ops::BitAnd::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1392
+msgid ""
+":dp:`fls_dimu987fw4kg` The :t:`value` of a :t:`bit and expression` is the"
+" result of ``core::ops::BitAnd::bitand(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1396
+msgid ""
+":dp:`fls_oo2ynd8e1ys6` The :t:`type` of the :t:`left operand` of a "
+":t:`bit or expression` shall implement the :std:`core::ops::BitOr` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1401
+msgid ""
+":dp:`fls_s6hkt5fg598y` The :t:`type` of a :t:`bit or expression` is "
+":t:`associated type` :std:`core::ops::BitOr::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1405
+msgid ""
+":dp:`fls_osfse0t6ua8a` The :t:`value` of a :t:`bit or expression` is the "
+"result of ``core::ops::BitOr::bitor(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1409
+msgid ""
+":dp:`fls_fnywefl9nty2` The :t:`type` of the :t:`left operand` of a "
+":t:`bit xor expression` shall implement the :std:`core::ops::BitXor` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1414
+msgid ""
+":dp:`fls_4f24nyx0ix0j` The :t:`type` of a :t:`bit xor expression` is "
+":t:`associated type` :std:`core::ops::BitXor::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1418
+msgid ""
+":dp:`fls_8tb22c6zbp3` The :t:`value` of a :t:`bit xor expression` is the "
+"result of ``core::ops::BitXor::bitxor(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1422
+msgid ""
+":dp:`fls_1f4pc612f2a8` The :t:`type` of the :t:`left operand` of a "
+":t:`shift left expression` shall implement the :std:`core::ops::Shl` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1427
+msgid ""
+":dp:`fls_8trozue35xe4` The :t:`type` of a :t:`shift left expression` is "
+":t:`associated type` :std:`core::ops::Shl::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1431
+msgid ""
+":dp:`fls_kqntxbwnc58v` The :t:`value` of a :t:`shift left expression` is "
+"the result of ``core::ops::Shl::shl(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1435
+msgid ""
+":dp:`fls_onutb0b9p9zj` The :t:`type` of the :t:`left operand` of a "
+":t:`shift right operation` shall implement the :std:`core::ops::Shr` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1440
+msgid ""
+":dp:`fls_yq8rtwfp3nv0` The :t:`type` of a :t:`shift right operation` is "
+":t:`associated type` :std:`core::ops::Shr::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:1444
+msgid ""
+":dp:`fls_fbazfgd5m1ot` The :t:`value` of a :t:`shift right operation` is "
+"the result of ``core::ops::Shr::shr(left_operand, right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1448
+msgid ""
+":dp:`fls_2z6wble3u8ec` The expression context for the :t:`[operand]s` of "
+"a :t:`bit expression` is a :t:`value expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:1454
+msgid ""
+":dp:`fls_f4o8xlu67okn` The :t:`evaluation` of a :t:`bit and expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1457
+msgid ":dp:`fls_kp747xqekyrr` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1460
+msgid ":dp:`fls_m0pdk78dah6n` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1463
+msgid ""
+":dp:`fls_m2hsk41hwm2j` ``core::ops::BitAnd::bitand(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1466
+msgid ""
+":dp:`fls_p9rlmjhbnbao` The :t:`evaluation` of a :t:`bit or expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1469
+msgid ":dp:`fls_vprp53kv64q6` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1472
+msgid ":dp:`fls_d456ummq6vrk` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1475
+msgid ""
+":dp:`fls_n269ufyesndz` ``core::ops::BitOr::bitor(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1478
+msgid ""
+":dp:`fls_i9iqtobheivu` The :t:`evaluation` of a :t:`bit xor expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1481
+msgid ":dp:`fls_htw2tpujktwt` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1484
+msgid ":dp:`fls_gf9tyu1idpjk` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1487
+msgid ""
+":dp:`fls_u5irwqswbsvu` ``core::ops::BitXor::bitxor(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1490
+msgid ""
+":dp:`fls_2kkpr955i4lm` The :t:`evaluation` of a :t:`shift left "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1493
+msgid ":dp:`fls_7p64lgnjxylz` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1496
+msgid ":dp:`fls_ieh1itrkcnf6` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1499
+msgid ""
+":dp:`fls_f0p70y92k14f` ``core::ops::Shl::shl(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1502
+msgid ""
+":dp:`fls_303r0u6ug215` The :t:`evaluation` of a :t:`shift right "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1505
+msgid ":dp:`fls_4gxj18t6cnzq` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1508
+msgid ":dp:`fls_gurl2ve58drz` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1511
+msgid ""
+":dp:`fls_xkyj83mcb9d5` ``core::ops::Shr::shr(left_operand, "
+"right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1527
+msgid "Comparison Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:1561
+msgid ""
+":dp:`fls_yzuceqx6nxwa` A :t:`comparison expression` is an :t:`expression`"
+" that compares the :t:`[value]s` of two :t:`[operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:1565
+msgid ""
+":dp:`fls_ruyho6cu7rxg` An :t:`equals expression` is a :t:`comparison "
+"expression` that tests equality."
+msgstr ""
+
+#: ../../src/expressions.rst:1568
+msgid ""
+":dp:`fls_wapl0ir7uvbp` A :t:`greater-than expression` is a :t:`comparison"
+" expression` that tests for a greater-than relationship."
+msgstr ""
+
+#: ../../src/expressions.rst:1572
+msgid ""
+":dp:`fls_7n5gol6a8lod` A :t:`greater-than-or-equals expression` is a "
+":t:`comparison expression` that tests for a greater-than-or-equals "
+"relationship."
+msgstr ""
+
+#: ../../src/expressions.rst:1576
+msgid ""
+":dp:`fls_yd4qqi39w248` A :t:`less-than expression` is a :t:`comparison "
+"expression` that tests for a less-than relationship."
+msgstr ""
+
+#: ../../src/expressions.rst:1580
+msgid ""
+":dp:`fls_yxwe1o27u6ns` A :t:`less-than-or-equals expression` is a "
+":t:`comparison expression` that tests for a less-than-or-equals "
+"relationship."
+msgstr ""
+
+#: ../../src/expressions.rst:1584
+msgid ""
+":dp:`fls_w71j7i3n1kit` A :t:`not-equals expression` is a :t:`comparison "
+"expression` that tests for inequality."
+msgstr ""
+
+#: ../../src/expressions.rst:1588
+msgid ""
+":dp:`fls_asfrqemqviad` A :t:`comparison expression` implicitly takes "
+":t:`[shared borrow]s` of its :t:`[operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:1592
+msgid ""
+":dp:`fls_9s4re3ujnfis` The :t:`type` of a :t:`comparison expression` is "
+":t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:1595
+msgid ""
+":dp:`fls_8echqk9po1cf` The :t:`type` of the :t:`left operand` of an "
+":t:`equals expression` shall implement the :std:`core::cmp::PartialEq` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1600
+msgid ""
+":dp:`fls_d62qfloqk2ub` The :t:`value` of an :t:`equals expression` is the"
+" result of ``core::cmp::PartialEq::eq(&left_operand, &right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1604
+msgid ""
+":dp:`fls_x2s6ydvj5zyd` The :t:`type` of the :t:`left operand` of a :t"
+":`greater-than expression` shall implement the "
+":std:`core::cmp::PartialOrd` :t:`trait` where the :t:`type` of the "
+":t:`right operand` is the :t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1609
+msgid ""
+":dp:`fls_pso38dowbk91` The :t:`value` of a :t:`greater-than expression` "
+"is the result of ``core::cmp::PartialOrd::gt(&left_operand, "
+"&right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1613
+msgid ""
+":dp:`fls_hholzcbp5u3n` The :t:`type` of the :t:`left operand` of a :t"
+":`greater-than-or-equals expression` shall implement the "
+":std:`core::cmp::PartialOrd` :t:`trait` where the :t:`type` of the "
+":t:`right operand` is the :t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1619
+msgid ""
+":dp:`fls_wytygse41vzm` The :t:`value` of a :t:`greater-than-or-equals "
+"expression` is the result of ``core::cmp::PartialOrd::ge(&left_operand, "
+"&right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1623
+msgid ""
+":dp:`fls_ynibdcke3etb` The :t:`type` of the :t:`left operand` of a :t"
+":`less-than expression` shall implement the :std:`core::cmp::PartialOrd` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1628
+msgid ""
+":dp:`fls_xmtxkit3qpw7` The :t:`value` of a :t:`less-than expression` is "
+"the result of ``core::cmp::PartialOrd::lt(&left_operand, "
+"&right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1632
+msgid ""
+":dp:`fls_6dgfieyxdan0` The :t:`type` of the :t:`left operand` of a :t"
+":`less-than-or-equals expression` shall implement the "
+":std:`core::cmp::PartialOrd` :t:`trait` where the :t:`type` of the "
+":t:`right operand` is the :t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1637
+msgid ""
+":dp:`fls_7pfsqby2saag` The :t:`value` of a :t:`less-than-or-equals "
+"expression` is the result of ``core::cmp::PartialOrd::le(&left_operand, "
+"&right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1641
+msgid ""
+":dp:`fls_qzo1torhv5i3` The :t:`type` of the :t:`left operand` of a :t"
+":`not-equals expression` shall implement the :std:`core::cmp::PartialEq` "
+":t:`trait` where the :t:`type` of the :t:`right operand` is the :t:`trait"
+" implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:1646
+msgid ""
+":dp:`fls_kodwkh58hmdv` The :t:`value` of a :t:`not-equals expression` is "
+"the result of ``core::cmp::PartialEq::ne(&left_operand, "
+"&right_operand)``."
+msgstr ""
+
+#: ../../src/expressions.rst:1650
+msgid ""
+":dp:`fls_8qbrzb9bxyf` The expression context for the :t:`[operand]s` of a"
+" :t:`comparison expression` is a :t:`place expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:1656
+msgid ""
+":dp:`fls_ydt9zvh0h5ex` The :t:`evaluation` of an :t:`equals expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1659
+msgid ":dp:`fls_4vbrc31r0o60` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1662
+msgid ":dp:`fls_hyy974ksbbrq` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1665
+msgid ""
+":dp:`fls_htrjqxiv3avh` ``core::cmp::PartialEq::eq(&left_operand, "
+"&right_operand)`` ``is invoked.``"
+msgstr ""
+
+#: ../../src/expressions.rst:1668
+msgid ""
+":dp:`fls_1udbc4aom6ok` The :t:`evaluation` of a :t:`greater-than "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1671
+msgid ":dp:`fls_96mt7gx5ogo0` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1674
+msgid ":dp:`fls_or0i2cqxwl8o` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1677
+msgid ""
+":dp:`fls_udnhkbxpk83m` ``core::cmp::PartialOrd::gt(&left_operand, "
+"&right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1680
+msgid ""
+":dp:`fls_mab6yirx77zl` The :t:`evaluation` of a :t:`greater-than-or-"
+"equals expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1684
+msgid ":dp:`fls_2ggb7a7nhrk9` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1687
+msgid ":dp:`fls_ukm97arfzsk1` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1690
+msgid ""
+":dp:`fls_wrftg7onlkmm` ``core::cmp::PartialOrd::ge(&left_operand, "
+"&right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1693
+msgid ""
+":dp:`fls_irlqykpbtvd` The :t:`evaluation` of a :t:`less-than expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1696
+msgid ":dp:`fls_udonl4c7f6pz` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1699
+msgid ":dp:`fls_ebvyhqbb921g` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1702
+msgid ""
+":dp:`fls_rfomib80bnn2` ``core::cmp::PartialOrd::lt(&left_operand, "
+"&right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1705
+msgid ""
+":dp:`fls_6cb4wg59wmef` The :t:`evaluation` of a :t:`less-than-or-equals "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1709
+msgid ":dp:`fls_dkbjn7noq8n2` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1712
+msgid ":dp:`fls_kezynx2xc1q7` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1715
+msgid ""
+":dp:`fls_8luq5sellcaq` ``core::cmp::PartialOrd::le(&left_operand, "
+"&right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1718
+msgid ""
+":dp:`fls_c93pacid548a` The :t:`evaluation` of a :t:`not-equals "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1721
+msgid ":dp:`fls_gqy6uuowij9e` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1724
+msgid ":dp:`fls_s6sq6p8th5nt` The :t:`right operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1727
+msgid ""
+":dp:`fls_kdga59xx4nx3` ``core::cmp::PartialEq::ne(&left_operand, "
+"&right_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:1732
+msgid ":dp:`fls_777hlnpac9h1` 12 == 12"
+msgstr ""
+
+#: ../../src/expressions.rst:1735
+msgid ":dp:`fls_xx7ugkxmk06p` 42 > 12"
+msgstr ""
+
+#: ../../src/expressions.rst:1738
+msgid ":dp:`fls_pfym2t99i6x4` 42 >= 35"
+msgstr ""
+
+#: ../../src/expressions.rst:1741
+msgid ":dp:`fls_nnvf94dbxwte` 42 < 109"
+msgstr ""
+
+#: ../../src/expressions.rst:1744
+msgid ":dp:`fls_4h896fhds7jk` 42 <= 42"
+msgstr ""
+
+#: ../../src/expressions.rst:1747
+msgid ":dp:`fls_rm0hk0svq4v7` 12 != 42"
+msgstr ""
+
+#: ../../src/expressions.rst:1753
+msgid "Lazy Boolean Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:1771
+msgid ""
+":dp:`fls_gpbvus89iy4c` A :t:`lazy boolean expression` is an "
+":t:`expression` that performs short circuit Boolean arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1775
+msgid ""
+":dp:`fls_40jya46h62yi` A :t:`lazy and expression` is a :t:`lazy boolean "
+"expression` that uses short circuit and arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1779
+msgid ""
+":dp:`fls_k8u77ow5bb6c` A :t:`lazy or expression` is a :t:`lazy boolean "
+"expression` that uses short circuit or arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:1783
+msgid ""
+":dp:`fls_u0gwo0s2l0tn` The :t:`[type]s` of the :t:`[operand]s` of a "
+":t:`lazy boolean expression` shall be :t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:1787
+msgid ""
+":dp:`fls_zas0lizgq2hn` The :t:`type` of a :t:`lazy boolean expression` is"
+" :t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:1790
+msgid ""
+":dp:`fls_xdgvrd58nkoa` The :t:`value` of a :t:`lazy boolean expression` "
+"is either ``true`` or ``false``."
+msgstr ""
+
+#: ../../src/expressions.rst:1794
+msgid ""
+":dp:`fls_bov5j5t1bx0a` The expression context for the :t:`[operand]s` of "
+"the :t:`lazy boolean expression` is a :t:`value expression` context."
+msgstr ""
+
+#: ../../src/expressions.rst:1800
+msgid ""
+":dp:`fls_ufre0ko2cwh2` The :t:`evaluation` of a :t:`lazy and expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1803
+msgid ":dp:`fls_jugckad775kq` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1806
+msgid ""
+":dp:`fls_tmfmu3syxp2q` If the :t:`left operand` evaluated to ``true``, "
+"then"
+msgstr ""
+
+#: ../../src/expressions.rst:1809
+msgid ""
+":dp:`fls_edj00fp6bqdk` The :t:`right operand` is evaluated and returned "
+"as the :t:`[lazy and expression]'s` :t:`value`."
+msgstr ""
+
+#: ../../src/expressions.rst:1813
+msgid ""
+":dp:`fls_srfv1d4idxy9` Otherwise the :t:`lazy and expression` evaluates "
+"to ``false``."
+msgstr ""
+
+#: ../../src/expressions.rst:1816
+msgid ""
+":dp:`fls_tflikh8cmxvc` The :t:`evaluation` of a :t:`lazy or expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1819
+msgid ":dp:`fls_p0rafjsridre` The :t:`left operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:1822
+msgid ""
+":dp:`fls_yg1348rlziw3` If the :t:`left operand` evaluated to ``false``, "
+"then"
+msgstr ""
+
+#: ../../src/expressions.rst:1825
+msgid ""
+":dp:`fls_ds8cr5dxc9em` The :t:`right operand` is evaluated and returned "
+"as the :t:`[lazy or expression]'s` :t:`value`."
+msgstr ""
+
+#: ../../src/expressions.rst:1829
+msgid ""
+":dp:`fls_yffozo2vq5xz` Otherwise the :t:`lazy or expression` evaluates to"
+" ``true``."
+msgstr ""
+
+#: ../../src/expressions.rst:1842
+msgid "Type Cast Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:1853
+msgid ""
+":dp:`fls_ltioqbhl14g0` A :t:`type cast expression` is an :t:`expression` "
+"that changes the :t:`type` of an :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:1857
+msgid ""
+":dp:`fls_99kvyh4puy57` :t:`Cast` or :t:`casting` is the process of "
+"changing the :t:`type` of an :t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:1861
+msgid ""
+":dp:`fls_a6midh2m0w0b` The ``TypeSpecificationWithoutBounds`` describes "
+"the :dt:`target type` of the :t:`type cast expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:1865
+msgid ""
+":dp:`fls_otaxe9okhdr1` A :t:`type cast expression` with the following "
+"characteristics performs a :dt:`specialized cast`:"
+msgstr ""
+
+#: ../../src/expressions.rst:1869
+msgid ""
+":dp:`fls_4s69s9pcvbn7` An :t:`operand` of a :t:`numeric type` and a "
+"target :t:`numeric type` perform a :t:`numeric cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1873
+msgid ""
+":dp:`fls_le6bchl25ewz` An :t:`operand` of an :t:`enum type` and a target "
+":t:`integer type` perform :t:`enum cast`. An *enum cast* converts the "
+":t:`operand` to its :t:`discriminant`, followed by a :t:`numeric cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1878
+msgid ""
+":dp:`fls_pcromhosmnf0` An operand of :t:`type` :c:`bool` or :t:`type` "
+":c:`char` and a target :t:`integer type` perform :t:`primitive-to-integer"
+" cast`. A :dt:`primitive-to-integer cast`"
+msgstr ""
+
+#: ../../src/expressions.rst:1883
+msgid ""
+":dp:`fls_al9f1t7vlsxi` Converts an :t:`operand` of :t:`type` :c:`bool` "
+"with :t:`value` ``false`` to zero."
+msgstr ""
+
+#: ../../src/expressions.rst:1887
+msgid ""
+":dp:`fls_jea17f39fmsg` Converts an :t:`operand` of type :c:`bool` with "
+":t:`value` ``true`` to one."
+msgstr ""
+
+#: ../../src/expressions.rst:1890
+msgid ""
+":dp:`fls_eb00s8fxlvjb` Convert an :t:`operand` of type :c:`char` to the "
+":t:`value` of the corresponding :t:`code point`, followed by a "
+":t:`numeric cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1894
+msgid ""
+":dp:`fls_qk5trk8wkvxb` An :t:`operand` of :t:`type` :c:`u8` and a target "
+":t:`type` :c:`char` performs :t:`u8-to-char cast`. A :dt:`u8-to-char "
+"cast` converts an :t:`operand` of :t:`type` :c:`u8` to the :t:`value` of "
+"the corresponding :t:`code point`."
+msgstr ""
+
+#: ../../src/expressions.rst:1899
+msgid ""
+":dp:`fls_t16yzaxro5ew` An :t:`operand` of :t:`type` ``*const T`` or "
+"``*mut T`` and a :t:`target type` ``*const V`` or ``*mut V`` where ``V`` "
+"implements the :std:`core::marker::Sized` :t:`trait` performs :t"
+":`pointer-to-pointer cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1904
+msgid ""
+":dp:`fls_i4zsbbmfa2fl` An :t:`operand` of :t:`type` ``*const T`` or "
+"``*mut T`` where ``T`` implements the :std:`core::marker::Sized` "
+":t:`trait` and a target :t:`integer type` perform :t:`pointer-to-address "
+"cast`. A :dt:`pointer-to-address cast` produces an :t:`integer` that "
+"represents the machine address of the referenced memory. If the "
+":t:`integer type` is smaller than the :t:`type` of the :t:`operand`, the "
+"address is truncated."
+msgstr ""
+
+#: ../../src/expressions.rst:1912
+msgid ""
+":dp:`fls_59mpteeczzo` An :t:`operand` of :t:`integer type` and :t:`target"
+" type` ``*const V`` or ``*mut V`` where ``V`` implements the "
+":std:`core::marker::Sized` :t:`trait` perform :t:`address-to-pointer "
+"cast`. An :dt:`address-to-pointer cast` produces a :t:`pointer` that "
+"interprets the :t:`integer` as a machine address."
+msgstr ""
+
+#: ../../src/expressions.rst:1918
+msgid ""
+":dp:`fls_8ccwlliqw9jx` An :t:`operand` of :t:`type` ``&mut [T; N]`` and a"
+" :t:`target type` ``*const T`` perform :t:`array-to-pointer cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1922
+msgid ""
+":dp:`fls_i8txki3htx92` An :t:`operand` of a :t:`function item type` and a"
+" :t:`target type` ``*const V`` or ``*mut V`` where ``V`` implements the "
+":std:`core::marker::Sized` :t:`trait` perform :t:`function-item-to-"
+"pointer cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1927
+msgid ""
+":dp:`fls_6hbkvbb1c8aj` An :t:`operand` of a :t:`function item type` and a"
+" target :t:`integer type` perform :t:`function-to-address cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1931
+msgid ""
+":dp:`fls_133j6xw8k4qe` An :t:`operand` of a :t:`function pointer type` "
+"and a :t:`target type` ``*const V`` or ``*mut V`` where ``V`` implements "
+"the :std:`core::marker::Sized` :t:`trait` perform :t:`function-pointer-"
+"to-pointer cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1937
+msgid ""
+":dp:`fls_bhw2j9wjpf2x` An :t:`operand` of a :t:`function pointer type` "
+"and a target :t:`integer type` perform :t:`function-pointer-to-address "
+"cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1941
+msgid ""
+":dp:`fls_3ww5gbk9w4ys` A :t:`cast` is legal when it either performs "
+":t:`type coercion` or is a :t:`specialized cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1945
+msgid ""
+":dp:`fls_hhxawo12cndy` The :t:`type` of a :t:`type cast expression` is "
+"the :t:`target type`."
+msgstr ""
+
+#: ../../src/expressions.rst:1948
+msgid ""
+":dp:`fls_uuayaksl8059` The :t:`value` of a :t:`type cast expression` is "
+"the :t:`value` of the :t:`operand` after the :t:`cast`."
+msgstr ""
+
+#: ../../src/expressions.rst:1954
+msgid ""
+":dp:`fls_syk2li8ft3rx` The :t:`evaluation` of a :t:`type cast expression`"
+" evaluates its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:1957
+msgid ""
+":dp:`fls_uqv32nthva6y` The :t:`evaluation` of a :dt:`numeric cast` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:1960
+msgid ""
+":dp:`fls_kc3gwj9x3jnr` Casting an :t:`operand` of an :t:`integer type` to"
+" a target :t:`integer type` of the same :t:`size` has no effect."
+msgstr ""
+
+#: ../../src/expressions.rst:1964
+msgid ""
+":dp:`fls_76eq3bd6birr` Casting an :t:`operand` of an :t:`integer type` to"
+" a target :t:`integer type` with smaller :t:`size` truncates the "
+":t:`value` of the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:1968
+msgid ""
+":dp:`fls_ldiritt32h2w` Casting an :t:`operand` of an :t:`integer type` to"
+" a target :t:`integer type` with a larger :t:`size` either"
+msgstr ""
+
+#: ../../src/expressions.rst:1972
+msgid ""
+":dp:`fls_h9sxg3pxn7i2` Zero-extends the :t:`operand` if the "
+":t:`[operand]'s` :t:`type` is unsigned, or"
+msgstr ""
+
+#: ../../src/expressions.rst:1976
+msgid ""
+":dp:`fls_shy6e0e30bco` Sign-extends the :t:`operand` if the "
+":t:`[operand]'s` :t:`type` is signed."
+msgstr ""
+
+#: ../../src/expressions.rst:1979
+msgid ""
+":dp:`fls_4xldaoj5ac6t` Casting an :t:`operand` of a :t:`floating-point "
+"type` to a target :t:`integer type` rounds the :t:`value` of the "
+":t:`operand` towards zero. In addition, the :t:`type cast expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:1984
+msgid ""
+":dp:`fls_50714cvaqkfv` Returns zero if the :t:`operand` denotes "
+":c:`f32::NaN` or :c:`f64::NaN` respectively."
+msgstr ""
+
+#: ../../src/expressions.rst:1988
+msgid ""
+":dp:`fls_g3xbmp8zx1yh` Saturates the :t:`value` of the :t:`operand` to "
+"the maximum :t:`value` of the target :t:`integer type` if the "
+":t:`[operand]'s` :t:`value` exceeds the maximum :t:`value` of the target "
+":t:`integer type` or denotes :c:`f32::INFINITY` or :c:`f64::INFINITY` "
+"respectively."
+msgstr ""
+
+#: ../../src/expressions.rst:1994
+msgid ""
+":dp:`fls_hcc5odh52bk7` Saturates the :t:`value` of the :t:`operand` to "
+"the minimum :t:`value` of the target :t:`integer type` if the "
+":t:`[operand]'s` :t:`value` exceeds the minimum :t:`value` of the target "
+":t:`integer type` or denotes :c:`f32::NEG_INFINITY` or "
+":c:`f64::NEG_INFINITY` respectively."
+msgstr ""
+
+#: ../../src/expressions.rst:2000
+msgid ""
+":dp:`fls_o2ep4b6t287z` Casting an :t:`operand` of an :t:`integer type` to"
+" a target :t:`floating-point type` produces the closest possible floating"
+" point :t:`value`. In addition, the :t:`type cast expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:2005
+msgid ""
+":dp:`fls_vfofk2aagsj5` Rounds the :t:`value` of the :t:`operand` "
+"preferring the :t:`value` with an even least significant digit if exactly"
+" halfway between two floating point numbers."
+msgstr ""
+
+#: ../../src/expressions.rst:2010
+msgid ""
+":dp:`fls_cx86k8yfjhht` Produc        es :c:`f32::INFINITY` or "
+":c:`f64::INFINITY` of the same sign as the :t:`value` of the :t:`operand`"
+" when the :t:`value` of the :t:`operand` causes overflow."
+msgstr ""
+
+#: ../../src/expressions.rst:2015
+msgid ""
+":dp:`fls_gzmdwibl5s4w` Casting an :t:`operand` of :t:`type` :c:`f32` to a"
+" :t:`target type` :c:`f64` is perfect and lossless."
+msgstr ""
+
+#: ../../src/expressions.rst:2019
+msgid ""
+":dp:`fls_mjqvjt7v8a25` Casting an :t:`operand` of :t:`type` :c:`f64` to "
+":t:`target type` :c:`f32` produces the closest possible :c:`f32` "
+":t:`value`. In addition, the :t:`type cast expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:2024
+msgid ""
+":dp:`fls_4fd5vkh0jt4` Prefers the nearest :t:`value` with an even least "
+"significant digit if exactly halfway between two floating point numbers."
+msgstr ""
+
+#: ../../src/expressions.rst:2028
+msgid ""
+":dp:`fls_2etd73f8jg2n` Produces :c:`f32::INFINITY` of the same sign as "
+"the :t:`value` of the :t:`operand` when the :t:`value` of the "
+":t:`operand` causes overflow."
+msgstr ""
+
+#: ../../src/expressions.rst:2034
+msgid ""
+":dp:`fls_vdxkpvmpwl3s` See :p:`6.4.1. <fls_ltflbfba9d5r>` for the "
+"declaration of ``answer``."
+msgstr ""
+
+#: ../../src/expressions.rst:2044
+msgid "Assignment Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2061
+msgid ""
+":dp:`fls_nhgexeu2h6wi` An :t:`assignment expression` is an "
+":t:`expression` that assigns the :t:`value` of a :t:`value operand` to an"
+" :t:`assignee operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2065
+msgid ""
+":dp:`fls_bsjw6f4a3wol` An :t:`assignee operand` is the target "
+":t:`operand` of an :t:`assignment expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2069
+msgid ""
+":dp:`fls_uinh05sslxeo` A :t:`value operand` is an :t:`operand` that "
+"supplies the :t:`value` that is assigned to an :t:`assignee operand` by "
+"an :t:`assignment expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2073
+msgid ""
+":dp:`fls_kh6rp9e0wwl` An :t:`assignee operand` shall denote a :t:`mutable"
+" assignee expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2076
+msgid ""
+":dp:`fls_3wragak9hglw` A :t:`value operand` shall denote a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2079
+msgid ""
+":dp:`fls_qengy157fa4a` The :t:`type` of an :t:`assignment expression` is "
+"the :t:`unit type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2082
+msgid ""
+":dp:`fls_bwwtgqprbxrm` The :t:`value` of an :t:`assignment expression` is"
+" the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:2088
+msgid "Basic Assignment"
+msgstr ""
+
+#: ../../src/expressions.rst:2092
+msgid ""
+":dp:`fls_uhcodvq75nlr` A :t:`basic assignment` is an :t:`assignment "
+"expression` that is not a :t:`destructuring assignment`."
+msgstr ""
+
+#: ../../src/expressions.rst:2098
+msgid ""
+":dp:`fls_esn5ceoldta` The :t:`evaluation` of a :t:`basic assignment` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2101
+msgid ":dp:`fls_t8eqzc64ivin` The :t:`value operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2104
+msgid ":dp:`fls_b0mqcn5fejhk` The :t:`assignee operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2107
+msgid ""
+":dp:`fls_9i0ctuo099bp` The :t:`value` denoted by the :t:`assignee "
+"operand` is :t:`dropped`, unless the :t:`assignee operand` denotes an "
+"uninitialized :t:`binding` or an uninitialized :t:`field` of a "
+":t:`binding`."
+msgstr ""
+
+#: ../../src/expressions.rst:2112
+msgid ""
+":dp:`fls_hc01gtvlxba` The :t:`value` of the :t:`value operand` is "
+":t:`copied` or :t:`moved` into the place of the :t:`assignee operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2125
+msgid "Destructuring Assignment"
+msgstr ""
+
+#: ../../src/expressions.rst:2129
+msgid ""
+":dp:`fls_2eheo4yo2orm` A :t:`destructuring assignment` is an "
+":t:`assignment expression` where the :t:`assignee operand` is either an "
+":t:`array expression`, a :t:`struct expression`, a :t:`tuple expression`,"
+" or a :t:`union expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2134
+msgid ""
+":dp:`fls_z8c3b9s9de3x` The :t:`assignee operand` of a :t:`destructuring "
+"assignment` corresponds to an :t:`assignee pattern` according to its "
+"kind, as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2138
+msgid ""
+":dp:`fls_du5eybf8mocy` A :t:`place expression` corresponds to an "
+":t:`identifier pattern` with a unique :t:`identifier` and without "
+":t:`keyword` ``ref``, keyword ``mut``, or a :t:`bound pattern`."
+msgstr ""
+
+#: ../../src/expressions.rst:2143
+msgid ""
+":dp:`fls_q90ikfi7ewoi` An :t:`underscore expression` corresponds to an "
+":t:`underscore pattern`."
+msgstr ""
+
+#: ../../src/expressions.rst:2146
+msgid ""
+":dp:`fls_uydzlfc4hjbx` A :t:`tuple expression` corresponds to a :t:`tuple"
+" pattern` with all the :t:`[subexpression]s` lowered to their "
+"corresponding :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2150
+msgid ""
+":dp:`fls_fa14yfvxsbx3` A :t:`tuple struct expression` corresponds to a "
+":t:`tuple struct pattern` with all the :t:`[subexpression]s` lowered to "
+"their corresponding :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2154
+msgid ""
+":dp:`fls_hj6srmzbobid` A :t:`struct expression` corresponds to a "
+":t:`struct pattern` with all the :t:`[subexpression]s` lowered to their "
+"corresponding :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2158
+msgid ""
+":dp:`fls_c4pto819yc8j` A :t:`unit struct expression` corresponds to a "
+":t:`unit struct pattern`."
+msgstr ""
+
+#: ../../src/expressions.rst:2161
+msgid ""
+":dp:`fls_vqb89rkkjw81` A :t:`slice expression` corresponds to a :t:`slice"
+" pattern` with all the :t:`[subexpression]s` lowered to their "
+"corresponding :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2165
+msgid ""
+":dp:`fls_vqj7ljrrd7wi` A :t:`full range expression` corresponds to a "
+":t:`rest pattern` if inside a :t:`slice expression`, otherwise this is a "
+"static error."
+msgstr ""
+
+#: ../../src/expressions.rst:2169
+msgid ""
+":dp:`fls_4bb07tn28ivw` The :t:`pattern` that corresponds to a "
+":t:`destructuring assignment` shall be :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/expressions.rst:2173
+msgid ""
+":dp:`fls_g80a92tr2ser` A :t:`destructuring assignment` is equivalent to a"
+" :t:`block expression` of the following form:"
+msgstr ""
+
+#: ../../src/expressions.rst:2177
+msgid ""
+":dp:`fls_u0iqhbw37xvq` The first :t:`statement` is a :t:`let statement` "
+"with its :t:`pattern` equivalent to the lowered :t:`assignee pattern` and"
+" its :t:`initialization expression` equivalent to the :t:`value operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2182
+msgid ""
+":dp:`fls_wsfhd3udt6fq` Then each bound :t:`identifier` of the "
+":t:`assignee pattern` is an :t:`assignment expression` used as a "
+":t:`statement`, as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2186
+msgid ""
+":dp:`fls_ll6h6qcaos65` The bound :t:`identifier` becomes the :t:`value "
+"operand` of the new :t:`assignment expression`, and"
+msgstr ""
+
+#: ../../src/expressions.rst:2190
+msgid ""
+":dp:`fls_ajbdn54qe6wc` The corresponding :t:`expression` from the "
+":t:`assignee operand` of the :t:`destructuring assignment` becomes the "
+":t:`assignee operand` of the new :t:`assignment expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2197
+msgid ""
+":dp:`fls_l4u5hhw8tnvs` The :t:`evaluation` of a :t:`destructuring "
+"assignment` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2200
+msgid ":dp:`fls_dd62w8c9n9sd` The :t:`value operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2203
+msgid ""
+":dp:`fls_jqu2u6mdccgi` The :t:`assignee operand` is evaluated by "
+"evaluating its :t:`[operand]s` in a left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:2207
+msgid ""
+":dp:`fls_n7nuj1lvpspc` Each :t:`value` denoted by the :t:`assignee "
+"operand` is :t:`dropped` in left-to-right order, unless the :t:`assignee "
+"operand` denotes an uninitialized :t:`binding` or an uninitialized field "
+"of a :t:`binding`."
+msgstr ""
+
+#: ../../src/expressions.rst:2212
+msgid ""
+":dp:`fls_qb8u5skn8bc4` The :t:`value` of the :t:`value operand` is "
+":t:`copied` or :t:`moved` into the place of the :t:`assignee operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2225
+msgid "Compound Assignment Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2280
+msgid ""
+":dp:`fls_3bu3g8o5nopc` A :t:`compound assignment expression` is an "
+"expression that first computes a :t:`value` from two :t:`[operand]s` and "
+"then assigns the value to an :t:`assigned operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2285
+msgid ""
+":dp:`fls_w2hbhb989yr4` A :t:`bit and assignment expression` is a "
+":t:`compound assignment expression` that uses bit and arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:2289
+msgid ""
+":dp:`fls_ak4g5112jkl` A :t:`bit or assignment expression` is a "
+":t:`compound assignment expression` that uses bit or arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:2293
+msgid ""
+":dp:`fls_lkjwyy78m2vx` A :t:`bit xor assignment expression` is a "
+":t:`compound assignment expression` that uses bit exclusive or "
+"arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:2297
+msgid ""
+":dp:`fls_pkzj0uigfcgm` A :t:`division assignment expression` is a "
+":t:`compound assignment expression` that uses division."
+msgstr ""
+
+#: ../../src/expressions.rst:2301
+msgid ""
+":dp:`fls_ndlv3k9uclz2` A :t:`multiplication assignment expression` is a "
+":t:`compound assignment expression` that uses multiplication."
+msgstr ""
+
+#: ../../src/expressions.rst:2305
+msgid ""
+":dp:`fls_fbp5dojti27r` A :t:`remainder assignment expression` is a "
+":t:`compound assignment expression` that uses remainder division."
+msgstr ""
+
+#: ../../src/expressions.rst:2309
+msgid ""
+":dp:`fls_oy9ur11k78t` A :t:`shift left assignment expression` is a "
+":t:`compound assignment expression` that uses bit shift left arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:2313
+msgid ""
+":dp:`fls_s7rey2bndfei` A :t:`shift right assignment expression` is a "
+":t:`compound assignment expression` that uses bit shift right arithmetic."
+msgstr ""
+
+#: ../../src/expressions.rst:2317
+msgid ""
+":dp:`fls_7l7v7vigw3fu` A :t:`subtraction assignment expression` is a "
+":t:`compound assignment expression` that uses subtraction."
+msgstr ""
+
+#: ../../src/expressions.rst:2321
+msgid ""
+":dp:`fls_dvy201zd6oym` An :t:`assigned operand` is the target "
+":t:`operand` of a :t:`compound assignment expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2325
+msgid ""
+":dp:`fls_9v09ayi2azpe` A :t:`modifying operand` is an :t:`operand` that "
+"supplies the :t:`value` that is used in the calculation of a :t:`compound"
+" assignment expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2329
+msgid ""
+":dp:`fls_row7saf53vwd` An :t:`assigned operand` shall denote a "
+":t:`mutable assignee expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2332
+msgid ""
+":dp:`fls_gulql06xp9f3` A :t:`modifying operand` shall denote a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2335
+msgid ""
+":dp:`fls_xmgcdw9yhb55` The :t:`type` of a :t:`compound assignment` is the"
+" :t:`unit type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2338
+msgid ""
+":dp:`fls_yeh6mvyvb4dp` The :t:`value` of a :t:`compound assignment` is "
+"the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:2341
+msgid ""
+":dp:`fls_657knnsobdyu` The :t:`type` of the :t:`assigned operand` of an "
+":t:`addition assignment` shall implement the :std:`core::ops::AddAssign` "
+"trait where the type of the right operand is the trait implementation "
+"type parameter."
+msgstr ""
+
+#: ../../src/expressions.rst:2346
+msgid ""
+":dp:`fls_m942dwwmr2cl` The :t:`type` of the :t:`assigned operand` of a "
+":t:`bit and assignment` shall implement the "
+":std:`core::ops::BitAndAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2351
+msgid ""
+":dp:`fls_np33oqrz33mp` The :t:`type` of the :t:`assigned operand` of a "
+":t:`bit or assignment` shall implement the :std:`core::ops::BitOrAssign` "
+":t:`trait` where the :t:`type` of the :t:`modifying operand` is the "
+":t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2356
+msgid ""
+":dp:`fls_atdpr8be2o2r` The :t:`type` of the :t:`assigned operand` of a "
+":t:`bit xor assignment` shall implement the "
+":std:`core::ops::BitXorAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2361
+msgid ""
+":dp:`fls_fbgwb3pdfgz` The :t:`type` of the :t:`assigned operand` of a "
+":t:`division assignment` shall implement the :std:`core::ops::DivAssign` "
+":t:`trait` where the :t:`type` of the :t:`modifying operand` is the "
+":t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2366
+msgid ""
+":dp:`fls_8tbxq95x06yt` The :t:`type` of the :t:`assigned operand` of a "
+":t:`multiplication assignment` shall implement the "
+":std:`core::ops::MulAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2372
+msgid ""
+":dp:`fls_9oy9zo3x3fy3` The :t:`type` of the :t:`assigned operand` of a "
+":t:`remainder assignment` shall implement the :std:`core::ops::RemAssign`"
+" :t:`trait` where the :t:`type` of the :t:`modifying operand` is the "
+":t:`trait implementation` :t:`type parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2377
+msgid ""
+":dp:`fls_pdgj2xekdead` The :t:`type` of the :t:`assigned operand` of a "
+":t:`shift left assignment` shall implement the "
+":std:`core::ops::ShlAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2382
+msgid ""
+":dp:`fls_4uoi6k8r7mvc` The :t:`type` of the :t:`assigned operand` of a "
+":t:`shift right assignment` shall implement the "
+":std:`core::ops::ShrAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2388
+msgid ""
+":dp:`fls_fjaz4m90cagr` The :t:`type` of the :t:`assigned operand` of a "
+":t:`subtraction assignment` shall implement the "
+":std:`core::ops::SubAssign` :t:`trait` where the :t:`type` of the "
+":t:`modifying operand` is the :t:`trait implementation` :t:`type "
+"parameter`."
+msgstr ""
+
+#: ../../src/expressions.rst:2396
+msgid ""
+":dp:`fls_eesn9kuylim` The :t:`evaluation` of a :t:`compound assignment` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2399
+msgid ""
+":dp:`fls_4nnqz4etisgw` If the :t:`[type]s` of both :t:`[operand]s` are "
+":t:`[primitive type]s`, then"
+msgstr ""
+
+#: ../../src/expressions.rst:2402
+msgid ":dp:`fls_a2g4hs15jpiu` The :t:`modifying operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2405
+msgid ":dp:`fls_kuet16jp6ps9` The :t:`assigned operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2408
+msgid ""
+":dp:`fls_hovju0sni9gr` The appropriate :t:`function` is invoked as "
+"indicated below."
+msgstr ""
+
+#: ../../src/expressions.rst:2411
+msgid ":dp:`fls_ngimpabunzis` Otherwise"
+msgstr ""
+
+#: ../../src/expressions.rst:2414
+msgid ":dp:`fls_4sbpfi12frwe` The :t:`assigned operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2417
+msgid ":dp:`fls_n5ds6ydgckvo` The :t:`modifying operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2420
+msgid ""
+":dp:`fls_xjdu0y1slsg9` The appropriate :t:`function` is invoked as "
+"indicated below."
+msgstr ""
+
+#: ../../src/expressions.rst:2423
+msgid ""
+":dp:`fls_ijfmnnrdlu8n` For an :t:`addition assignment`, "
+"``core::ops::AddAssign::add_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2427
+msgid ""
+":dp:`fls_6x7j9x354pkb` For a :t:`bit and assignment`, "
+"``core::ops::BitAndAssign::bitand_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2431
+msgid ""
+":dp:`fls_h2cpbz2t74hy` For a :t:`bit or assignment`, "
+"``core::ops::BitOrAssign::bitor_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2435
+msgid ""
+":dp:`fls_whj50spxz3bh` For a :t:`bit xor assignment`, "
+"``core::ops::BitXorAssign::bitxor_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2439
+msgid ""
+":dp:`fls_d1cxq1zbt5fq` For a :t:`division assignment`, "
+"``core::ops::DivAssign::div_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2443
+msgid ""
+":dp:`fls_48i245an2449` For a :t:`multiplication assignment`, "
+"``core::ops::MulAssign::mul_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2447
+msgid ""
+":dp:`fls_69wr03rt0ali` For a :t:`remainder assignment`, "
+"``core::ops::RemAssign::rem_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2451
+msgid ""
+":dp:`fls_9d970yfwmj2d` For a :t:`shift left assignment`, "
+"``core::ops::ShlAssign::shl_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2455
+msgid ""
+":dp:`fls_p9687v3xckps` For a :t:`shift right assignment`, "
+"``core::ops::ShrAssign::shr_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2459
+msgid ""
+":dp:`fls_8j408kckzzud` For a :t:`subtraction assignment`, "
+"``core::ops::SubAssign::sub_assign(&mut assigned_operand, "
+"modifying_operand)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:2465
+msgid ""
+":dp:`fls_uywamh3nzl6p` It is undefined behavior for an :t:`addition "
+"assignment`, a :t:`division assignment`, a :t:`multiplication "
+"assignment`, a :t:`remainder assignment`, or a :t:`subtraction "
+"assignment` to cause overflow with :t:`[value]s` of :t:`[numeric type]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2490
+msgid "Underscore Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2501
+msgid ""
+":dp:`fls_pydmv629vfuu` An :t:`underscore expression` is an "
+":t:`expression` that acts as a placeholder in a :t:`destructuring "
+"assignment`."
+msgstr ""
+
+#: ../../src/expressions.rst:2505
+msgid ""
+":dp:`fls_wms3dbwjwyu4` An :t:`underscore expression` shall appear in the "
+":t:`assigned operand` of a :t:`destructuring statement`."
+msgstr ""
+
+#: ../../src/expressions.rst:2520
+msgid "Parenthesized Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2531
+msgid ""
+":dp:`fls_jhazc75w5vj` A :t:`parenthesized expression` is an "
+":t:`expression` that groups other :t:`[expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2535
+msgid ""
+":dp:`fls_ew9y5vaseehy` A :t:`parenthesized expression` is a :t:`place "
+"expression` when its :t:`operand` is a :t:`place expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2539
+msgid ""
+":dp:`fls_n4dhc0hvwwfk` A :t:`parenthesized expression` is a :t:`value "
+"expression` when its :t:`operand` is a :t:`value expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2543
+msgid ""
+":dp:`fls_5d66h7naoup6` The :t:`type` of a :t:`parenthesized expression` "
+"is the :t:`type` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2547
+msgid ""
+":dp:`fls_xp9whcj2obk8` The :t:`value` of a :t:`parenthesized expression` "
+"is the :t:`value` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2553
+msgid ""
+":dp:`fls_2po52gv0m021` The :t:`evaluation` of a :t:`parenthesized "
+"expression` evaluates its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2566
+msgid "Array and Array Index Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2571
+msgid "Array Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2597
+msgid ""
+":dp:`fls_ya9res33oxt6` An :t:`array expression` is an :t:`expression` "
+"that constructs an :t:`array`."
+msgstr ""
+
+#: ../../src/expressions.rst:2600
+msgid ""
+":dp:`fls_fwtd3b10veiw` An :t:`array element constructor` is an :t:`array "
+"expression` that lists all elements of the :t:`array` being constructed."
+msgstr ""
+
+#: ../../src/expressions.rst:2604
+msgid ""
+":dp:`fls_81jf78m5uga4` An :t:`array repetition constructor` is an "
+":t:`array expression` that specifies how many times an element is "
+"repeated in the :t:`array` being constructed."
+msgstr ""
+
+#: ../../src/expressions.rst:2608
+msgid ""
+":dp:`fls_3y69y9ga4at7` A :t:`repeat operand` is an :t:`operand` that "
+"specifies the element being repeated in an :t:`array repetition "
+"constructor`."
+msgstr ""
+
+#: ../../src/expressions.rst:2612
+msgid ""
+":dp:`fls_2l9objtb23zn` A :t:`size operand` is an :t:`operand` that "
+"specifies the size of an :t:`array` or an :t:`array type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2616
+msgid ""
+":dp:`fls_l0gbcyybzdv0` An :t:`array expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2619
+msgid ""
+":dp:`fls_by21pey7k423` The :t:`[type]s` of the :t:`[operand]s` of an "
+":t:`array element constructor` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:2623
+msgid ""
+":dp:`fls_x2xu2pynxy1u` If the :t:`size operand` is greater than one, then"
+" the :t:`type` of the :t:`repeat operand` shall implement the "
+":std:`core::copy::Copy` :t:`trait` or the :t:`repeat operand` shall be a "
+":t:`path expression` resolving to a :t:`constant`."
+msgstr ""
+
+#: ../../src/expressions.rst:2629
+msgid ""
+":dp:`fls_qplsh3pdqitq` The :t:`type` of the :t:`size operand` shall be "
+":t:`type` :c:`usize`."
+msgstr ""
+
+#: ../../src/expressions.rst:2632
+msgid ""
+":dp:`fls_9gmnjvs83d8o` The :t:`value` of the :t:`size operand` shall be a"
+" :t:`constant expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2635
+msgid ""
+":dp:`fls_wmsekin1gd2y` The :t:`type` of an :t:`array expression` is ``[T;"
+" N]``, where ``T`` is the element type and ``N`` is the size of the "
+"array. The :t:`size` of an :t:`array` is determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2640
+msgid ""
+":dp:`fls_2gto5kp9bjw8` If the :t:`array expression` appears with an "
+":t:`array element constructor`, then the :t:`size` is the number of "
+":t:`[operand]s` in the :t:`array element constructor`."
+msgstr ""
+
+#: ../../src/expressions.rst:2645
+msgid ""
+":dp:`fls_guop34ayjw2` Otherwise the :t:`size` is the :t:`value` of "
+":t:`size operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2648
+msgid ""
+":dp:`fls_aj6tbe54v5jl` The :t:`value` of an :t:`array expression` is the "
+"constructed :t:`array`."
+msgstr ""
+
+#: ../../src/expressions.rst:2653
+msgid ""
+":dp:`fls_t52in1kkyli3` The :t:`evaluation` of an :t:`array expression` "
+"with an :t:`array element constructor` evaluates its :t:`[operand]s` in "
+"left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:2657
+msgid ""
+":dp:`fls_1kj8nlc5eb8a` The :t:`evaluation` of an :t:`array expression` "
+"with an :t:`array repetition constructor` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2661
+msgid ""
+":dp:`fls_f3izbkm8607z` If the :t:`value` of the :t:`size operand` is "
+"greater than zero, then:"
+msgstr ""
+
+#: ../../src/expressions.rst:2664
+msgid ""
+":dp:`fls_qbyysx30pjzs` If the :t:`repeat operand` denotes a "
+":t:`constant`, the :t:`repeat operand` is evaluated once and its "
+":t:`value` is :t:`copied` :t:`[size operand]'s` :t:`value` times."
+msgstr ""
+
+#: ../../src/expressions.rst:2669
+msgid ""
+":dp:`fls_1m0laldldh7j` Otherwise the :t:`repeat operand` is evaluated "
+":t:`[size operand]'s` :t:`value` times."
+msgstr ""
+
+#: ../../src/expressions.rst:2673
+msgid ""
+":dp:`fls_5cs68nm54l31` Otherwise the :t:`repeat operand` is evaluated "
+"once."
+msgstr ""
+
+#: ../../src/expressions.rst:2683
+msgid ":dp:`fls_p7hcqryal5cm` Two dimensional array."
+msgstr ""
+
+#: ../../src/expressions.rst:2690
+msgid ":dp:`fls_izlpt6100gvk` An array of nine 42s."
+msgstr ""
+
+#: ../../src/expressions.rst:2700
+msgid "Array and Slice Indexing Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2717
+msgid ""
+":dp:`fls_42ijvuqqqlvh` An :t:`array index expression` is an "
+":t:`expression` that indexes into an :t:`array` or a :t:`slice`."
+msgstr ""
+
+#: ../../src/expressions.rst:2721
+msgid ""
+":dp:`fls_pc0c22asgzvw` An :t:`indexed array operand` is an :t:`operand` "
+"which indicates the :t:`array` or :t:`slice` being indexed into by an "
+":t:`array index expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2725
+msgid ""
+":dp:`fls_ff3sgpldn52o` An :t:`indexing operand` is an :t:`operand` which "
+"specifies the index of the :t:`array` or :t:`slice` being indexed into by"
+" an :t:`array index expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2729
+msgid ""
+":dp:`fls_w96p9oyv5mqt` An :t:`array index expression` is a :t:`constant "
+"expression` if the :t:`indexing operand` is a :t:`constant expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2733
+msgid ""
+":dp:`fls_u9sl7h4i8hqu` The :t:`type` of the :t:`indexing operand` is the "
+":t:`generic parameter` of the :std:`core::ops::Index` implementation of "
+"the :t:`type` of the :t:`indexed array operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:2738
+msgid ""
+":dp:`fls_98qeczwv7fmy` If the :t:`indexed array operand` is evaluated in "
+"a :t:`value expression context`, then"
+msgstr ""
+
+#: ../../src/expressions.rst:2742
+msgid ""
+":dp:`fls_jxdiknkwglak` The :t:`array index expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2745
+msgid ""
+":dp:`fls_sb2b8gszzaxq` The :t:`type` of the :t:`indexed array operand` "
+"shall implement the :std:`core::ops::Index` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:2749
+msgid ""
+":dp:`fls_issaykiuha75` The :t:`type` of the :t:`array index expression` "
+"is ``&T``, where ``T`` is :t:`associated type` "
+":std:`core::ops::Index::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:2753
+msgid ""
+":dp:`fls_y3sduoma6q9v` If the :t:`indexed array operand` is :t:`mutable` "
+"and the :t:`array index expression` is evaluated in a :t:`mutable place "
+"expression context`, then"
+msgstr ""
+
+#: ../../src/expressions.rst:2757
+msgid ""
+":dp:`fls_pjmoo8mjgxz3` The :t:`array index expression` is a :t:`mutable "
+"place expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2760
+msgid ""
+":dp:`fls_ld7lbvqms5i6` The :t:`type` of the :t:`indexed array operand` "
+"shall implement the :std:`core::ops::IndexMut` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:2764
+msgid ""
+":dp:`fls_nw705fpon79b` The :t:`type` of the :t:`array index expression` "
+"is ``&mut T``, where ``T`` is the element type of the :t:`[indexed array "
+"operand]'s` :t:`type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2768
+msgid ""
+":dp:`fls_fouu0z3jwoad` The :t:`value` of an :t:`array index expression` "
+"is the indexed memory location."
+msgstr ""
+
+#: ../../src/expressions.rst:2773
+msgid ""
+":dp:`fls_6sgj0ltt21i` The :t:`evaluation` of an :t:`array index "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:2776
+msgid ":dp:`fls_e5l4y3dy69xi` The :t:`indexed array operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2779
+msgid ":dp:`fls_fza3omn8yw7s` The :t:`indexing operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2782
+msgid ""
+":dp:`fls_ehamppbq4gmg` If the :t:`array index expression` is evaluated as"
+" a :t:`mutable place expression`, then :t:`expression` "
+"``*core::ops::IndexMut::index_mut(&mut indexed_array_operand, "
+"inexing_operand)`` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2787
+msgid ""
+":dp:`fls_i68oxj659hc1` Otherwise :t:`expression` "
+"``*core::ops::Index::index(&indexed_array_operand, inexing_operand)`` is "
+"evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:2798
+msgid ":dp:`fls_esvpmh6razg3` Evaluates to 6."
+msgstr ""
+
+#: ../../src/expressions.rst:2804
+msgid "Tuple Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2817
+msgid ""
+":dp:`fls_87rp1hfwvjel` A :t:`tuple expression` is an :t:`expression` that"
+" constructs a :t:`tuple`."
+msgstr ""
+
+#: ../../src/expressions.rst:2820
+msgid ""
+":dp:`fls_581y6jq1eyn8` A :t:`tuple initializer` is an :t:`operand` that "
+"provides the :t:`value` of a :t:`tuple field` in a :t:`tuple expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2824
+msgid ":dp:`fls_3dmehkxewz6d` A :t:`tuple expression` is a :t:`value expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2827
+msgid ""
+":dp:`fls_ljz3sxmfzflm` The :t:`type` of a :t:`tuple expression` is ``(T1,"
+" T2, ..., TN)``, where ``T1`` is the :t:`type` of the first :t:`tuple "
+"initializer`, ``T2`` is the :t:`type` of the second :t:`tuple "
+"initializer`, and ``TN`` is the :t:`type` of the ``N``-th :t:`tuple "
+"initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:2833
+msgid ""
+":dp:`fls_k2aznqo9j49p` The :t:`value` of a :t:`tuple expression` is "
+"``(V1, V2, ..., VN)``, where ``V1`` is the :t:`value` of the first "
+":t:`tuple initializer`, ``V2`` is the :t:`value` of the second :t:`tuple "
+"initializer`, and ``VN`` is the :t:`value` of the ``N``-th :t:`tuple "
+"initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:2839
+msgid ""
+":dp:`fls_fgthjiu980rr` The :t:`value` of a :t:`tuple expression` without "
+"any :t:`[tuple initializer]s` is the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:2845
+msgid ""
+":dp:`fls_waf55yd3mpsq` The :t:`evaluation` of a :t:`tuple expression` "
+"evaluates its :t:`[tuple initializer]s` in left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:2860
+msgid "Struct Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:2918
+msgid ""
+":dp:`fls_jc45bpgsfnmr` A :t:`struct expression` is an :t:`expression` "
+"that constructs a :t:`struct` or a :t:`union`."
+msgstr ""
+
+#: ../../src/expressions.rst:2922
+msgid ""
+":dp:`fls_fan2lkcxk7bg` A :t:`record struct constructor` is a :t:`struct "
+"expression` that constructs a :t:`record struct`."
+msgstr ""
+
+#: ../../src/expressions.rst:2926
+msgid ""
+":dp:`fls_1e1rgq9k6n1i` A :t:`tuple struct constructor` is a :t:`struct "
+"expression` that constructs a :t:`tuple struct`."
+msgstr ""
+
+#: ../../src/expressions.rst:2930
+msgid ""
+":dp:`fls_9yi0cxjnjlx9` A :t:`union constructor` is a :t:`struct "
+"expression` that constructs a :t:`union`."
+msgstr ""
+
+#: ../../src/expressions.rst:2934
+msgid ""
+":dp:`fls_lowrnb3nk318` A :t:`unit struct constructor` is a :t:`struct "
+"expression` that constructs a :t:`unit struct`."
+msgstr ""
+
+#: ../../src/expressions.rst:2938
+msgid ""
+":dp:`fls_lb2wr5o9sjm7` A :t:`base initializer` is a :t:`construct` that "
+"specifies a :t:`struct` to be used as a base for construction in a "
+":t:`struct expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2942
+msgid ""
+":dp:`fls_gfxzhlqlkwmq` An :t:`indexed initializer` is a :t:`construct` "
+"that specifies the index and initial :t:`value` of a :t:`field` in a "
+":t:`struct expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2946
+msgid ""
+":dp:`fls_auimxoels34d` A :t:`named initializer` is a :t:`construct` that "
+"specifies the name and initial :t:`value` of a :t:`field` in a :t:`struct"
+" expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2950
+msgid ""
+":dp:`fls_9qhnzeoox7o7` A :t:`positional initializer` is a :t:`construct` "
+"that specifies the initial :t:`value` of a :t:`field` in a :t:`struct "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2954
+msgid ""
+":dp:`fls_1gs6rdyz8as0` A :t:`shorthand initializer` is a :t:`construct` "
+"that specifies the :t:`name` of a :t:`field` in a :t:`struct expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2958
+msgid ""
+":dp:`fls_b6idto4dffmr` The :t:`construction type` indicates the :t:`type`"
+" of the :t:`struct` being constructed by a :t:`struct expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2962
+msgid ""
+":dp:`fls_i6dj8n6jmt2a` A :s:`RecordStructConstructor` without a "
+":s:`RecordStructIndexedFieldInitializerList` is a :t:`record struct "
+"constructor`."
+msgstr ""
+
+#: ../../src/expressions.rst:2967
+msgid ""
+":dp:`fls_fn1tjfjcn8zp` A :s:`UnitStructConstructor` and a "
+":s:`RecordStructConstructor` without a :s:`RecordStructInitializer` are "
+":t:`[unit struct constructor]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2971
+msgid ""
+":dp:`fls_ub9cu2w16so9` A :s:`TupleStructConstructor` and a "
+":s:`RecordStructConstructor` without a "
+":s:`RecordStructFieldInitializerList` are :t:`[tuple struct "
+"constructor]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:2975
+msgid ""
+":dp:`fls_a1c89b6cb6ya` A :s:`RecordStructConstructor` with a "
+":s:`RecordStructFieldInitializerList` is a :t:`union constructor`."
+msgstr ""
+
+#: ../../src/expressions.rst:2979
+msgid ""
+":dp:`fls_2pgvvgrs72it` A :t:`struct expression` is a :t:`value "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:2982
+msgid ""
+":dp:`fls_fez5ukkeoac6` The :t:`type` of a :t:`struct expression` is the "
+":t:`construction type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2985
+msgid ""
+":dp:`fls_yz7wlyye9e3x` The :t:`value` of a :t:`struct expression` is the "
+":t:`struct` or :t:`union` in construction."
+msgstr ""
+
+#: ../../src/expressions.rst:2989
+msgid ""
+":dp:`fls_sazanondyx35` The :t:`type` of a :t:`base initializer` is the "
+":t:`type` of its :t:`operand`. The :t:`type` of a :t:`base initializer` "
+"shall be the same as the :t:`construction type`."
+msgstr ""
+
+#: ../../src/expressions.rst:2996
+msgid ""
+":dp:`fls_yy6qrnohm34` The :t:`evaluation` of a :t:`struct expression` "
+"evaluates its :t:`[operand]s` in a left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:3003
+msgid "Record Struct Construction"
+msgstr ""
+
+#: ../../src/expressions.rst:3007
+msgid ""
+":dp:`fls_cn4qaxx68auy` The :t:`construction type` of a :t:`struct "
+"constructor` shall resolve to a :t:`struct type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3011
+msgid ""
+":dp:`fls_gyponpgtgz91` A :t:`named initializer` matches a :t:`field` of "
+"the :t:`construction type` when its :t:`identifier` and the :t:`name` of "
+"the :t:`field` are the same."
+msgstr ""
+
+#: ../../src/expressions.rst:3015
+msgid ""
+":dp:`fls_dwn0sqraaifm` The :t:`type` of a :t:`named initializer` and the "
+":t:`type` of the matched :t:`field` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:3019
+msgid ""
+":dp:`fls_aqd0u86gtk6q` The :t:`value` of a :t:`named initializer` is the "
+":t:`value` of its :t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3023
+msgid ""
+":dp:`fls_i2ip2s14clr2` A :t:`named initializer` that matches a :t:`field`"
+" is referred to as a :dt:`matched named initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3027
+msgid ""
+":dp:`fls_ex7vtlyaor8d` A :t:`shorthand initializer` matches a :t:`field` "
+"of the :t:`construction type` when its :t:`identifier` and the :t:`name` "
+"of the :t:`field` are the same."
+msgstr ""
+
+#: ../../src/expressions.rst:3031
+msgid ""
+":dp:`fls_2p4542ffuu8x` The :t:`type` of a :t:`shorthand initializer` and "
+"the :t:`type` of the matched :t:`field` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:3035
+msgid ""
+":dp:`fls_cdgpb5lgmk7l` The :t:`value` of a :t:`shorthand initializer` is "
+"the :t:`value` of its :t:`identifier`."
+msgstr ""
+
+#: ../../src/expressions.rst:3039
+msgid ""
+":dp:`fls_2wbtuiugiuu4` A :t:`shorthand initializer` that matches a "
+":t:`field` is referred to as a :dt:`matched shorthand initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3043
+msgid ""
+":dp:`fls_6at70p40nzdx` A :t:`shorthand initializer` is equivalent to a "
+":t:`named initializer` where both the :t:`identifier` and the "
+":t:`expression` of the :t:`named initializer` denote the :t:`identifier` "
+"of the :t:`shorthand initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3048
+msgid ""
+":dp:`fls_b5xkmxd0mqzq` For each :t:`field` of the :t:`construction type`,"
+" the :t:`record struct constructor` shall either:"
+msgstr ""
+
+#: ../../src/expressions.rst:3052
+msgid ":dp:`fls_4mftx1nnv3z` Contain a :t:`matched named initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3055
+msgid ":dp:`fls_jj4x358nm3do` Contain a :t:`matched shorthand initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3058
+msgid ""
+":dp:`fls_t34yselx5psr` Have a :s:`RecordStructInitializer` with a "
+":t:`base initializer` or a :s:`RecordStructFieldInitializerList` with a "
+":t:`base initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3062
+msgid ""
+":dp:`fls_3gav2vg20xgi` The :t:`value` of a :t:`field` of a :t:`struct` in"
+" construction shall be either:"
+msgstr ""
+
+#: ../../src/expressions.rst:3065
+msgid ""
+":dp:`fls_eclbzmm2fyx3` The :t:`value` of a :t:`matched named "
+"initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3068
+msgid ""
+":dp:`fls_yhtz73hx66r3` The :t:`value` of a :t:`matched shorthand "
+"initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3071
+msgid ""
+":dp:`fls_hm6uwir33qte` The :t:`value` of the corresponding :t:`field` of "
+"the :t:`struct` indicated by the :t:`base initializer`, where the "
+":t:`value` is either :t:`copied` or :t:`moved`."
+msgstr ""
+
+#: ../../src/expressions.rst:3103
+msgid ":dp:`fls_44xrpe2k6d6p` Matched named initializer."
+msgstr ""
+
+#: ../../src/expressions.rst:3110
+msgid ":dp:`fls_8piw0m60trwg` Matched shorthand initializer."
+msgstr ""
+
+#: ../../src/expressions.rst:3117
+msgid ""
+":dp:`fls_lrjhfc1mnx4a` Base initializer, equivalent to "
+"``alice.occupation`` and ``alice.compensation``."
+msgstr ""
+
+#: ../../src/expressions.rst:3128
+msgid "Tuple Struct Construction"
+msgstr ""
+
+#: ../../src/expressions.rst:3132
+msgid ""
+":dp:`fls_ciwtgajyevdk` The :t:`construction type` of a :t:`tuple struct "
+"constructor` shall resolve to a :t:`tuple struct type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3136
+msgid ""
+":dp:`fls_6t6r55rnjn6n` A :t:`tuple struct constructor` shall contain one "
+":t:`positional initializer` for each :t:`field` of the :t:`construction "
+"type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3140
+msgid ""
+":dp:`fls_tofndxu1cwam` A :t:`positional initializer` matches a :t:`field`"
+" of the :t:`construction type` when the position of the :t:`positional "
+"initializer` and the position of the :t:`field` in the :t:`construction "
+"type` are the same."
+msgstr ""
+
+#: ../../src/expressions.rst:3145
+msgid ""
+":dp:`fls_wm1zje7mtqht` The :t:`type` of the :t:`operand` of a "
+":t:`positional initializer` and the :t:`type` of the matched :t:`field` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:3149
+msgid ""
+":dp:`fls_i8d8mly7wbx7` The :t:`value` of a :t:`positional initializer` is"
+" the :t:`value` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:3153
+msgid ""
+":dp:`fls_wwjecv46x8p8` A :t:`positional initializer` that matches a "
+":t:`field` is referred to as a :dt:`matched positional initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3157
+msgid ""
+":dp:`fls_v59g8ki099ma` The :s:`RecordStructIndexedFieldInitializerList` "
+"of a :t:`record struct constructor` shall:"
+msgstr ""
+
+#: ../../src/expressions.rst:3161
+msgid ""
+":dp:`fls_wc5090dwk0zf` Contain an :t:`indexed initializer` for each "
+":t:`field` of the :t:`construction type`, covering all indices of the "
+":t:`construction type`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3165
+msgid ""
+":dp:`fls_v6c2mpue9v65` Have a :s:`RecordStructInitializer` with a "
+":t:`base initializer` or a :s:`RecordStructIndexedFieldInitializerList` "
+"with a :t:`base initializer`\\ ``.``"
+msgstr ""
+
+#: ../../src/expressions.rst:3170
+msgid ""
+":dp:`fls_491ix17yzb6k` An :t:`indexed initializer` matches a :t:`field` "
+"of the :t:`construction type` when the :t:`tuple index` of the "
+":t:`indexed initializer` resolves to a valid position of a :t:`field` in "
+"the :t:`construction type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3175
+msgid ""
+":dp:`fls_kwt27bhyfe39` The :t:`type` of the :t:`operand` of an "
+":t:`indexed initializer` and the :t:`type` of the matched :t:`field` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:3179
+msgid ""
+":dp:`fls_ixzyz4np4piy` The :t:`value` of an :t:`indexed initializer` is "
+"the :t:`value` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:3183
+msgid ""
+":dp:`fls_da507av76xq6` An :t:`indexed initializer` that matches a "
+":t:`field` is referred to as a :dt:`matched indexed initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3187
+msgid ""
+":dp:`fls_54rkrj5ajo6` The :t:`value` of a :t:`field` of a :t:`tuple in "
+"construction` is either:"
+msgstr ""
+
+#: ../../src/expressions.rst:3190
+msgid ""
+":dp:`fls_r7bzxwxd6364` The :t:`value` of a :t:`matched indexed "
+"initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3193
+msgid ""
+":dp:`fls_mopq56aafcee` The :t:`value` of a :t:`matched positional "
+"initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3196
+msgid ""
+":dp:`fls_kihfh0h7o8nj` The :t:`value` of the corresponding :t:`field` of "
+"the :t:`tuple indicated` by the :t:`base initializer`, where the "
+":t:`value` is either :t:`copied` or :t:`moved`."
+msgstr ""
+
+#: ../../src/expressions.rst:3219
+msgid ":dp:`fls_voqgzdvwh9k5` Matched indexed initializer."
+msgstr ""
+
+#: ../../src/expressions.rst:3226
+msgid ""
+":dp:`fls_gjs024orub2v` Base initializer, equivalent to ``origin.0`` and "
+"``origin.2``."
+msgstr ""
+
+#: ../../src/expressions.rst:3237
+msgid "Union Construction"
+msgstr ""
+
+#: ../../src/expressions.rst:3241
+msgid ""
+":dp:`fls_6oi54di0tndy` The :t:`construction type` of a :t:`union "
+"constructor` shall resolve to a :t:`union type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3245
+msgid ""
+":dp:`fls_x8yd82t572hc` The :s:`RecordStructFieldInitializerList` of a "
+":t:`union constructor` shall contain exactly one "
+":s:`RecordStructFieldInitializer` and no :t:`base initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3250
+msgid ""
+":dp:`fls_paqsgracxc7h` For the single :t:`field` of the :t:`construction "
+"type`, a :t:`unit constructor` shall either:"
+msgstr ""
+
+#: ../../src/expressions.rst:3254
+msgid ":dp:`fls_cedzp2z2fk69` Contain a :t:`matched named initializer`, or"
+msgstr ""
+
+#: ../../src/expressions.rst:3257
+msgid ":dp:`fls_ymiajqhy4v43` Contain a :t:`matched shorthand initializer`."
+msgstr ""
+
+#: ../../src/expressions.rst:3275
+msgid "Unit Struct Construction"
+msgstr ""
+
+#: ../../src/expressions.rst:3279
+msgid ""
+":dp:`fls_fyzdvmc4yuzr` The :t:`construction type` of a :t:`unit struct "
+"constructor` shall resolve to a :t:`unit struct type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3295
+msgid "Call Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:3311
+msgid ""
+":dp:`fls_fvgfx17ossd9` A :t:`call expression` is an :t:`expression` that "
+"invokes a :t:`function`."
+msgstr ""
+
+#: ../../src/expressions.rst:3314
+msgid ""
+":dp:`fls_jvz5z3eqxb39` An :t:`argument operand` is an :t:`operand` which "
+"is used as an argument in a :t:`call expression` or a :t:`method call "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3318
+msgid ""
+":dp:`fls_7ql1c71eidg8` A :t:`call operand` is the :t:`function` being "
+"invoked by a :t:`call expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3322
+msgid ""
+":dp:`fls_4t6imtiw6kzt` A :t:`callee type` is either a :t:`function item "
+"type`, a :t:`function pointer type`, or a :t:`type` that implements any "
+"of the :std:`core::ops::Fn`, :std:`core::ops::FnMut`, or "
+":std:`core::ops::FnOnce` :t:`[trait]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3327
+msgid ""
+":dp:`fls_aafrvlmiwfon` The :t:`call operand` is subject to :t:`auto "
+"dereferencing` until a :t:`callee type` is found, otherwise this is a "
+"static error."
+msgstr ""
+
+#: ../../src/expressions.rst:3331
+msgid ""
+":dp:`fls_d8rewso3dm6r` An :t:`adjusted call operand` is a :t:`call "
+"operand` with possible :t:`auto dereferencing` adjustments."
+msgstr ""
+
+#: ../../src/expressions.rst:3335
+msgid ""
+":dp:`fls_bu6i3mcvnbin` The :t:`type` of a :t:`call expression` is the "
+":t:`return type` of the :t:`invoked function` or :t:`associated type` "
+":std:`core::ops::FnOnce::Output`."
+msgstr ""
+
+#: ../../src/expressions.rst:3339
+msgid ""
+":dp:`fls_8ljrgdept7s8` A :t:`call expression` whose :t:`callee type` is "
+"either an :t:`external function item type`, an :t:`unsafe function item "
+"type` or an :t:`unsafe function pointer type` shall require :t:`unsafe "
+"context`."
+msgstr ""
+
+#: ../../src/expressions.rst:3344
+msgid ""
+":dp:`fls_7p6zrjbpj0kl` The :t:`value` of a :t:`call expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3347
+msgid ""
+":dp:`fls_yrr1s0tucgvh` If the :t:`callee type` is a :t:`function item "
+"type` or a :t:`function pointer type`, then the :t:`value` is the result "
+"of invoking the corresponding :t:`function` with the :t:`[argument "
+"operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3352
+msgid ""
+":dp:`fls_s3q3sej1hgho` If the :t:`callee type` implements the "
+":std:`core::ops::Fn` :t:`trait`, then the :t:`value` is the result of "
+"invoking ``core::ops::Fn::call(adjusted_call_operand, "
+"argument_operand_tuple)``, where ``adjusted_call_operand`` is the "
+":t:`adjusted call operand`, and ``argument_operand_tuple`` is a "
+":t:`tuple` that wraps the :t:`[argument operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3360
+msgid ""
+":dp:`fls_cu2ubdm3tfwb` If the :t:`call operand` implements the "
+":std:`core::ops::FnMut` :t:`trait`, then the :t:`value` is the result of "
+"invoking ``core::ops::FnMut::call_mut(adjusted_call_operand, "
+"argument_operand_tuple),`` where ``adjusted_call_operand`` is the "
+":t:`adjusted call operand`, and ``argument_operand_tuple`` is a "
+":t:`tuple` that wraps the :t:`[argument operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3368
+msgid ""
+":dp:`fls_9bbewx1l7h5h` If the :t:`call operand` implements the "
+":std:`core::ops::FnOnce` :t:`trait`, then the :t:`value` is the result of"
+" invoking ``core::ops::FnOnce::call_once(adjusted_call_operand, "
+"argument_operand_tuple),`` where ``adjusted_call_operand`` is the "
+":t:`adjusted call operand`, and ``argument_operand_tuple`` is a "
+":t:`tuple` that wraps the :t:`[argument operand]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3378
+msgid ""
+":dp:`fls_ggr5i91vur0r` The :t:`evaluation` of a :t:`call expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3381
+msgid ":dp:`fls_hwalzgdidbfz` The :t:`call operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3384
+msgid ""
+":dp:`fls_p52mfvpadu7w` The :t:`[argument operand]s` are evaluated in "
+"left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:3387
+msgid ""
+":dp:`fls_1cyo5qhbl1j9` If the :t:`adjusted call operand` is a "
+":t:`function item type` or :t:`function pointer type`, then corresponding"
+" :t:`function` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:3391
+msgid ""
+":dp:`fls_nb0eqky2akzt` If the :t:`type` of the :t:`call operand` "
+"implements the :std:`core::ops::Fn` :t:`trait`, then "
+"``core::ops::Fn::call(adjusted_call_operand, argument_operand_tuple)`` is"
+" invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:3396
+msgid ""
+":dp:`fls_9lt4wh9ql5ae` If the :t:`type` of the :t:`call operand` "
+"implements the :std:`core::ops::FnMut` :t:`trait`, then "
+"``core::ops::FnMut::call_mut(adjusted_call_operand, "
+"argument_operand_tuple)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:3402
+msgid ""
+":dp:`fls_ixebnlcccmit` If the :t:`type` of the :t:`call operand` "
+"implements the :std:`core::ops::FnOnce` :t:`trait`, then "
+"``core::ops::FnOnce::call_once(adjusted_call_operand, "
+"argument_operand_tuple)`` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:3410
+msgid ""
+":dp:`fls_5yeq4oah58dl` It is undefined behavior to call a :t:`function` "
+"with an :t:`ABI` other than the :t:`ABI` the :t:`function` was defined "
+"with."
+msgstr ""
+
+#: ../../src/expressions.rst:3423
+msgid "Method Call Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:3437
+msgid ""
+":dp:`fls_b7i26954j1hc` A :t:`method call expression` is an "
+":t:`expression` that invokes a :t:`method` of an :t:`object`."
+msgstr ""
+
+#: ../../src/expressions.rst:3441
+msgid ""
+":dp:`fls_jx3ryre0xs88` A :t:`receiver operand` is an :t:`operand` that "
+"denotes the :t:`value` whose :t:`method` is being invoked by a :t:`method"
+" call expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3445
+msgid ""
+":dp:`fls_y7bj7y6davlh` A :t:`method call expression` is subject to "
+":t:`method resolution`."
+msgstr ""
+
+#: ../../src/expressions.rst:3448
+msgid ""
+":dp:`fls_11glzggtbgb3` The :t:`type` of a :t:`method call expression` is "
+"the :t:`return type` of the invoked :t:`method`."
+msgstr ""
+
+#: ../../src/expressions.rst:3452
+msgid ""
+":dp:`fls_ljvj1f9fv085` The :t:`value` of a :t:`method call expression` is"
+" the :t:`value` returned by the invoked :t:`method`."
+msgstr ""
+
+#: ../../src/expressions.rst:3458
+msgid ""
+":dp:`fls_oxxk3snd7ya0` The :t:`evaluation` of a :t:`method call "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3461
+msgid ":dp:`fls_gmpq15g77o20` The :t:`receiver operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3464
+msgid ""
+":dp:`fls_pu0n9hakkym2` The :t:`[argument operand]s` are evaluated in "
+"left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:3467
+msgid ":dp:`fls_cawdkgvvd1x6` The :t:`method` is invoked."
+msgstr ""
+
+#: ../../src/expressions.rst:3492
+msgid "Field Access Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:3516
+msgid ""
+":dp:`fls_hr8qvwlhd9ts` A :t:`field access expression` is an "
+":t:`expression` that accesses a :t:`field` of an :t:`object`."
+msgstr ""
+
+#: ../../src/expressions.rst:3520
+msgid ""
+":dp:`fls_s2vpn4ihenpe` A :t:`container operand` is an :t:`operand` that "
+"indicates the :t:`object` whose :t:`field` is selected in a :t:`field "
+"access expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3524
+msgid ""
+":dp:`fls_yeuayil6uxzx` A :t:`field selector` is a :t:`construct` that "
+"selects the :t:`field` to be accessed in a :t:`field access expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3528
+msgid ""
+":dp:`fls_qqrconpa92i3` A :t:`selected field` is a :t:`field` that is "
+"selected by a :t:`field access expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3532
+msgid ""
+":dp:`fls_t9xakmda134a` A :t:`field access expression` with an "
+":s:`IndexedFieldSelector` is referred to as an :dt:`indexed field "
+"access`."
+msgstr ""
+
+#: ../../src/expressions.rst:3536
+msgid ""
+":dp:`fls_dch5i39ycw7s` A :t:`field access expression` with a "
+":s:`NamedFieldSelector` is referred to as a :dt:`named field access`."
+msgstr ""
+
+#: ../../src/expressions.rst:3540
+msgid ""
+":dp:`fls_1l92izxtm1t8` A :t:`field access expression` is a :t:`place "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3543
+msgid ""
+":dp:`fls_1bbbw0qj0h0q` A :t:`field access expression` is a :t:`mutable "
+"place expression` when its :t:`container operand` is :t:`mutable`."
+msgstr ""
+
+#: ../../src/expressions.rst:3547
+msgid ""
+":dp:`fls_fovs9il2h9xg` The :t:`type` of a :t:`field access expression` is"
+" the :t:`type` of the :t:`selected field`."
+msgstr ""
+
+#: ../../src/expressions.rst:3551
+msgid ""
+":dp:`fls_r1b4n12i93pg` The :t:`value` of a :t:`field access expression` "
+"is the :t:`value` of the :t:`selected field`."
+msgstr ""
+
+#: ../../src/expressions.rst:3557
+msgid ""
+":dp:`fls_6uzouesw2sod` The :t:`evaluation` of a :t:`field access "
+"expression` evaluates its :t:`container operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:3564
+msgid "Named Field Access"
+msgstr ""
+
+#: ../../src/expressions.rst:3568
+msgid ""
+":dp:`fls_kddnnz8uc15b` Reading the :t:`selected field` of a :t:`union` "
+"shall require :t:`unsafe context`."
+msgstr ""
+
+#: ../../src/expressions.rst:3572
+msgid ""
+":dp:`fls_an3no949lvfw` Writing to the :t:`selected field` of a :t:`union`"
+" where the :t:`type` of the :t:`selected field` implements the "
+":std:`core::marker::Copy` :t:`trait` or the "
+":std:`core::mem::ManuallyDrop` :t:`trait` shall require :t:`safe "
+"context`."
+msgstr ""
+
+#: ../../src/expressions.rst:3577
+msgid ""
+":dp:`fls_t6xmsm2nk1bc` Writing to and then reading from the :t:`selected "
+"field` of a :t:`union` subject to :t:`attribute` :c:`repr` is equivalent "
+"to invoking :t:`function` ``core::mem::transmute<write_type, "
+"read_type>(field_bits)`` where ``write_type`` is the :t:`type` used at "
+"the time of writing the :t:`selected field`, ``read_type`` is the "
+":t:`type` used at the time of reading the :t:`selected field`, and "
+"``field_bits`` is the bit representation of the :t:`selected field`."
+msgstr ""
+
+#: ../../src/expressions.rst:3587
+msgid ""
+":dp:`fls_sdnafipirg8w` It is undefined behavior when the :t:`type` of the"
+" :t:`container operand` is a :t:`union type` and the :t:`selected field` "
+"contains invalid data."
+msgstr ""
+
+#: ../../src/expressions.rst:3593
+msgid ""
+":dp:`fls_x27yayh4z787` See :p:`6.8.1. <fls_hv4grs2tcuiw>` for the "
+"declaration of ``alice``."
+msgstr ""
+
+#: ../../src/expressions.rst:3603
+msgid "Indexed Field Access"
+msgstr ""
+
+#: ../../src/expressions.rst:3607
+msgid ""
+":dp:`fls_zexojym4ak6f` The :t:`decimal literal` of an :t:`indexed field "
+"access` shall denote a valid index of a :t:`field` of the :t:`[container "
+"operand]'s` :t:`type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3613
+msgid ""
+":dp:`fls_dimto84ifanr` The following indexed field access evaluates to "
+"``42``."
+msgstr ""
+
+#: ../../src/expressions.rst:3623
+msgid "Closure Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:3647
+msgid ""
+":dp:`fls_2d141c9a0yui` A :t:`closure expression` is an :t:`expression` "
+"that defines a :t:`closure type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3651
+msgid ""
+":dp:`fls_srbl7ptknjyk` A :t:`closure body` is a :t:`construct` that "
+"represents the executable portion of a :t:`closure expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3655
+msgid ""
+":dp:`fls_oey0ivaiu1l` A :t:`closure body` denotes a new :t:`control flow "
+"boundary`."
+msgstr ""
+
+#: ../../src/expressions.rst:3658
+msgid ":dp:`fls_fg8lx0yyt6oq` A :t:`closure body` is subject to :t:`capturing`."
+msgstr ""
+
+#: ../../src/expressions.rst:3661
+msgid ""
+":dp:`fls_yn30xuejcfxo` The :t:`type` of a :t:`closure expression` is the "
+"anonymous unique :t:`closure type` defined by it."
+msgstr ""
+
+#: ../../src/expressions.rst:3665
+msgid ""
+":dp:`fls_sje6cdvifgv5` The :t:`value` of a :t:`closure expression` is the"
+" :t:`value` of the anonymous unique :t:`closure type` instantiated with "
+"the selected :t:`[capture]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3671
+msgid ""
+":dp:`fls_f59fw17gsasn` The :t:`evaluation` of a :t:`closure expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3674
+msgid ""
+":dp:`fls_7w15ccc1zzxl` An anonymous :t:`value` of an anonymous unique "
+":t:`closure type` is created."
+msgstr ""
+
+#: ../../src/expressions.rst:3677
+msgid ":dp:`fls_b8w9y73pvdnm` The :t:`closure body` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3695
+msgid "Loop Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:3712
+msgid ""
+":dp:`fls_y1d8kd1bdlmx` A :t:`loop expression` is an :t:`expression` that "
+"evaluates a :t:`block expression` continuously as long as some criterion "
+"holds true."
+msgstr ""
+
+#: ../../src/expressions.rst:3716
+msgid ""
+":dp:`fls_eg93m93gvwal` An :t:`anonymous loop` is a :t:`loop expression` "
+"without a :t:`label`."
+msgstr ""
+
+#: ../../src/expressions.rst:3719
+msgid ""
+":dp:`fls_phpoq9ho8f1v` A :t:`named loop` is a :t:`loop expression` with a"
+" :t:`label`."
+msgstr ""
+
+#: ../../src/expressions.rst:3722
+msgid ""
+":dp:`fls_b314wjbv0zwe` The :t:`type` of a :t:`loop expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3725
+msgid ""
+":dp:`fls_rpedapxnv8w3` If the :t:`loop expression` does not contain a "
+":t:`break expression`, then the :t:`type` is the :t:`never type`."
+msgstr ""
+
+#: ../../src/expressions.rst:3729
+msgid ""
+":dp:`fls_wf11yp1jwf53` If the :t:`loop expression` contains at least one "
+":t:`break expression`, then the :t:`type` is the :t:`unified type` of the"
+" :t:`[break type]s` of all :t:`[break expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:3734
+msgid ""
+":dp:`fls_q3qpcf2fz7h` The :t:`value` of a :t:`loop expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3737
+msgid ""
+":dp:`fls_2ulbzmuuny3g` If the :t:`loop expression` does not contain a "
+":t:`break expression`, then the :t:`value` is the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:3741
+msgid ""
+":dp:`fls_99imks9hj3kp` If the :t:`loop expression` contains at least one "
+":t:`break expression`, then the :t:`value` is the :t:`break value` of the"
+" :t:`break expression` that broke out of the :t:`loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3748
+msgid ""
+":dp:`fls_aw6qczl4zpko` A :t:`loop expression` is :t:`terminated` when its"
+" :t:`block expression` is no longer evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3755
+msgid "For Loops"
+msgstr ""
+
+#: ../../src/expressions.rst:3766
+msgid ""
+":dp:`fls_1bh2alh37frz` A :t:`for loop expression` is a :t:`loop "
+"expression` that continues to evaluate its :t:`block expression` as long "
+"as its :t:`subject expression` yields a :t:`value`."
+msgstr ""
+
+#: ../../src/expressions.rst:3771
+msgid ""
+":dp:`fls_fkgbin6ydkm4` The :t:`type` of a :t:`subject expression` shall "
+"implement the :std:`core::iter::IntoIterator` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:3777
+msgid ""
+":dp:`fls_kuxo0on3vit6` The :t:`evaluation` of a :t:`for loop expression` "
+"of the form"
+msgstr ""
+
+#: ../../src/expressions.rst:3786
+msgid ""
+":dp:`fls_2lrzrtjhsdes` is equivalent to the :t:`evaluation` of the "
+"following :t:`block expression`:"
+msgstr ""
+
+#: ../../src/expressions.rst:3822
+msgid "Infinite Loops"
+msgstr ""
+
+#: ../../src/expressions.rst:3833
+msgid ""
+":dp:`fls_p11qw6mtxlda` An :t:`infinite loop expression` is a :t:`loop "
+"expression` that continues to evaluate its :t:`block expression` "
+"indefinitely unless :t:`terminated` with a :t:`break expression` or a "
+":t:`return expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3840
+msgid ""
+":dp:`fls_w4tj5gofwih1` The :t:`evaluation` of an :t:`infinite loop "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3843
+msgid ":dp:`fls_pg3r6nyl865` The :t:`block expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3846
+msgid ""
+":dp:`fls_lp15ilkul2uv` Control restarts the :t:`evaluation` of the "
+":t:`infinite loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3860
+msgid "While Loops"
+msgstr ""
+
+#: ../../src/expressions.rst:3874
+msgid ""
+":dp:`fls_ajby242tnu7c` A :t:`while loop expression` is a :t:`loop "
+"expression` that continues to evaluate its :t:`block expression` as long "
+"as its :t:`iteration expression` holds true."
+msgstr ""
+
+#: ../../src/expressions.rst:3879
+msgid ""
+":dp:`fls_13hmhzqz82v6` An :t:`iteration expression` is an :t:`expression`"
+" that provides the criterion of a :t:`while loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3883
+msgid ""
+":dp:`fls_d7ofrq3777kq` The :t:`type` of an :t:`iteration expression` "
+"shall be :t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:3888
+msgid ""
+":dp:`fls_1i7hm645h7ox` The :t:`evaluation` of a :t:`while loop "
+"expression` proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:3891
+msgid ":dp:`fls_5x0du3u1jwd3` The :t:`iteration expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3894
+msgid ""
+":dp:`fls_23uluvhhoct6` If the :t:`iteration expression` evaluated to "
+"``true``, then:"
+msgstr ""
+
+#: ../../src/expressions.rst:3897
+msgid ":dp:`fls_k7g4cac93617` The :t:`block expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:3900
+msgid ""
+":dp:`fls_j08k3brdpgno` Control restarts the :t:`evaluation` of the "
+":t:`while loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:3917
+msgid "While Let Loops"
+msgstr ""
+
+#: ../../src/expressions.rst:3928
+msgid ""
+":dp:`fls_fmdlyp9r9zl7` A :t:`while let loop expression` is a :t:`loop "
+"expression` that continues to evaluate its :t:`block expression` as long "
+"as its :t:`subject let expression` yields a :t:`value` that can be "
+"matched against its :t:`pattern`."
+msgstr ""
+
+#: ../../src/expressions.rst:3935
+msgid ""
+":dp:`fls_z2ht5iaat5ag` The :t:`evaluation` of a :t:`while let loop "
+"expression` of the form"
+msgstr ""
+
+#: ../../src/expressions.rst:3944
+msgid ""
+":dp:`fls_pacf1uavh1qt` shall be equivalent to the :t:`evaluation` the "
+"following :t:`infinite loop`:"
+msgstr ""
+
+#: ../../src/expressions.rst:3969
+msgid "Loop Labels"
+msgstr ""
+
+#: ../../src/expressions.rst:3980
+msgid ""
+":dp:`fls_tx5u743391h7` A :t:`label indication` is a :t:`construct` that "
+"indicates a :t:`label`."
+msgstr ""
+
+#: ../../src/expressions.rst:3983
+msgid ""
+":dp:`fls_7hc8yboeaho0` A :t:`label indication` shall indicate a "
+":t:`label` of an enclosing :t:`named loop` that does not pass a "
+":t:`control flow boundary` in order to reach the enclosing :t:`named "
+"loop`."
+msgstr ""
+
+#: ../../src/expressions.rst:3991
+msgid "Break Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4002
+msgid ""
+":dp:`fls_i5ko1t2wbgxe` A :t:`break expression` is an :t:`expression` that"
+" terminates a :t:`loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4006
+msgid ""
+":dp:`fls_jiykbp51909f` A :t:`break expression` shall appear within a "
+":t:`loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4009
+msgid ""
+":dp:`fls_7frvr2nm2mcj` The :t:`label indication` of a :t:`break "
+"expression` shall resolve to the :t:`label` of an enclosing :t:`named "
+"loop`."
+msgstr ""
+
+#: ../../src/expressions.rst:4013
+msgid ""
+":dp:`fls_ghxns2nggffj` A :t:`break expression` without a :t:`label "
+"indication` is associated with the innermost enclosing :t:`loop "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4017
+msgid ""
+":dp:`fls_54d5uydc87td` A :t:`break expression` with a :t:`label "
+"indication` is associated with a :t:`named loop` whose :t:`label` is "
+"indicated by the :t:`label indication`."
+msgstr ""
+
+#: ../../src/expressions.rst:4021
+msgid ""
+":dp:`fls_6x15ig8drne8` A :t:`break expression` shall have an :t:`operand`"
+" only when it is associated with an :t:`infinite loop`."
+msgstr ""
+
+#: ../../src/expressions.rst:4025
+msgid ""
+":dp:`fls_dnnq1zym8ii0` The :t:`type` of a :t:`break expression` is the "
+":t:`never type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4028
+msgid ""
+":dp:`fls_1wdybpfldj7q` :t:`Break type` is the :t:`type` of the "
+":t:`operand` of a :t:`break expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4031
+msgid ":dp:`fls_8yore99adr22` The :t:`break type` is determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4034
+msgid ""
+":dp:`fls_60imbzwg3e2x` If the :t:`break expression` lacks an "
+":t:`operand`, then the :t:`break type` is the :t:`unit type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4038
+msgid ""
+":dp:`fls_l0c05wa9q97w` If the :t:`break expression` has an :t:`operand`, "
+"then the :t:`break type` is the :t:`type` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:4042
+msgid ""
+":dp:`fls_bgd7d5q69q0g` :t:`Break value` is the :t:`value` of the "
+":t:`operand` of a :t:`break expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4046
+msgid ":dp:`fls_yb8jv4mkmki0` The :t:`break value` is determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4049
+msgid ""
+":dp:`fls_d7l1y2qbe8br` If the :t:`break expression` lacks an "
+":t:`operand`, then the :t:`break value` is the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:4053
+msgid ""
+":dp:`fls_56szfyilc06` If the :t:`break expression` has an :t:`operand`, "
+"then the :t:`break value` is the :t:`value` of its :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:4059
+msgid ""
+":dp:`fls_jnpx8mx1oa7n` The :t:`evaluation` of a :t:`break expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4062
+msgid ":dp:`fls_l2kp8mw6bjj0` The :t:`operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4065
+msgid ""
+":dp:`fls_2nmadhe3ismj` All enclosing :t:`[loop expression]s` upto and "
+"including the associated :t:`loop expression` are :t:`terminated`."
+msgstr ""
+
+#: ../../src/expressions.rst:4071
+msgid ""
+":dp:`fls_32fwis9pxh77` The following break expression terminates both the"
+" inner and the outer loop."
+msgstr ""
+
+#: ../../src/expressions.rst:4085
+msgid "Continue Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4096
+msgid ""
+":dp:`fls_wzs6kz9ffqzt` A :t:`continue expression` shall appear within a "
+":t:`loop expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4099
+msgid ""
+":dp:`fls_r5ke7b9n7k3s` A :t:`continue expression` without a :t:`label "
+"indication` is associated with the innermost enclosing :t:`loop "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4103
+msgid ""
+":dp:`fls_ckm6i9c3s6j8` A :t:`continue expression` with a :t:`label "
+"indication` is associated with a :t:`named loop` whose :t:`label` is "
+"indicated by the :t:`label indication`."
+msgstr ""
+
+#: ../../src/expressions.rst:4107
+msgid ""
+":dp:`fls_d0bmw8xiw5nk` The :t:`type` of a :t:`continue expression` is the"
+" :t:`never type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4110
+msgid ""
+":dp:`fls_b7m0h2i3mot1` The :t:`value` of a :t:`continue expression` is "
+"the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:4115
+msgid ""
+":dp:`fls_vmyuuptfnwek` The :t:`evaluation` of a :t:`continue expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4118
+msgid ""
+":dp:`fls_gm74eo754rq9` If the :t:`continue expression` appears with a "
+":t:`label indication`, then all enclosing :t:`[loop expression]s` upto "
+"and including the associated :t:`loop expression` are :t:`terminated`."
+msgstr ""
+
+#: ../../src/expressions.rst:4123
+msgid ""
+":dp:`fls_gvuesa5ekeif` The :t:`evaluation` of the associated :t:`loop "
+"expression` is restarted."
+msgstr ""
+
+#: ../../src/expressions.rst:4128
+msgid ""
+":dp:`fls_767gv7zhqamh` The following continue expression terminates and "
+"restarts ``game_loop``."
+msgstr ""
+
+#: ../../src/expressions.rst:4143
+msgid "Range Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4183
+msgid ""
+":dp:`fls_bi82rusji8g0` A :t:`range expression` is an :t:`expression` that"
+" constructs a range."
+msgstr ""
+
+#: ../../src/expressions.rst:4186
+msgid ""
+":dp:`fls_msyv4oyk5zp9` A :t:`range expression low bound` is an "
+":t:`operand` that specifies the start of a range."
+msgstr ""
+
+#: ../../src/expressions.rst:4190
+msgid ""
+":dp:`fls_f648uuxxh4vk` A :t:`range expression high bound` is an "
+":t:`operand` that specifies the end of a range."
+msgstr ""
+
+#: ../../src/expressions.rst:4194
+msgid ""
+":dp:`fls_9pl4629t54yq` If a :t:`range expression` has two "
+":t:`[operand]s`, then the :t:`[type]s` of the :t:`[operand]s` shall be "
+":t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:4198
+msgid ""
+":dp:`fls_xaumwogwbv3g` A :t:`range-from expression` is a :t:`range "
+"expression` that specifies an included :t:`range expression low bound`."
+msgstr ""
+
+#: ../../src/expressions.rst:4202
+msgid ""
+":dp:`fls_exa2ufugnpgc` The :t:`type` of a :t:`range-from expression` is "
+":std:`core::ops::RangeFrom`."
+msgstr ""
+
+#: ../../src/expressions.rst:4205
+msgid ""
+":dp:`fls_jqy0p155btca` The :t:`value` of a :t:`range-from expression` is "
+"``core::ops::RangeFrom { start: range_expression_low_bound }``."
+msgstr ""
+
+#: ../../src/expressions.rst:4209
+msgid ""
+":dp:`fls_ppustuqdji7b` A :t:`range-from-to expression` is a :t:`range "
+"expression` that specifies an included :t:`range expression low bound` "
+"and an excluded :t:`range expression high bound`."
+msgstr ""
+
+#: ../../src/expressions.rst:4214
+msgid ""
+":dp:`fls_ke2fpgodq84u` The :t:`type` of a :t:`range-from-to expression` "
+"is :std:`core::ops::Range`."
+msgstr ""
+
+#: ../../src/expressions.rst:4217
+msgid ""
+":dp:`fls_zb6jk6qykun6` The :t:`value` of a :t:`range-from-to expression` "
+"is ``core::ops::Range { start: range_expression_low_bound, end: "
+"range_expression_high_bound }``."
+msgstr ""
+
+#: ../../src/expressions.rst:4221
+msgid ""
+":dp:`fls_x67xo25n0qlz` A :t:`range-full expression` is a :t:`range "
+"expression` that covers the whole range of a :t:`type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4225
+msgid ""
+":dp:`fls_m6n0gvg3ct1b` The :t:`type` of a :t:`range-full expression` is "
+":std:`core::ops::RangeFull`."
+msgstr ""
+
+#: ../../src/expressions.rst:4228
+msgid ""
+":dp:`fls_yvh5cdgzevni` The :t:`value` of a :t:`range-full expression` is "
+"``core::ops::RangeFull {}``."
+msgstr ""
+
+#: ../../src/expressions.rst:4231
+msgid ""
+":dp:`fls_lh9my7g8oflq` A :t:`range-inclusive expression` is a :t:`range "
+"expression` that specifies an included :t:`range expression low bound` "
+"and an included :t:`range expression high bound`."
+msgstr ""
+
+#: ../../src/expressions.rst:4236
+msgid ""
+":dp:`fls_livflk52xaj9` The :t:`type` of a :t:`range-inclusive expression`"
+" is :std:`core::ops::RangeInclusive`."
+msgstr ""
+
+#: ../../src/expressions.rst:4240
+msgid ""
+":dp:`fls_vj213j9bj61y` The :t:`value` of a :t:`range-inclusive "
+"expression` is "
+"``core::ops::RangeInclusive::new(range_expression_low_bound, "
+"range_expression_high_bound)``."
+msgstr ""
+
+#: ../../src/expressions.rst:4245
+msgid ""
+":dp:`fls_5a1uivj19kob` A :t:`range-to expression` is a :t:`range "
+"expression` that specifies an excluded :t:`range expression high bound`."
+msgstr ""
+
+#: ../../src/expressions.rst:4249
+msgid ""
+":dp:`fls_k611yoc8hk0n` The :t:`type` of a :t:`range-to expression` is "
+":std:`core::ops::RangeTo`."
+msgstr ""
+
+#: ../../src/expressions.rst:4252
+msgid ""
+":dp:`fls_m0slikrulnvd` The :t:`value` of a :t:`range-to expression` is "
+"``core::ops::RangeTo { end: range_expression_high_bound }``."
+msgstr ""
+
+#: ../../src/expressions.rst:4256
+msgid ""
+":dp:`fls_1gc436ee1nzm` A :t:`range-to-inclusive expression` is a "
+":t:`range expression` that specifies an included :t:`range expression "
+"high bound`."
+msgstr ""
+
+#: ../../src/expressions.rst:4260
+msgid ""
+":dp:`fls_8sfjw83irpre` The :t:`type` of a :t:`range-to-inclusive "
+"expression` is :std:`core::ops::RangeToInclusive`."
+msgstr ""
+
+#: ../../src/expressions.rst:4264
+msgid ""
+":dp:`fls_5xw4opkbxhsc` The :t:`value` of a :t:`range-to-inclusive "
+"expression` is ``core::ops::RangeToInclusive { end: "
+"range_expression_high_bound }``."
+msgstr ""
+
+#: ../../src/expressions.rst:4270
+msgid ""
+":dp:`fls_ehseim1p479z` The :t:`evaluation` of a :t:`range expression` "
+"evaluates its :t:`[operand]s` in left-to-right order."
+msgstr ""
+
+#: ../../src/expressions.rst:4287
+msgid "If and If Let Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4292
+msgid "If Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4306
+msgid ""
+":dp:`fls_2i4fbxbbvpf1` An :t:`if expression` is an :t:`expression` that "
+"evaluates either a :t:`block expression` or an :t:`else expression` "
+"depending on the :t:`value` of its :t:`subject expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4311
+msgid ""
+":dp:`fls_5azwlk7hav1k` An :t:`else expression` is an :t:`expression` that"
+" represents either a :t:`block expression`, an :t:`if expression`, or an "
+":t:`if let expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4315
+msgid ""
+":dp:`fls_r7gzxo16esri` The :t:`type` of the :t:`subject expression` of an"
+" :t:`if expression` shall be :t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:4319
+msgid ""
+":dp:`fls_iv9t4nfs4f6w` The :t:`type` of an :t:`if expression` is the "
+":t:`type` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4323
+msgid ""
+":dp:`fls_i9sxf2q5jjqt` The :t:`value` of an :t:`if expression` is the "
+":t:`value` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4327
+msgid ""
+":dp:`fls_1e8qer6bh2f3` The :t:`type` of an :t:`else expression` is the "
+":t:`type` of its :t:`block expression`, :t:`if expression`, or :t:`if let"
+" expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4331
+msgid ""
+":dp:`fls_p5pjxk5xfcbx` The :t:`value` of an :t:`else expression` is the "
+":t:`value` of its :t:`block expression`, :t:`if expression`, or :t:`if "
+"let expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4335
+msgid ""
+":dp:`fls_mpq7gicosgkt` The :t:`type` of an :t:`if expression` and the "
+":t:`type` of an :t:`else expression` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:4341
+msgid ""
+":dp:`fls_yhlyzef9h97q` The :t:`evaluation` of an :t:`if expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4344
+msgid ":dp:`fls_w7lq4dkoyuf7` The :t:`subject expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4347
+msgid ""
+":dp:`fls_5udx9zyeg5ga` If the :t:`subject expression` evaluated to "
+"``true``, then the :t:`block expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4351
+msgid ""
+":dp:`fls_67l4j48n6p7o` If the :t:`subject expression` evaluated to "
+"``false`` and the :t:`if expression` has an :t:`else expression`, then "
+"the :t:`[else expressio]n` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4356
+msgid ""
+":dp:`fls_e8gd5lzcaifw` The :t:`evaluation` of an :t:`else expression` "
+"evaluates its :t:`block expression`, :t:`if expression`, or :t:`if let "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4377
+msgid "If Let Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4388
+msgid ""
+":dp:`fls_dsrjup2umr9` An :t:`if let expression` is an :t:`expression` "
+"that evaluates either a :t:`block expression` or an :t:`else expression` "
+"depending on whether its :t:`pattern` can be matched against its "
+":t:`subject let expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4393
+msgid ""
+":dp:`fls_4vyrufo4qdeg` The :t:`type` of an :t:`if let expression` is the "
+":t:`type` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4397
+msgid ""
+":dp:`fls_qfnwwvzxsl3` The :t:`value` of an :t:`if let expression` is the "
+":t:`value` of its :t:`block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4403
+msgid ""
+":dp:`fls_ijo73wtz1sy` The :t:`evaluation` of an :t:`if let expression` of"
+" the form"
+msgstr ""
+
+#: ../../src/expressions.rst:4412
+msgid ""
+":dp:`fls_qeho5iqiy59` is equivalent to the :t:`evaluation` of the "
+"following :t:`match expression`:"
+msgstr ""
+
+#: ../../src/expressions.rst:4422
+msgid ""
+":dp:`fls_nhngr8y850dt` The :t:`evaluation` of an :t:`if let expression` "
+"of the form"
+msgstr ""
+
+#: ../../src/expressions.rst:4433
+msgid ""
+":dp:`fls_8fg2ufaxjkv5` is equivalent to the :t:`evaluation` of the "
+"following :t:`match expression`:"
+msgstr ""
+
+#: ../../src/expressions.rst:4456
+msgid "Match Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4484
+msgid ""
+":dp:`fls_ei4pbeksd1v8` A :t:`match expression` is an :t:`expression` that"
+" tries to match one of its multiple :t:`[pattern]s` against its "
+":t:`subject expression` and if it succeeds, evaluates an :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:4489
+msgid ""
+":dp:`fls_l45i24ikfavm` A :t:`match arm` is a :t:`construct` that consists"
+" of a :t:`match arm matcher` and a :t:`match arm body`."
+msgstr ""
+
+#: ../../src/expressions.rst:4493
+msgid ""
+":dp:`fls_d9gerg12hm2d` An :t:`intermediate match arm` is any "
+":t:`non-[final match arm]` of a :t:`match expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4497
+msgid ""
+":dp:`fls_oj8dg28xw5yp` A :t:`final match arm` is the last :t:`match arm` "
+"of a :t:`match expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4500
+msgid ""
+":dp:`fls_lrdrtedyz28i` A :t:`match arm matcher` is a :t:`construct` that "
+"consists of a :t:`pattern` and a :t:`match arm guard`."
+msgstr ""
+
+#: ../../src/expressions.rst:4504
+msgid ""
+":dp:`fls_8wjdichfxp0y` A :t:`match arm body` is the :t:`operand` of a "
+":t:`match arm`."
+msgstr ""
+
+#: ../../src/expressions.rst:4507
+msgid ""
+":dp:`fls_hs1rr54hu18w` A :t:`match arm guard` is a :t:`construct` that "
+"provides additional filtering to a :t:`match arm matcher`."
+msgstr ""
+
+#: ../../src/expressions.rst:4511
+msgid ""
+":dp:`fls_s4483f30nwf` A :t:`match expression` is a :t:`place expression` "
+"when its :t:`subject expression` is a :t:`place expression`. When a "
+":t:`match expression` is a :t:`place expression`, the :t:`value` produced"
+" by evaluating its :t:`subject expression` is :t:`copied` or :t:`moved`."
+msgstr ""
+
+#: ../../src/expressions.rst:4517
+msgid ""
+":dp:`fls_9t5pmb9wzmpy` A :t:`match expression` is a :t:`value expression`"
+" when its :t:`subject expression` is a :t:`value expression`. When the "
+":t:`match expression` is a :t:`value expression`, the :t:`value` produced"
+" by evaluating its :t:`subject expression` is captured in a "
+":t:`temporary`."
+msgstr ""
+
+#: ../../src/expressions.rst:4523
+msgid ""
+":dp:`fls_knv1affr2o8t` The :t:`type` of the :t:`subject expression` and "
+"the :t:`[type]s` of all :t:`[pattern]s` of all :t:`[match arm matcher]s` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:4527
+msgid ""
+":dp:`fls_bzhz5wjd90ii` The :t:`type` of the :t:`operand` of a :t:`match "
+"arm guard` shall be :t:`type` :c:`bool`."
+msgstr ""
+
+#: ../../src/expressions.rst:4531
+msgid ""
+":dp:`fls_17ag0wzdbxv6` The :t:`[type]s` of all :t:`match arm bodies` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/expressions.rst:4534
+msgid ""
+":dp:`fls_5w964phrru82` The :t:`type` of a :t:`match expression` is the "
+":t:`unified type` of the :t:`[type]s` of the :t:`[operand]s` of all "
+":t:`[match arm]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:4538
+msgid ""
+":dp:`fls_g6xyz0beps3o` A :t:`match arm` is selected when its :t:`pattern`"
+" matches the :t:`subject expression` and its :t:`match arm guard` (if "
+"any) evaluates to ``true``."
+msgstr ""
+
+#: ../../src/expressions.rst:4542
+msgid ""
+":dp:`fls_8dba4o5qg8js` :t:`Match arm` selection happens in declarative "
+"order."
+msgstr ""
+
+#: ../../src/expressions.rst:4545
+msgid ""
+":dp:`fls_e02um1gb89d0` The :t:`[pattern]s` of all :t:`[match arm]s` taken"
+" together shall exhaustively match the :t:`[subject expression]'s` "
+":t:`type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4549
+msgid ""
+":dp:`fls_4sh2yrslszvb` The :t:`value` of a :t:`match expression` is the "
+":t:`value` of the :t:`operand` of the selected :t:`match arm`."
+msgstr ""
+
+#: ../../src/expressions.rst:4555
+msgid ""
+":dp:`fls_g551l8r8yh6d` The :t:`evaluation` of a :t:`match expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4558
+msgid ":dp:`fls_y44jzkbv74bv` The :t:`subject expression` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4561
+msgid ""
+":dp:`fls_jwxykea99psw` Each :t:`match arm` is evaluated in declarative "
+"order as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4564
+msgid ""
+":dp:`fls_pgulnjeoxwtj` The :t:`match arm marcher` of the :t:`match arm` "
+"is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4567
+msgid ":dp:`fls_2dg7wl68z7ar` If the :t:`match arm marcher` succeeds, then"
+msgstr ""
+
+#: ../../src/expressions.rst:4570
+msgid ""
+":dp:`fls_yv11febo0kyb` The :t:`operand` of the :t:`match arm` is "
+"evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4573
+msgid ""
+":dp:`fls_mvi9z1x836qu` Control stops the :t:`evaluation` of the :t:`match"
+" expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4576
+msgid ""
+":dp:`fls_81nnizrxgrsm` Otherwise control proceeds with the "
+":t:`evaluation` of the next :t:`match arm`."
+msgstr ""
+
+#: ../../src/expressions.rst:4580
+msgid ""
+":dp:`fls_4dv7x9nh2h4e` The :t:`evaluation` of a :t:`match arm marcher` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4583
+msgid ""
+":dp:`fls_k7kliy101m0f` The :t:`pattern` of the :t:`match arm marcher` is "
+"evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4586
+msgid ":dp:`fls_k68zkb6jv0vz` If the :t:`pattern` succeeds, then"
+msgstr ""
+
+#: ../../src/expressions.rst:4589
+msgid ""
+":dp:`fls_gbb6wbmher5z` If the :t:`match arm marcher` has a :t:`match arm "
+"guard`, then"
+msgstr ""
+
+#: ../../src/expressions.rst:4592
+msgid ":dp:`fls_jl4av757yx8j` The :t:`match arm guard` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4595
+msgid ""
+":dp:`fls_wkh5wztauwhu` If the :t:`match arm guard` evaluates to ``true``,"
+" then the :t:`match arm marcher` succeeds."
+msgstr ""
+
+#: ../../src/expressions.rst:4599
+msgid ":dp:`fls_f5f0x8jstp1g` Otherwise the :t:`match arm marcher` fails."
+msgstr ""
+
+#: ../../src/expressions.rst:4602
+msgid ":dp:`fls_yk8l9zjh7i0d` Otherwise the :t:`match arm marcher` fails."
+msgstr ""
+
+#: ../../src/expressions.rst:4605
+msgid ""
+":dp:`fls_sbtx1l6n2tp2` The :t:`evaluation` of a :t:`match arm guard` "
+"evaluates its :t:`operand`. A :t:`match arm guard` evaluates to ``true`` "
+"when its :t:`operand` evaluates to ``true``, otherwise it evaluates to "
+"``false``."
+msgstr ""
+
+#: ../../src/expressions.rst:4626
+msgid "Return Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4637
+msgid ""
+":dp:`fls_u7jk4j8gkho` A :t:`return expression` is an :t:`expression` that"
+" optionally yields a :t:`value` and causes control flow to return to the "
+"caller."
+msgstr ""
+
+#: ../../src/expressions.rst:4641
+msgid ""
+":dp:`fls_5v3j5ghhw8j8` A :t:`return expression` shall appear within a "
+":t:`control flow boundary`."
+msgstr ""
+
+#: ../../src/expressions.rst:4644
+msgid ""
+":dp:`fls_m4e00bju2dy4` The :t:`type` of a :t:`return expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4647
+msgid ""
+":dp:`fls_xpp027s2m7ue` If the :t:`return expression` has an :t:`operand`,"
+" then the :t:`type` is the :t:`type` of the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:4651
+msgid ""
+":dp:`fls_cqduumpsjfut` If the :t:`return expression` does not have an "
+":t:`operand`, then the :t:`type` is the :t:`never type`."
+msgstr ""
+
+#: ../../src/expressions.rst:4655
+msgid ""
+":dp:`fls_r610t5vsi7bx` The :t:`value` of a :t:`return expression` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4658
+msgid ""
+":dp:`fls_njndlx2rps2k` If the :t:`return expression` has an :t:`operand`,"
+" then the :t:`value` is the :t:`value` of the :t:`operand`."
+msgstr ""
+
+#: ../../src/expressions.rst:4662
+msgid ""
+":dp:`fls_tjksia7prao1` If the :t:`return expression` does not have an "
+":t:`operand`, then the :t:`value` is the :t:`unit value`."
+msgstr ""
+
+#: ../../src/expressions.rst:4668
+msgid ""
+":dp:`fls_bqmwlona6l5w` The :t:`evaluation` of a :t:`return expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4671
+msgid ""
+":dp:`fls_d9avvfi548t7` If the :t:`return expression` has an :t:`operand`,"
+" then"
+msgstr ""
+
+#: ../../src/expressions.rst:4674
+msgid ":dp:`fls_o3fc1z2mn8zc` The :t:`operand` is evaluated."
+msgstr ""
+
+#: ../../src/expressions.rst:4677
+msgid ""
+":dp:`fls_bbf54ukld7j9` The :t:`value` of the :t:`operand` is :t:`moved` "
+"into the designated output location of the enclosing control flow "
+"boundary."
+msgstr ""
+
+#: ../../src/expressions.rst:4681
+msgid ":dp:`fls_99ea30a5mulj` Control destroys the current activation frame."
+msgstr ""
+
+#: ../../src/expressions.rst:4684
+msgid ":dp:`fls_ubwj8uj6sbgt` Control is transferred to the caller frame."
+msgstr ""
+
+#: ../../src/expressions.rst:4701
+msgid "Await Expressions"
+msgstr ""
+
+#: ../../src/expressions.rst:4715
+msgid ""
+":dp:`fls_sjz5s71hwm7l` An :t:`await expression` is an :t:`expression` "
+"that polls a :t:`future`, suspending the :t:`execution` of the "
+":t:`future` until the :t:`future` is ready."
+msgstr ""
+
+#: ../../src/expressions.rst:4719
+msgid ""
+":dp:`fls_vhchgab59jvd` A :t:`future operand` is an :t:`operand` whose "
+":t:`future` is being awaited by an :t:`await expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4723
+msgid ":dp:`fls_k9pncajmhgk1` An :t:`await expression` shall appear within"
+msgstr ""
+
+#: ../../src/expressions.rst:4726
+msgid ":dp:`fls_xilkqy5piyh0` An :t:`async block expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4729
+msgid ":dp:`fls_cr61i8so7cty` An :t:`async function`."
+msgstr ""
+
+#: ../../src/expressions.rst:4732
+msgid ""
+":dp:`fls_9uw5pd7kbrx3` The :t:`type` of a :t:`future operand` shall "
+"implement the :std:`core::future::Future` :t:`trait`."
+msgstr ""
+
+#: ../../src/expressions.rst:4736
+msgid ""
+":dp:`fls_c6mxfzef2qop` The :t:`type` of an :t:`await expression` is ``<_ "
+"as core::future::Future>::Output``."
+msgstr ""
+
+#: ../../src/expressions.rst:4740
+msgid ""
+":dp:`fls_l396mo6k9ox7` The :t:`value` of an :t:`await expression` is the "
+":t:`value` held by :std:`core::task::Poll::Ready`."
+msgstr ""
+
+#: ../../src/expressions.rst:4746
+msgid ""
+":dp:`fls_1ppywe40s62c` The :t:`evaluation` of an :t:`await expression` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4749
+msgid ""
+":dp:`fls_eymcs2rgv3qw` The :t:`future operand` is evaluated to a "
+":t:`temporary`."
+msgstr ""
+
+#: ../../src/expressions.rst:4752
+msgid ""
+":dp:`fls_qshnnpirkasz` The :t:`temporary` is pinned using "
+":std:`core::pin::Pin::new_unchecked`."
+msgstr ""
+
+#: ../../src/expressions.rst:4755
+msgid ""
+":dp:`fls_umevprl99y6c` The pinned :t:`temporary` is polled using "
+":std:`core::future::Future::poll`, passing in the "
+":std:`core::task::Context` of the current task."
+msgstr ""
+
+#: ../../src/expressions.rst:4759
+msgid ""
+":dp:`fls_k76d8ady623m` If :std:`core::future::Future::poll` returns "
+":std:`core::task::Poll::Pending`, then the current :t:`future` yields."
+msgstr ""
+
+#: ../../src/expressions.rst:4763
+msgid ""
+":dp:`fls_frwtufwe8dya` If :std:`core::future::Future::poll` returns "
+":std:`core::task::Poll::Ready`, then"
+msgstr ""
+
+#: ../../src/expressions.rst:4767
+msgid ":dp:`fls_u72ylhlmqge3` The :t:`value` held within is unwrapped."
+msgstr ""
+
+#: ../../src/expressions.rst:4770
+msgid ""
+":dp:`fls_tn3vwidct3ks` Control stops the evaluation of the :t:`await "
+"expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4783
+msgid "Expression Precedence"
+msgstr ""
+
+#: ../../src/expressions.rst:4787
+msgid ""
+":dp:`fls_cwt7afsbgs7w` Certain :t:`[expression]s` are subject to "
+":t:`precedence` and :t:`associativity`."
+msgstr ""
+
+#: ../../src/expressions.rst:4791
+msgid ""
+":dp:`fls_ya23jjg5wjl` :t:`Precedence` is the order by which "
+":t:`[expression]s` are evaluated in the presence of other "
+":t:`[expression]s`."
+msgstr ""
+
+#: ../../src/expressions.rst:4795
+msgid ""
+":dp:`fls_bezkcuwp5qol` :t:`Associativity` is the order by which "
+":t:`[operand]s` are evaluated within a single :t:`expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4799
+msgid ""
+":dp:`fls_48br7odx6nke` The :t:`precedence` and :t:`associativity` of "
+"qualifying :t:`[expression]s` are as follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4805
+msgid ":dp:`fls_mk2yk99p6nvp`"
+msgstr ""
+
+#: ../../src/expressions.rst:4806
+msgid "**Expression**"
+msgstr ""
+
+#: ../../src/expressions.rst:4807
+msgid "**Precedence**"
+msgstr ""
+
+#: ../../src/expressions.rst:4808
+msgid "**Associativity**"
+msgstr ""
+
+#: ../../src/expressions.rst:4809
+msgid ":dp:`fls_jtdnf0vmn6xt`"
+msgstr ""
+
+#: ../../src/expressions.rst:4810
+msgid ":t:`Array expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4812
+msgid ":t:`Block expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4814
+msgid ":t:`Continue expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4816
+msgid ":t:`If expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4818
+msgid ":t:`If let expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4820
+msgid ":t:`Literal expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4822
+msgid ":t:`Loop expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4824
+msgid ":t:`Match expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4826
+msgid ":t:`Parenthesized expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4828
+msgid ":t:`Path expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4830
+msgid ":t:`Struct expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4832
+msgid ":t:`Tuple expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4834
+msgid ":t:`Underscore expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4835
+msgid "highest"
+msgstr ""
+
+#: ../../src/expressions.rst:4836 ../../src/expressions.rst:4840
+#: ../../src/expressions.rst:4852 ../../src/expressions.rst:4856
+#: ../../src/expressions.rst:4864 ../../src/expressions.rst:4930
+msgid "none"
+msgstr ""
+
+#: ../../src/expressions.rst:4837
+msgid ":dp:`fls_qurz25skmryg`"
+msgstr ""
+
+#: ../../src/expressions.rst:4838
+msgid ":t:`Method call expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4841
+msgid ":dp:`fls_ywqn5nixelkz`"
+msgstr ""
+
+#: ../../src/expressions.rst:4842
+msgid ":t:`Await expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4844
+msgid ":t:`Field access expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4846 ../../src/expressions.rst:4868
+#: ../../src/expressions.rst:4876 ../../src/expressions.rst:4882
+#: ../../src/expressions.rst:4888 ../../src/expressions.rst:4892
+#: ../../src/expressions.rst:4896 ../../src/expressions.rst:4900
+#: ../../src/expressions.rst:4908 ../../src/expressions.rst:4912
+msgid "left-to-right"
+msgstr ""
+
+#: ../../src/expressions.rst:4847
+msgid ":dp:`fls_k3ohh8k888c`"
+msgstr ""
+
+#: ../../src/expressions.rst:4848
+msgid ":t:`Array index expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4850
+msgid ":t:`Call expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4853
+msgid ":dp:`fls_41n6z85h1z47`"
+msgstr ""
+
+#: ../../src/expressions.rst:4854
+msgid ":t:`Error propagation expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4857
+msgid ":dp:`fls_f39rzauxrlcl`"
+msgstr ""
+
+#: ../../src/expressions.rst:4858
+msgid ":t:`Borrow expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4860
+msgid ":t:`Dereference expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4862
+msgid ":t:`Negation expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4865
+msgid ":dp:`fls_djphr5mk0t6f`"
+msgstr ""
+
+#: ../../src/expressions.rst:4866
+msgid ":t:`Type cast expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4869
+msgid ":dp:`fls_sif2aqky96j6`"
+msgstr ""
+
+#: ../../src/expressions.rst:4870
+msgid ":t:`Division expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4872
+msgid ":t:`Multiplication expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4874
+msgid ":t:`Remainder expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4877
+msgid ":dp:`fls_d7x817v8xzea`"
+msgstr ""
+
+#: ../../src/expressions.rst:4878
+msgid ":t:`Addition expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4880
+msgid ":t:`Subtraction expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4883
+msgid ":dp:`fls_1f5ibdkz3l51`"
+msgstr ""
+
+#: ../../src/expressions.rst:4884
+msgid ":t:`Shift left expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4886
+msgid ":t:`Shift right expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4889
+msgid ":dp:`fls_t1zqnab8a752`"
+msgstr ""
+
+#: ../../src/expressions.rst:4890
+msgid ":t:`Bit and expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4893
+msgid ":dp:`fls_f6in3h5cj8i6`"
+msgstr ""
+
+#: ../../src/expressions.rst:4894
+msgid ":t:`Bit xor expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4897
+msgid ":dp:`fls_hxa1avitfvrq`"
+msgstr ""
+
+#: ../../src/expressions.rst:4898
+msgid ":t:`Bit or expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4901
+msgid ":dp:`fls_sy2xzzq06i0x`"
+msgstr ""
+
+#: ../../src/expressions.rst:4902
+msgid ":t:`Comparison expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4904 ../../src/expressions.rst:4916
+msgid "requires parentheses"
+msgstr ""
+
+#: ../../src/expressions.rst:4905
+msgid ":dp:`fls_hish3qfmawd`"
+msgstr ""
+
+#: ../../src/expressions.rst:4906
+msgid ":t:`Lazy and expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4909
+msgid ":dp:`fls_ruy7e6yccsqk`"
+msgstr ""
+
+#: ../../src/expressions.rst:4910
+msgid ":t:`Lazy or expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4913
+msgid ":dp:`fls_9qcm0dx9rolw`"
+msgstr ""
+
+#: ../../src/expressions.rst:4914
+msgid ":t:`Range expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4917
+msgid ":dp:`fls_1l3rgtm6o54s`"
+msgstr ""
+
+#: ../../src/expressions.rst:4918
+msgid ":t:`Assignment expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4920
+msgid ":t:`Compound assignment expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4922
+msgid "right-to-left"
+msgstr ""
+
+#: ../../src/expressions.rst:4923
+msgid ":dp:`fls_hr4kokysrjop`"
+msgstr ""
+
+#: ../../src/expressions.rst:4924
+msgid ":t:`Break expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4926
+msgid ":t:`Closure expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4928
+msgid ":t:`Return expression`"
+msgstr ""
+
+#: ../../src/expressions.rst:4929
+msgid "lowest"
+msgstr ""
+
+#: ../../src/expressions.rst:4935
+msgid "Capturing"
+msgstr ""
+
+#: ../../src/expressions.rst:4939
+msgid ""
+":dp:`fls_iamnzlm430ef` A :t:`capturing expression` is either an :t:`async"
+" block expression` or a :t:`closure expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4943
+msgid ""
+":dp:`fls_eca6tl7j0afx` A :t:`capture target` is either a :t:`binding` or "
+"a :t:`field` of a :t:`binding`."
+msgstr ""
+
+#: ../../src/expressions.rst:4947
+msgid ""
+":dp:`fls_e70ywb8191h` The :t:`capturing environment` of a :t:`capturing "
+"expression` consists of all :t:`[capture target]s` that are defined "
+"outside the :t:`capture expression`."
+msgstr ""
+
+#: ../../src/expressions.rst:4951
+msgid ""
+":dp:`fls_1y2ttb466m9c` :t:`Capturing` is the process of saving the "
+":t:`[capture target]s` of a :t:`[capturing expression]'s` :t:`capturing "
+"environment`."
+msgstr ""
+
+#: ../../src/expressions.rst:4955
+msgid ""
+":dp:`fls_ip81lt2mm940` A :t:`capturing target` requires :t:`capturing` "
+"when it is part of the :t:`[capturing expression]'s` :t:`capture "
+"environment` and it is used by the :t:`capturing expression`. Such a "
+":t:`capturing target` is said to be :dt:`captured`."
+msgstr ""
+
+#: ../../src/expressions.rst:4961
+msgid ""
+":dp:`fls_y9n1i4hbq8sf` :t:`Capture mode` is the mechanism by which a "
+":t:`capture target` is captured."
+msgstr ""
+
+#: ../../src/expressions.rst:4964
+msgid ""
+":dp:`fls_t695ps4lfh6z` The :t:`capture mode` is determined based on the "
+"use of the :t:`capture target` within the :t:`capturing expression`, as "
+"follows:"
+msgstr ""
+
+#: ../../src/expressions.rst:4968
+msgid ""
+":dp:`fls_6j8cr7d5zs1l` If the :t:`capturing expression` is subject to "
+":t:`keyword` ``move``, then"
+msgstr ""
+
+#: ../../src/expressions.rst:4971
+msgid ""
+":dp:`fls_dd8sc7y2vi3u` If the :t:`type` of the :t:`capture target` is a "
+":t:`by copy type`, then the :t:`capture mode` is :t:`by copy`."
+msgstr ""
+
+#: ../../src/expressions.rst:4975
+msgid ":dp:`fls_sq1wam8j1d0a` Otherwise the :t:`capture mode` is :t:`by move`."
+msgstr ""
+
+#: ../../src/expressions.rst:4978
+msgid ""
+":dp:`fls_l8e98pyhm08g` Otherwise the :t:`capture mode` is determined "
+"based on the following precedence:"
+msgstr ""
+
+#: ../../src/expressions.rst:4982
+msgid ":dp:`fls_33hfay24hx8u` By :t:`immutable borrow` mode."
+msgstr ""
+
+#: ../../src/expressions.rst:4985
+msgid ""
+":dp:`fls_wmxsd0i2yemf` By :t:`unique immutable borrow` mode, if the "
+":t:`capture target` is a :t:`mutable reference` that is being modified."
+msgstr ""
+
+#: ../../src/expressions.rst:4989
+msgid ":dp:`fls_lu779ufqhggl` By :t:`mutable borrow` mode."
+msgstr ""
+
+#: ../../src/expressions.rst:4992
+msgid ""
+":dp:`fls_uqy5w9uc8gla` If the :t:`type` of the :t:`capture target` is a "
+":t:`by copy type`, then the :t:`capture mode` is :t:`by copy`, otherwise "
+"it is :t:`by move`."
+msgstr ""
+
+#: ../../src/expressions.rst:4996
+msgid ""
+":dp:`fls_wvob7114tfat` A tool selects the first :t:`capture mode` that is"
+" compatible with the use of the :t:`capture target`."
+msgstr ""
+

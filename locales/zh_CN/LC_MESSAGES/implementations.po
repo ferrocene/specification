@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/implementations.rst:9
+msgid "Implementations"
+msgstr ""
+
+#: ../../src/implementations.rst:12
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/implementations.rst:38 ../../src/implementations.rst:128
+#: ../../src/implementations.rst:163
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/implementations.rst:39
+msgid ""
+":dp:`fls_ivxpoxggy7s6` An :t:`implementation` is an :t:`item` that "
+"supplements an :t:`implementing type` by extending its functionality."
+msgstr ""
+
+#: ../../src/implementations.rst:43
+msgid ""
+":dp:`fls_yopmjbnw8tbl` An :t:`implementing type` is the :t:`type` that "
+"the :t:`[associated item]s` of an :t:`implementation` are associated "
+"with."
+msgstr ""
+
+#: ../../src/implementations.rst:47
+msgid ""
+":dp:`fls_v0n0bna40dqr` An :t:`inherent implementation` is an "
+":t:`implementation` that adds direct functionality."
+msgstr ""
+
+#: ../../src/implementations.rst:51
+msgid ""
+":dp:`fls_gufjaib913d6` An :t:`implementing type` may have multiple "
+":t:`[inherent implementation]s`. :t:`[Inherent implementation]s` of the "
+"same :t:`implementing type` share a common :t:`scope`."
+msgstr ""
+
+#: ../../src/implementations.rst:56
+msgid ""
+":dp:`fls_797etpdk5dyb` :t:`[Inherent implementation]s` of the same "
+":t:`implementing type` shall be defined within the same :t:`crate`."
+msgstr ""
+
+#: ../../src/implementations.rst:60
+msgid ""
+":dp:`fls_ry3an0mwb63g` A :t:`trait implementation` is an "
+":t:`implementation` that adds functionality specified by a :t:`trait`."
+msgstr ""
+
+#: ../../src/implementations.rst:64
+msgid ""
+":dp:`fls_8pwr7ibvhmhu` An :t:`unsafe trait implementation` is a :t:`trait"
+" implementation` subject to :t:`keyword` ``unsafe``."
+msgstr ""
+
+#: ../../src/implementations.rst:68
+msgid ""
+":dp:`fls_47x0ep8of8wr` An :t:`implemented trait` is a :t:`trait` whose "
+"functionality has been implemented by an :t:`implementation type`."
+msgstr ""
+
+#: ../../src/implementations.rst:72
+msgid ""
+":dp:`fls_agitlryvyc16` The :t:`type path` of a :t:`trait implementation` "
+"shall resolve to a :t:`trait`."
+msgstr ""
+
+#: ../../src/implementations.rst:75
+msgid ""
+":dp:`fls_mx5xjcejwa6u` A :t:`trait implementation` shall be an :t:`unsafe"
+" trait implementation` if and only if it :t:`[implement]s` an :t:`unsafe "
+"trait`."
+msgstr ""
+
+#: ../../src/implementations.rst:79
+msgid ""
+":dp:`fls_z78dg261oob6` :t:`[Trait implementation]s` are subject to "
+":t:`implementation coherence` and :t:`implementation conformance`."
+msgstr ""
+
+#: ../../src/implementations.rst:84
+msgid "Examples"
+msgstr ""
+
+#: ../../src/implementations.rst:91
+msgid ":dp:`fls_yuyesijndu9n` ``Circle`` is an implementing type."
+msgstr ""
+
+#: ../../src/implementations.rst:100
+msgid ":dp:`fls_o62i75sjzp9y` The following is an inherent implementation:"
+msgstr ""
+
+#: ../../src/implementations.rst:111
+msgid ":dp:`fls_a2utf0tmuhy4` The following is a trait implementation:"
+msgstr ""
+
+#: ../../src/implementations.rst:125
+msgid "Implementation Coherence"
+msgstr ""
+
+#: ../../src/implementations.rst:129
+msgid ""
+":dp:`fls_swdusjwzgksx` Two :t:`[trait implementation]s` of the same "
+":t:`implemented trait` overlap when the intersection of the "
+":t:`[implemented type]s` is non-empty."
+msgstr ""
+
+#: ../../src/implementations.rst:133
+msgid ""
+":dp:`fls_ir7hp941ky8t` Given :t:`trait implementation` ``impl<P1, P2, ..,"
+" PN> Trait<T1, T2, .., TN> for T0``, the :t:`trait implementation` is "
+"considered valid when"
+msgstr ""
+
+#: ../../src/implementations.rst:137
+msgid ":dp:`fls_3tbm20k2ixol` ``Trait`` is a :t:`local trait`, or"
+msgstr ""
+
+#: ../../src/implementations.rst:140
+msgid ":dp:`fls_lscc9ileg3gm` All of"
+msgstr ""
+
+#: ../../src/implementations.rst:143
+msgid ""
+":dp:`fls_9klwbsh3vlxu` At least one of :t:`[type]s` ``T0, T1, .., TN`` is"
+" a :t:`local type`."
+msgstr ""
+
+#: ../../src/implementations.rst:146
+msgid ""
+":dp:`fls_9gmc1tcscq9v` No :t:`type parameter` of ``P1, P2, .., PN`` that "
+"is not used in another :t:`type` may appear in the :t:`non-[local type]s`"
+" of ``T0, T1, .., TN``."
+msgstr ""
+
+#: ../../src/implementations.rst:150
+msgid ""
+":dp:`fls_fv1l4yjuut7p` A :t:`trait implementation` is coherent when it is"
+" valid and does not overlap with another :t:`trait implementation`."
+msgstr ""
+
+#: ../../src/implementations.rst:154
+msgid ":dp:`fls_koy70k770ayu` A :t:`trait implementation` shall be coherent."
+msgstr ""
+
+#: ../../src/implementations.rst:160
+msgid "Implementation Conformance"
+msgstr ""
+
+#: ../../src/implementations.rst:164
+msgid ""
+":dp:`fls_v31idwjau90d` An :t:`associated trait constant` is conformant "
+"with an :t:`associated constant` of an :t:`implemented trait` when"
+msgstr ""
+
+#: ../../src/implementations.rst:168
+msgid ""
+":dp:`fls_k3wfh5japmyw` The :t:`[name]s` of both :t:`[associated "
+"constant]s` are the same, and"
+msgstr ""
+
+#: ../../src/implementations.rst:171
+msgid ""
+":dp:`fls_11qrqfuc3rmh` The :t:`[type]s` of both :t:`[associated "
+"constant]s` are the same."
+msgstr ""
+
+#: ../../src/implementations.rst:174
+msgid ""
+":dp:`fls_qmhduwunxww0` An :t:`associated trait function` is conformant "
+"with an :t:`associated function` of an :t:`implemented trait` when the "
+":t:`[function signature]s` of both :t:`[function]s` are the same."
+msgstr ""
+
+#: ../../src/implementations.rst:179
+msgid ""
+":dp:`fls_2500ivh0cc3y` The :t:`signature` of the :t:`associated function`"
+" of the :t:`implemented trait` is a :t:`subtype` of the :t:`signature` of"
+" the :t:`associated trait function`, and"
+msgstr ""
+
+#: ../../src/implementations.rst:184
+msgid ""
+":dp:`fls_18gimgfy0kw9` The :t:`[bound]s` of the :t:`associated function` "
+"of the :t:`implemented trait` are more general that the :t:`[bound]s` of "
+"the :t:`associated trait function`."
+msgstr ""
+
+#: ../../src/implementations.rst:189
+msgid ""
+":dp:`fls_fi4qmauirlsm` An :t:`associated type` of a :t:`trait "
+"implementation` is conformant with an :t:`associated type` of an "
+":t:`implemented trait` when:"
+msgstr ""
+
+#: ../../src/implementations.rst:193
+msgid ""
+":dp:`fls_2s8lh3k4rw6u` The :t:`[name]s` of both :t:`[type]s` are the "
+"same, and"
+msgstr ""
+
+#: ../../src/implementations.rst:196
+msgid ""
+":dp:`fls_bb874uu2alt3` The :t:`type specification` of the :t:`associated "
+"type` of the :t:`implemented trait` conforms to the :t:`[bound]s` of the "
+":t:`associated type` of the :t:`trait implementation`."
+msgstr ""
+
+#: ../../src/implementations.rst:201
+msgid ""
+":dp:`fls_so8em6rphkhv` A :t:`trait implementation` is conformant with an "
+":t:`implemented trait` when:"
+msgstr ""
+
+#: ../../src/implementations.rst:204
+msgid ""
+":dp:`fls_ldu9bmb9cy10` The :t:`trait implementation` has a conformant "
+":t:`associated constant` for each :t:`associated constant` of the "
+":t:`implemented trait`, unless the :t:`associated constant` of the "
+":t:`implemented trait` has a :t:`default value`,"
+msgstr ""
+
+#: ../../src/implementations.rst:210
+msgid ""
+":dp:`fls_5cr6un2gzdft` The :t:`trait implementation` has a conformant "
+":t:`associated function` for each :t:`associated function` of the "
+":t:`implemented trait`, unless the :t:`associated function` of the "
+":t:`implemented trait` has a default implementation in the "
+":t:`implemented trait`,"
+msgstr ""
+
+#: ../../src/implementations.rst:216
+msgid ""
+":dp:`fls_pshfe3ioh0mg` The :t:`trait implementation` has a conformant "
+":t:`associated type` for each :t:`associated type` of the :t:`implemented"
+" trait`."
+msgstr ""
+
+#: ../../src/implementations.rst:220
+msgid ":dp:`fls_8yq1g7nzv9px` A :t:`trait implementation` shall be conformant."
+msgstr ""
+

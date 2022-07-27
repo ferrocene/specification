@@ -1,0 +1,47 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../src/index.rst:7
+msgid "Contents:"
+msgstr "内容："
+
+#: ../../src/index.rst:34
+msgid "Appendices:"
+msgstr "附录："
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr "您正在阅读《Ferrocene语言规范》的草案。本文件的某些部分可能缺失、不完整或不正确。我们的目标是在2022年底前完成该规范。"
+
+#: ../../src/index.rst:5
+msgid "Ferrocene Language Specification"
+msgstr "Ferrocene 语言规范"
+
+#: ../../src/index.rst:43
+msgid "Indices and tables"
+msgstr "索引与表格"
+
+#: ../../src/index.rst:45
+msgid ":ref:`search`"
+msgstr ":ref:`search`"
+

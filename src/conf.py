@@ -58,3 +58,9 @@ html_theme_options = {
 
 html_title = "Ferrocene Language Specification"
 html_short_title = "Language Specification"
+
+
+# -- I18N -------------------------------------------------
+
+locale_dirs = ['../locales/']
+# language="zh_CN"

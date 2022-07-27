@@ -1,0 +1,1256 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/macros.rst:9
+msgid "Macros"
+msgstr ""
+
+#: ../../src/macros.rst:12 ../../src/macros.rst:71 ../../src/macros.rst:138
+#: ../../src/macros.rst:185 ../../src/macros.rst:227 ../../src/macros.rst:251
+#: ../../src/macros.rst:306 ../../src/macros.rst:366 ../../src/macros.rst:466
+#: ../../src/macros.rst:530 ../../src/macros.rst:687 ../../src/macros.rst:725
+#: ../../src/macros.rst:850 ../../src/macros.rst:1003
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/macros.rst:13
+msgid ""
+":dp:`fls_j1jc83erljo0` A :t:`macro` is a custom definition that extends "
+"Rust by defining callable syntactic transformations. The effects of a "
+":t:`macro` are realized through :t:`[macro invocation]s` or "
+":t:`attribute` use. :t:`[Macro]s` come in two distinct forms:"
+msgstr ""
+
+#: ../../src/macros.rst:19
+msgid ""
+":dp:`fls_23eapx3ckymf` :t:`[Declarative macro]s` define rules for "
+"recognizing syntactic patterns and generating direct syntax."
+msgstr ""
+
+#: ../../src/macros.rst:23
+msgid ""
+":dp:`fls_a5uemz2hnbi8` :t:`[Procedural macro]s` define augmented "
+":t:`[function]s` that operate on and return a stream of :t:`[lexical "
+"element]s`."
+msgstr ""
+
+#: ../../src/macros.rst:27
+msgid ""
+":dp:`fls_rnty1c8l5495` :t:`[Token]s` are a subset of :t:`[lexical "
+"element]s` consumed by :t:`[macro]s`."
+msgstr ""
+
+#: ../../src/macros.rst:33
+msgid "Declarative Macros"
+msgstr ""
+
+#: ../../src/macros.rst:36 ../../src/macros.rst:108 ../../src/macros.rst:165
+#: ../../src/macros.rst:440
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/macros.rst:66
+msgid ""
+":dp:`fls_ikzjsq8heyk6` A :ds:`MacroMatchToken` is any :t:`lexical "
+"element` in category :s:`LexicalElement`, except punctuation ``$`` and "
+"category :s:`Delimiter`."
+msgstr ""
+
+#: ../../src/macros.rst:72
+msgid ""
+":dp:`fls_w44hav7mw3ao` A :t:`declarative macro` is a :t:`macro` that "
+"associates a :t:`name` with a set of syntactic transformation :t:`[macro "
+"rule]s`."
+msgstr ""
+
+#: ../../src/macros.rst:76
+msgid ""
+":dp:`fls_dw1nq4r9ghhd` A :t:`macro rule` is a :t:`construct` that "
+"consists of a :t:`macro matcher` and a :t:`macro transcriber`."
+msgstr ""
+
+#: ../../src/macros.rst:80
+msgid ""
+":dp:`fls_oq4xn8guos8f` A :t:`macro matcher` is a :t:`construct` that "
+"describes a syntactic pattern that a :t:`macro` must match."
+msgstr ""
+
+#: ../../src/macros.rst:84
+msgid ""
+":dp:`fls_cdaf8viwmdfe` A :t:`macro match` is the most basic form of a "
+"satisfied :t:`macro matcher`."
+msgstr ""
+
+#: ../../src/macros.rst:87
+msgid ""
+":dp:`fls_ljavs0w61z3j` A :t:`macro transcriber` is a :t:`construct` that "
+"describes the replacement syntax of a :t:`macro`."
+msgstr ""
+
+#: ../../src/macros.rst:91
+msgid ""
+":dp:`fls_3jspk8obv7sd` A :t:`declarative macro` is invoked using a "
+":t:`macro invocation`."
+msgstr ""
+
+#: ../../src/macros.rst:95 ../../src/macros.rst:152 ../../src/macros.rst:212
+#: ../../src/macros.rst:292 ../../src/macros.rst:352 ../../src/macros.rst:422
+#: ../../src/macros.rst:477
+msgid "Examples"
+msgstr ""
+
+#: ../../src/macros.rst:105
+msgid "Metavariables"
+msgstr ""
+
+#: ../../src/macros.rst:139
+msgid ""
+":dp:`fls_g93r3teei8wo` :t:`[Declarative macro]s` employ "
+":t:`[metavariable]s` to match a :t:`token` of a particular kind and bind "
+"its :t:`value` to a name for use during :t:`macro transcription`."
+msgstr ""
+
+#: ../../src/macros.rst:144
+msgid ""
+":dp:`fls_4zdait30exvn` A :t:`metavariable` is a :t:`macro match` that "
+"describes a :t:`variable`."
+msgstr ""
+
+#: ../../src/macros.rst:147
+msgid ""
+":dp:`fls_8zypylq60zba` A :t:`fragment specifier` is a :t:`construct` that"
+" indicates the :t:`type` of a :t:`metavariable`."
+msgstr ""
+
+#: ../../src/macros.rst:162
+msgid "Repetition"
+msgstr ""
+
+#: ../../src/macros.rst:179
+msgid ""
+":dp:`fls_4ps4x4513xau` A :ds:`MacroRepetitionSeparator` is any "
+":t:`lexical element` in category :s:`LexicalElement`, except punctuation "
+"``+``, ``*``, ``?``, and category :s:`Delimiter`."
+msgstr ""
+
+#: ../../src/macros.rst:186
+msgid ""
+":dp:`fls_8byjmlgum2f3` A :t:`macro repetition in matching` allows for a "
+"syntactic pattern to be matched zero or multiple times during :t:`macro "
+"matching`."
+msgstr ""
+
+#: ../../src/macros.rst:190
+msgid ""
+":dp:`fls_ltdp3zs60dzr` A :t:`macro repetition in transcription` allows "
+"for a syntactic pattern to be transcribed zero or multiple times during "
+":t:`macro transcription`."
+msgstr ""
+
+#: ../../src/macros.rst:194
+msgid ""
+":dp:`fls_u86j0zm2jshf` A :t:`repetition operator` is a :t:`construct` "
+"that indicates the number of times a :t:`macro repetition in matching` or"
+" a :t:`macro repetition in transcription` can be repeated."
+msgstr ""
+
+#: ../../src/macros.rst:199
+msgid ""
+":dp:`fls_h5f8x4jdnvbu` The effects of a :t:`repetition operator` are as "
+"follows:"
+msgstr ""
+
+#: ../../src/macros.rst:202
+msgid ":dp:`fls_hf4gj5pfl437` ``*`` - Zero or more repetitions."
+msgstr ""
+
+#: ../../src/macros.rst:205
+msgid ":dp:`fls_tm0w0680wf4x` ``+`` - One or more repetitions."
+msgstr ""
+
+#: ../../src/macros.rst:208
+msgid ":dp:`fls_10lsg5212ffb` ``?`` - Zero or one repetition."
+msgstr ""
+
+#: ../../src/macros.rst:224
+msgid "Procedural Macros"
+msgstr ""
+
+#: ../../src/macros.rst:228
+msgid ""
+":dp:`fls_ejbddhggstd2` A :t:`procedural macro` is a :t:`macro` that "
+"encapsulates syntactic transformations in a :t:`function`. "
+":t:`[Procedural macro]s` consume one or more streams of :t:`[token]s` and"
+" produce a stream of :t:`[token]s`."
+msgstr ""
+
+#: ../../src/macros.rst:233
+msgid ""
+":dp:`fls_pcce9gmjpxba` :t:`[Procedural macro]s` shall be defined in a "
+":t:`crate` subject to :t:`attribute` :c:`crate_type` where the type is "
+"``proc-macro``."
+msgstr ""
+
+#: ../../src/macros.rst:237
+msgid ""
+":dp:`fls_vtzuplb1p3s` A :t:`macro implementation function` is the "
+":t:`function` that encapsulates the syntactic transformations of a "
+":t:`procedural macro`."
+msgstr ""
+
+#: ../../src/macros.rst:241
+msgid ""
+":dp:`fls_mewfehvgm16r` A :t:`macro implementation function` enters the "
+":t:`name` of the :t:`procedural macro` into the :t:`macro namespace`."
+msgstr ""
+
+#: ../../src/macros.rst:248
+msgid "Function-like Macros"
+msgstr ""
+
+#: ../../src/macros.rst:252
+msgid ""
+":dp:`fls_utd3zqczix` A :t:`function-like macro` is a :t:`procedural "
+"macro` that consumes a stream of :t:`[token]s` and produces a stream of "
+":t:`[token]s`."
+msgstr ""
+
+#: ../../src/macros.rst:256
+msgid ""
+":dp:`fls_ojr30lf6jfx0` The :t:`macro implementation function` of a :t"
+":`function-like macro` shall be subject to the following restrictions:"
+msgstr ""
+
+#: ../../src/macros.rst:260
+msgid ""
+":dp:`fls_ljkjmegynhiy` The :t:`macro implementation function` shall be "
+"subject to :t:`attribute` :c:`proc_macro`,"
+msgstr ""
+
+#: ../../src/macros.rst:264
+msgid ""
+":dp:`fls_8a8qhzjw5hax` The :t:`macro implementation function` shall be "
+"subject to visibility modifier ``pub``,"
+msgstr ""
+
+#: ../../src/macros.rst:268
+msgid ""
+":dp:`fls_ofzql79i9if` The :t:`macro implementation function` shall lack "
+":t:`[function qualifier]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:271
+msgid ""
+":dp:`fls_j1wsyzip2qb3` The :t:`macro implementation function` shall lack "
+":t:`[generic parameter]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:274
+msgid ""
+":dp:`fls_etyo9bmzxby6` The :t:`macro implementation function` shall have "
+"a single :t:`function parameter` whose :t:`type specification` indicates "
+":t:`type` :std:`proc_macro::TokenStream`,"
+msgstr ""
+
+#: ../../src/macros.rst:279
+msgid ""
+":dp:`fls_mkl9b38m0sf1` The :t:`macro implementation function` shall have "
+"a :t:`return type` whose :t:`type specification` indicates :t:`type` "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:283
+msgid ""
+":dp:`fls_lfmb22bfnrye` A :t:`function-like macro` is invoked using a "
+":t:`macro invocation`."
+msgstr ""
+
+#: ../../src/macros.rst:286
+msgid ""
+":dp:`fls_fbgal48cgj44` The sole parameter of the :t:`macro implementation"
+" function` captures the :t:`token` stream produced from the "
+":s:`DelimitedTokenTree` of the :t:`macro invocation`, excluding outer "
+":s:`[Delimiter]s`."
+msgstr ""
+
+#: ../../src/macros.rst:303
+msgid "Derive Macros"
+msgstr ""
+
+#: ../../src/macros.rst:307
+msgid ""
+":dp:`fls_e5x92q2rq8a0` A :t:`derive macro` is a :t:`procedural macro` "
+"that consumes a stream of :t:`[token]s` and produces a stream of "
+":t:`[token]s`. :t:`[Derive macro]s` are used to construct new syntax for "
+":t:`[abstract data type]s`."
+msgstr ""
+
+#: ../../src/macros.rst:312
+msgid ""
+":dp:`fls_ldw75sy5uj7p` The :t:`macro implementation function` of a "
+":t:`derive macro` shall be subject to the following restrictions:"
+msgstr ""
+
+#: ../../src/macros.rst:316
+msgid ""
+":dp:`fls_7gcnui9beky` The :t:`macro implementation function` shall be "
+"subject to :t:`attribute` :c:`proc_macro_derive`,"
+msgstr ""
+
+#: ../../src/macros.rst:320
+msgid ""
+":dp:`fls_ef30ropg7dhx` The :t:`macro implementation function` shall be "
+"subject to visibility modifier ``pub``,"
+msgstr ""
+
+#: ../../src/macros.rst:324
+msgid ""
+":dp:`fls_mo00vqm9xfqc` The :t:`macro implementation function` shall lack "
+":t:`[function qualifier]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:327
+msgid ""
+":dp:`fls_gr9wugeqyb3b` The :t:`macro implementation function` shall lack "
+":t:`[generic parameter]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:330
+msgid ""
+":dp:`fls_npnze2cg8ae` The :t:`macro implementation function` shall have a"
+" single :t:`function parameter` whose :t:`type specification` indicates "
+":t:`type` :std:`proc_macro::TokenStream`,"
+msgstr ""
+
+#: ../../src/macros.rst:335
+msgid ""
+":dp:`fls_w2h4lk6bmht` The :t:`macro implementation function` shall have a"
+" :t:`return type` whose :t:`type specification` indicates :t:`type` "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:339
+msgid ""
+":dp:`fls_x96a0xzcyrko` A :t:`derive macro` is invoked using "
+":t:`attribute` :c:`derive`."
+msgstr ""
+
+#: ../../src/macros.rst:342
+msgid ""
+":dp:`fls_caa16usjxryg` The sole parameter of the :t:`macro implementation"
+" function` captures the :t:`token` stream produced from the related "
+":s:`EnumDeclaration`, :s:`StructDeclaration`, or :s:`UnionDeclaration`."
+msgstr ""
+
+#: ../../src/macros.rst:347
+msgid ""
+":dp:`fls_mobky5ck1mi` A :dt:`helper attribute` is an :t:`inert` "
+":t:`attribute` that acts as a hint to :t:`attribute` :c:`derive`."
+msgstr ""
+
+#: ../../src/macros.rst:363
+msgid "Attribute Macros"
+msgstr ""
+
+#: ../../src/macros.rst:367
+msgid ""
+":dp:`fls_l3epi1dqpi8o` An :t:`attribute macro` is a :t:`procedural macro`"
+" that consumes two streams of :t:`[token]s` to produce a single stream of"
+" :t:`[token]s`, and defines a new :t:`outer attribute` that can be "
+"attached to :t:`[item]s`. :t:`[Attribute macro]s` are used to replace "
+":t:`[item]s` with other :t:`[item]s`."
+msgstr ""
+
+#: ../../src/macros.rst:373
+msgid ""
+":dp:`fls_3sublbi9bz7k` The :t:`macro implementation function` of an "
+":t:`attribute macro` shall be subject to the following restrictions:"
+msgstr ""
+
+#: ../../src/macros.rst:377
+msgid ""
+":dp:`fls_eb8jxl70wmeh` The :t:`macro implementation function` shall be "
+"subject to :t:`attribute` :c:`proc_macro_attribute`,"
+msgstr ""
+
+#: ../../src/macros.rst:381
+msgid ""
+":dp:`fls_7ugtmobgb2t9` The :t:`macro implementation function` shall be "
+"subject to visibility modifier ``pub``,"
+msgstr ""
+
+#: ../../src/macros.rst:385
+msgid ""
+":dp:`fls_y700oif45wum` The :t:`macro implementation function` shall lack "
+":t:`[function qualifier]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:388
+msgid ""
+":dp:`fls_hhsf1a9p6o55` The :t:`macro implementation function` shall lack "
+":t:`[generic parameter]s`,"
+msgstr ""
+
+#: ../../src/macros.rst:391
+msgid ""
+":dp:`fls_4g932k8ueyqp` The :t:`macro implementation function` shall have "
+"two :t:`[function parameter]s` whose :t:`[type specification]s` indicate "
+":t:`type` :std:`proc_macro::TokenStream`,"
+msgstr ""
+
+#: ../../src/macros.rst:396
+msgid ""
+":dp:`fls_f5qy1pnlbpng` The :t:`macro implementation function` shall have "
+"a :t:`return type` whose :t:`type specification` indicates type "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:400
+msgid ""
+":dp:`fls_rzn48xylk4yj` An :t:`attribute macro` is invoked using an "
+":t:`attribute` of the form"
+msgstr ""
+
+#: ../../src/macros.rst:403
+msgid ":dp:`fls_78400zh02sdq` ``#[SimplePath]``, or"
+msgstr ""
+
+#: ../../src/macros.rst:406
+msgid ":dp:`fls_eyesmvuwpjn1` ``#[SimplePath DelimitedTokenTree]``"
+msgstr ""
+
+#: ../../src/macros.rst:409
+msgid ""
+":dp:`fls_fku5beu3mr4c` The first :t:`function parameter` of the :t:`macro"
+" implementation function` captures the :t:`token` stream produced from "
+"the :s:`DelimitedTokenTree` of the invoking :t:`attribute`, excluding "
+"outer :s:`[Delimiter]s`. If no :s:`DelimitedTokenTree` is provided, then "
+"the :t:`token` stream is considered empty."
+msgstr ""
+
+#: ../../src/macros.rst:416
+msgid ""
+":dp:`fls_knjsslplv5ri` The second :t:`function parameter` of the "
+":t:`macro implementation function` captures the :t:`token` stream "
+"produced from the related :t:`item`, including all :t:`[outer "
+"attribute]s` that apply to that :t:`item`."
+msgstr ""
+
+#: ../../src/macros.rst:437
+msgid "Macro Invocation"
+msgstr ""
+
+#: ../../src/macros.rst:460
+msgid ""
+":dp:`fls_wushtmw9qt3y` A :ds:`NonDelimitedToken` is any :t:`lexical "
+"element` in category :s:`LexicalElement`, except delimiters ``(``, ``)``,"
+" ``[``, ``]``, ``{``, and ``}``."
+msgstr ""
+
+#: ../../src/macros.rst:467
+msgid ""
+":dp:`fls_snpxxcqhtjfv` A :t:`macro invocation` is a call of a "
+":t:`declarative macro` or :t:`function-like macro` that is expanded "
+"statically and replaced with the result of the :t:`macro`."
+msgstr ""
+
+#: ../../src/macros.rst:472
+msgid ""
+":dp:`fls_6v06zvi1ctub` A :t:`terminated macro invocation` is a :t:`macro "
+"invocation` that may be used as a :t:`statement`."
+msgstr ""
+
+#: ../../src/macros.rst:478
+msgid ""
+":dp:`fls_338rmbazl67o` See :p:`20.1. <fls_yrq1n547uzp>` for the "
+"declaration of ``answer_to_life``."
+msgstr ""
+
+#: ../../src/macros.rst:485
+msgid ""
+":dp:`fls_lrr7gg8tian` See :p:`20.1.1. <fls_mej9pty172v4>` for the "
+"declaration of ``square``."
+msgstr ""
+
+#: ../../src/macros.rst:492
+msgid ""
+":dp:`fls_8qxwwf4trnl` See :p:`20.1.2. <fls_b45ng0j84lli>` for the "
+"declaration of ``generate_pairs``."
+msgstr ""
+
+#: ../../src/macros.rst:499
+msgid ""
+":dp:`fls_8z1sgtvchhhw` See :p:`20.2.1. <fls_33w6tcb743j0>` for the "
+"declaration of ``make_answer_to_life``."
+msgstr ""
+
+#: ../../src/macros.rst:507
+msgid ""
+":dp:`fls_d9w3dn2yn7mo` See :p:`20.2.2. <fls_uqp2svg2kntl>` for the "
+"declaration of ``Answer``."
+msgstr ""
+
+#: ../../src/macros.rst:515
+msgid ""
+":dp:`fls_1tftbd91yfpd` See :p:`20.2.3. <fls_r5isidirsy03>` for the "
+"declaration of ``output_and_return_item``."
+msgstr ""
+
+#: ../../src/macros.rst:527
+msgid "Macro Expansion"
+msgstr ""
+
+#: ../../src/macros.rst:531
+msgid ""
+":dp:`fls_xscdaxvs4wx4` :t:`Macro expansion` is the process of statically "
+"executing a :t:`macro invocation` and replacing it with the produced "
+"output of the :t:`macro invocation`."
+msgstr ""
+
+#: ../../src/macros.rst:536
+msgid ""
+":dp:`fls_nz5stwcc41gk` :t:`Macro expansion` of :t:`[declarative macro]s` "
+"proceeds as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:539
+msgid ""
+":dp:`fls_76prdp6k1fga` The :s:`TokenTree` of the :t:`macro invocation` is"
+" matched against the :t:`[macro rule]s` of the resolved :t:`macro` by "
+"considering individual :t:`[macro matcher]s`. It is a static error if no "
+":t:`macro matcher` is satisfied."
+msgstr ""
+
+#: ../../src/macros.rst:545
+msgid ""
+":dp:`fls_76u274l4kew8` The :t:`macro transcriber` of the satisfied "
+":t:`macro rule` produces its result, with all :t:`[metavariable "
+"indication]s` resolved. It is a static error if the :t:`macro "
+"transcriber` fails to produce its result."
+msgstr ""
+
+#: ../../src/macros.rst:550
+msgid ""
+":dp:`fls_lakpily1zwfl` The :t:`macro invocation` is replaced with the "
+"result of the :t:`macro transcriber`. It is a static error if the result "
+"cannot be parsed according to the expected expansion syntax of the "
+"context where the :t:`macro invocation` resides. The expected expansion "
+"syntax is as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:556
+msgid ""
+":dp:`fls_3zn4dz19nyvq` If the :t:`macro invocation` appears as part of a "
+":t:`statement`, the output is required to constitute zero or more "
+":t:`[statement]s`."
+msgstr ""
+
+#: ../../src/macros.rst:560
+msgid ""
+":dp:`fls_nsh2vwx8oiw` If the :t:`macro invocation` appears as part of an "
+":t:`expression-without-block`, the output is required to constitute an "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/macros.rst:565
+msgid ""
+":dp:`fls_tu6kmwm4v9nj` If the :t:`macro invocation` appears as part of a "
+":t:`pattern-without-range`, the output is required to constitute zero or "
+"more :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/macros.rst:570
+msgid ""
+":dp:`fls_y20pmwo3v3uu` If the :t:`macro invocation` appears as part of an"
+" :t:`associated item`, an :t:`external item`, or a :t:`macro item`, the "
+"output is required to constitute zero or more :t:`[item]s`."
+msgstr ""
+
+#: ../../src/macros.rst:575
+msgid ""
+":dp:`fls_t89sw6az99z7` If the :t:`macro invocation` appears as part of a "
+":t:`type-specification-without-bounds`, the output is required to "
+"constitute a :t:`type`."
+msgstr ""
+
+#: ../../src/macros.rst:580
+msgid ""
+":dp:`fls_417hvhvj2554` Expansion of :t:`[function-like macro]s` proceeds "
+"as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:583
+msgid ""
+":dp:`fls_srtqkdceaz5t` The :std:`proc_macro::TokenStream` of the "
+":t:`macro invocation` is passed to the sole :t:`function parameter` of "
+"the :t:`macro implementation function`. The "
+":std:`proc_macro::TokenStream` captures the :s:`DelimitedTokenTree` "
+"without the outer :s:`[Delimiter]s`."
+msgstr ""
+
+#: ../../src/macros.rst:589
+msgid ""
+":dp:`fls_mi92etjtpamu` The :t:`macro implementation function` produces "
+"its :t:`output proc_macro::TokenStream`. It is a static error if the "
+":t:`macro implementation function` fails to produce its output "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:595
+msgid ""
+":dp:`fls_n8beqlt54rhy` The :t:`macro invocation` is replaced with the "
+"result of the :t:`macro transcriber`. It is a static error if the result "
+"can not be parsed according to the expected expansion syntax of the "
+"context where the :t:`macro invocation` resides. The expected expansion "
+"syntax is as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:601
+msgid ""
+":dp:`fls_stseor6tln22` If the :t:`macro invocation` appears as part of a "
+":t:`statement`, the output is required to constitute zero or more "
+":t:`[statement]s`."
+msgstr ""
+
+#: ../../src/macros.rst:605
+msgid ""
+":dp:`fls_l8j2jiuuao4f` If the :t:`macro invocation` appears as part of an"
+" :t:`expression-without-block`, the output is required to constitute an "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/macros.rst:610
+msgid ""
+":dp:`fls_xvemyqj5gc6g` If the :t:`macro invocation` appears as part of a "
+":t:`pattern-without-range`, the output is required to constitute zero or "
+"more :t:`[pattern]s`."
+msgstr ""
+
+#: ../../src/macros.rst:615
+msgid ""
+":dp:`fls_vd3dzvr6re19` If the :t:`macro invocation` appears as part of an"
+" :t:`associated item`, an :t:`external item`, or a :t:`macro item`, the "
+"output is required to constitute zero or more :t:`[item]s`."
+msgstr ""
+
+#: ../../src/macros.rst:620
+msgid ""
+":dp:`fls_u11o90szy68s` If the :t:`macro invocation` appears as part of a "
+":t:`type-specification-without-bounds`, the output is required to "
+"constitute a :t:`type`."
+msgstr ""
+
+#: ../../src/macros.rst:625
+msgid ""
+":dp:`fls_qi5kyvj1e8th` Expansion of :t:`[derive macro]s` proceeds as "
+"follows:"
+msgstr ""
+
+#: ../../src/macros.rst:628
+msgid ""
+":dp:`fls_grtiwf7q8jah` The :std:`proc_macro::TokenStream` of the related "
+":t:`item` is passed to the sole :t:`function parameter` of the :t:`macro "
+"implementation function`. The :std:`proc_macro::TokenStream` captures the"
+" :t:`item` subject to the :t:`derive macro` excluding the invoking "
+":t:`attribute` :c:`derive` as well as any preceding :c:`derive` "
+":t:`[attribute]s`."
+msgstr ""
+
+#: ../../src/macros.rst:635
+msgid ""
+":dp:`fls_tbe2qq7whq10` The :t:`macro implementation function` produces "
+"its output :std:`proc_macro::TokenStream`. It is a static error if the "
+":t:`macro implementation function` fails to produce its output "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:641
+msgid ""
+":dp:`fls_my93neopj9x0` The output :std:`proc_macro::TokenStream` is "
+"appended to the enclosing :t:`block expression` or :t:`module` where the "
+"related :s:`EnumDeclaration`, :s:`StructDeclaration`, or "
+":s:`UnionDeclaration` resides. It is a static error if the output "
+":std:`proc_macro::TokenStream` does not constitute zero or more "
+":t:`[item]s`."
+msgstr ""
+
+#: ../../src/macros.rst:648
+msgid ""
+":dp:`fls_zat7kwi5vc5c` The expansion of :t:`[attribute macro]s` proceeds "
+"as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:651
+msgid ""
+":dp:`fls_tjn92evtlflq` The :std:`proc_macro::TokenStream` of the invoking"
+" :t:`attribute` is passed to the first :t:`function parameter` of the "
+":t:`macro implementation function`. The :std:`proc_macro::TokenStream` "
+"captures the :s:`DelimitedTokenTree` without the outer :s:`[Delimiter]s`."
+" If no :s:`DelimitedTokenTree` is provided, then an empty "
+":std:`proc_macro::TokenStream` is passed."
+msgstr ""
+
+#: ../../src/macros.rst:659
+msgid ""
+":dp:`fls_mpgh22bi8caz` The :std:`proc_macro::TokenStream` of the related "
+":t:`item` is passed to the second :t:`function parameter` of the "
+":t:`macro implementation function`. The :std:`proc_macro::TokenStream` "
+"captures the :t:`item` subject to the invoking :t:`attribute`, excluding "
+"the invoking :t:`attribute`."
+msgstr ""
+
+#: ../../src/macros.rst:665
+msgid ""
+":dp:`fls_ul7nhfyvyzh` The :t:`macro implementation function` produces its"
+" output :std:`proc_macro::TokenStream`. It is a static error if the "
+":t:`macro implementation function` fails to produce its output "
+":std:`proc_macro::TokenStream`."
+msgstr ""
+
+#: ../../src/macros.rst:671
+msgid ""
+":dp:`fls_z6xfhf71w10a` The :t:`item` is replaced with the output "
+":std:`proc_macro::TokenStream`. It is a static error if the output "
+":std:`proc_macro::TokenStream` does not constitute zero or more "
+":t:`[item]s`."
+msgstr ""
+
+#: ../../src/macros.rst:679
+msgid "Macro Matching"
+msgstr ""
+
+#: ../../src/macros.rst:684
+msgid "Rule Matching"
+msgstr ""
+
+#: ../../src/macros.rst:688
+msgid ""
+":dp:`fls_77ucvwu6idms` :t:`Rule matching` is the process of consuming a "
+":s:`TokenTree` in an attempt to fully satisfy the :t:`macro matcher` of a"
+" :t:`macro rule` that belongs to a resolved :t:`declarative macro`."
+msgstr ""
+
+#: ../../src/macros.rst:693
+msgid ":dp:`fls_6h1jqhxzku5v` :t:`Rule matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:696
+msgid ""
+":dp:`fls_r6i1ykrhb49j` The :t:`[macro matcher]s` of all :t:`[macro "
+"rule]s` that belong to a resolved :t:`macro` are tried against the "
+":s:`TokenTree` of the :t:`macro invocation`, in declarative order. In the"
+" event of a static error, no further attempts at selecting a subsequent "
+":t:`macro matcher` are made."
+msgstr ""
+
+#: ../../src/macros.rst:702
+msgid ""
+":dp:`fls_3qzes4lr8yuv` The :t:`macro match` of a candidate :t:`macro "
+"matcher` is tried against the :s:`TokenTree` of the :t:`macro invocation`"
+" by matching individual :t:`[token]s`, in left-to-right order."
+msgstr ""
+
+#: ../../src/macros.rst:707
+msgid ""
+":dp:`fls_lrpxlag31r3e` Matching does not employ lookahead. It is a static"
+" error if matching a candidate :t:`macro matcher` is ambiguous."
+msgstr ""
+
+#: ../../src/macros.rst:711
+msgid ""
+":dp:`fls_ksy2h7ixf9ha` Matching does not employ backtracking. It is a "
+"static error if matching a candidate :t:`macro matcher` fails while "
+"parsing into a :t:`metavariable` and having consumed at least one "
+":t:`token` while parsing the :t:`metavariable`."
+msgstr ""
+
+#: ../../src/macros.rst:716
+msgid ""
+":dp:`fls_r878ysvsy4jb` It is a static error if no :t:`macro matcher` is "
+"selected."
+msgstr ""
+
+#: ../../src/macros.rst:722
+msgid "Token Matching"
+msgstr ""
+
+#: ../../src/macros.rst:726
+msgid ""
+":dp:`fls_k6a24sbon5v9` :t:`Token matching` is the process of consuming a "
+":s:`TokenTree` in an attempt to fully satisfy a :t:`macro match` of a "
+"selected :t:`macro matcher` that belongs to a resolved :t:`declarative "
+"macro`."
+msgstr ""
+
+#: ../../src/macros.rst:731
+msgid ":dp:`fls_6uuxv91xgmfz` :t:`Token matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:734
+msgid ""
+":dp:`fls_g1rml9tavh8v` The outer :s:`[Delimiter]s` of a macro matcher "
+"match any outer ``Delimiter``\\ s in the :t:`macro invocation`."
+msgstr ""
+
+#: ../../src/macros.rst:738
+msgid ""
+":dp:`fls_h7x3tc208zpk` A :t:`metavariable` in a :t:`macro matcher` is "
+"matched against a sequence of :t:`[token]s` in the :t:`macro invocation` "
+"based on its :t:`fragment specifier`:"
+msgstr ""
+
+#: ../../src/macros.rst:742
+msgid ""
+":dp:`fls_p9eqa17d3dx` :t:`Fragment specifier` **block** requires a "
+":t:`block expression`."
+msgstr ""
+
+#: ../../src/macros.rst:745
+msgid ""
+":dp:`fls_k00bck2k8tde` :t:`Fragment specifier` **expr** requires an "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/macros.rst:748
+msgid ""
+":dp:`fls_pf0qrz5nadl2` :t:`Fragment specifier` **ident** requires a "
+":t:`pure identifier`."
+msgstr ""
+
+#: ../../src/macros.rst:751
+msgid ""
+":dp:`fls_9fioah171ojx` :t:`Fragment specifier` **item** requires an "
+":t:`item`."
+msgstr ""
+
+#: ../../src/macros.rst:754
+msgid ""
+":dp:`fls_j2o0f52zyvyb` :t:`Fragment specifier` **lifetime** requires "
+"character sequence 0x27 0x5F (apostrophe, low line), or character 0x27 "
+"(apostrophe) followed by an :t:`identifier`."
+msgstr ""
+
+#: ../../src/macros.rst:759
+msgid ""
+":dp:`fls_w5dzv3z4zd5a` :t:`Fragment specifier` **literal** requires "
+"optional character 0x2D (hyphen-minus), followed by a :t:`literal "
+"expression`."
+msgstr ""
+
+#: ../../src/macros.rst:763
+msgid ""
+":dp:`fls_wtol98rrqka5` :t:`Fragment specifier` **meta** requires an "
+":t:`attribute content`."
+msgstr ""
+
+#: ../../src/macros.rst:766
+msgid ""
+":dp:`fls_iorqt9q4ie9j` :t:`Fragment specifier` **pat** requires a :t"
+":`pattern-without-alternation`."
+msgstr ""
+
+#: ../../src/macros.rst:769
+msgid ""
+":dp:`fls_2zjed913qpvi` :t:`Fragment specifier` **pat_param** is the same "
+"as :t:`fragment specifier` **pat**."
+msgstr ""
+
+#: ../../src/macros.rst:773
+msgid ""
+":dp:`fls_3zdts0fsa36u` :t:`Fragment specifier` **path** requires a "
+":t:`type path`."
+msgstr ""
+
+#: ../../src/macros.rst:776
+msgid ""
+":dp:`fls_mb3yr1j7npv5` :t:`Fragment specifier` **stmt** requires a "
+":t:`statement` without trailing character 0x3B (semicolon), excluding "
+":t:`[item]s` that require character 0x3B (semicolon)."
+msgstr ""
+
+#: ../../src/macros.rst:781
+msgid ""
+":dp:`fls_xbuixjt9pum6` :t:`Fragment specifier` **tt** requires a "
+":s:`TokenTree`."
+msgstr ""
+
+#: ../../src/macros.rst:784
+msgid ""
+":dp:`fls_6annifhk6cd8` :t:`Fragment specifier` **ty** requires a :t:`type"
+" specification`."
+msgstr ""
+
+#: ../../src/macros.rst:787
+msgid ""
+":dp:`fls_2zu22efr6ncy` :t:`Fragment specifier` **vis** requires a "
+"possibly empty visibility modifier."
+msgstr ""
+
+#: ../../src/macros.rst:790
+msgid ""
+":dp:`fls_dqroklsaayzb` Once a :t:`metavariable` is matched, the matching "
+"sequence of :t:`[token]s` is bound to that :t:`metavariable`."
+msgstr ""
+
+#: ../../src/macros.rst:794
+msgid ""
+":dp:`fls_ghqjk6xj85ng` Repetition in a :t:`macro matcher` is matched "
+"based on how many times the :t:`pattern` appears consecutively optionally"
+" separated by a :t:`separator` in the :s:`TokenTree` of the :t:`macro "
+"invocation`, as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:799
+msgid ""
+":dp:`fls_lzwl4en5wcw0` If the repeated :t:`pattern` includes a "
+":t:`separator`, then the :t:`separator` must be able to follow the "
+"repeated :t:`pattern`."
+msgstr ""
+
+#: ../../src/macros.rst:803
+msgid ""
+":dp:`fls_cz44evkjzv29` If the repeated :t:`pattern` can appear multiple "
+"times, then the repeated :t:`pattern` must be able to follow itself."
+msgstr ""
+
+#: ../../src/macros.rst:807
+msgid ""
+":dp:`fls_o2exsai4m0gy` If the repeated :t:`pattern` can appear zero "
+"times, then the preceding :t:`pattern` must be able to follow the "
+"succeeding :t:`pattern`."
+msgstr ""
+
+#: ../../src/macros.rst:811
+msgid ""
+":dp:`fls_1ch299zp8h7` The repeated :t:`pattern` must be able to follow "
+"the preceding :t:`pattern`."
+msgstr ""
+
+#: ../../src/macros.rst:814
+msgid ""
+":dp:`fls_55ptfjlvoo8o` The succeeding :t:`pattern` must be able to follow"
+" the repeated :t:`pattern`."
+msgstr ""
+
+#: ../../src/macros.rst:817
+msgid ""
+":dp:`fls_finzfb5ljkf8` A repetition index is a monotonically increasing "
+"number that is initialized to zero, and incremented by one."
+msgstr ""
+
+#: ../../src/macros.rst:821
+msgid ""
+":dp:`fls_s1ccs6jocsgr` Once a metavariable is matched, the matching "
+"sequence of tokens is treated as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:825
+msgid ""
+":dp:`fls_wpi2i6hoj3li` The matching sequence of tokens is stored in an "
+"ordered collection at the current repetition index."
+msgstr ""
+
+#: ../../src/macros.rst:829
+msgid ":dp:`fls_uuey421a8n96` The current repetition index is incremented by one."
+msgstr ""
+
+#: ../../src/macros.rst:832
+msgid ""
+":dp:`fls_b5u47tuu136r` Each matched :t:`metavariable` in a :t:`macro "
+"repetition in matching` is bound separately, where the matches are stored"
+" in an ordered collection."
+msgstr ""
+
+#: ../../src/macros.rst:836
+msgid ""
+":dp:`fls_rb1tu4e7dpma` Any other :t:`token` in a :t:`macro matcher` is "
+"matched literally against the :s:`TokenTree` of the :t:`macro "
+"invocation`\\ ``.``"
+msgstr ""
+
+#: ../../src/macros.rst:840
+msgid ""
+":dp:`fls_c76sdvos5xeo` It is a static error if the :s:`TokenTree` of the "
+":t:`macro invocation` contains leftover :t:`[token]s` after :t:`macro "
+"matching`."
+msgstr ""
+
+#: ../../src/macros.rst:847
+msgid "Macro Transcription"
+msgstr ""
+
+#: ../../src/macros.rst:851
+msgid ""
+":dp:`fls_y21i8062mft0` :t:`Macro transcription` is the process of "
+"producing the expansion of a :t:`declarative macro`."
+msgstr ""
+
+#: ../../src/macros.rst:855
+msgid ":dp:`fls_n2dx4ug5nd5w` :t:`Macro transcription` proceeds as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:858
+msgid ""
+":dp:`fls_iw7322ycvhkc` Every :t:`metavariable indication` found in the "
+":s:`DelimitedTokenTree` of the :t:`macro transcriber` that belongs to a "
+"matched :t:`macro rule` is replaced by the matched sequence of "
+":t:`[token]s` of the :t:`metavariable`."
+msgstr ""
+
+#: ../../src/macros.rst:863
+msgid ""
+":dp:`fls_jgitbqmyixem` Unresolved :t:`[metavariable indication]s` are "
+"kept as :t:`[token]s` in the output verbatim."
+msgstr ""
+
+#: ../../src/macros.rst:867
+msgid ""
+":dp:`fls_ihcwl6taptas` Every :t:`macro repetition in transcription` found"
+" in the :s:`DelimitedTokenTree` of the :t:`macro transcriber` shall be "
+"transcribed by repeatedly transcribing the :t:`[token]s` inside of it."
+msgstr ""
+
+#: ../../src/macros.rst:872
+msgid ""
+":dp:`fls_g3dtpw4rtgdr` The number of transcription repetitions for a "
+":t:`macro repetition in transcription` shall depend on its :t:`repetition"
+" operator`, as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:876
+msgid ""
+":dp:`fls_pvp6dxykuv66` A :t:`repetition operator` denoted by ``+`` shall "
+"require one or more repetitions."
+msgstr ""
+
+#: ../../src/macros.rst:880
+msgid ""
+":dp:`fls_bd673n5awwbz` A :t:`repetition operator` denoted by ``*`` shall "
+"require zero or more repetitions."
+msgstr ""
+
+#: ../../src/macros.rst:884
+msgid ""
+":dp:`fls_zbtwrtcy7pzf` A :t:`repetition operator` denoted by ``?`` shall "
+"require zero or one repetition."
+msgstr ""
+
+#: ../../src/macros.rst:888
+msgid ""
+":dp:`fls_eacyb6jap9ru` A :t:`metavariable indication` that is matched "
+"inside of a repetition shall not be used outside of a :t:`macro "
+"repetition in transcription`."
+msgstr ""
+
+#: ../../src/macros.rst:892
+msgid ""
+":dp:`fls_y4podc7ee8lf` A :t:`metavariable indication` shall be used in a "
+":t:`macro repetition in transcription` of the same nesting depth as its "
+"corresponding :t:`metavariable` appears in the :t:`macro matcher`."
+msgstr ""
+
+#: ../../src/macros.rst:897
+msgid ""
+":dp:`fls_wbys0m4a1omg` A :t:`metavariable indication` within a :t:`macro "
+"repetition in transcription` shall repeat the same number of times in its"
+" matching :t:`repetition` if the :t:`repetition` occurs at the same "
+"nesting depth."
+msgstr ""
+
+#: ../../src/macros.rst:902
+msgid ""
+":dp:`fls_g445ovedgo4q` Multiple transcribed :t:`[metavariable "
+"indication]s` in the same :t:`macro repetition in transcription` shall "
+"repeat the same number of times."
+msgstr ""
+
+#: ../../src/macros.rst:906
+msgid ""
+":dp:`fls_ctzthi6keit2` When transcribing a metavariable indication in a "
+"macro repetition in transcription, the metavariable indication is "
+"replaced with the matched sequence of :t:`[token]s` of the corresponding "
+"iteration of the repetition. metavariable taken from the ordered "
+"collection."
+msgstr ""
+
+#: ../../src/macros.rst:912
+msgid ":dp:`fls_vqc2lsa9dozk` When transcribing a metavariable"
+msgstr ""
+
+#: ../../src/macros.rst:915
+msgid ""
+":dp:`fls_9n46ugmcqmix` A metavariable indication in a macro repetition in"
+" transcription shall be transcribed to the matched tokens in order,"
+msgstr ""
+
+#: ../../src/macros.rst:919
+msgid ":dp:`fls_u2lq0lr12kdt` macro_rules! foo {"
+msgstr ""
+
+#: ../../src/macros.rst:922
+msgid ":dp:`fls_q0fmdb243bbj` ( $($expr:expr)* ) => {"
+msgstr ""
+
+#: ../../src/macros.rst:925
+msgid ":dp:`fls_5ybrepv7esk8` $( $expr ; )*"
+msgstr ""
+
+#: ../../src/macros.rst:928
+msgid ":dp:`fls_2624w1db6ln3` // $expr is an error"
+msgstr ""
+
+#: ../../src/macros.rst:931
+msgid ":dp:`fls_717qmew9z4vs` };"
+msgstr ""
+
+#: ../../src/macros.rst:934
+msgid ""
+":dp:`fls_azsyrzry1gxs` | ( $( $( $expr:expr )*  )*  )  => { |"
+"               $($($expr)*)* |             }"
+msgstr ""
+
+#: ../../src/macros.rst:939
+msgid ":dp:`fls_aup3whtatvpi` }"
+msgstr ""
+
+#: ../../src/macros.rst:942
+msgid ":dp:`fls_bh3bl0tz392e` foo! {"
+msgstr ""
+
+#: ../../src/macros.rst:945
+msgid ":dp:`fls_2kh21hqfbf30` 0"
+msgstr ""
+
+#: ../../src/macros.rst:948
+msgid ":dp:`fls_5xluznklusm1` 1"
+msgstr ""
+
+#: ../../src/macros.rst:951
+msgid ":dp:`fls_gsct98unzlne` 2"
+msgstr ""
+
+#: ../../src/macros.rst:954
+msgid ":dp:`fls_wcyzipq58fm2` }"
+msgstr ""
+
+#: ../../src/macros.rst:957
+msgid ":dp:`fls_x5oa26asdh9q` 0;1;2;"
+msgstr ""
+
+#: ../../src/macros.rst:960
+msgid ""
+":dp:`fls_xu5esg3v2u6i` Given a repetition in a macro invocation of the "
+"form"
+msgstr ""
+
+#: ../../src/macros.rst:963
+msgid ""
+":dp:`fls_95rn4cvgznmd` Given a macro invocation with N metavariable "
+"actuals, a macro of the form"
+msgstr ""
+
+#: ../../src/macros.rst:974
+msgid ":dp:`fls_yg4c9x7049y4` is equivalent to a macro of the form"
+msgstr ""
+
+#: ../../src/macros.rst:985
+msgid ""
+":dp:`fls_o9rwz9z0a2h4` where the metavariable of the macro repetition in "
+"matching are repeated N times, and the metavariable indications of the "
+"macro repetition in transcription are repeated N times. Invoking such a "
+"macro relates the first metavariable actual of the macro invocation with "
+"the first metavariable of the macro repetition in matching, the second "
+"metavariable actual with the second metavariable, etc."
+msgstr ""
+
+#: ../../src/macros.rst:995
+msgid "Hygiene"
+msgstr ""
+
+#: ../../src/macros.rst:997
+msgid ""
+":dp:`fls_7ezc7ncs678f` :dt:`Hygiene` is a property of macros and "
+"identifiers that appear within them, which aims to eliminate the "
+"syntactic interference between a macro and its environment."
+msgstr ""
+
+#: ../../src/macros.rst:1004
+msgid ":dp:`fls_3axjf28xb1nt` Hygiene is categorized as follows:"
+msgstr ""
+
+#: ../../src/macros.rst:1007
+msgid ""
+":dp:`fls_dz2mvodl818d` *Definition site hygiene*, which resolves to the "
+"``MacroDeclaration`` site. ``Identifier``\\ s with definition site "
+"hygiene cannot reference the environment of the ``MacroDeclaration``, "
+"cannot be referenced by the environment of a ``MacroInvocation``, and are"
+" considered *hygienic*."
+msgstr ""
+
+#: ../../src/macros.rst:1013
+msgid ""
+":dp:`fls_puqhytfzfsg6` *Call site hygiene*, which resolves to the "
+"``MacroInvocation`` site. ``Identifier``\\ s with call site hygiene can "
+"reference the environment of the ``MacroDeclaration``, can reference the "
+"environment of the ``MacroInvocation``, and are considered *unhygienic*."
+msgstr ""
+
+#: ../../src/macros.rst:1019
+msgid ""
+":dp:`fls_uyvnq88y9gk3` *Mixed hygiene*, which resolves to either the "
+"``MacroDeclaration`` or the ``MacroInvocation`` site, depending on the "
+"``Identifier``, and is considered *partially hygienic*."
+msgstr ""
+
+#: ../../src/macros.rst:1024
+msgid ""
+":dp:`fls_yxqcr19dig18` Every macro has associated hygiene that depends on"
+" its kind:"
+msgstr ""
+
+#: ../../src/macros.rst:1027
+msgid ""
+":dp:`fls_kx25olky1jov` Declarative macros have definition site hygiene "
+"only for locally declared variables, ``Label``\\ s, and the ``$crate`` "
+"metavariable, otherwise they have mixed hygiene."
+msgstr ""
+
+#: ../../src/macros.rst:1032
+msgid ":dp:`fls_v46v0t2vh6x4` Procedural macros have call site hygiene."
+msgstr ""
+
+#: ../../src/macros.rst:1035
+msgid ""
+":dp:`fls_7eqqk2cj0clr` When a macro references items within its defining "
+"crate, the macro shall use the ``$crate`` metavariable to fully qualify "
+"all paths."
+msgstr ""
+
+#: ../../src/macros.rst:1039
+msgid ":dp:`fls_d6g5g1b8k8v5` **Are there other rules?**"
+msgstr ""
+

@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/items.rst:9
+msgid "Items"
+msgstr ""
+
+#: ../../src/items.rst:12
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/items.rst:40
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/items.rst:41
+msgid ""
+":dp:`fls_s3b1cba9lfj5` The :t:`expansion` of a :t:`terminated macro "
+"invocation` is treated as zero or more :t:`[item]s` if the :t:`terminated"
+" macro invocation` appears as an :t:`item`."
+msgstr ""
+
+#: ../../src/items.rst:47
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/items.rst:48
+msgid ""
+":dp:`fls_hil5f7y4xdhe` :t:`Elaboration` is the process by which a "
+":t:`declaration` achieves its runtime effects."
+msgstr ""
+

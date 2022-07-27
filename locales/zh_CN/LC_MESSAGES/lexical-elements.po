@@ -1,0 +1,1513 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:9
+msgid "Lexical Elements"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:11
+msgid ""
+":dp:`fls_pqwpf87b84tr` The text of a Rust program consists of "
+":t:`[module]s` organized into :t:`[source file]s`. The text of a "
+":t:`source file` is a sequence of :t:`[lexical element]s`, each composed "
+"of characters, whose rules are presented in this chapter."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:20
+msgid "Character Set"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:22
+msgid ""
+":dp:`fls_itcth8292ud6` The program text of a Rust program is written "
+"using the :t:`Unicode` character set."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:27 ../../src/lexical-elements.rst:81
+#: ../../src/lexical-elements.rst:424 ../../src/lexical-elements.rst:533
+#: ../../src/lexical-elements.rst:554 ../../src/lexical-elements.rst:573
+#: ../../src/lexical-elements.rst:624 ../../src/lexical-elements.rst:665
+#: ../../src/lexical-elements.rst:705 ../../src/lexical-elements.rst:723
+#: ../../src/lexical-elements.rst:888 ../../src/lexical-elements.rst:971
+#: ../../src/lexical-elements.rst:1029 ../../src/lexical-elements.rst:1047
+#: ../../src/lexical-elements.rst:1095 ../../src/lexical-elements.rst:1134
+#: ../../src/lexical-elements.rst:1162 ../../src/lexical-elements.rst:1286
+#: ../../src/lexical-elements.rst:1308 ../../src/lexical-elements.rst:1361
+#: ../../src/lexical-elements.rst:1390
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:28
+msgid ""
+":dp:`fls_vfx8byq5zo8t` A character is defined by this document for each "
+"cell in the coding space described by :t:`Unicode`, regardless of whether"
+" or not :t:`Unicode` allocates a character to that cell."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:33
+msgid ""
+":dp:`fls_pvslhm3chtlb` A :dt:`whitespace character` is one of the "
+"following characters:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:36
+msgid ":dp:`fls_a5ec9cpn4sc8` 0x09 (horizontal tabulation)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:39
+msgid ":dp:`fls_dgyrj49y3c7c` 0x0A (new line)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:42
+msgid ":dp:`fls_5ocmngyur7by` 0x0B (vertical tabulation)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:45
+msgid ":dp:`fls_1aj0rgi9kpib` 0x0C (form feed)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:48
+msgid ":dp:`fls_bfzdxsbq2c2q` 0x0D (carriage return)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:51
+msgid ":dp:`fls_vw0kq2y1o63m` 0x20 (space)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:54
+msgid ":dp:`fls_ao296bmamwzh` 0x85 (next line)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:57
+msgid ":dp:`fls_6kymhq7embdh` 0x200E (left-to-right mark)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:60
+msgid ":dp:`fls_8mxmrxvhn3by` 0x200F (right-to-left mark)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:63
+msgid ":dp:`fls_zfs15iel08y0` 0x2029 (paragraph separator)"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:66
+msgid ""
+":dp:`fls_7eifv4ksunu1` A :t:`whitespace string` is a string that consists"
+" of one or more :t:`[whitespace character]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:71 ../../src/lexical-elements.rst:148
+#: ../../src/lexical-elements.rst:460 ../../src/lexical-elements.rst:544
+#: ../../src/lexical-elements.rst:563 ../../src/lexical-elements.rst:602
+#: ../../src/lexical-elements.rst:641 ../../src/lexical-elements.rst:682
+#: ../../src/lexical-elements.rst:713 ../../src/lexical-elements.rst:790
+#: ../../src/lexical-elements.rst:916 ../../src/lexical-elements.rst:1006
+#: ../../src/lexical-elements.rst:1037 ../../src/lexical-elements.rst:1067
+#: ../../src/lexical-elements.rst:1112 ../../src/lexical-elements.rst:1142
+#: ../../src/lexical-elements.rst:1201 ../../src/lexical-elements.rst:1295
+#: ../../src/lexical-elements.rst:1351 ../../src/lexical-elements.rst:1380
+#: ../../src/lexical-elements.rst:1399
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:72
+msgid ""
+":dp:`fls_2brw13n9ldgy` The coded representation of a character is tool-"
+"defined."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:78
+msgid "Lexical Elements, Separators, and Punctuation"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:149
+msgid ""
+":dp:`fls_d4nvxsvxj537` The text of a :t:`source file` is a sequence of "
+"separate :t:`[lexical element]s`. The meaning of a program depends only "
+"on the particular sequence of :t:`[lexical element]s`, excluding "
+":t:`non-[doc comment]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:154
+msgid ""
+":dp:`fls_a1zylpqha73x` A :t:`lexical element` is the most basic syntactic"
+" element in program text."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:157
+msgid ""
+":dp:`fls_jy6wifn5r2bu` The text of a :t:`source file` is divided into "
+":t:`[line]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:160
+msgid ""
+":dp:`fls_efdfq9nhpmp5` A :t:`line` is a sequence of zero or more "
+"characters followed by an :t:`end of line`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:164
+msgid ""
+":dp:`fls_go25sisi5fdp` The representation of an :t:`end of line` is tool-"
+"defined."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:167
+msgid ""
+":dp:`fls_a6t53o8h1vdk` A :t:`separator` is a character or a string that "
+"separates adjacent :t:`[lexical element]s`. A :t:`whitespace string` is a"
+" :t:`separator`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:171
+msgid ""
+":dp:`fls_8fv63w6f4udl` A :dt:`simple punctuator` is one of the following "
+"characters:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:204
+msgid ""
+":dp:`fls_es0tz1q9cmoo` A :dt:`compound punctuator` is one of the "
+"following two or more adjacent special characters:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:235
+msgid ""
+":dp:`fls_vm86olkeecer` The following :t:`[compound punctuator]s` are "
+":dt:`[flexible compound punctuator]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:246
+msgid ""
+":dp:`fls_5zxdgxy8tjrq` A :t:`flexible compound punctuator` may be treated"
+" as a single :t:`compound punctuator` or two adjacent :t:`[simple "
+"punctuator]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:250
+msgid ""
+":dp:`fls_x89vkq9rwlyt` Each of the special characters listed for single "
+"character :t:`punctuator` is a :t:`simple punctuator` except if this "
+"character is used as a character of a :t:`compound punctuator`, or a "
+"character of a :t:`character literal`, a :t:`comment`, a :t:`numeric "
+"literal`, or a :t:`string literal`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:256
+msgid ""
+":dp:`fls_bo3xh8r60ji1` The following names are used when referring to "
+":t:`[punctuator]s`:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:261
+msgid ":dp:`fls_sslkjuxjnteu`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:262
+msgid "**punctuator**"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:263
+msgid "**name**"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:264
+msgid ":dp:`fls_9g1godm0jp0z`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:265
+msgid "``+``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:266
+msgid "Plus"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:267
+msgid ":dp:`fls_6oith9q0soot`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:268
+msgid "``-``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:269
+msgid "Minus"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:270
+msgid ":dp:`fls_1dledwdc8fa6`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:271
+msgid "``*``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:272
+msgid "Star"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:273
+msgid ":dp:`fls_lunw7ucj5ius`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:274
+msgid "``/``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:275
+msgid "Slash"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:276
+msgid ":dp:`fls_a4oiuhz95uiv`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:277
+msgid "``%``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:278
+msgid "Percent"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:279
+msgid ":dp:`fls_137x9s6guj6h`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:280
+msgid "``^``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:281
+msgid "Caret"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:282
+msgid ":dp:`fls_y0wdb09cpp1w`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:283
+msgid "``!``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:284
+msgid "Not"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:285
+msgid ":dp:`fls_48b7mepiuupz`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:286
+msgid "``&``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:287
+msgid "And"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:288
+msgid ":dp:`fls_g9h9bsvrsmk1`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:289
+msgid "``|``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:290
+msgid "Or"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:291
+msgid ":dp:`fls_fxne2xd0zzzo`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:292
+msgid "``&&``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:293
+msgid "And and, lazy boolean and"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:294
+msgid ":dp:`fls_il7zv5x3aw0q`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:295
+msgid "``||``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:296
+msgid "Or or, lazy boolean or"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:297
+msgid ":dp:`fls_ovcs1qm86ss9`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:298
+msgid "``<<``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:299
+msgid "Shift left"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:300
+msgid ":dp:`fls_wmhlvjm0b0j9`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:301
+msgid "``>>``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:302
+msgid "Shift right"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:303
+msgid ":dp:`fls_gg42klb2gn9v`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:304
+msgid "``+=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:305
+msgid "Plus equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:306
+msgid ":dp:`fls_icahptg5enj4`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:307
+msgid "``-=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:308
+msgid "Minus equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:309
+msgid ":dp:`fls_baawlxoi7yd4`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:310
+msgid "``*=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:311
+msgid "Star equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:312
+msgid ":dp:`fls_m7gt3wfbtm81`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:313
+msgid "``/=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:314
+msgid "Slash equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:315
+msgid ":dp:`fls_6ewl7gn3sjm2`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:316
+msgid "``%=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:317
+msgid "Percent equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:318
+msgid ":dp:`fls_nb8q6oq8txv3`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:319
+msgid "``^=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:320
+msgid "Caret equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:321
+msgid ":dp:`fls_4nnky9ansr9j`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:322
+msgid "``&=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:323
+msgid "And equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:324
+msgid ":dp:`fls_h1gvudehmnn9`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:325
+msgid "``|=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:326
+msgid "Or equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:327
+msgid ":dp:`fls_6yj1c3lh691s`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:328
+msgid "``<<=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:329
+msgid "Shift left equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:330
+msgid ":dp:`fls_2d3oo9nou9vv`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:331
+msgid "``>>=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:332
+msgid "Shift right equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:333
+msgid ":dp:`fls_st2vhcy14ud9`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:334
+msgid "``=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:335
+msgid "Equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:336
+msgid ":dp:`fls_9gdyw71dl25`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:337
+msgid "``==``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:338
+msgid "Equals equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:339
+msgid ":dp:`fls_sp8ufz28l9w3`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:340
+msgid "``!=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:341
+msgid "Not equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:342
+msgid ":dp:`fls_7kdr8biodxvz`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:343
+msgid "``>``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:344
+msgid "Greater than"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:345
+msgid ":dp:`fls_pf92l9bkte2u`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:346
+msgid "``<``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:347
+msgid "Less than"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:348
+msgid ":dp:`fls_ui40thspgyav`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:349
+msgid "``>=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:350
+msgid "Greater than equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:351
+msgid ":dp:`fls_h33qzachmimc`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:352
+msgid "``<=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:353
+msgid "Less than equals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:354
+msgid ":dp:`fls_13ud1clgdnyv`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:355
+msgid "``@``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:356
+msgid "At"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:357
+msgid ":dp:`fls_7fosi8l2ktz2`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:358
+msgid "``_``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:359
+msgid "Underscore"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:360
+msgid ":dp:`fls_9qitp6r75ia6`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:361
+msgid "``.``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:362
+msgid "Dot"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:363
+msgid ":dp:`fls_g0umao9roi2l`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:364
+msgid "``..``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:365
+msgid "Dot dot, exclusive range"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:366
+msgid ":dp:`fls_lamrpdpko48`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:367
+msgid "``...``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:368
+msgid "Dot dot dot, ellipsis"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:369
+msgid ":dp:`fls_s4lte9onbmqb`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:370
+msgid "``..=``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:371
+msgid "Dot dot equals, inclusive range"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:372
+msgid ":dp:`fls_ywc297y8s0dt`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:373
+msgid "``,``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:374
+msgid "Comma"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:375
+msgid ":dp:`fls_ijb0fws4gshu`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:376
+msgid "``;``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:377
+msgid "Semicolon"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:378
+msgid ":dp:`fls_c25ur4xwbpk0`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:379
+msgid "``:``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:380
+msgid "Colon"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:381
+msgid ":dp:`fls_9dd9479zzq30`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:382
+msgid "``::``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:383
+msgid "Path separator"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:384
+msgid ":dp:`fls_kwsu9d3ppv3f`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:385
+msgid "``->``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:386
+msgid "Right arrow"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:387
+msgid ":dp:`fls_oh62j9unw4mg`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:388
+msgid "``=>``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:389
+msgid "Fat arrow"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:390
+msgid ":dp:`fls_g0tltt8qmbum`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:391
+msgid "``#``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:392
+msgid "Pound"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:393
+msgid ":dp:`fls_ounkw8b8tk4f`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:394
+msgid "``$``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:395
+msgid "Dollar sign"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:396
+msgid ":dp:`fls_8ywv8gftsfr1`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:397
+msgid "``?``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:398
+msgid "Question mark"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:399
+msgid ":dp:`fls_hsn6zc29ifyx`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:400
+msgid "``{``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:401
+msgid "Left curly brace"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:402
+msgid ":dp:`fls_o3amqe3ca82d`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:403
+msgid "``}``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:404
+msgid "Right curly brace"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:405
+msgid ":dp:`fls_lkevfpj7sqd3`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:406
+msgid "``[``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:407
+msgid "Left square bracket"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:408
+msgid ":dp:`fls_ff05ge2189z`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:409
+msgid "``]``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:410
+msgid "Right square bracket"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:411
+msgid ":dp:`fls_nplkudde6oxf`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:412
+msgid "``(``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:413
+msgid "Left parenthesis"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:414
+msgid ":dp:`fls_qwnrklmbz0b`"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:415
+msgid "``)``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:416
+msgid "Right parenthesis"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:421
+msgid "Identifiers"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:451
+msgid ""
+":dp:`fls_ls7ymvgd5kfa` A :ds:`RawIdentifierKeyword` is any :t:`keyword` "
+"in category :s:`Keyword`, except ``crate``, ``self``, ``Self``, and "
+"``super``."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:455
+msgid ""
+":dp:`fls_aqj9aguczgqs` :ds:`XID_Start` and :ds:`XID_Continue` are defined"
+" in Unicode Standard Annex #31."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:461
+msgid ""
+":dp:`fls_xsdmun5uqy4c` An :t:`identifier` is a :t:`lexical element` that "
+"refers to a :t:`name`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:464
+msgid ""
+":dp:`fls_ktnf6zkrdy45` A :t:`pure identifier` is an :t:`identifier` that "
+"does not include :t:`[weak keyword]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:468
+msgid ""
+":dp:`fls_jpecw46eh061` A :t:`pure identifier` shall follow the "
+"specification in Unicode Standard Annex #31 for :t:`Unicode` version "
+"13.0, with the following profile:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:472
+msgid ""
+":dp:`fls_lwcflgezgs5z` ``Start = XID_Start``, plus character 0x5F (low "
+"line)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:475
+msgid ":dp:`fls_uts0hywaw1rq` ``Continue = XID_Continue``"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:478
+msgid ":dp:`fls_lju1avcn0pfd` ``Medial =`` empty"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:481
+msgid ""
+":dp:`fls_cs6cbw625np1` Characters 0x200C (zero width non-joiner) and "
+"0x200D (zero width joiner) shall not appear in a :t:`pure identifier`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:485
+msgid ""
+":dp:`fls_irwcldiotei2` A :t:`pure identifier` shall be restricted to "
+"characters in category :s:`AsciiCharacter` in the following contexts:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:489
+msgid ":dp:`fls_g72rxs2z5960` :t:`[Crate import]s`,"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:492
+msgid ""
+":dp:`fls_w473jevurlt1` :t:`[Name]s` of external :t:`[crate]s` represented"
+" in a :t:`simple path`, when the :t:`simple path` that starts with "
+"namespace qualifier ``::``,"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:496
+msgid ""
+":dp:`fls_mt1u4m3simhc` :t:`[Name]s` of :t:`[outline module]s` that lack "
+"attribute :c:`path`,"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:499
+msgid ""
+":dp:`fls_e2v58o233lvd` :t:`[Name]s` of :t:`[item]s` that are subject to "
+"attribute :c:`no_mangle`,"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:502
+msgid ""
+":dp:`fls_op0lp1i065di` :t:`[Name]s` of :t:`[item]s` within :t:`[external "
+"block]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:505
+msgid ""
+":dp:`fls_vde7gev5rz4q` :t:`[Identifier]s` are normalized using "
+"Normalization Form C as defined in Unicode Standard Annex #15."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:509
+msgid ""
+":dp:`fls_j9yh8j8jgdeu` Two :t:`[identifier]s` are considered the same if "
+"they consist of the same sequence of characters after performing "
+"normalization."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:513
+msgid ""
+":dp:`fls_jejt5z8m1yew` :t:`[Procedural macro]s` and :t:`[declarative "
+"macro]s` shall receive normalized :t:`[identifier]s` in their input."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:518 ../../src/lexical-elements.rst:611
+#: ../../src/lexical-elements.rst:651 ../../src/lexical-elements.rst:692
+#: ../../src/lexical-elements.rst:874 ../../src/lexical-elements.rst:957
+#: ../../src/lexical-elements.rst:1015 ../../src/lexical-elements.rst:1076
+#: ../../src/lexical-elements.rst:1121 ../../src/lexical-elements.rst:1151
+#: ../../src/lexical-elements.rst:1257
+msgid "Examples"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:530
+msgid "Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:545
+msgid ""
+":dp:`fls_s76un78zyd0j` A :t:`literal` is a fixed :t:`value` in program "
+"text."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:551
+msgid "Byte Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:564
+msgid ""
+":dp:`fls_q0qwr83frszx` A :t:`byte literal` is a :t:`literal` that denotes"
+" a fixed byte :t:`value`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:570
+msgid "Simple Byte Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:596
+msgid ""
+":dp:`fls_3hpzf12h60u4` A :ds:`SimpleByteCharacter` is any character in "
+"category :s:`AsciiCharacter` except characters 0x09 (horizontal "
+"tabulation), 0x0A (new line), 0x0D (carriage return), 0x27 (apostrophe), "
+"and 0x5C (reverse solidus)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:603
+msgid ""
+":dp:`fls_i67zy734o6e3` A :t:`simple byte literal` is a :t:`byte literal` "
+"that consists of exactly one byte character."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:607
+msgid ""
+":dp:`fls_fggytrv5jvw0` The :t:`type` of a :t:`simple byte literal` is "
+":c:`u8`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:621
+msgid "Byte String Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:635
+msgid ""
+":dp:`fls_3dcqhuosqb84` A :ds:`ByteStringCharacter` is any character in "
+"category :s:`AsciiCharacter` except characters 0x0D (carriage return), "
+"0x22 (quotation mark), and 0x5C (reverse solidus)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:642
+msgid ""
+":dp:`fls_moe3zfx39ox2` A :t:`byte string literal` is a :t:`byte literal` "
+"that consists of multiple byte characters."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:646
+msgid ""
+":dp:`fls_vffxb6arj9jf` The :t:`type` of a :t:`byte string literal` of "
+"size ``N`` is ``&'static [u8; N]``."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:662
+msgid "Raw Byte String Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:683
+msgid ""
+":dp:`fls_yyw7nv651580` A :t:`raw byte string literal` is a :t:`simple "
+"byte literal` that does not recognize :t:`[escaped character]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:687
+msgid ""
+":dp:`fls_5ybq0euwya42` The :t:`type` of a :t:`raw byte string literal` of"
+" size ``N`` is ``&'static [u8; N]``."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:702
+msgid "Numeric Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:714
+msgid ""
+":dp:`fls_fqpqnku27v99` A :t:`numeric literal` is a :t:`literal` that "
+"denotes a number."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:720
+msgid "Integer Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:791
+msgid ""
+":dp:`fls_vkk2krfn93ry` An :t:`integer literal` is a :t:`numeric literal` "
+"that denotes a whole number."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:794
+msgid ""
+":dp:`fls_nxqncu5yq4eu` A :t:`binary literal` is an :t:`integer literal` "
+"in base 2."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:797
+msgid ""
+":dp:`fls_rn8xfd66yvst` A :t:`decimal literal` is an :t:`integer literal` "
+"in base 10."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:800
+msgid ""
+":dp:`fls_2268lchxkzjp` A :t:`hexadecimal literal` is an :t:`integer "
+"literal` in base 16."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:803
+msgid ""
+":dp:`fls_4v7awnutbpoe` An :t:`octal literal` is an :t:`integer literal` "
+"in base 8."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:806
+msgid ""
+":dp:`fls_f1e29aj0sqvl` An :t:`integer suffix` is a component of an "
+":t:`integer literal` that specifies an explicit :t:`integer type`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:810
+msgid ""
+":dp:`fls_u83mffscqm6` A :t:`suffixed integer` is an :t:`integer literal` "
+"with an :t:`integer suffix`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:813
+msgid ""
+":dp:`fls_g10nuv14q4jn` An :t:`unsuffixed integer` is an :t:`integer "
+"literal` without an :t:`integer suffix`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:817
+msgid ""
+":dp:`fls_hpkkvuj1z1ez` The :t:`type` of a :t:`suffixed integer` is "
+"determined by its :t:`integer suffix` as follows:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:821
+msgid ":dp:`fls_7yq2fep848ky` Suffix ``i8`` specifies type :c:`i8`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:824
+msgid ":dp:`fls_bzm8lwq3qlat` Suffix ``i16`` specifies type :c:`i16`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:827
+msgid ":dp:`fls_l4cx36brc1r5` Suffix ``i32`` specifies type :c:`i32`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:830
+msgid ":dp:`fls_wthchinwx996` Suffix ``i64`` specifies type :c:`i64`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:833
+msgid ":dp:`fls_7uoaet2pm3am` Suffix ``i128`` specifies type :c:`i128`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:836
+msgid ":dp:`fls_p4rw583o2qbi` Suffix ``isize`` specifies type :c:`isize`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:839
+msgid ":dp:`fls_xrv4q56lmoo3` Suffix ``u8`` specifies type :c:`u8`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:842
+msgid ":dp:`fls_66e3q5um6cwc` Suffix ``u16`` specifies type :c:`u16`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:845
+msgid ":dp:`fls_5asyk66y7c9d` Suffix ``u32`` specifies type :c:`u32`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:848
+msgid ":dp:`fls_76fifqjka0lx` Suffix ``u64`` specifies type :c:`u64`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:851
+msgid ":dp:`fls_fsaimo419gf0` Suffix ``u128`` specifies type :c:`u128`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:854
+msgid ":dp:`fls_hvzacbu7yiwc` Suffix ``usize`` specifies type :c:`usize`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:857
+msgid ""
+":dp:`fls_50qipwqi3arw` The :t:`type` of an :t:`unsuffixed integer` is "
+"determined by :t:`type inference` as follows:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:861
+msgid ""
+":dp:`fls_idzhusp2l908` If an :t:`integer type` can be uniquely determined"
+" from the surrounding program context, then the :t:`unsuffixed integer` "
+"has that :t:`type`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:865
+msgid ""
+":dp:`fls_qqrqyc6uhol` If the program context under-constrains the "
+":t:`type`, then the :t:`inferred type` is :c:`i32`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:869
+msgid ""
+":dp:`fls_pexi5jazthq6` If the program context over-constrains the "
+":t:`type`, then this is considered a static type error."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:885
+msgid "Float Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:917
+msgid ""
+":dp:`fls_rzi7oeqokd6e` A :t:`float literal` is a :t:`numeric literal` "
+"that denotes a fractional number."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:920
+msgid ""
+":dp:`fls_2ru1zyrykd37` A :t:`float suffix` is a component of a :t:`float "
+"literal` that specifies an explicit :t:`floating-point type`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:924
+msgid ""
+":dp:`fls_21mhnhplzam7` A :t:`suffixed float` is a :t:`float literal` with"
+" a :t:`float suffix`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:927
+msgid ""
+":dp:`fls_drqh80k0sfkb` An :t:`unsuffixed float` is a :t:`float literal` "
+"without a :t:`float suffix`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:930
+msgid ""
+":dp:`fls_cbs7j9pjpusw` The :t:`type` of a :t:`suffixed float` is "
+"determined by the :t:`float suffix` as follows:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:934
+msgid ":dp:`fls_b9w7teaw1f8f` Suffix ``f32`` specifies type :c:`f32`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:937
+msgid ":dp:`fls_eawxng4ndhv0` Suffix ``f64`` specifies type :c:`f64`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:940
+msgid ""
+":dp:`fls_yuhza1muo7o` The :t:`type` of an :t:`unsuffixed float` is "
+"determined by :t:`type inference` as follows:"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:944
+msgid ""
+":dp:`fls_4sxt1ct7fyen` If a :t:`floating-point type` can be uniquely "
+"determined from the surrounding program context, then the :t:`unsuffixed "
+"float` has that :t:`type`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:948
+msgid ""
+":dp:`fls_wa72rssp0jnt` If the program context under-constrains the "
+":t:`type`, then the :t:`inferred type` is :c:`f64`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:952
+msgid ""
+":dp:`fls_x2cw7g8g56f8` If the program context over-constrains the "
+":t:`type`, then this is considered a static type error."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:968
+msgid "Character Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:996
+msgid ""
+":dp:`fls_5vi0uc2oshd` An :ds:`AsciiControlCharacter` is any character in "
+"category :s:`AsciiCharacter` whose General Category is defined to be "
+"\"Control\"."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1000
+msgid ""
+":dp:`fls_j9q9ton57rvl` A :ds:`CharacterLiteralCharacter` is any "
+":t:`Unicode` character except characters 0x09 (horizontal tabulation), "
+"0x0A (new line), 0x0D (carriage return), 0x27 (apostrophe), and 0x5c "
+"(reverse solidus)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1007
+msgid ""
+":dp:`fls_vag2oy4q7d4n` A :t:`character literal` is a :t:`literal` that "
+"denotes a fixed :t:`Unicode` character."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1011
+msgid ""
+":dp:`fls_n8z6p6g564r2` The :t:`type` of a :t:`character literal` is "
+":c:`char`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1026
+msgid "String Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1038
+msgid ""
+":dp:`fls_7fuctvtvdi7x` A :t:`string literal` is a :t:`literal` that "
+"consists of multiple characters."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1044
+msgid "Simple String Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1058
+msgid ""
+":dp:`fls_1pdzwkt5txfj` A :ds:`SimpleStringCharacter` is any :t:`Unicode` "
+"character except characters 0x0D (carriage return), 0x22 (quotation "
+"mark), and 0x5C (reverse solidus)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1062
+msgid ""
+":dp:`fls_wawtu6j3fiqn` :ds:`StringContinuation` is the character sequence"
+" 0x5C 0x0A (reverse solidus, new line)."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1068
+msgid ""
+":dp:`fls_ycy5ee6orjx` A :t:`simple string literal` is a :t:`string "
+"literal` where the characters are :t:`Unicode` characters."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1072
+msgid ""
+":dp:`fls_6nt5kls21xes` The :t:`type` of a :t:`simple string literal` is "
+"``&'static str``."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1092
+msgid "Raw String Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1113
+msgid ""
+":dp:`fls_36suwhbwmq1t` A :t:`raw string literal` is a :t:`simple string "
+"literal` that does not recognize :t:`[escaped character]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1117
+msgid ""
+":dp:`fls_ms43w1towz40` The :t:`type` of a :t:`raw string literal` is "
+"``&'static str``."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1131
+msgid "Boolean Literals"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1143
+msgid ""
+":dp:`fls_1lll64ftupjd` A :t:`boolean literal` is a :t:`literal` that "
+"denotes the truth :t:`[value]s` of logic and Boolean algebra."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1147
+msgid ""
+":dp:`fls_pgngble3ilyx` The :t:`type` of a :t:`boolean literal` is "
+":c:`bool`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1159
+msgid "Comments"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1202
+msgid ""
+":dp:`fls_8obn3dtzpe5f` A :t:`comment` is a :t:`lexical element` that acts"
+" as an annotation or an explanation in program text."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1206
+msgid ""
+":dp:`fls_qsbnl11be35s` A :t:`block comment` is a :t:`comment` that spans "
+"one or more :t:`[line]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1209
+msgid ""
+":dp:`fls_nayisy85kyq2` A :t:`line comment` is a :t:`comment` that spans "
+"exactly one :t:`line`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1212
+msgid ""
+":dp:`fls_k3hj30hjkdhw` An :t:`inner block doc` is a :t:`block comment` "
+"that applies to an enclosing :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1216
+msgid ""
+":dp:`fls_tspijl68lduc` An :t:`inner line doc` is a :t:`line doc` that "
+"applies to an enclosing :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1220
+msgid ""
+":dp:`fls_63gzofa9ktic` An :t:`outer block doc` is a :t:`block comment` "
+"that applies to a subsequent :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1224
+msgid ""
+":dp:`fls_scko7crha0um` An :t:`outer line doc` is a :t:`line comment` that"
+" applies to a subsequent :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1228
+msgid ""
+":dp:`fls_7n6d3jx61ose` A :t:`doc comment` is a :t:`comment` class that "
+"includes :t:`[inner block doc]s`, :t:`[inner line doc]s`, :t:`[outer "
+"block doc]s`, and :t:`[outer line doc]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1233
+msgid ""
+":dp:`fls_6fxcs17n4kw` Character 0x0D (carriage return) shall not appear "
+"in a :t:`comment`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1236
+msgid ""
+":dp:`fls_uze7l7cxonk1` :t:`[Block comment]s`, :t:`[inner block doc]s`, "
+"and :t:`[outer block doc]s` shall extend one or more :t:`[line]s`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1240
+msgid ""
+":dp:`fls_gy23lwlqw2mc` :t:`[Line comment]s`, :t:`[inner line doc]s`, and "
+":t:`[outer line doc]s` shall extend exactly one :t:`line`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1244
+msgid ""
+":dp:`fls_w7d0skpov1is` :t:`[Outer block doc]s` and :t:`[outer line doc]s`"
+" shall apply to a subsequent :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1248
+msgid ""
+":dp:`fls_32ncjvj2kn7z` :t:`[Inner block doc]s` and :t:`[inner line doc]s`"
+" shall apply to an enclosing :t:`non-[comment]` :t:`construct`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1252
+msgid ""
+":dp:`fls_ok0zvo9vcmzo` :t:`[Inner block doc]s`, :t:`[inner line doc]s`, "
+":t:`[outer block doc]s`, and :t:`[outer line doc]s` are equivalent to  "
+":t:`attribute` :c:`doc`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1283
+msgid "Keywords"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1296
+msgid ""
+":dp:`fls_dti0uu7rz81w` A :t:`keyword` is a word in program text that has "
+"special meaning."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1299
+msgid ":dp:`fls_sxg1o4oxql51` :t:`[Keyword]s` are case sensitive."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1305
+msgid "Strict Keywords"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1352
+msgid ""
+":dp:`fls_bsh7qsyvox21` A :t:`strict keyword` is a :t:`keyword` that "
+"always holds its special meaning."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1358
+msgid "Reserved Keywords"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1381
+msgid ""
+":dp:`fls_w4b97ewwnql` A :t:`reserved keyword` is a :t:`keyword` that is "
+"not yet in use."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1387
+msgid "Weak Keywords"
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1400
+msgid ""
+":dp:`fls_bv87t1gvj7bz` A :t:`weak keyword` is a :t:`keyword` whose "
+"special meaning depends on the context."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1404
+msgid ""
+":dp:`fls_bl55g03jmayf` Word ``macro_rules`` acts as a :t:`keyword` only "
+"when used in the context of a :s:`MacroRulesDefinition`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1408
+msgid ""
+":dp:`fls_c354oryv513p` Word ``'static`` acts as a :t:`keyword` only when "
+"used in the context of a :s:`LifetimeIndication`."
+msgstr ""
+
+#: ../../src/lexical-elements.rst:1412
+msgid ""
+":dp:`fls_r9fhuiq1ys1p` Word ``union`` acts as a :t:`keyword` only when "
+"used in the context of a :s:`UnionDeclaration`."
+msgstr ""
+

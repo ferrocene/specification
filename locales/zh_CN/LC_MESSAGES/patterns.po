@@ -1,0 +1,1564 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/patterns.rst:9 ../../src/patterns.rst:14
+msgid "Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:17 ../../src/patterns.rst:84
+#: ../../src/patterns.rst:190 ../../src/patterns.rst:235
+#: ../../src/patterns.rst:281 ../../src/patterns.rst:354
+#: ../../src/patterns.rst:472 ../../src/patterns.rst:521
+#: ../../src/patterns.rst:586 ../../src/patterns.rst:634
+#: ../../src/patterns.rst:931 ../../src/patterns.rst:974
+#: ../../src/patterns.rst:1056
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/patterns.rst:45 ../../src/patterns.rst:94
+#: ../../src/patterns.rst:204 ../../src/patterns.rst:242
+#: ../../src/patterns.rst:289 ../../src/patterns.rst:385
+#: ../../src/patterns.rst:479 ../../src/patterns.rst:528
+#: ../../src/patterns.rst:593 ../../src/patterns.rst:681
+#: ../../src/patterns.rst:753 ../../src/patterns.rst:815
+#: ../../src/patterns.rst:869 ../../src/patterns.rst:911
+#: ../../src/patterns.rst:942 ../../src/patterns.rst:981
+#: ../../src/patterns.rst:1008 ../../src/patterns.rst:1063
+#: ../../src/patterns.rst:1194
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/patterns.rst:46
+msgid ""
+":dp:`fls_imegtsi224ts` A :t:`pattern` is a :t:`construct` that matches a "
+":t:`value` which satisfies all the criteria of the :t:`pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:50
+msgid ""
+":dp:`fls_mp6i4blzexnu` A :t:`pattern-without-alternation` is a "
+":t:`pattern` that cannot be alternated."
+msgstr ""
+
+#: ../../src/patterns.rst:53
+msgid ""
+":dp:`fls_6xx34zr069bj` A :t:`subpattern` is a :t:`pattern` nested within "
+"another pattern."
+msgstr ""
+
+#: ../../src/patterns.rst:56
+msgid ""
+":dp:`fls_8xzjb0yzftkd` A :t:`pattern` has a :t:`type`, with the exception"
+" of the :t:`rest pattern` if it is not the inner :t:`pattern` of a "
+":t:`slice pattern` or the :t:`pattern` of a possibly nested "
+":t:`identifier pattern` of a :t:`slice pattern`\\ ``.``"
+msgstr ""
+
+#: ../../src/patterns.rst:61
+msgid ""
+":dp:`fls_cma5t8waon0x` The :t:`expected type` of a :t:`pattern` is the "
+":t:`type` of the :t:`value` the :t:`pattern` is being matched against."
+msgstr ""
+
+#: ../../src/patterns.rst:65
+msgid ""
+":dp:`fls_8luyomzppck` Any two :t:`[pattern-without-alternation]s` that "
+"are or-ed using character 0x7C (vertical line) are subject to the "
+"following restrictions:"
+msgstr ""
+
+#: ../../src/patterns.rst:69
+msgid ""
+":dp:`fls_rpvdfmy3n05a` The :t:`[type]s` of the two :t:`[pattern-without-"
+"alternation]s` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/patterns.rst:73
+msgid ""
+":dp:`fls_kv533rntni1x` The :t:`[binding]s` of the two :t:`[pattern-"
+"without-alternation]s` shall be the same, shall have :t:`[unifiable "
+"type]s`, and shall have the same :t:`[binding mode]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:81
+msgid "Identifier Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:95
+msgid ""
+":dp:`fls_uljdw9rf7ies` An :t:`identifier pattern` is a :t:`pattern` that "
+"binds the :t:`value` it matches to a :t:`binding`."
+msgstr ""
+
+#: ../../src/patterns.rst:99
+msgid ""
+":dp:`fls_vy9uw586wy0d` A :t:`bound pattern` is a :t:`pattern` that "
+"imposes a constraint on a related :t:`identifier pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:103
+msgid ""
+":dp:`fls_hqwt3fvr063y` An :t:`identifier pattern` yields a :t:`binding`. "
+"An :t:`identifier pattern` with :t:`keyword` ``mut`` yields a :t:`mutable"
+" binding`."
+msgstr ""
+
+#: ../../src/patterns.rst:107
+msgid ""
+":dp:`fls_24c95c56tugl` The :t:`identifier pattern` enters its "
+":t:`binding` into :t:`pattern scope` in the :t:`value namespace` if it "
+"does not resolve to a :t:`constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:111
+msgid ""
+":dp:`fls_twcavjk7iquy` It is a static error if the :t:`identifier "
+"pattern` consists of anything other than a :t:`binding` when the "
+":t:`binding` resolves to a :t:`constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:115
+msgid ""
+":dp:`fls_hw26hy33guk5` An :t:`identifier pattern` is :t:`irrefutable` "
+"when:"
+msgstr ""
+
+#: ../../src/patterns.rst:118
+msgid ""
+":dp:`fls_svfxwz4yy5i` It has a :t:`bound pattern` and the :t:`bound "
+"pattern` is :t:`irrefutable`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:121
+msgid ""
+":dp:`fls_x6f6q22b5jpc` It does not have a :t:`bound pattern` and its "
+":t:`binding` resolves to an :t:`irrefutable constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:125
+msgid ""
+":dp:`fls_r2mb8v2lh3x0` It does not have a :t:`bound pattern` and its "
+":t:`binding` does not resolve to a :t:`constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:129
+msgid ""
+":dp:`fls_7oioaitb075g` If the :t:`identifier pattern` does not have a "
+":t:`bound pattern`, then the :t:`type` of its :t:`binding` is determined "
+"as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:133
+msgid ""
+":dp:`fls_40qin0ss5sqd` If the :t:`identifier pattern` has only "
+":t:`keyword` ``ref``, then the :t:`type` is ``& inferred_type``, where "
+"``inferred_type`` is the :t:`type` determined by :t:`type inference`."
+msgstr ""
+
+#: ../../src/patterns.rst:138
+msgid ""
+":dp:`fls_pivz0v7ey6sw` If the :t:`identifier pattern` has :t:`keywords` "
+"``ref`` ``mut``, then the :t:`type` is ``&mut inferred_type``, where "
+"``inferred_type`` is the :t:`type` determined by :t:`type inference`."
+msgstr ""
+
+#: ../../src/patterns.rst:143
+msgid ""
+":dp:`fls_2ahkrddxwj1n` Otherwise the :t:`type` is ``inferred_type``, "
+"where ``inferred_type`` is the :t:`type` determined by :t:`type "
+"inference`."
+msgstr ""
+
+#: ../../src/patterns.rst:147
+msgid ""
+":dp:`fls_eucnafj3uedy` If the :t:`identifier pattern` has a :t:`bound "
+"pattern`, then the :t:`type` of its :t:`binding` is determined as "
+"follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:151
+msgid ""
+":dp:`fls_f8zo4scodhcr` If the :t:`identifier pattern` has only "
+":t:`keyword` ``ref``, then the :t:`type` ``& bound_pattern_type``, where "
+"``bound_pattern_type`` is the :t:`type` of the :t:`bound pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:156
+msgid ""
+":dp:`fls_d3fs2h7oqjl0` If the :t:`identifier pattern` has :t:`keywords` "
+"``ref mut``, then the :t:`type` is ``&mut bound_pattern_type``, where "
+"``bound_pattern_type`` is the :t:`type` of the :t:`bound pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:161
+msgid ""
+":dp:`fls_exo8asevh5x1` Otherwise the :t:`type` is ``inferred_type``, "
+"where ``inferred_type`` is the :t:`type` determined by :t:`type "
+"inference`."
+msgstr ""
+
+#: ../../src/patterns.rst:166 ../../src/patterns.rst:216
+#: ../../src/patterns.rst:256 ../../src/patterns.rst:328
+#: ../../src/patterns.rst:453 ../../src/patterns.rst:503
+#: ../../src/patterns.rst:557 ../../src/patterns.rst:613
+#: ../../src/patterns.rst:797 ../../src/patterns.rst:854
+#: ../../src/patterns.rst:893 ../../src/patterns.rst:917
+#: ../../src/patterns.rst:956 ../../src/patterns.rst:993
+#: ../../src/patterns.rst:1034
+msgid "Examples"
+msgstr ""
+
+#: ../../src/patterns.rst:167
+msgid ""
+":dp:`fls_sfyfdxhvhk44` An identifier pattern in the context of a let "
+"expression."
+msgstr ""
+
+#: ../../src/patterns.rst:174
+msgid ""
+":dp:`fls_as0pqqmo1des` An identifier pattern with a bound pattern in the "
+"context of a match expression."
+msgstr ""
+
+#: ../../src/patterns.rst:187
+msgid "Literal Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:205
+msgid ""
+":dp:`fls_pah15qa54irs` A :t:`literal pattern` is a :t:`pattern` that "
+"matches a :t:`literal`."
+msgstr ""
+
+#: ../../src/patterns.rst:208
+msgid ":dp:`fls_v7iv7x9gy9qm` A :t:`literal pattern` is always :t:`refutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:211
+msgid ""
+":dp:`fls_co60bzvwashg` The :t:`type` of a :t:`literal pattern` is the "
+":t:`type` of the specified :t:`literal`."
+msgstr ""
+
+#: ../../src/patterns.rst:217
+msgid ""
+":dp:`fls_fqclaznjgtb1` Two literal patterns in the context of a match "
+"expression. See :p:`5.1.1. <fls_yeajwokikkdi>` for the declaration of "
+"``x``."
+msgstr ""
+
+#: ../../src/patterns.rst:232
+msgid "Parenthesized Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:243
+msgid ""
+":dp:`fls_kvqzmt7my5dh` A :t:`parenthesized pattern` is a :t:`pattern` "
+"that controls the precedence of its :t:`[subpattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:247
+msgid ""
+":dp:`fls_mrjhpiq5refe` A :t:`parenthesized pattern` is :t:`irrefutable` "
+"when its nested :t:`pattern` is :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:251
+msgid ""
+":dp:`fls_pe5kh8y8u664` The :t:`type` of a :t:`parenthesized pattern` is "
+"the :t:`type` of its nested :t:`pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:257
+msgid ""
+":dp:`fls_2xq8852gihn9` See :p:`5.1.1. <fls_yeajwokikkdi>` for the "
+"declaration of ``x``."
+msgstr ""
+
+#: ../../src/patterns.rst:264
+msgid ""
+":dp:`fls_2dmeukyjqz9y` A parenthesized pattern inside a reference pattern"
+" in the context of a match expression."
+msgstr ""
+
+#: ../../src/patterns.rst:278
+msgid "Path Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:290
+msgid ""
+":dp:`fls_1crq0mexo5r1` A :t:`path pattern` is a :t:`pattern` that matches"
+" a :t:`constant`, an :t:`enum variant` without :t:`[field]s`, or a "
+":t:`unit struct` indicated by a :t:`path`."
+msgstr ""
+
+#: ../../src/patterns.rst:294
+msgid ""
+":dp:`fls_xz5otkhogn31` A :t:`path pattern` expressed as a :t:`path-in-"
+"expression` shall refer to either an :t:`associated constant`, or a "
+":t:`constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:298
+msgid ""
+":dp:`fls_t8sjzsif2ilf` When a :t:`path pattern` expressed as a :t:`path-"
+"in-expression` refers to a :t:`constant`, the :t:`constant` shall not be "
+"of a :t:`union type`. If the :t:`constant` is of an :t:`enum type` or "
+":t:`struct type`, then the :t:`constant` shall be subject to "
+":t:`attribute` :c:`derive` with arguments :std:`core::cmp::Eq` and "
+":std:`core::cmp::PartialEq`."
+msgstr ""
+
+#: ../../src/patterns.rst:305
+msgid ""
+":dp:`fls_bv9psmitxfuw` A :t:`path pattern` expressed as a :t:`qualified "
+"path-in-expression` shall refer to an :t:`associated constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:309
+msgid ""
+":dp:`fls_sl47k9oj5p7t` A :t:`path pattern` is :t:`irrefutable` when it "
+"refers to:"
+msgstr ""
+
+#: ../../src/patterns.rst:312
+msgid ""
+":dp:`fls_cfoy86mkmqa4` A :t:`constant` whose :t:`type` is "
+":t:`irrefutable`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:315
+msgid ""
+":dp:`fls_rnppz6y5z8pi` An :t:`enum variant` of an :t:`enum type` with a "
+"single :t:`enum variant` where the :t:`[type]s` of all :t:`[field]s` are "
+":t:`irrefutable`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:319
+msgid ""
+":dp:`fls_ag6m4mvpturw` A :t:`struct` where the :t:`[type]s` of all "
+":t:`[field]s` are :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:323
+msgid ""
+":dp:`fls_pedy2pqrvnx7` The :t:`type` of a :t:`path pattern` is the "
+":t:`type` of the :t:`constant`, :t:`enum`, or :t:`struct` the :t:`path` "
+"resolved to."
+msgstr ""
+
+#: ../../src/patterns.rst:337
+msgid ""
+":dp:`fls_u59rilepu8z9` See :p:`5.1.1. <fls_yeajwokikkdi>` for the "
+"declaration of ``x``."
+msgstr ""
+
+#: ../../src/patterns.rst:351
+msgid "Range Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:386
+msgid ""
+":dp:`fls_okupyoav13rm` A :t:`range pattern` is a :t:`pattern` that "
+"matches :t:`[value]s` which fall within a range."
+msgstr ""
+
+#: ../../src/patterns.rst:390
+msgid ""
+":dp:`fls_jhchm7dy927k` A :t:`half-open range pattern` is a :t:`range "
+"pattern` with only a :t:`range pattern low bound`."
+msgstr ""
+
+#: ../../src/patterns.rst:394
+msgid ""
+":dp:`fls_q86j23iiqv8w` An :t:`inclusive range pattern` is a :t:`range "
+"pattern` with both a :t:`range pattern low bound` and a :t:`range pattern"
+" high bound`."
+msgstr ""
+
+#: ../../src/patterns.rst:398
+msgid ""
+":dp:`fls_akf9x5r6e0ta` An :t:`obsolete range pattern` is a :t:`range "
+"pattern` that uses obsolete syntax to express an :t:`inclusive range "
+"pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:402
+msgid ""
+":dp:`fls_vrpr6ttpfpal` A :t:`range pattern bound` is a constraint on the "
+"range of a :t:`range pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:405
+msgid ""
+":dp:`fls_nk48gregn3me` A :t:`range pattern low bound` is a :t:`range "
+"pattern bound` that specifies the start of a range."
+msgstr ""
+
+#: ../../src/patterns.rst:409
+msgid ""
+":dp:`fls_83v1xqbebs58` A :t:`range pattern high bound` is a :t:`range "
+"pattern bound` that specifies the end of a range."
+msgstr ""
+
+#: ../../src/patterns.rst:413
+msgid ""
+":dp:`fls_2hpuccwh2xml` A :t:`half-open range pattern` shall appear within"
+" a :t:`parenthesized pattern` when context is a :t:`slice pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:417
+msgid ""
+":dp:`fls_9kk81isk0mlp` The :t:`range pattern low bound` of an "
+":t:`inclusive range pattern` shall be less than or equal to its :t:`range"
+" pattern high bound`."
+msgstr ""
+
+#: ../../src/patterns.rst:421
+msgid ""
+":dp:`fls_s2b5n4snc4d7` An :t:`obsolete range pattern` is equivalent to an"
+" :t:`inclusive range pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:424
+msgid ""
+":dp:`fls_4o4ge6x9a8rs` A :t:`range pattern` is :t:`irrefutable` only when"
+" it spans the entire set of possible :t:`[value]s` of a :t:`type`."
+msgstr ""
+
+#: ../../src/patterns.rst:428
+msgid ""
+":dp:`fls_6o995ak4hywq` The :t:`[type]s` of the :t:`range pattern low "
+"bound` and the :t:`range pattern high bound` of a :t:`range pattern` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/patterns.rst:432
+msgid ""
+":dp:`fls_3js1645tgh31` The :t:`type` of a :t:`range pattern` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:435
+msgid ""
+":dp:`fls_wfqrbwrogjnq` If the :t:`range pattern` is expressed as an "
+":t:`inclusive range pattern` or an :t:`obsolete range pattern`, then the "
+":t:`type` is the :t:`unified type` of the :t:`[type]s` of the :t:`range "
+"pattern low bound` and the :t:`range pattern high bound`."
+msgstr ""
+
+#: ../../src/patterns.rst:441
+msgid ""
+":dp:`fls_rgr7t33s0m7m` Otherwise the :t:`type` is the :t:`type` of the "
+":t:`range pattern low bound`."
+msgstr ""
+
+#: ../../src/patterns.rst:444
+msgid ""
+":dp:`fls_5ey5mj8t8knd` A :t:`path-in-expression` of a :t:`range pattern` "
+"shall refer to a :t:`constant` of a :t:`scalar type`."
+msgstr ""
+
+#: ../../src/patterns.rst:448
+msgid ""
+":dp:`fls_z4js96mchcsv` A :t:`qualified path-in-expression` of a :t:`range"
+" pattern` shall refer to an :t:`associated constant` of a :t:`scalar "
+"type`."
+msgstr ""
+
+#: ../../src/patterns.rst:454
+msgid ""
+":dp:`fls_3wwpq8i6mo2a` Two range patterns in the context of a match "
+"expression. See :p:`5.1.1. <fls_yeajwokikkdi>` for the declaration of "
+"``x``."
+msgstr ""
+
+#: ../../src/patterns.rst:469
+msgid "Reference Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:480
+msgid ""
+":dp:`fls_fhahcc1mz2qh` A :t:`reference pattern` is a :t:`pattern` that "
+"dereferences a :t:`pointer` that is being matched."
+msgstr ""
+
+#: ../../src/patterns.rst:484
+msgid ""
+":dp:`fls_x0bmzl1315gq` A :t:`reference pattern` is always "
+":t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:487
+msgid ""
+":dp:`fls_fedo8zhgpla5` The :t:`type` of a :t:`reference pattern` is "
+"determined as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:490
+msgid ""
+":dp:`fls_30u9ij164ww3` If the :t:`reference pattern` appears with "
+":t:`keyword` ``mut``, then the :t:`type` is ``&mut "
+"pattern_without_range_type``, where ``pattern_without_range_type`` is the"
+" :t:`type` of the :s:`PatternWithoutRange`."
+msgstr ""
+
+#: ../../src/patterns.rst:496
+msgid ""
+":dp:`fls_d1kc73hpncpo` If the :t:`reference pattern` appears without "
+":t:`keyword` ``mut``, then the :t:`type` is ``& "
+"pattern_without_range_type``, where ``pattern_without_range_type`` is the"
+" :t:`type` of the :s:`PatternWithoutRange`."
+msgstr ""
+
+#: ../../src/patterns.rst:504
+msgid ""
+":dp:`fls_mpeuhov0umfa` A reference pattern in the context of a match "
+"expression. See :p:`5.1.3. <fls_yowuqu7bcu7b>` for the declaration of "
+"``ref_x``."
+msgstr ""
+
+#: ../../src/patterns.rst:518
+msgid "Rest Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:529
+msgid ""
+":dp:`fls_eso51epfofxb` A :t:`rest pattern` is a :t:`pattern` that matches"
+" zero or more elements that have not already been matched."
+msgstr ""
+
+#: ../../src/patterns.rst:533
+msgid ""
+":dp:`fls_5a75a2y43uev` A :t:`rest pattern` shall appear at most once "
+"within a :t:`slice pattern`, an :t:`identifier pattern` of a :t:`slice "
+"pattern`, a :t:`tuple pattern`, and a :t:`tuple struct pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:538
+msgid ":dp:`fls_rsqyza99vl3x` A :t:`rest pattern` is always :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:541
+msgid ""
+":dp:`fls_w1pw40phsv2o` If a :t:`rest pattern` appears within a :t:`slice "
+"pattern` or the :t:`identifier pattern` of a :t:`slice pattern`, then the"
+" :t:`type` of the :t:`rest pattern` is determined as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:546
+msgid ""
+":dp:`fls_x8ylgxrf9ca` If the :t:`type` of the :t:`slice pattern` is an "
+":t:`array type`, then the :t:`type` is ``[T; N]`` where ``T`` is the "
+":t:`element type` of the :t:`array type`, and ``N`` is the :t:`[array "
+"type]'s` size minus the number of matched elements of the :t:`slice "
+"pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:552
+msgid ""
+":dp:`fls_zgoke73xrhk3` If the :t:`type` of the :t:`slice pattern` is a "
+":t:`slice type`, then the :t:`type` is that :t:`slice type`."
+msgstr ""
+
+#: ../../src/patterns.rst:558
+msgid ""
+":dp:`fls_bdcv6rwx0fsv` A rest pattern in an identifier pattern of a slice"
+" pattern, followed by a rest pattern in a slice pattern."
+msgstr ""
+
+#: ../../src/patterns.rst:569
+msgid ":dp:`fls_qz9guhlg19j3` Rest patterns in tuple patterns."
+msgstr ""
+
+#: ../../src/patterns.rst:583
+msgid "Slice Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:594
+msgid ""
+":dp:`fls_qqiu594hki8g` A :t:`slice pattern` is a :t:`pattern` that "
+"matches :t:`[array]s` of fixed size and :t:`[slice]s` of dynamic size."
+msgstr ""
+
+#: ../../src/patterns.rst:598
+msgid ""
+":dp:`fls_h6x9xlxi7y5n` A :t:`slice pattern` is :t:`irrefutable` when it "
+"refers to:"
+msgstr ""
+
+#: ../../src/patterns.rst:601
+msgid ""
+":dp:`fls_jbmxu7y5fnm6` An :t:`array`, where each :t:`subpattern` is "
+":t:`irrefutable`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:604
+msgid ""
+":dp:`fls_r78zzw7yyg34` A :t:`slice`, where the :s:`PatternList` consists "
+"of a single :t:`rest pattern`, or a single possibly nested :t:`identifier"
+" pattern` whose last :t:`bound pattern` is a :t:`rest pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:609
+msgid ""
+":dp:`fls_ndor56nou676` The :t:`type` of a :t:`slice pattern` is the same "
+"as the :t:`expected type`."
+msgstr ""
+
+#: ../../src/patterns.rst:618
+msgid ""
+":dp:`fls_9yuobz1jsehf` A slice pattern in the context of a match "
+"expression."
+msgstr ""
+
+#: ../../src/patterns.rst:631
+msgid "Struct Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:682
+msgid ""
+":dp:`fls_e093i77g3ju7` A :t:`struct pattern` is a :t:`pattern` that "
+"matches a :t:`struct`."
+msgstr ""
+
+#: ../../src/patterns.rst:685
+msgid ""
+":dp:`fls_mqhest816lo2` A :t:`tuple struct pattern` is a :t:`struct "
+"pattern` that matches :t:`[enum variant]s` and :t:`[tuple struct]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:689
+msgid ""
+":dp:`fls_d8cyh5v25s0x` A :t:`union pattern` is a :t:`record struct "
+"pattern` that matches a :t:`union`."
+msgstr ""
+
+#: ../../src/patterns.rst:692
+msgid ""
+":dp:`fls_aolvi75ck60i` A :t:`unit struct pattern` is a :t:`struct "
+"pattern` that matches a :t:`unit struct`."
+msgstr ""
+
+#: ../../src/patterns.rst:696
+msgid ""
+":dp:`fls_77qdyt1lpd` An :t:`indexed deconstructor` is a :t:`construct` "
+"that matches the position of a :t:`field` of a :t:`tuple`."
+msgstr ""
+
+#: ../../src/patterns.rst:700
+msgid ""
+":dp:`fls_khhozbtc23l1` A :t:`named deconstructor` is a :t:`construct` "
+"that matches the :t:`name` of a :t:`field` of a :t:`struct`."
+msgstr ""
+
+#: ../../src/patterns.rst:704
+msgid ""
+":dp:`fls_1zi6zmayw792` A :t:`shorthand deconstructor` is a :t:`construct`"
+" that matches the :t:`name` of a :t:`field` of a :t:`struct`."
+msgstr ""
+
+#: ../../src/patterns.rst:708
+msgid ""
+":dp:`fls_8ersn39rt5pd` The :t:`deconstruction type` indicates the "
+":t:`type` of the :t:`struct` being deconstructed by a :t:`struct "
+"pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:712
+msgid ""
+":dp:`fls_tfwwrovxeomp` A :s:`RecordStructPattern` without a "
+":s:`RecordStructIndexedFieldDeconstructorList` is a :t:`record struct "
+"pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:716
+msgid ""
+":dp:`fls_1tjp0z3v9ukg` A :s:`TupleStructPattern` and a "
+":s:`RecordStructPattern` without a "
+":s:`RecordStructFieldDeconstructorList` are :t:`[tuple struct pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:720
+msgid ""
+":dp:`fls_y8qclm82nun8` A :s:`RecordStructPattern` with a "
+":s:`RecordStructFieldDeconstructorList` is a :t:`union pattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:724
+msgid ""
+":dp:`fls_j1lux391rmgg` A :s:`UnitStructPattern` and a "
+":s:`RecordStructPattern` without a "
+":s:`RecordStructFieldDeconstructorList` and a "
+":s:`RecordStructIndexedFieldDeconstructorList` are :t:`[unit struct "
+"pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:729
+msgid ""
+":dp:`fls_2rgip6uruvt5` A :t:`struct pattern` is interpreted based on the "
+":t:`deconstruction type`. It is a static error if a :t:`struct pattern` "
+"cannot be interpreted."
+msgstr ""
+
+#: ../../src/patterns.rst:733
+msgid ""
+":dp:`fls_wi3yo3z5mn5w` A :t:`shorthand deconstructor` binds the "
+":t:`value` of a matched :t:`field` to a :t:`variable`. A :t:`shorthand "
+"deconstructor` with :t:`keyword` ``mut`` yields a :t:`mutable` "
+":t:`variable`."
+msgstr ""
+
+#: ../../src/patterns.rst:738
+msgid ""
+":dp:`fls_g5t53fj9ghk0` It is a static error if a :t:`shorthand "
+"deconstructor` has only :t:`keyword` ``ref`` or :t:`keywords` ``ref`` "
+"``mut``, and its :t:`variable` shadows a :t:`constant`."
+msgstr ""
+
+#: ../../src/patterns.rst:743
+msgid ""
+":dp:`fls_5vjoxrgeq3bg` A :t:`struct pattern` is :t:`irrefutable` when all"
+" of its :t:`[subpattern]s` are :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:750
+msgid "Record Struct Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:754
+msgid ""
+":dp:`fls_y10l03ogbs1s` The :t:`deconstruction type` of a :t:`record "
+"struct pattern` shall resolve to a :t:`record struct type`."
+msgstr ""
+
+#: ../../src/patterns.rst:758
+msgid ""
+":dp:`fls_tzbjwdk0xxui` A :t:`named deconstructor` matches a :t:`field` of"
+" the :t:`deconstruction type` when its :t:`identifier` and the :t:`name` "
+"of the :t:`field` are the same. Such a :t:`named deconstructor` is a "
+":dt:`matched named deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:763
+msgid ""
+":dp:`fls_n5xx6urvj7xg` The :t:`type` of a :t:`named deconstructor` and "
+"the :t:`type` of a matched :t:`field` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/patterns.rst:767
+msgid ""
+":dp:`fls_njzp6q2kfjb8` A :t:`shorthand deconstructor` matches a "
+":t:`field` of the :t:`deconstruction type` when its :t:`name` and the "
+":t:`name` of the :t:`field` are the same. Such a :t:`shorthand "
+"deconstructor` is a :dt:`matched shorthand deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:772
+msgid ""
+":dp:`fls_emq0uil5w7xm` The :t:`type` of a :t:`shorthand deconstructor` "
+"and the :t:`type` of the matched :t:`field` shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/patterns.rst:776
+msgid ""
+":dp:`fls_vai6qhy39zmz` A :t:`shorthand deconstructor` is equivalent to a "
+":t:`named deconstructor` where the :t:`name` of the :t:`shorthand "
+"deconstructor` denotes the :t:`identifier` of the :t:`named "
+"deconstructor` and the entire content of the :t:`shorthand deconstructor`"
+" denotes the pattern of the :t:`named deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:782
+msgid ""
+":dp:`fls_pzvz6l540atp` For each :t:`field` of the :t:`deconstruction "
+"type`, the :t:`record struct deconstructor` shall either:"
+msgstr ""
+
+#: ../../src/patterns.rst:786
+msgid ":dp:`fls_uoedp3g89mg` Contain a :t:`matched named deconstructor`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:789
+msgid ":dp:`fls_rspzc5jqbysa` Contain a :t:`matched shorthand deconstructor`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:792
+msgid ""
+":dp:`fls_2l9wbc8sqtlo` Has a :s:`RecordStructRestPattern` or a "
+":s:`RecordStructFieldDeconstructorList` with a "
+":s:`RecordStructRestPattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:812
+msgid "Tuple Struct Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:816
+msgid ""
+":dp:`fls_ec0o57hwg8ic` The :t:`deconstruction type` of a :t:`tuple struct"
+" pattern` shall resolve to a :t:`tuple struct type`."
+msgstr ""
+
+#: ../../src/patterns.rst:820
+msgid ""
+":dp:`fls_3e2zaeqo1s96` A :t:`tuple struct pattern` shall contain one "
+":t:`subpattern` for each :t:`field` of the :t:`deconstruction type`."
+msgstr ""
+
+#: ../../src/patterns.rst:824
+msgid ""
+":dp:`fls_w936pvga6lgn` A :t:`subpattern` of a :t:`tuple struct pattern` "
+"matches a :t:`field` of the :t:`deconstruction type` when its position "
+"and the position of the :t:`field` in the :t:`deconstruction type` are "
+"the same. Such a :t:`subpattern` is a :dt:`matched subpattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:830
+msgid ""
+":dp:`fls_aeh8bzh59m05` The :t:`type` of the :t:`subpattern` of a "
+":t:`tuple struct pattern` and the :t:`type` of the matched :t:`field` "
+"shall be :t:`unifiable`."
+msgstr ""
+
+#: ../../src/patterns.rst:834
+msgid ""
+":dp:`fls_s7u5ghr13ib7` An :t:`index deconstructor` matches a :t:`field` "
+"of the :t:`deconstruction type` when its :t:`tuple index` and the "
+"position of the :t:`field` in the :t:`deconstruction type` are the same. "
+"Such an :t:`index deconstructor` is a :dt:`matched index deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:840
+msgid ""
+":dp:`fls_x33civd9eptg` For each :t:`field` of the :t:`deconstruction "
+"type`, the :t:`tuple struct deconstructor` shall either:"
+msgstr ""
+
+#: ../../src/patterns.rst:844
+msgid ":dp:`fls_gr3kc7k1j2ou` Contain a :t:`matched index deconstructor`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:847
+msgid ":dp:`fls_oc293y7fmn9f` Contain a :t:`matched subpattern`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:850
+msgid ":dp:`fls_n5w52m48v8fh` Has a ``RecordStructRestPattern.``"
+msgstr ""
+
+#: ../../src/patterns.rst:866
+msgid "Union Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:870
+msgid ""
+":dp:`fls_eytubf3jp1vy` The :t:`deconstruction type` of a :t:`union "
+"pattern` shall resolve to a :t:`union type`."
+msgstr ""
+
+#: ../../src/patterns.rst:874
+msgid ""
+":dp:`fls_51yggy3rohm8` The :s:`RecordStructFieldDeconstructorList` of a "
+":t:`union pattern` shall contain exactly one "
+":s:`RecordStructFieldDeconstructor` and no :s:`RecordStructRestPattern`."
+msgstr ""
+
+#: ../../src/patterns.rst:879
+msgid ""
+":dp:`fls_cb5au9tab68o` For the single :t:`field` of the "
+":t:`deconstruction type`, a :t:`union deconstructor` shall either:"
+msgstr ""
+
+#: ../../src/patterns.rst:883
+msgid ":dp:`fls_r0d6w9di8ega` Contain a :t:`matched named deconstructor`, or"
+msgstr ""
+
+#: ../../src/patterns.rst:886
+msgid ":dp:`fls_sm8o7cfb3q1k` Contain a :t:`matched shorthand deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:889
+msgid ""
+":dp:`fls_gm45psu7l64e` A :t:`union pattern` shall require :t:`unsafe "
+"context`."
+msgstr ""
+
+#: ../../src/patterns.rst:908
+msgid "Unit Struct Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:912
+msgid ""
+":dp:`fls_9ilkcejibsjd` The :t:`deconstruction type` of a :t:`unit struct "
+"deconstructor` shall resolve to a :t:`unit struct type`."
+msgstr ""
+
+#: ../../src/patterns.rst:928
+msgid "Tuple Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:943
+msgid ""
+":dp:`fls_e2manugp4e0b` A :t:`tuple pattern` is a :t:`pattern` that "
+"matches a :t:`tuple` which satisfies all criteria defined by its "
+":t:`[subpattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:947
+msgid ""
+":dp:`fls_xk8udu4k61kj` A :t:`tuple pattern` is :t:`irrefutable` when all "
+"of its :t:`[subpattern]s` are :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:951
+msgid ""
+":dp:`fls_yhcaz6v49ub2` The :t:`type` of a :t:`tuple pattern` is the "
+":t:`type` of the :t:`tuple` being destructured."
+msgstr ""
+
+#: ../../src/patterns.rst:961
+msgid ":dp:`fls_8r81vtv5hnrd` A tuple pattern in the context of a let statement."
+msgstr ""
+
+#: ../../src/patterns.rst:971
+msgid "Wildcard Patterns"
+msgstr ""
+
+#: ../../src/patterns.rst:982
+msgid ""
+":dp:`fls_dreny9e0ei6r` A :t:`wildcard pattern` is a :t:`pattern` that "
+"matches any single :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:985
+msgid ":dp:`fls_42fye1v0th8l` A :t:`wildcard pattern` is always :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/patterns.rst:988
+msgid ""
+":dp:`fls_b87mvrcc13f2` The :t:`type` of a :t:`wildcard pattern` is the "
+":t:`type` of the :t:`value` it matches."
+msgstr ""
+
+#: ../../src/patterns.rst:994
+msgid ""
+":dp:`fls_j3u6x1ensrbe` A wildcard pattern in the context of a let "
+"statement. See :p:`5.1.10. <fls_fo48m62q2y0v>` for the declaration of "
+"``pair``."
+msgstr ""
+
+#: ../../src/patterns.rst:1005
+msgid "Refutability"
+msgstr ""
+
+#: ../../src/patterns.rst:1009
+msgid ""
+":dp:`fls_9ntc4qmjmo90` :t:`Refutability` is a property of :t:`[pattern]s`"
+" that expresses the ability to match all possible values of a :t:`type`."
+msgstr ""
+
+#: ../../src/patterns.rst:1013
+msgid ""
+":dp:`fls_9fjspnefoyvz` An :t:`irrefutable pattern` is a :t:`pattern` that"
+" always matches the :t:`value` it is being matched against."
+msgstr ""
+
+#: ../../src/patterns.rst:1017
+msgid ""
+":dp:`fls_uq7ftuuq1sig` A :t:`refutable pattern` is a :t:`pattern` that "
+"has a possibility of not matching the :t:`value` it is being matched "
+"against."
+msgstr ""
+
+#: ../../src/patterns.rst:1021
+msgid ""
+":dp:`fls_mtkx414qk66c` An :t:`irrefutable type` is a :t:`type` that has "
+"at most one :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1024
+msgid ""
+":dp:`fls_sccfjvu95qfr` A :t:`refutable type` is a :t:`type` that has more"
+" than one :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1027
+msgid ""
+":dp:`fls_l76ycteulo8e` An :t:`irrefutable constant` is a :t:`constant` of"
+" an :t:`irrefutable type`."
+msgstr ""
+
+#: ../../src/patterns.rst:1030
+msgid ""
+":dp:`fls_lh0d85tl4qvy` A :t:`refutable constant` is a :t:`constant` of a "
+":t:`refutable type`."
+msgstr ""
+
+#: ../../src/patterns.rst:1035
+msgid ""
+":dp:`fls_sgu9bnp7xajv` ``x`` is an irrefutable pattern because it always "
+"matches ``42``."
+msgstr ""
+
+#: ../../src/patterns.rst:1042
+msgid ""
+":dp:`fls_cl1g4fxfa020` ``y`` is a refutable pattern because it does not "
+"match ``value`` when ``value`` denotes :std:`core::option::Option::None`."
+msgstr ""
+
+#: ../../src/patterns.rst:1053
+msgid "Binding Modes"
+msgstr ""
+
+#: ../../src/patterns.rst:1064
+msgid ""
+":dp:`fls_7xby6d1903kw` A :t:`binding pattern` is either an :t:`identifier"
+" pattern` or a :t:`shorthand deconstructor`."
+msgstr ""
+
+#: ../../src/patterns.rst:1068
+msgid ""
+":dp:`fls_vnh9wfrvumdz` A :t:`binding` is a :t:`variable` of a :t:`binding"
+" pattern` that binds a matched :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1072
+msgid ""
+":dp:`fls_dqe75i8h2fie` A :t:`non-reference pattern` is any :t:`pattern` "
+"except :t:`non-[binding pattern]s`, :t:`[path pattern]s`, :t:`[reference "
+"pattern]s`, and :t:`[wildcard pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:1077
+msgid ""
+":dp:`fls_y3wuvj1y5j20` If a :t:`binding pattern` does not explicitly "
+"specify :t:`keyword` ``ref``, :t:`keyword` ``mut``, or :t:`[keyword]s` "
+"``ref mut``, then its :t:`binding mode` uses the current :t:`binding "
+"mode` of :t:`pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1082
+msgid ""
+":dp:`fls_55jtzh6a292x` Initially, the :t:`binding mode` of a :t:`binding`"
+" is :t:`by value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1085
+msgid ""
+":dp:`fls_qcaf2kup7zn0` During the process of :t:`pattern matching`, each "
+"time a :t:`reference` is matched against a :t:`non-[reference pattern]`, "
+"the :t:`reference` is dereferenced and the :t:`binding mode` is updated "
+"as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1090
+msgid ""
+":dp:`fls_6acdqz8rwnn` If the :t:`reference` is an :t:`immutable "
+"reference`, then the :t:`binding mode` is updated to :t:`by reference`."
+msgstr ""
+
+#: ../../src/patterns.rst:1094
+msgid ""
+":dp:`fls_tv0avib387bv` If the :t:`reference` is a :t:`mutable reference` "
+"and the :t:`binding mode` is \"by value\", then the :t:`binding mode` is "
+"updated to \"by mutable reference\"."
+msgstr ""
+
+#: ../../src/patterns.rst:1098
+msgid ""
+":dp:`fls_dbgmwldye42e` The process repeats if the dereferenced :t:`value`"
+" is a :t:`reference`."
+msgstr ""
+
+#: ../../src/patterns.rst:1102 ../../src/patterns.rst:1129
+#: ../../src/patterns.rst:1200 ../../src/patterns.rst:1227
+#: ../../src/patterns.rst:1244 ../../src/patterns.rst:1255
+#: ../../src/patterns.rst:1272 ../../src/patterns.rst:1297
+#: ../../src/patterns.rst:1314 ../../src/patterns.rst:1345
+#: ../../src/patterns.rst:1382 ../../src/patterns.rst:1413
+#: ../../src/patterns.rst:1444
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/patterns.rst:1103
+msgid ""
+":dp:`fls_t34oqarwcusu` A :t:`[binding pattern]s` binds its :t:`binding` "
+"to a matched :t:`value` as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1107
+msgid ""
+":dp:`fls_7gxb74u1np36` If the :t:`binding mode` is :t:`by reference` or "
+"the :t:`binding pattern` appears only with :t:`keyword` ``ref``, then the"
+" :t:`binding` is bound to a :t:`reference` of the matched :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1112
+msgid ""
+":dp:`fls_7y56d0ulxomf` If the :t:`binding mode` is :t:`by mutable "
+"reference` or the :t:`binding pattern` appears with keywords ``ref`` "
+"``mut``, then the :t:`binding` is bound to a :t:`mutable reference` of "
+"the matched :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1117
+msgid ""
+":dp:`fls_pxvtqxke1enp` If the :t:`binding mode` is :t:`by value`, then "
+"the :t:`binding` is bound to a copy of the matched :t:`value` if its "
+":t:`type` implements the :std:`core::marker::Copy` :t:`trait`, otherwise "
+"the :t:`binding` is bound to the move of the matched :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1126
+msgid "Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1130
+msgid ""
+":dp:`fls_tlwr4u7bjhh5` :t:`Pattern matching` that involves a :t:`pattern`"
+" and a context :t:`value` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1134
+msgid ""
+":dp:`fls_67ajub7d2b4c` For each :t:`pattern-without-alternation` of the "
+":t:`pattern`"
+msgstr ""
+
+#: ../../src/patterns.rst:1137
+msgid ""
+":dp:`fls_62626ws222op` If the :t:`pattern-without-alternation` is an "
+":t:`identifier pattern`, then perform :t:`identifier pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1141
+msgid ""
+":dp:`fls_q0z46h1gnzez` If the :t:`pattern-without-alternation` is a "
+":t:`literal pattern`, then perform :t:`literal pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1145
+msgid ""
+":dp:`fls_1r0vm6rg13o9` If the :t:`pattern-without-alternation` is a "
+":t:`parenthesized pattern`, then perform :t:`parenthesized pattern "
+"matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1149
+msgid ""
+":dp:`fls_am5h8r887bz5` If the :t:`pattern-without-alternation` is a "
+":t:`path pattern`, then perform :t:`path pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1153
+msgid ""
+":dp:`fls_eppmiloh7bgg` If the :t:`pattern-without-alternation` is a "
+":t:`range pattern`, then perform :t:`range pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1157
+msgid ""
+":dp:`fls_gwc08xayno7q` If the :t:`pattern-without-alternation` is a "
+":t:`reference pattern`, then perform :t:`reference pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1161
+msgid ""
+":dp:`fls_19iygu12s315` If the :t:`pattern-without-alternation` is a "
+":t:`slice pattern`, then perform :t:`slice pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1165
+msgid ""
+":dp:`fls_r307spfk6cs9` If the :t:`pattern-without-alternation` is a "
+":t:`struct pattern`, then perform :t:`struct pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1169
+msgid ""
+":dp:`fls_drb114dtvlpt` If the :t:`pattern-without-alternation` is a "
+":t:`tuple pattern`, then perform :t:`tuple pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1173
+msgid ""
+":dp:`fls_qhdofvbso3gl` If the :t:`pattern-without-alternation` is a "
+":t:`tuple struct pattern`, then perform :t:`tuple struct pattern "
+"matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1177
+msgid ""
+":dp:`fls_uxysntb3u03j` If the :t:`pattern-without-alternation` is a "
+":t:`wildcard pattern`, then perform :t:`wildcard pattern matching`."
+msgstr ""
+
+#: ../../src/patterns.rst:1181
+msgid ":dp:`fls_wh201rmh6u6d` Otherwise :t:`pattern matching` fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1184
+msgid ""
+":dp:`fls_vstdqifqipbh` Only the :t:`[binding]s` of a matched :t:`pattern-"
+"without-alternation` are introduced to the corresponding :t:`scope`."
+msgstr ""
+
+#: ../../src/patterns.rst:1191
+msgid "Identifier Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1195
+msgid ""
+":dp:`fls_4f3lzw64myhk` An :t:`identifier pattern` with :t:`keyword` "
+"``mut`` shall require that the context :t:`value` is a :t:`mutable place "
+"expression`."
+msgstr ""
+
+#: ../../src/patterns.rst:1201
+msgid ""
+":dp:`fls_wauqwmdbcpna` :dt:`Identifier pattern matching` proceeds as "
+"follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1204
+msgid ""
+":dp:`fls_3jyog8n6x2aa` If the :t:`identifier pattern` has a :t:`bound "
+"pattern`, then"
+msgstr ""
+
+#: ../../src/patterns.rst:1207
+msgid ""
+":dp:`fls_w637uvlbzsyo` Performed :t:`pattern matching` with the :t:`bound"
+" pattern` and the same context :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1211
+msgid ""
+":dp:`fls_arz8ik3gf6u4` If matching the :t:`bound pattern` fails, then "
+"matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1214
+msgid ""
+":dp:`fls_u6o5ndnezwbe` The context :t:`value` is bound to the "
+":t:`binding` of the :t:`identifier pattern` according to the :t:`binding "
+"mode`."
+msgstr ""
+
+#: ../../src/patterns.rst:1218
+msgid ":dp:`fls_h1er04t0yta7` Matching succeeds."
+msgstr ""
+
+#: ../../src/patterns.rst:1224
+msgid "Literal Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1228
+msgid ":dp:`fls_fqkhhgushje9` :dt:`Literal pattern matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1231
+msgid ""
+":dp:`fls_m01eo9sa55s` If the :t:`literal` of the :t:`literal pattern` and"
+" the context :t:`value` are equal, then matching succeeds."
+msgstr ""
+
+#: ../../src/patterns.rst:1235
+msgid ":dp:`fls_294jtwbfq3p9` Otherwise matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1241
+msgid "Parenthesized Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1245
+msgid ""
+":dp:`fls_jajvvwoy3399` :dt:`Parenthesized pattern matching` performs "
+":t:`pattern matching` with its :t:`subpattern` and the same context "
+":t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1252
+msgid "Path Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1256
+msgid ":dp:`fls_4faltss0xbn4` :dt:`Path pattern matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1259
+msgid ""
+":dp:`fls_fqt5w3qsykca` If the :t:`constant` the :t:`path` of the :t:`path"
+" pattern` resolved to and the context :t:`value` are equal, then matching"
+" succeeds."
+msgstr ""
+
+#: ../../src/patterns.rst:1263
+msgid ":dp:`fls_h3y8r4298s53` Otherwise matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1269
+msgid "Range Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1273
+msgid ":dp:`fls_mrh9vfdek5fi` :dt:`Range pattern matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1276
+msgid ""
+":dp:`fls_7nxkgls0a5os` If the :t:`range pattern` is expressed as a :t"
+":`half-open range pattern` and the context :t:`value` is in the inclusive"
+" range from the :t:`range pattern low bound` to the maximum :t:`value` of"
+" the :t:`[range pattern low bound]'s` :t:`type`, then matching succeeds."
+msgstr ""
+
+#: ../../src/patterns.rst:1282
+msgid ""
+":dp:`fls_6kgj2fjccoig` If the :t:`range pattern` is expressed as either "
+"an :t:`inclusive range pattern` or an :t:`obsolete range pattern` and the"
+" context :t:`value` is in the inclusive range from the :t:`range pattern "
+"low bound` to the :t:`range pattern high bound`, then matching succeeds."
+msgstr ""
+
+#: ../../src/patterns.rst:1288
+msgid ":dp:`fls_n4t3xah1pk7i` Otherwise matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1294
+msgid "Reference Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1298
+msgid ""
+":dp:`fls_ysfgdzaiww8z` :dt:`Reference pattern matching` proceeds as "
+"follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1301
+msgid ":dp:`fls_7rxnxd4ybxbt` Dereference the context :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1304
+msgid ""
+":dp:`fls_l2nwz166curc` Perform :t:`pattern matching` with its "
+":t:`subpattern` and the dereferenced :t:`value`."
+msgstr ""
+
+#: ../../src/patterns.rst:1311
+msgid "Slice Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1315
+msgid ""
+":dp:`fls_hzyv4ofu0ny` :dt:`Slice pattern matching` proceeds as follows if"
+" the expected :t:`type` is an :t:`array type` or a :t:`slice type`:"
+msgstr ""
+
+#: ../../src/patterns.rst:1319
+msgid ""
+":dp:`fls_69bnxrtj0nar` If the number of :t:`[subpattern]s` of the "
+":t:`slice pattern` is greater than the length of the context :t:`value`, "
+"then matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1323
+msgid ""
+":dp:`fls_twhwiy213ibf` If the number of :t:`[subpattern]s` of the "
+":t:`slice pattern` is less than the size of the context :t:`value` and "
+"one of those :t:`[subpattern]s` is not a :t:`rest pattern`, then matching"
+" fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1328
+msgid ":dp:`fls_ei7y4ul6n6hu` For each :t:`subpattern` of the :t:`slice pattern`"
+msgstr ""
+
+#: ../../src/patterns.rst:1331
+msgid ""
+":dp:`fls_ad2jud5h1rfp` Perform :t:`pattern matching` with the "
+":t:`subpattern` and the corresponding :t:`value` from the context "
+":t:`value`, ignoring :t:`[rest pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:1336
+msgid ""
+":dp:`fls_pc97m47p34wq` If matching the :t:`subpattern` fails, then "
+"matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1342
+msgid "Struct Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1346
+msgid ":dp:`fls_evuhau2rwm8i` :dt:`Struct pattern matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1349
+msgid ""
+":dp:`fls_osc8aj1htgqo` If the number of :t:`[subpattern]s` of the "
+":t:`struct pattern` is greater than the number of :t:`[field]s` of the "
+"context :t:`value`, then this is a static error."
+msgstr ""
+
+#: ../../src/patterns.rst:1354
+msgid ""
+":dp:`fls_bde1hpvrosui` If the number of :t:`[subpattern]s` of the "
+":t:`struct pattern` is less than the number of :t:`[field]s` of the "
+"context :t:`value` and one of those :t:`[subpattern]s` is not a :t:`rest "
+"pattern`, then matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1359
+msgid ":dp:`fls_447s4hc07ozn` For each :t:`subpattern` of the :t:`struct pattern`"
+msgstr ""
+
+#: ../../src/patterns.rst:1362
+msgid ""
+":dp:`fls_vfdb1i5l41yk` If the :t:`subpattern` is a :t:`shorthand "
+"deconstructor`, then the corresponding :t:`field` of the context "
+":t:`value` is bound to the :t:`binding` of the :t:`shorthand "
+"deconstructor` according to the :t:`binding mode`."
+msgstr ""
+
+#: ../../src/patterns.rst:1368
+msgid ""
+":dp:`fls_yfk52fr7trw3` Otherwise perform :t:`pattern matching` with the "
+":t:`subpattern` and the corresponding :t:`field` from the context "
+":t:`value`, ignoring :t:`[rest pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:1373
+msgid ""
+":dp:`fls_6sdcykdrpe5d` If matching the :t:`subpattern` fails, then "
+"matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1379
+msgid "Tuple Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1383
+msgid ":dp:`fls_w4xypnrnhycb` :dt:`Tuple pattern matching` proceeds as follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1386
+msgid ""
+":dp:`fls_9lujsrwrrvqs` If the number of :t:`[subpattern]s` of the "
+":t:`tuple pattern` is greater than the number of :t:`[field]s` of the "
+"context :t:`value`, then this is a static error."
+msgstr ""
+
+#: ../../src/patterns.rst:1391
+msgid ""
+":dp:`fls_wsd605jlyzs2` If the number of :t:`[subpattern]s` of the "
+":t:`tuple pattern` is less than the number of :t:`[field]s` of the "
+"context :t:`value` and one of those :t:`[subpattern]s` is not a :t:`rest "
+"pattern`, then this is a static error."
+msgstr ""
+
+#: ../../src/patterns.rst:1396
+msgid ":dp:`fls_vnx1bpval595` For each :t:`subpattern` of the :t:`tuple pattern`"
+msgstr ""
+
+#: ../../src/patterns.rst:1399
+msgid ""
+":dp:`fls_dzf32f40y7fr` Perform :t:`pattern matching` with the "
+":t:`subpattern` and the corresponding :t:`field` from the context "
+":t:`value`, ignoring :t:`[rest pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:1404
+msgid ""
+":dp:`fls_krl32txvxxkz` If matching the :t:`subpattern` fails, then "
+"matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1410
+msgid "Tuple Struct Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1414
+msgid ""
+":dp:`fls_dexg9g9cct30` :dt:`Tuple struct pattern matching` proceeds as "
+"follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1417
+msgid ""
+":dp:`fls_daj9ds77r27b` If the number of :t:`[subpattern]s` of the "
+":t:`tuple struct pattern` is greater than the number of :t:`[field]s` of "
+"the context :t:`value`, then this is a static error."
+msgstr ""
+
+#: ../../src/patterns.rst:1422
+msgid ""
+":dp:`fls_z8dqrgmk24n0` If the number of :t:`[subpattern]s` of the "
+":t:`tuple struct pattern` is less than the number of :t:`[field]s` of the"
+" context :t:`value` and one of those :t:`[subpattern]s` is not a :t:`rest"
+" pattern`, then this is a static error."
+msgstr ""
+
+#: ../../src/patterns.rst:1427
+msgid ""
+":dp:`fls_boc7juqj69hw` For each :t:`subpattern` of the :t:`tuple struct "
+"pattern`"
+msgstr ""
+
+#: ../../src/patterns.rst:1430
+msgid ""
+":dp:`fls_4dr1stiw82v9` Otherwise perform :t:`pattern matching` with the "
+":t:`subpattern` and the corresponding :t:`field` from the context "
+":t:`value`, ignoring :t:`[rest pattern]s`."
+msgstr ""
+
+#: ../../src/patterns.rst:1435
+msgid ""
+":dp:`fls_h14emtt6iyk3` If matching the :t:`subpattern` fails, then "
+"matching fails."
+msgstr ""
+
+#: ../../src/patterns.rst:1441
+msgid "Wildcard Pattern Matching"
+msgstr ""
+
+#: ../../src/patterns.rst:1445
+msgid ""
+":dp:`fls_dvk7r1gf7pwp` :dt:`Wildcard pattern matching` proceeds as "
+"follows:"
+msgstr ""
+
+#: ../../src/patterns.rst:1448
+msgid ":dp:`fls_e0uprihqn1y6` The context :t:`value` is matched unconditionally."
+msgstr ""
+
+#: ../../src/patterns.rst:1451
+msgid ":dp:`fls_ljcq2vyo052q` Matching succeeds."
+msgstr ""
+

@@ -1,0 +1,206 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/functions.rst:9
+msgid "Functions"
+msgstr ""
+
+#: ../../src/functions.rst:12
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/functions.rst:52
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/functions.rst:53
+msgid ""
+":dp:`fls_yfm0jh62oaxr` A :t:`function` shall have a :s:`FunctionBody` "
+"unless it is an :t:`associated trait function` or :t:`external function`."
+msgstr ""
+
+#: ../../src/functions.rst:57
+msgid ""
+":dp:`fls_ijbt4tgnl95n` A :t:`function` shall not specify a "
+":s:`SelfParameter` unless it is an :t:`associated function`."
+msgstr ""
+
+#: ../../src/functions.rst:61
+msgid ""
+":dp:`fls_icdzs1mjh0n4` A :t:`function` shall not specify a "
+":s:`FunctionParameterVariadicPart` unless it is an :t:`external "
+"function`."
+msgstr ""
+
+#: ../../src/functions.rst:65
+msgid ""
+":dp:`fls_ymeo93t4mz4` A :t:`self parameter` or a :t:`receiver` is a "
+":t:`function parameter` expressed by :t:`keyword` ``self``."
+msgstr ""
+
+#: ../../src/functions.rst:69
+msgid ""
+":dp:`fls_gn1ngtx2tp2s` A :t:`function` is a :t:`value` of a :t:`function "
+"type` that models a behavior."
+msgstr ""
+
+#: ../../src/functions.rst:72
+msgid ""
+":dp:`fls_nwywh1vjt6rr` A :t:`function` shall not be subject to both "
+":t:`keyword` ``async`` and :t:`keyword` ``const``."
+msgstr ""
+
+#: ../../src/functions.rst:76
+msgid ""
+":dp:`fls_bdx9gnnjxru3` A :t:`function` declares a unique :t:`function "
+"item type` for itself."
+msgstr ""
+
+#: ../../src/functions.rst:79
+msgid ""
+":dp:`fls_87jnkimc15gi` A :t:`function qualifier` is a :t:`construct` that"
+" determines the role of a :t:`function`."
+msgstr ""
+
+#: ../../src/functions.rst:83
+msgid ""
+":dp:`fls_uwuthzfgslif` A :t:`function parameter` is a :t:`construct` that"
+" matches an input :t:`value` at the site of a :t:`call expression` or a "
+":t:`method call expression` to a pattern."
+msgstr ""
+
+#: ../../src/functions.rst:88
+msgid ""
+":dp:`fls_lxzinvqveuqh` A :t:`function parameter` is an :t:`irrefutable "
+"pattern`."
+msgstr ""
+
+#: ../../src/functions.rst:91
+msgid ""
+":dp:`fls_vljy4mm0zca2` A :t:`return type` is the :t:`type` of the result "
+"a :t:`function` returns."
+msgstr ""
+
+#: ../../src/functions.rst:94
+msgid ""
+":dp:`fls_927nfm5mkbsp` A :t:`function body` is the :t:`block expression` "
+"of a :t:`function`."
+msgstr ""
+
+#: ../../src/functions.rst:97
+msgid ""
+":dp:`fls_owdlsaaygtho` A :t:`function signature` is a unique "
+"identification of a :t:`function` that encompases of its :t:`[function "
+"qualifier]s`, :t:`name`, :t:`[generic parameter]s`, :t:`[function "
+"parameter]s`, :t:`return type`, and :t:`where clause`."
+msgstr ""
+
+#: ../../src/functions.rst:103
+msgid ""
+":dp:`fls_2049qu3ji5x7` A :t:`constant function` is a :t:`function` "
+"subject to :t:`keyword` ``const``."
+msgstr ""
+
+#: ../../src/functions.rst:106
+msgid ""
+":dp:`fls_7mlanuh5mvpn` The :t:`function body` of a :t:`constant function`"
+" shall be a :t:`constant expression`."
+msgstr ""
+
+#: ../../src/functions.rst:110
+msgid ""
+":dp:`fls_otr3hgp8lj1q` A :t:`constant function` shall be callable from a "
+":t:`constant context`."
+msgstr ""
+
+#: ../../src/functions.rst:113
+msgid ""
+":dp:`fls_m3jiunibqj81` An :t:`async function` is a :t:`function` subject "
+"to :t:`keyword` ``async``. An :t:`async function` of the form"
+msgstr ""
+
+#: ../../src/functions.rst:123
+msgid ":dp:`fls_7vogmqyd87ey` is equivalent to :t:`function`"
+msgstr ""
+
+#: ../../src/functions.rst:134
+msgid ""
+":dp:`fls_7ucwmzqtittv` An :t:`unsafe function` is a :t:`function` subject"
+" to :t:`keyword` ``unsafe``."
+msgstr ""
+
+#: ../../src/functions.rst:137
+msgid ""
+":dp:`fls_5hn8fkf7rcvz` The invocation of an :t:`unsafe function` shall "
+"require :t:`unsafe context`."
+msgstr ""
+
+#: ../../src/functions.rst:140
+msgid ""
+":dp:`fls_nw49shkqx40b` A :t:`main function` is a :t:`function` that acts "
+"as an entry point into a program. A :t:`main function` is subject to the "
+"following restrictions:"
+msgstr ""
+
+#: ../../src/functions.rst:144
+msgid ""
+":dp:`fls_o4fxok23134r` It lacks :t:`[function qualifier]s` ``async`` and "
+"``unsafe``,"
+msgstr ""
+
+#: ../../src/functions.rst:147
+msgid ":dp:`fls_bk755pvc1l53` Its :t:`ABI` is Rust,"
+msgstr ""
+
+#: ../../src/functions.rst:150
+msgid ":dp:`fls_5j2vbkt2hitj` Its :t:`name` is the word ``main``,"
+msgstr ""
+
+#: ../../src/functions.rst:153
+msgid ":dp:`fls_a3je4wc53bmo` It lacks :t:`[generic parameter]s`,"
+msgstr ""
+
+#: ../../src/functions.rst:156
+msgid ":dp:`fls_w8q15zp7kyl0` It lacks :t:`[function parameter]s`,"
+msgstr ""
+
+#: ../../src/functions.rst:159
+msgid ":dp:`fls_4psnfphsgdek` It lacks a :t:`return type`,"
+msgstr ""
+
+#: ../../src/functions.rst:162
+msgid ":dp:`fls_m7xfrhqif74` It lacks a :t:`where clause`,"
+msgstr ""
+
+#: ../../src/functions.rst:165
+msgid ":dp:`fls_qq9fzrw4aykd` It has a :t:`function body`."
+msgstr ""
+
+#: ../../src/functions.rst:169
+msgid "Examples"
+msgstr ""
+

@@ -1,0 +1,148 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:9
+msgid "Exceptions and Errors"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:12
+#: ../../src/exceptions-and-errors.rst:44
+#: ../../src/exceptions-and-errors.rst:80
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:13
+msgid ""
+":dp:`fls_vsk4vhnuiyyz` The Rust programming language lacks exceptions and"
+" exception handlers. Instead, the language uses the following tiered "
+"error handling scheme:"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:17
+msgid ""
+":dp:`fls_ebangxc36t74` A possibly absent :t:`value` is represented "
+"usually using :t:`enum` :std:`core::option::Option`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:21
+msgid ""
+":dp:`fls_ckeitwiv326r` The result of a possibly erroneous computation is "
+"represented usually using :t:`enum` :std:`core::result::Result`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:25
+msgid ""
+":dp:`fls_eg0orgibg98m` Erroneous behavior is signaled using :t:`macro` "
+":std:`core::panic`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:28
+msgid ""
+":dp:`fls_ko1x0gp9e7y3` :t:`Enum` :std:`core::option::Option` indicates "
+"whether a :t:`value` is either present using "
+":std:`core::option::Option::Some` or absent using "
+":std:`core::option::Option::None`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:33
+msgid ""
+":dp:`fls_gwu4cn4ziabe` :t:`Enum` :std:`core::result::Result` indicates "
+"whether a computation completed successfully and produced a :t:`value` "
+"using :std:`core::result::Result::Ok` or the computation failed with an "
+"error using :std:`core::result::Result::Err`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:41
+msgid "Panic"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:45
+msgid ""
+":dp:`fls_a554v4n0khye` A :t:`panic` is an abnormal program state caused "
+"by invoking :t:`macro` :std:`core::panic`."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:50
+#: ../../src/exceptions-and-errors.rst:85
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:51
+msgid ""
+":dp:`fls_i9njhpte5l0t` Invoking :t:`macro` :std:`core::panic` has the "
+"following runtime effects:"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:54
+msgid ""
+":dp:`fls_n6q7bksyn1m` Control flow halts the execution of the current "
+"thread."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:57
+msgid ""
+":dp:`fls_xmtt04lw517w` Control flow invokes the :t:`function` subject to "
+":t:`attribute` :c:`panic_handler`. The :t:`function` may choose to loop "
+"infinitely or :t:`abort` the program."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:63
+msgid "Undefined Behavior"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:64
+msgid ""
+":dp:`fls_krhb07mvojph` It is undefined behavior when a :t:`panic` crosses"
+" a :t:`foreign function interface` boundary."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:69
+msgid "Examples"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:77
+msgid "Abort"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:81
+msgid ""
+":dp:`fls_9a1izu3omkbn` :t:`Abort` is the immediate termination of a "
+"program."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:86
+msgid ":dp:`fls_iq6olct3rw4u` :t:`Abort` has the following runtime effects:"
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:89
+msgid ":dp:`fls_wd2q6ft9yzrg` Control flow halts the execution of all threads."
+msgstr ""
+
+#: ../../src/exceptions-and-errors.rst:92
+msgid ":dp:`fls_7bnrbjb0pq5n` The program terminates."
+msgstr ""
+

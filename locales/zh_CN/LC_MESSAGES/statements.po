@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) Critical Section GmbH
+# This file is distributed under the same license as the Ferrocene Language
+# Specification package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ferrocene Language Specification \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-27 20:36+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+
+#: ../../<rst_prolog>:4
+msgid ""
+"You're reading a draft of the Ferrocene Language Specification. Some "
+"parts of this document might be missing, incomplete or incorrect. Our aim"
+" is to have the specification ready by the end of 2022."
+msgstr ""
+
+#: ../../src/statements.rst:9
+msgid "Statements"
+msgstr ""
+
+#: ../../src/statements.rst:12 ../../src/statements.rst:53
+#: ../../src/statements.rst:122
+msgid "Syntax"
+msgstr ""
+
+#: ../../src/statements.rst:23 ../../src/statements.rst:60
+#: ../../src/statements.rst:130
+msgid "Legality Rules"
+msgstr ""
+
+#: ../../src/statements.rst:24
+msgid ""
+":dp:`fls_7zh6ziglo5iy` An :t:`expression statement` is an :t:`expression`"
+" whose result is ignored."
+msgstr ""
+
+#: ../../src/statements.rst:27
+msgid ""
+":dp:`fls_kdxe1ukmgl1` An :t:`item statement` is a :t:`statement` that is "
+"expressed as an :t:`item`."
+msgstr ""
+
+#: ../../src/statements.rst:30
+msgid ""
+":dp:`fls_fftdnwe22xrb` An :t:`empty statement` is a :t:`statement` "
+"expressed as character 0x3B (semicolon)."
+msgstr ""
+
+#: ../../src/statements.rst:34
+msgid ""
+":dp:`fls_or125cqtxg9j` A :t:`macro statement` is a :t:`statement` "
+"expressed as a :t:`terminated macro invocation`."
+msgstr ""
+
+#: ../../src/statements.rst:39 ../../src/statements.rst:94
+#: ../../src/statements.rst:139
+msgid "Dynamic Semantics"
+msgstr ""
+
+#: ../../src/statements.rst:40
+msgid ""
+":dp:`fls_estqu395zxgk` :t:`Execution` is the process by which a "
+":t:`statement` achieves its runtime effects."
+msgstr ""
+
+#: ../../src/statements.rst:44
+msgid ""
+":dp:`fls_dl763ssb54q1` The :t:`execution` of an :t:`empty statement` has "
+"no effect."
+msgstr ""
+
+#: ../../src/statements.rst:50
+msgid "Let Statements"
+msgstr ""
+
+#: ../../src/statements.rst:61
+msgid ""
+":dp:`fls_ct7pp7jnfr86` A :t:`let statement` is a :t:`statement` that "
+"introduces new :t:`[binding]s` produced by its :t:`pattern-without-"
+"alternation`."
+msgstr ""
+
+#: ../../src/statements.rst:65
+msgid ""
+":dp:`fls_1prqh1trybwz` The :t:`type` of a :t:`binding` introduced by a "
+":t:`let statement` is determined as follows:"
+msgstr ""
+
+#: ../../src/statements.rst:69
+msgid ""
+":dp:`fls_djkm8r2iuu6u` If the :t:`let statement` appears with a :t:`type "
+"ascription`, then the :t:`type` is the :t:`type` specified by the "
+":t:`type ascription`."
+msgstr ""
+
+#: ../../src/statements.rst:73
+msgid ""
+":dp:`fls_ppj9gvhp8wcj` If the :t:`let statement` lacks a :t:`type "
+"ascription`, then the :t:`type` is :t:`inferred` using :t:`type "
+"inference`."
+msgstr ""
+
+#: ../../src/statements.rst:77
+msgid ""
+":dp:`fls_m8a7gesa4oim` The :t:`value` of a :t:`binding` introduced by a "
+":t:`let statement` is determined as follows:"
+msgstr ""
+
+#: ../../src/statements.rst:81
+msgid ""
+":dp:`fls_oaxnre7m9s10` If the :t:`let statement` appears with an "
+":t:`expression`, then the :t:`value` is the :t:`value` of the "
+":t:`expression`."
+msgstr ""
+
+#: ../../src/statements.rst:85
+msgid ""
+":dp:`fls_t5bjwluyv8za` If the :t:`let statement` lacks an "
+":t:`expression`, then the :t:`binding` is uninitialized."
+msgstr ""
+
+#: ../../src/statements.rst:89
+msgid ""
+":dp:`fls_iqar7vvtw22c` The :t:`pattern-without-alternation` of a :t:`let "
+"statement` shall be :t:`irrefutable`."
+msgstr ""
+
+#: ../../src/statements.rst:95
+msgid ""
+":dp:`fls_4j9riqyf4p9` The :t:`execution` of a :t:`let statement` proceeds"
+" as follows:"
+msgstr ""
+
+#: ../../src/statements.rst:98
+msgid ""
+":dp:`fls_mvvigioc1ozm` If the :t:`let statement` appears with an "
+":t:`expression`, then:"
+msgstr ""
+
+#: ../../src/statements.rst:101
+msgid ":dp:`fls_t53g5hlabqw1` The :t:`expression` is evaluated."
+msgstr ""
+
+#: ../../src/statements.rst:104
+msgid ""
+":dp:`fls_7j4qlwg72ege` The :t:`value` of the :t:`expression` is assigned "
+"to each :t:`binding` introduced by the :t:`let statement`."
+msgstr ""
+
+#: ../../src/statements.rst:109 ../../src/statements.rst:150
+msgid "Examples"
+msgstr ""
+
+#: ../../src/statements.rst:119
+msgid "Expression Statements"
+msgstr ""
+
+#: ../../src/statements.rst:131
+msgid ""
+":dp:`fls_xmdj8uj7ixoe` An :t:`expression statement` is an :t:`expression`"
+" whose result is ignored."
+msgstr ""
+
+#: ../../src/statements.rst:134
+msgid ""
+":dp:`fls_gzzmudc1hl6s` The :t:`expected type` of an :t:`expression "
+"statement` without character 0x3B (semicolon) is the :t:`unit type`."
+msgstr ""
+
+#: ../../src/statements.rst:140
+msgid ""
+":dp:`fls_kc99n8qrszxh` The :t:`execution` of an :t:`expression statement`"
+" proceeds as follows:"
+msgstr ""
+
+#: ../../src/statements.rst:143
+msgid ":dp:`fls_r8poocwqaglf` The :t:`operand` is evaluated."
+msgstr ""
+
+#: ../../src/statements.rst:146
+msgid ":dp:`fls_88e6s3erk8tj` The :t:`value` of the :t:`operand` is :t:`dropped`."
+msgstr ""
+
+#: ../../src/statements.rst:155
+msgid ""
+":dp:`fls_4q90jb39apwr` The following expression statement ignores the "
+"result from ``pop()``."
+msgstr ""
+
+#: ../../src/statements.rst:162
+msgid ""
+":dp:`fls_xqtztcu8ibwq` The following expression statement does not "
+"require a semicolon."
+msgstr ""
+
+#: ../../src/statements.rst:174
+msgid ""
+":dp:`fls_2p9xnt519nbw` The following expression statement is not an array"
+" index expression."
+msgstr ""
+
