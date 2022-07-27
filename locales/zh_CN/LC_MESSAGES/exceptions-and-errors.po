@@ -1,10 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) Critical Section GmbH
-# This file is distributed under the same license as the Ferrocene Language
-# Specification package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
-#
-#, fuzzy
+# SPDX-License-Identifier: MIT OR Apache-2.0
+# SPDX-FileCopyrightText: Critical Section GmbH
+
+
 msgid ""
 msgstr ""
 "Project-Id-Version: Ferrocene Language Specification \n"

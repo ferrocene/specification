@@ -1,0 +1,69 @@
+.. SPDX-License-Identifier: MIT OR Apache-2.0
+   SPDX-FileCopyrightText: Critical Section GmbH
+
+====================================================
+Ferrocene Language Specification Internationalization
+====================================================
+
+Environmental Installation
+==========================
+
+.. code-block:: shell
+
+    > pip install sphinx-intl
+
+
+Add the language you want to internationalize
+=============================================
+
+1. Generate pot in the build/locale directory:
+
+.. code-block:: shell
+
+    > sphinx-build -b gettext src build/locale
+
+
+The `.pot` files will be generated under `build/locale`.
+
+2. Generate internationalized country code:
+
+.. code-block:: shell
+
+    > sphinx-intl update -p build/locale -l zh_CN
+
+
+The `.po` files will be generated under `locales/zh_CN/LC_MESSAGES/` (Configure in the `src/conf.py` file).
+
+and add license and copyright comments to the head of each `.po`` file:
+
+.. code-block:: shell
+
+    # SPDX-License-Identifier: MIT OR Apache-2.0
+    # SPDX-FileCopyrightText: Critical Section GmbH
+
+3. Find the corresponding `.po' file and start translating：
+
+.. code-block:: shell
+
+    msgid "Ferrocene Language Specification"
+    msgstr "Ferrocene 语言规范"
+
+
+Modify only the `msgstr` part.
+
+4. Open `src/conf.py` and under the `locale_dirs` configuration, add the following:
+
+.. code-block:: shell
+
+    language="zh_CN"
+
+
+5. Recompile.
+
+.. code-block:: shell
+
+    > ./make.py
+
+
+The document generated in `build/html` then corresponds to the language you specify, such as `zh_CN`.
+
