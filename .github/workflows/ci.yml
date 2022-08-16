@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: "3.6.x"
 
+      - name: Check glossary entry ordering
+        run: ./lexico-check.py
+
       - name: Build documentation and check links
         run: ./make.py --check-links
 
