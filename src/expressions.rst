@@ -999,42 +999,106 @@ An :t:`error propagation expression` shall appear within a :t:`control flow
 boundary`.
 
 :dp:`fls_ab4vhq4nwn7f`
-The :t:`type` of an :t:`error propagation expression` is :t:`associated type`
-:std:`core::ops::Try::Output`.
+The :t:`type` of an :t:`error propagation expression` is determined as follows:
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::ops::ControlFlow` ``<B,
+  C>``, then the :t:`type` is the :t:`type` of second generic parameter ``C`` of
+  the :std:`core::ops::ControlFlow`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::option::Option` ``<T>``,
+  then the :t:`type` is the :t:`type`` of the first generic parameter ``T`` of
+  the :std:`core::option::Option`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::result::Result` ``<T,
+  E>``, then the :t:`type` is the :t:`type` of the first generic parameter ``T``
+  of the :std:`core::result::Result`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::option::Option` ``<`` :std:`core::result::Result` ``<T, E>>>``,
+  then the :t:`type` is :std:`std::task::Poll` ``<`` :std:`core::option::Option`
+  ``<T>>``,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::result::Result` ``<T, E>>``,
+  then the :t:`type` is :std:`std::task::Poll` ``<T>``,
+
+*
+  Otherwise it is a static error to use an :t:`error propagation expression`.
 
 :dp:`fls_z4zikxy2b1em`
 The :t:`value` of an :t:`error propagation expression` is determined as follows:
 
-* :dp:`fls_a09614kgsspt`
-  If the :t:`evaluation` of the :t:`error propagation expression` executed
-  ``core::ops::Try::branch(operand)``, then the :t:`value` is the :t:`value` of
-  the :std:`core::ops::ControlFlow::Continue` variant.
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::ops::ControlFlow` ``<B,
+  C>`` and the active :t:`enum variant` is
+  :std:`core::ops::ControlFlow::Continue`, then the :t:`value` is the :t:`value`
+  of the :t:`field` of the :t:`enum variant`,
 
-* :dp:`fls_8df018q7y6g`
-  Otherwise control flow is returned to the end of the enclosing :t:`control
-  flow boundary`.
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::option::Option` ``<T>``
+  and the active :t:`enum variant` is :std:`core::option::Option::Some`, then
+  the :t:`value` is the :t:`value` of the :t:`field` of the :t:`enum variant`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::result::Result` ``<T,
+  E>`` and the active :t:`enum variant` is :std:`core::result::Result::Ok`, then
+  the :t:`value` is the :t:`value` of the :t:`field` of the :t:`enum variant`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::option::Option` ``<`` :std:`core::result::Result` ``<T, E>>>`` and
+  the active :t:`enum variant` is :std:`core::task::Poll::Pending`, then the
+  :t:`value` is :std:`core::task::Poll::Pending`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::option::Option` ``<`` :std:`core::result::Result` ``<T, E>>>`` and
+  the active :t:`enum variant` is :std:`core::task::Poll::Ready` and the active
+  :t:`enum variant` of the :std:`core::option::Option` contained within is
+  :std:`core::option::Option::None`, then the :t:`value` is
+  :std:`core::task::Poll::Ready` ``(`` :std:`core::option::Option::None`  ``)``,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::option::Option` ``<`` :std:`core::result::Result` ``<T, E>>>`` and
+  the active :t:`enum variant` is :std:`core::task::Poll::Ready` and the active
+  :t:`enum variant` of the :std:`core::option::Option` contained within is
+  :std:`core::option::Option::Some` and the active :t:`enum variant` of the
+  :std:`core::result::Result` contained within is
+  :std:`core::result::Result::Ok`, then the :t:`value` is
+  :std:`core::task::Poll::Ready` ``(`` :std:`core::option::Option::Some` ``(x)``
+  ``)`` where ``x`` is the :t:`value` of the :t:`field` of the innermost
+  :t:`enum variant`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::result::Result` ``<T, E>>`` and the active :t:`enum variant` is
+  :std:`core::task::Poll::Pending`, then the :t:`value` is
+  :std:`core::task::Poll::Pending`,
+
+*
+  If the :t:`type` of the :s:`operand` is :std:`core::task::Poll` ``<``
+  :std:`core::result::Result` ``<T, E>>`` and the active :t:`enum variant` is
+  :std:`core::task::Poll::Ready` and the active :t:`enum variant` of the
+  :std:`core::result::Result` contained within is
+  :std:`core::result::Result::Ok`, then the :t:`value` is the :t:`value` of the
+  :t:`field` of the inner :t:`enum variant`,
+
+*
+  Otherwise the :t:`expression` has no :t:`value` and instead returns control
+  with another :t:`value` to the enclosing :t:`control flow boundary` as
+  follows:
+
 
 .. rubric:: Dynamic Semantics
 
-:dp:`fls_alk4qvfprnvy`
-The :t:`evaluation` of an :t:`error propagation expression` of the form
-
-.. code-block:: rust
-
-   expression?
-
-:dp:`fls_1nnhjcgy8kdh`
-is equivalent to the :t:`evaluation` the following :t:`expression`:
-
-.. code-block:: rust
-
-   match core::ops::Try::branch(expression) {
-       core::ops::ControlFlow::Continue(value) =>
-           value,
-
-       core::ops::ControlFlow::Break(value) =>
-           core::ops::FromResidual::from_residual(value),
-   }
+The :t:`evaluation` of a :t:`error propagation expression` evaluates its
+:t:`operand`.
 
 .. rubric:: Examples
 
