@@ -151,7 +151,8 @@ a :t:`metavariable`.
 
 :dp:`fls_8o9mcV2KrKac`
 :t:`Fragment specifier` kinds impose the following
-:dt:`[fragment specifier restruction]s` on the :t:`[token]s` that follow them:
+:dt:`[fragment specifier restriction]s` on the :t:`[token]s` that follow them
+at the :t:`macro invocation` site:
 
 * :dp:`fls_PxR9vNHsaFnI`
   ``expr`` shall only be followed by ``=>``, ``,``, or ``;``.
@@ -197,6 +198,8 @@ A :t:`metavariable indication` is a :t:`construct` that indicates a
    macro_rules! square {
        ($e:expr) => { $e * $e };
    }
+
+   square!(2);
 
 .. _fls_k01lsksqtq1r:
 
