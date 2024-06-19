@@ -3504,6 +3504,17 @@ A :t:`container operand` is an :t:`operand` that indicates the :t:`value` whose
 A :t:`field selector` is a :t:`construct` that selects the :t:`field` to be
 accessed in a :t:`field access expression`.
 
+:dp:`fls_T0cediM0OQ2P`
+A :t:`field selector` can be:
+
+* :dp:`fls_wmWAn6FjGcIO`
+  An :t:`indexed field selector`, used for :t:`[tuple]s`. Fields are accessed by their index,
+  starting from 0 and increasing sequentially.
+
+* :dp:`fls_1eI5ubKhJiaq`
+  A :t:`named field selector`, used for :t:`[struct]s` and :t:`[union]s`.
+  Fields are accessed by their name.
+
 :dp:`fls_qqrconpa92i3`
 A :t:`selected field` is a :t:`field` that is selected by a
 :t:`field access expression`.
