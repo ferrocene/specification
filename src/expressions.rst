@@ -3550,6 +3550,10 @@ field`'s type.
 The :t:`evaluation` of a :t:`field access expression` evaluates its
 :t:`container operand`.
 
+:dp:`fls_OuEX9IcrEfaW`
+Because all fields of a :t:`union` share the same storage, writing
+to one field of a :t:`union`` will overwrite the contents of its other fields.
+
 .. rubric:: Examples
 
 :dp:`fls_x27yayh4z787`
