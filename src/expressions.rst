@@ -3525,15 +3525,6 @@ Writing to the :t:`selected field` of a :t:`union` where the :t:`type` of the
 :t:`selected field` implements the :std:`core::marker::Copy` :t:`trait` or the
 :std:`core::mem::ManuallyDrop` :t:`trait` shall not require :t:`unsafe context`.
 
-:dp:`fls_t6xmsm2nk1bc`
-Writing to and then reading from the :t:`selected field` of a :t:`union`
-subject to :t:`attribute` :c:`repr` is equivalent to invoking :t:`function`
-``core::mem::transmute<write_type, read_type>(field_bits)`` where ``write_type``
-is the :t:`type` used at the time of writing the :t:`selected field`,
-``read_type`` is the :t:`type` used at the time of reading the
-:t:`selected field`, and ``field_bits`` is the bit representation of the
-:t:`selected field`.
-
 :dp:`fls_jjnyuU9KIaGy`
 A :t:`field access expression` is subject to :t:`field resolution`.
 
@@ -3545,6 +3536,15 @@ It is undefined behavior reading the :t:`selected field` of a
 field`'s type.
 
 .. rubric:: Dynamic Semantics
+
+:dp:`fls_t6xmsm2nk1bc`
+Writing to and then reading from the :t:`selected field` of a :t:`union`
+subject to :t:`attribute` :c:`repr` is equivalent to invoking :t:`function`
+``core::mem::transmute<write_type, read_type>(field_bits)`` where ``write_type``
+is the :t:`type` used at the time of writing the :t:`selected field`,
+``read_type`` is the :t:`type` used at the time of reading the
+:t:`selected field`, and ``field_bits`` is the bit representation of the
+:t:`selected field`.
 
 :dp:`fls_6uzouesw2sod`
 The :t:`evaluation` of a :t:`field access expression` evaluates its
