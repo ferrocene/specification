@@ -11,3 +11,6 @@ __pycache__
 
 # Linkchecker ignored files
 /.linkchecker
+
+# VSCode ignored files
+/.vscode
