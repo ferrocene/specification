@@ -280,11 +280,6 @@ explicitly invokes an :t:`associated trait function` or uses
 :t:`[arithmetic operator]s` of non-builtin :t:`[type]s` that invoke
 :std:`core::ops` :t:`[trait]s`.
 
-:dp:`fls_9mrrosm8jnn7`
-An :t:`arithmetic expression` that operates with :t:`[floating-point value]s` is
-not considered a :t:`constant expression` when it appears inside the
-:t:`function body` of a :t:`constant function`.
-
 :dp:`fls_fmqar6o1bwqk`
 It is a static error if the :t:`size operand` of an
 :t:`array repetition constructor` or an :t:`array type` depends on
@@ -481,6 +476,9 @@ The following :t:`[construct]s` are :t:`[place expression context]s`:
 
 * :dp:`fls_Ufz9W5vyZkv3`
   The :t:`operand` of a :t:`borrow expression`,
+
+* :dp:`fls_K7SbApHPmwjM`
+  The :t:`operand` of a :t:`raw borrow expression`,
 
 * :dp:`fls_KxWIzoh9WwK7`
   The :t:`operand` of a :t:`dereference expression`,
@@ -927,12 +925,18 @@ Operator Expressions
      | ErrorPropagationExpression
      | LazyBooleanExpression
      | NegationExpression
+     | RawBorrowExpression
      | TypeCastExpression
 
 .. rubric:: Legality Rules
 
 :dp:`fls_ursc5ynymoy`
 An :t:`operator expression` is an :t:`expression` that involves an operator.
+
+.. rubric:: Dynamic Semantics
+
+:dp:`fls_lSxXWxJn0vMO`
+An :t:`operator expression` that operates with :t:`[floating-point value]s` run as a :t:`constant expression` is allowed to yield different :t:`[value]s` compared to when run as a non-:t:`constant expression`.
 
 .. _fls_qztk0bkju9u:
 
@@ -971,11 +975,11 @@ state, or simply :t:`borrowed`.
 The :t:`type` of a :t:`borrow expression` is determined as follows:
 
 * :dp:`fls_5b2x5ri2w54r`
-  If the :t:`borrow expression` denotes a :t:`shared reference`, then the
+  If the :t:`borrow expression` denotes an :t:`immutable borrow expression`, then the
   :t:`type` is ``&T``, where ``T`` is the :t:`type` of the :t:`operand`.
 
 * :dp:`fls_agl09ia869rk`
-  If the :t:`borrow expression` denotes a :t:`mutable reference`, then the
+  If the :t:`borrow expression` denotes a :t:`mutable borrow expression`, then the
   :t:`type` is ``&mut T``, where ``T`` is the :t:`type` of the :t:`operand`.
 
 :dp:`fls_8cvmee9bzs40`
@@ -2056,6 +2060,65 @@ The :t:`evaluation` of a :t:`lazy or expression` proceeds as follows:
 
    false && panic!()
    this || that
+
+.. _fls_vXGuvRWOLbEE:
+
+Raw Borrow Expression
+~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: Syntax
+
+.. syntax::
+
+   RawBorrowExpression ::=
+       $$&$$ $$raw$$ ($$const$$ | $$mut$$) Operand
+
+.. rubric:: Legality Rules
+
+:dp:`fls_TS6DvMon5h27`
+A :t:`raw borrow expression` is an :t:`expression` that creates a :t:`raw pointer` to the memory location of its :t:`operand` without incurring a :t:`borrow`.
+
+:dp:`fls_UtjWrE2qeplQ`
+An :dt:`immutable raw borrow expression` is a :t:`raw borrow expression` that has :t:`keyword` ``const``.
+
+:dp:`fls_4e7EE4a8Yvmy`
+A :dt:`mutable raw borrow expression` is a :t:`raw borrow expression` that has :t:`keyword` ``mut``.
+
+:dp:`fls_gOXUWePymgGV`
+When the :t:`operand` of a :t:`raw borrow expression` is a :t:`place expression`, the :t:`raw borrow expression` produces a :t:`raw pointer` to the memory location indicated by the :t:`operand`.
+
+:dp:`fls_YBC8GrIBzZbi`
+It is a static error if the :t:`operand` of a :t:`raw borrow expression` is a :t:`temporary`.
+
+:dp:`fls_Twkre8IzUa8S`
+The :t:`type` of a :t:`raw borrow expression` is determined as follows:
+
+* :dp:`fls_Ki4FOzJMqtvJ`
+  If the :t:`raw borrow expression` denotes an :t:`immutable raw borrow expression`, then the :t:`type` is ``*const T``, where ``T`` is the :t:`type` of the :t:`operand`.
+
+* :dp:`fls_DJxQDBsO9hc7`
+  If the :t:`raw borrow expression` denotes a :t:`mutable raw borrow expression`, then the :t:`type` is ``*mut T``, where ``T`` is the :t:`type` of the :t:`operand`.
+
+:dp:`fls_WlXB0AHifCdd`
+The :t:`value` of a :t:`raw borrow expression` is the address of its :t:`operand`.
+
+.. rubric:: Dynamic Semantics
+
+:dp:`fls_qQrV8QuGGcVO`
+The :t:`evaluation` of a :t:`raw borrow expression` evaluates its :t:`operand`.
+
+.. rubric:: Examples
+
+.. code-block:: rust
+
+   let mut answer = 42;
+
+:dp:`fls_dTABiwAPGhdZ`
+Mutable raw borrow.
+
+.. syntax::
+
+   let ref_answer = &raw mut answer;
 
 .. _fls_1qhsun1vyarz:
 

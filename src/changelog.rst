@@ -18,6 +18,92 @@ with the change that has been applied due to it.
    just the language changes that had an impact to the FLS. See the `release
    notes`_ for a full list of changes.
 
+
+Language changes in Rust 1.82.0
+-------------------------------
+
+* `Don't make statement nonterminals match pattern nonterminals <https://github.com/rust-lang/rust/pull/120221/>`_
+
+  * No change: Exact parsing behavior of non-terminals within declarative macros is not specified
+
+* `Patterns matching empty types can now be omitted in common cases <https://github.com/rust-lang/rust/pull/122792>`_
+
+  * New section: :ref:`fls_mcxF9y5u66sZ`
+
+  * Changed paragraphs: :p:`fls_9fjspnefoyvz`, :p:`fls_uq7ftuuq1sig`, :p:`fls_cfoy86mkmqa4`, :p:`fls_rnppz6y5z8pi`, :p:`fls_x0bmzl1315gq`, :p:`fls_MK83WE0iDqNf`
+
+* `Enforce supertrait outlives obligations when using trait impls <https://github.com/rust-lang/rust/pull/124336>`_
+
+  * No change: the concrete type inference resolution is not part of the FLS
+
+* `\`addr_of(_mut)!\` macros and the newly stabilized \`&raw (const|mut)\` are now safe to use with all static items <https://github.com/rust-lang/rust/pull/125834>`_
+
+  * No change: `addr_of` is not specified as it is a library defined macro, `&raw (const|mut)` appears as a new feature separately below
+
+* `size_of_val_raw: for length 0 this is safe to call <https://github.com/rust-lang/rust/pull/126152/>`_
+
+  * No change: `size_of_val_raw` is a library defined function
+
+* `Reorder trait bound modifiers *after* \`for<...>\` binder in trait bounds <https://github.com/rust-lang/rust/pull/127054/>`_
+
+  * Changed syntax: :s:`TraitBound`
+
+* `Stabilize opaque type precise capturing (RFC 3617) <https://github.com/rust-lang/rust/pull/127672>`_
+
+  * Changed syntax: :s:`ImplTraitTypeSpecification`, :s:`ImplTraitTypeSpecificationOneBound`
+
+  * New syntax: :s:`UseCaptures`, :s:`UseCapturesGenericArgs`, :s:`UseCapturesGenericArg`
+
+  * New paragraphs: :p:`fls_69hqMjvNno9u`, :p:`fls_OnyR0Wsfk7KI`, :p:`fls_KgH6c5cC4S0G`, :p:`fls_iT9WCNfUZQnC`
+
+* `Stabilize \`&raw const\` and \`&raw mut\` operators (RFC 2582) <https://github.com/rust-lang/rust/pull/127679>`_
+
+  * New section: :ref:`fls_vXGuvRWOLbEE`
+
+  * New paragraphs: :p:`fls_K7SbApHPmwjM`
+
+* `Stabilize unsafe extern blocks (RFC 3484) <https://github.com/rust-lang/rust/pull/127921>`_
+
+  * New syntax: :s:`ItemSafety`
+
+  * Changed syntax: :s:`WeakKeyword`, :s:`FunctionQualifierList`, :s:`StaticDeclaration`
+
+  * New paragraphs: :p:`fls_8ltVLtAfvy0m`, :p:`fls_WRpcVF1fLEpr`, :p:`fls_8ltVLtAfvy0m`
+
+  * Changed paragraphs: :p:`fls_g0JEluWqBpNc`, :p:`fls_7ucwmzqtittv`, :p:`fls_4dje9t5y2dia`, :p:`fls_l88r9fj82650`, :p:`fls_fo9with6xumo`
+
+  * Removed paragraph :p:`fls_iaimuqcclstl`
+
+* `Stabilize nested field access in \`offset_of!\` <https://github.com/rust-lang/rust/pull/128284>`_
+
+  * No change: `offset_of` is a library defined macro
+
+* `Do not require \`T\` to be live when dropping \`[T; 0]\` <https://github.com/rust-lang/rust/pull/128438>`_
+
+  * No change: The drop interaction with the borrow checker is not specified as the borrow checker is not specified in the FLS
+
+* `Stabilize \`const\` operands in inline assembly <https://github.com/rust-lang/rust/pull/128570>`_
+
+  * Note: These changes affect content that is informational.
+
+  * New syntax: :s:`ConstRegisterExpression`
+
+  * New paragraphs: :p:`fls_81Ju1TEqJ48K`, :p:`fls_j9XOoXDmN5Dq`, :p:`fls_jU8zg4k8dFsY`
+
+* `Stabilize floating-point arithmetic in \`const fn\` <https://github.com/rust-lang/rust/pull/128596>`_
+
+  * New paragraph: :p:`fls_lSxXWxJn0vMO`
+
+  * Removed paragraph: :p:`fls_9mrrosm8jnn7`
+
+* `Stabilize explicit opt-in to unsafe attributes <https://github.com/rust-lang/rust/pull/128771>`_
+
+  * New section: :ref:`fls_19LnTi3WabFd`
+
+* `Document NaN bit patterns guarantees <https://github.com/rust-lang/rust/pull/129559>`_
+
+  * New paragraph: :p:`fls_nuFAwLHOdQBx`
+
 Language changes in Rust 1.81.0
 -------------------------------
 
