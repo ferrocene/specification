@@ -194,61 +194,57 @@ Conformity
 .. rubric:: Implementation Requirements
 
 :dp:`fls_kdyqtnc6loam`
-A conforming tool shall:
+Conformant tools shall:
 
 * :dp:`fls_ctwsz8sl7lbq`
-  Translate and correctly execute legal programs written in Rust, provided that
-  they are not so large as to exceed the capacity of the tool,
+  Translate and correctly execute validly written rust programs that are within the capacity of the tool,
 
 * :dp:`fls_bvpekhdaxctq`
-  Identify all programs or program units that are so large as to exceed the
-  capacity of the tool (or raise an appropriate exception at run time),
+  Identify all programs or parts thereof that exceed the capacity
+  of the tool (or raise a relevant exception at run time),
 
 * :dp:`fls_kfs8gsd36d91`
-  Identify all programs or program units that contain errors whose detection is
-  required by this document,
+  Identify all programs or parts thereof that contain errors covered by this document,
 
 * :dp:`fls_k5sozk8jhrmg`
-  Supply all language-defined library units required by this document,
+  Supply all rust related libraries required by this document,
 
 * :dp:`fls_nwx1fdq6b4mg`
-  Contain no variations except those explicitly permitted by this document, or
-  those that are impossible or impractical to avoid given the tool's execution
-  environment,
+  Contain only variations explicitly allowed by this document, or ones that are
+  impossible or impractical to avoid given the tool's execution environment,
 
 * :dp:`fls_n3ypaile1a36`
-  Specify all such variations in the manner prescribed by this document.
+  List all variations as described in this document.
 
 :dp:`fls_nnmx2qsu14ft`
-The external effect of the execution of a Rust program is defined in terms of
-its interactions with its external environment. The following are defined as
-external interactions:
+The outcome of an executed Rust program is defined by its interaction with the
+external environment. All of the following are external interactions:
 
 * :dp:`fls_gu3331rmv2ho`
-  Any call on an foreign :t:`function`, including any :t:`[argument operand]s`
-  passed to it;
+  All calls to foreign :t:`[function]s` including any :t:`[argument operand]s`
+  passed to thems;
 
 * :dp:`fls_3iekobt8qqi`
-  Any result returned or :t:`panic` propagated from a :t:`program entry point`
+  All results returned or :t:`panic` propagated from a :t:`program entry point`
   or an :t:`exported function` to an external caller;
 
 * :dp:`fls_qx9fxf4py0j0`
-  The imported and exported :t:`[value]s` at the time of any other interaction
+  Any imported and exported :t:`[value]s` during any other interaction
   with the external environment.
 
 :dp:`fls_pl0fyjcwslqm`
-A tool that conforms to this document shall produce for the execution of a given
+Any tool that conforms to this specification shall produce for the execution of a given
 Rust program a set of interactions with the external environment whose order and
-timing are consistent with the definitions and requirements of this document for
-the semantics of the given program.
+timing are consistent with the definitions and requirements of this specification for
+the semantics of the given Rust program.
 
 :dp:`fls_lkdm0mdghppv`
-A tool that conforms to this document shall support each capability required by
-the language as specified.
+Any tool that conforms to this specification shall support each capability required by
+the language specification.
 
 :dp:`fls_d07x1mbhgpsd`
-A tool that conforms to this document may provide additional :t:`[attribute]s`
-as long as their names are not the same as the names of :t:`[built-in
+Any tool that conforms to this specification may provide additional :t:`[attribute]s`
+provided that their names do not clash with the names of :t:`[built-in
 attribute]s`.
 
 .. _fls_79rl6ylmct07:
