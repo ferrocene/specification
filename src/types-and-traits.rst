@@ -2049,17 +2049,7 @@ occur when:
   The source :t:`type` is a :t:`trait object type` and the target :t:`type` is a :t:`trait object type` with the same or no :t:`[principal trait bound]`, and the target :t:`type` has the same or less non-:t:`principal trait` :t:`[trait bound]s`.
 
 * :dp:`fls_QB4c6FNKxaPl`
-  The source :t:`type` is ``dyn T`` and the target :t:`type` is ``dyn U``,
-  where ``U`` is a :t:`supertrait` of ``T``.
-
-  .. code-block:: rust
-
-     trait Sub: Super {}
-     trait Super {}
-
-     fn upcast(x: &dyn Sub) -> &dyn Super {
-         x // implicit coercion
-     }
+  The source :t:`type` is a :t:`trait object type` with some :t:`principal trait bound` ``T`` and the target :t:`type` is a :t:`trait object type` with some :t:`principal trait bound` ``U``, where ``U`` is a :t:`supertrait` of ``T``.
 
 :dp:`fls_iiiu2q7pym4p`
 An :t:`unsized coercion` is a :t:`type coercion` that converts a :t:`sized type`
