@@ -1,0 +1,992 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>20. Macros &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="21. FFI" href="ffi.html" />
+    <link rel="prev" title="19. Unsafety" href="unsafety.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="macros">
+<span id="fls_83182bfa9uqb"></span><h1><span class="section-number">20. </span>Macros<a class="headerlink" href="#macros" title="Link to this heading">¶</a></h1>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_j1jc83erljo0">20:1</span>
+A <a class="reference internal" href="glossary.html#term_macro">macro</a> is a custom definition that extends Rust by defining callable
+syntactic transformations. The effects of a <a class="reference internal" href="glossary.html#term_macro">macro</a> are realized through
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocations</a> or <a class="reference internal" href="glossary.html#term_attribute">attribute</a> use. <a class="reference internal" href="glossary.html#term_macro">Macros</a> come in two
+distinct forms:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_23eapx3ckymf">20:2</span>
+<a class="reference internal" href="glossary.html#term_declarative_macro">Declarative macros</a> define rules for recognizing syntactic patterns and
+generating direct syntax.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_a5uemz2hnbi8">20:3</span>
+<a class="reference internal" href="glossary.html#term_procedural_macro">Procedural macros</a> define augmented <a class="reference internal" href="glossary.html#term_function">functions</a> that operate on and
+return a stream of <a class="reference internal" href="glossary.html#term_lexical_element">lexical elements</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_rnty1c8l5495">20:4</span>
+<a class="reference internal" href="glossary.html#term_token">Tokens</a> are a subset of <a class="reference internal" href="glossary.html#term_lexical_element">lexical elements</a> consumed by <a class="reference internal" href="glossary.html#term_macro">macros</a>.</p>
+<section id="declarative-macros">
+<span id="fls_xa7lp0zg1ol2"></span><h2><span class="section-number">20.1. </span>Declarative Macros<a class="headerlink" href="#declarative-macros" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macrorulesdeclaration"><span class="pre">MacroRulesDeclaration</span></code> ::=
+    <strong class="spec-syntax-literal">macro_rules</strong> <strong class="spec-syntax-literal">!</strong> <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> <a class="reference internal" href="#syntax_macrorulesdefinition"><code class="docutils literal notranslate"><span class="pre">MacroRulesDefinition</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macrorulesdefinition"><span class="pre">MacroRulesDefinition</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_macrorulelist"><code class="docutils literal notranslate"><span class="pre">MacroRuleList</span></code></a> <strong class="spec-syntax-literal">)</strong> <strong class="spec-syntax-literal">;</strong>
+  | <strong class="spec-syntax-literal">[</strong> <a class="reference internal" href="#syntax_macrorulelist"><code class="docutils literal notranslate"><span class="pre">MacroRuleList</span></code></a> <strong class="spec-syntax-literal">]</strong> <strong class="spec-syntax-literal">;</strong>
+  | <strong class="spec-syntax-literal">{</strong> <a class="reference internal" href="#syntax_macrorulelist"><code class="docutils literal notranslate"><span class="pre">MacroRuleList</span></code></a> <strong class="spec-syntax-literal">}</strong>
+
+<code class="docutils literal notranslate" id="syntax_macrorulelist"><span class="pre">MacroRuleList</span></code> ::=
+    <a class="reference internal" href="#syntax_macrorule"><code class="docutils literal notranslate"><span class="pre">MacroRule</span></code></a> (<strong class="spec-syntax-literal">;</strong> <a class="reference internal" href="#syntax_macrorule"><code class="docutils literal notranslate"><span class="pre">MacroRule</span></code></a>)* <strong class="spec-syntax-literal">;</strong>?
+
+<code class="docutils literal notranslate" id="syntax_macrorule"><span class="pre">MacroRule</span></code> ::=
+    <a class="reference internal" href="#syntax_macromatcher"><code class="docutils literal notranslate"><span class="pre">MacroMatcher</span></code></a> <strong class="spec-syntax-literal">=&gt;</strong> <a class="reference internal" href="#syntax_macrotranscriber"><code class="docutils literal notranslate"><span class="pre">MacroTranscriber</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macromatcher"><span class="pre">MacroMatcher</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>* <strong class="spec-syntax-literal">)</strong>
+  | <strong class="spec-syntax-literal">[</strong> <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>* <strong class="spec-syntax-literal">]</strong>
+  | <strong class="spec-syntax-literal">{</strong> <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>* <strong class="spec-syntax-literal">}</strong>
+
+<code class="docutils literal notranslate" id="syntax_macrotranscriber"><span class="pre">MacroTranscriber</span></code> ::=
+    <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macromatch"><span class="pre">MacroMatch</span></code> ::=
+    <a class="reference internal" href="#syntax_macromatcher"><code class="docutils literal notranslate"><span class="pre">MacroMatcher</span></code></a>
+  | <a class="reference internal" href="#syntax_macromatchtoken"><code class="docutils literal notranslate"><span class="pre">MacroMatchToken</span></code></a>
+  | <a class="reference internal" href="#syntax_macrometavariablematch"><code class="docutils literal notranslate"><span class="pre">MacroMetavariableMatch</span></code></a>
+  | <a class="reference internal" href="#syntax_macrorepetitionmatch"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatch</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_ikzjsq8heyk6">20.1:1</span>
+A <code class="docutils literal notranslate" id="syntax_macromatchtoken"><span class="pre">MacroMatchToken</span></code> is any <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> in category
+<a class="reference internal" href="lexical-elements.html#syntax_lexicalelement"><code class="docutils literal notranslate"><span class="pre">LexicalElement</span></code></a>, except punctuation <code class="docutils literal notranslate"><span class="pre">$</span></code> and category <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiter</span></code></a>.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_w44hav7mw3ao">20.1:2</span>
+A <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> is a <a class="reference internal" href="glossary.html#term_macro">macro</a> that associates a <a class="reference internal" href="glossary.html#term_name">name</a> with a set
+of syntactic transformation <a class="reference internal" href="glossary.html#term_macro_rule">macro rules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dw1nq4r9ghhd">20.1:3</span>
+A <a class="reference internal" href="glossary.html#term_macro_rule">macro rule</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that consists of a <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> and
+a <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_oq4xn8guos8f">20.1:4</span>
+A <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that describes a syntactic pattern that
+a <a class="reference internal" href="glossary.html#term_macro">macro</a> must match.</p>
+<p><span class="spec-paragraph-id" id="fls_cdaf8viwmdfe">20.1:5</span>
+A <a class="reference internal" href="glossary.html#term_macro_match">macro match</a> is the most basic form of a satisfied <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ljavs0w61z3j">20.1:6</span>
+A <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that describes the replacement
+syntax of a <a class="reference internal" href="glossary.html#term_macro">macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3jspk8obv7sd">20.1:7</span>
+A <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> is invoked using a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">answer_to_life</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="metavariables">
+<span id="fls_8nzypdu9j3ge"></span><h3><span class="section-number">20.1.1. </span>Metavariables<a class="headerlink" href="#metavariables" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macrometavariablematch"><span class="pre">MacroMetavariableMatch</span></code> ::=
+    <strong class="spec-syntax-literal">$</strong> <a class="reference internal" href="#syntax_macrometavariable"><code class="docutils literal notranslate"><span class="pre">MacroMetavariable</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="#syntax_macrofragmentspecifier"><code class="docutils literal notranslate"><span class="pre">MacroFragmentSpecifier</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macrometavariable"><span class="pre">MacroMetavariable</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_keyword"><code class="docutils literal notranslate"><span class="pre">Keyword</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_nonkeywordidentifier"><code class="docutils literal notranslate"><span class="pre">NonKeywordIdentifier</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macrofragmentspecifier"><span class="pre">MacroFragmentSpecifier</span></code> ::=
+    <strong class="spec-syntax-literal">block</strong>
+  | <strong class="spec-syntax-literal">expr</strong>
+  | <strong class="spec-syntax-literal">expr_2021</strong>
+  | <strong class="spec-syntax-literal">ident</strong>
+  | <strong class="spec-syntax-literal">item</strong>
+  | <strong class="spec-syntax-literal">lifetime</strong>
+  | <strong class="spec-syntax-literal">literal</strong>
+  | <strong class="spec-syntax-literal">meta</strong>
+  | <strong class="spec-syntax-literal">pat</strong>
+  | <strong class="spec-syntax-literal">pat_param</strong>
+  | <strong class="spec-syntax-literal">path</strong>
+  | <strong class="spec-syntax-literal">stmt</strong>
+  | <strong class="spec-syntax-literal">tt</strong>
+  | <strong class="spec-syntax-literal">ty</strong>
+  | <strong class="spec-syntax-literal">vis</strong>
+
+<code class="docutils literal notranslate" id="syntax_macrometavariableindication"><span class="pre">MacroMetavariableIndication</span></code> ::=
+    <strong class="spec-syntax-literal">$</strong> <a class="reference internal" href="#syntax_macrometavariable"><code class="docutils literal notranslate"><span class="pre">MacroMetavariable</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_g93r3teei8wo">20.1.1:1</span>
+<a class="reference internal" href="glossary.html#term_declarative_macro">Declarative macros</a> employ <a class="reference internal" href="glossary.html#term_metavariable">metavariables</a> to match a <a class="reference internal" href="glossary.html#term_token">token</a> of
+a particular kind and bind its <a class="reference internal" href="glossary.html#term_value">value</a> to a name for use during
+<a class="reference internal" href="glossary.html#term_macro_transcription">macro transcription</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4zdait30exvn">20.1.1:2</span>
+A <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> is a <a class="reference internal" href="glossary.html#term_macro_match">macro match</a> that describes a <a class="reference internal" href="glossary.html#term_variable">variable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2HguXbL7DjKH">20.1.1:3</span>
+A <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> is visible in the <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> of the
+<a class="reference internal" href="glossary.html#term_macro_rule">macro rule</a> of the <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> it is declared in.</p>
+<p><span class="spec-paragraph-id" id="fls_8zypylq60zba">20.1.1:4</span>
+A <a class="reference internal" href="glossary.html#term_fragment_specifier">fragment specifier</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that indicates the <a class="reference internal" href="glossary.html#term_type">type</a> of
+a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8o9mcV2KrKac">20.1.1:5</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> kinds impose the following
+<em id="term_fragment_specifier_restriction">fragment specifier restrictions</em> on the <a class="reference internal" href="glossary.html#term_token">tokens</a> that follow them:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_PxR9vNHsaFnI">20.1.1:6</span>
+<code class="docutils literal notranslate"><span class="pre">expr</span></code> and <code class="docutils literal notranslate"><span class="pre">expr_2021</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, or <code class="docutils literal notranslate"><span class="pre">;</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ePyoTeJJ11N0">20.1.1:7</span>
+<code class="docutils literal notranslate"><span class="pre">pat</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">in</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_0j7VOV4ewfeY">20.1.1:8</span>
+<code class="docutils literal notranslate"><span class="pre">path</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">;</span></code>, <code class="docutils literal notranslate"><span class="pre">:</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">{</span></code>, <code class="docutils literal notranslate"><span class="pre">as</span></code>, <code class="docutils literal notranslate"><span class="pre">where</span></code>, or a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> with
+the <code class="docutils literal notranslate"><span class="pre">block</span></code> <a class="reference internal" href="glossary.html#term_fragment_specifier">fragment specifier</a> kind.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_80cOMpIMU2gx">20.1.1:9</span>
+<code class="docutils literal notranslate"><span class="pre">pat_param</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">if</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_DFMRwsWI8e5z">20.1.1:10</span>
+<code class="docutils literal notranslate"><span class="pre">stmt</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, or <code class="docutils literal notranslate"><span class="pre">;</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_BoIGgrFdyhwH">20.1.1:11</span>
+<code class="docutils literal notranslate"><span class="pre">ty</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">=&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">,</span></code>, <code class="docutils literal notranslate"><span class="pre">=</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, <code class="docutils literal notranslate"><span class="pre">;</span></code>, <code class="docutils literal notranslate"><span class="pre">:</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">[</span></code>, <code class="docutils literal notranslate"><span class="pre">{</span></code>, <code class="docutils literal notranslate"><span class="pre">as</span></code>, <code class="docutils literal notranslate"><span class="pre">where</span></code>, or a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> with
+the <code class="docutils literal notranslate"><span class="pre">block</span></code> <a class="reference internal" href="glossary.html#term_fragment_specifier">fragment specifier</a> kind.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_NBbygZwUxjFp">20.1.1:12</span>
+<code class="docutils literal notranslate"><span class="pre">vis</span></code> shall only be followed by <code class="docutils literal notranslate"><span class="pre">,</span></code>, an <a class="reference internal" href="glossary.html#term_identifier">identifier</a> except for
+<code class="docutils literal notranslate"><span class="pre">priv</span></code>, any token that may begin a <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>, or a
+<a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> with the <code class="docutils literal notranslate"><span class="pre">ident</span></code>, <code class="docutils literal notranslate"><span class="pre">ty</span></code> or <code class="docutils literal notranslate"><span class="pre">block</span></code>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">fragment specifier</a> kind.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lZ8F1zUJju33">20.1.1:13</span>
+Any other kind may be followed by any token.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_ephlmLsGTMgw">20.1.1:14</span>
+A <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that indicates a
+<a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="cp">$e</span><span class="p">:</span><span class="nc">expr</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cp">$e</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="cp">$e</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="repetition">
+<span id="fls_k01lsksqtq1r"></span><h3><span class="section-number">20.1.2. </span>Repetition<a class="headerlink" href="#repetition" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macrorepetitionmatch"><span class="pre">MacroRepetitionMatch</span></code> ::=
+    <strong class="spec-syntax-literal">$</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a> <strong class="spec-syntax-literal">)</strong> <a class="reference internal" href="#syntax_macrorepetitionseparator"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionSeparator</span></code></a>? <a class="reference internal" href="#syntax_macrorepetitionoperator"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionOperator</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macrorepetitionmatchcontent"><span class="pre">MacroRepetitionMatchContent</span></code> ::=
+    <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_macrorepetitiontranscriber"><span class="pre">MacroRepetitionTranscriber</span></code> ::=
+    <strong class="spec-syntax-literal">$</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">)</strong> <a class="reference internal" href="#syntax_macrorepetitionseparator"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionSeparator</span></code></a>? <a class="reference internal" href="#syntax_macrorepetitionoperator"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionOperator</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_macrorepetitionoperator"><span class="pre">MacroRepetitionOperator</span></code> ::=
+    <strong class="spec-syntax-literal">+</strong>
+  | <strong class="spec-syntax-literal">*</strong>
+  | <strong class="spec-syntax-literal">?</strong></pre>
+<p><span class="spec-paragraph-id" id="fls_4ps4x4513xau">20.1.2:1</span>
+A <code class="docutils literal notranslate" id="syntax_macrorepetitionseparator"><span class="pre">MacroRepetitionSeparator</span></code> is any <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> in category
+<a class="reference internal" href="lexical-elements.html#syntax_lexicalelement"><code class="docutils literal notranslate"><span class="pre">LexicalElement</span></code></a>, except punctuation <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">?</span></code>, and category
+<a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiter</span></code></a>.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_8byjmlgum2f3">20.1.2:2</span>
+A <a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a> allows for a syntactic pattern to be matched
+zero or multiple times during <a class="reference internal" href="glossary.html#term_macro_matching">macro matching</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ltdp3zs60dzr">20.1.2:3</span>
+A <a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> allows for a syntactic pattern to be
+transcribed zero or multiple times during <a class="reference internal" href="glossary.html#term_macro_transcription">macro transcription</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_V1WRuzZUWUGj">20.1.2:4</span>
+A <a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> is either a <a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a> or a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_u86j0zm2jshf">20.1.2:5</span>
+A <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that indicates the number
+of times a <a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a> or a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> can be repeated.</p>
+<p><span class="spec-paragraph-id" id="fls_h5f8x4jdnvbu">20.1.2:6</span>
+The effects of a <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> are as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_hf4gj5pfl437">20.1.2:7</span>
+<code class="docutils literal notranslate"><span class="pre">*</span></code> - Zero or more repetitions.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tm0w0680wf4x">20.1.2:8</span>
+<code class="docutils literal notranslate"><span class="pre">+</span></code> - One or more repetitions.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_10lsg5212ffb">20.1.2:9</span>
+<code class="docutils literal notranslate"><span class="pre">?</span></code> - Zero or one repetition.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_UnfvR9NB1Nze">20.1.2:10</span>
+A <a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> has the following additional restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_Sm4qVsHKYLY2">20.1.2:11</span>
+If the <a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> has a <a class="reference internal" href="glossary.html#term_separator">separator</a>, the <a class="reference internal" href="glossary.html#term_separator">separator</a> shall
+be allowed by the <a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a>‘s
+<a class="reference internal" href="#term_fragment_specifier_restriction">fragment specifier restrictions</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Rdvs8Dz6OUU7">20.1.2:12</span>
+If the <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> is <code class="docutils literal notranslate"><span class="pre">*</span></code> or <code class="docutils literal notranslate"><span class="pre">+</span></code>, then the
+possible beginnings of the <a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a> shall be allowed
+by its <a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a>‘s
+<a class="reference internal" href="#term_fragment_specifier_restriction">fragment specifier restrictions</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_UIlj6Csow81w">20.1.2:13</span>
+If the <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> is <code class="docutils literal notranslate"><span class="pre">?</span></code> or <code class="docutils literal notranslate"><span class="pre">*</span></code>, then the succeeding
+<a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a> must be allowed by the preceding <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>‘s
+<a class="reference internal" href="#term_fragment_specifier_restriction">fragment specifier restrictions</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_yp2XxDv4DzEi">20.1.2:14</span>
+The possible beginnings of the <a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a> must be
+allowed by the preceding <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>‘s
+<a class="reference internal" href="#term_fragment_specifier_restriction">fragment specifier restrictions</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n5TkJKWiDhCD">20.1.2:15</span>
+The succeeding <a class="reference internal" href="#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a> must be allowed by the possible endings of the
+<a class="reference internal" href="#syntax_macrorepetitionmatchcontent"><code class="docutils literal notranslate"><span class="pre">MacroRepetitionMatchContent</span></code></a>‘s <a class="reference internal" href="#term_fragment_specifier_restriction">fragment specifier restrictions</a>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">generate_pairs</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$first</span><span class="p">:</span><span class="nc">ident</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="cp">$(</span><span class="w"> </span><span class="o">&amp;</span><span class="n">second</span><span class="p">:</span><span class="nc">ident</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="p">)</span>
+<span class="w">        </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$first</span><span class="p">,</span><span class="w"> </span><span class="cp">$second</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="p">};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="procedural-macros">
+<span id="fls_wn1i6hzg2ff7"></span><h2><span class="section-number">20.2. </span>Procedural Macros<a class="headerlink" href="#procedural-macros" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ejbddhggstd2">20.2:1</span>
+A <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a> is a <a class="reference internal" href="glossary.html#term_macro">macro</a> that encapsulates syntactic
+transformations in a <a class="reference internal" href="glossary.html#term_function">function</a>. <a class="reference internal" href="glossary.html#term_procedural_macro">Procedural macros</a> consume one or more
+streams of <a class="reference internal" href="glossary.html#term_token">tokens</a> and produce a stream of <a class="reference internal" href="glossary.html#term_token">tokens</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pcce9gmjpxba">20.2:2</span>
+<a class="reference internal" href="glossary.html#term_procedural_macro">Procedural macros</a> shall be defined in a <a class="reference internal" href="glossary.html#term_crate">crate</a> subject to
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_crate_type"><code class="docutils literal notranslate"><span class="pre">crate_type</span></code></a> where the type is <code class="docutils literal notranslate"><span class="pre">proc-macro</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_vtzuplb1p3s">20.2:3</span>
+A <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> is the <a class="reference internal" href="glossary.html#term_function">function</a> that encapsulates the
+syntactic transformations of a <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mewfehvgm16r">20.2:4</span>
+A <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> enters the <a class="reference internal" href="glossary.html#term_name">name</a> of the
+<a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a> into the <a class="reference internal" href="entities-and-resolution.html#term_macro_namespace">macro namespace</a>.</p>
+<section id="function-like-macros">
+<span id="fls_2d6bqnpy6tvs"></span><h3><span class="section-number">20.2.1. </span>Function-like Macros<a class="headerlink" href="#function-like-macros" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_utd3zqczix">20.2.1:1</span>
+A <a class="reference internal" href="glossary.html#term_function_like_macro">function-like macro</a> is a <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a> that consumes a stream of
+<a class="reference internal" href="glossary.html#term_token">tokens</a> and produces a stream of <a class="reference internal" href="glossary.html#term_token">tokens</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ojr30lf6jfx0">20.2.1:2</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> of a <a class="reference internal" href="glossary.html#term_function_like_macro">function-like macro</a> shall be
+subject to the following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ljkjmegynhiy">20.2.1:3</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_proc_macro"><code class="docutils literal notranslate"><span class="pre">proc_macro</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8a8qhzjw5hax">20.2.1:4</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_visibility_modifier">visibility modifier</a> <code class="docutils literal notranslate"><span class="pre">pub</span></code>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ofzql79i9if">20.2.1:5</span>
+It shall lack <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_j1wsyzip2qb3">20.2.1:6</span>
+It shall lack <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_etyo9bmzxby6">20.2.1:7</span>
+It shall have a single <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specification</a>
+indicates <a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mkl9b38m0sf1">20.2.1:8</span>
+It shall have a <a class="reference internal" href="glossary.html#term_return_type">return type</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> indicates
+<a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_lfmb22bfnrye">20.2.1:9</span>
+A <a class="reference internal" href="glossary.html#term_function_like_macro">function-like macro</a> is invoked using a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fbgal48cgj44">20.2.1:10</span>
+The sole parameter of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> captures the
+<a class="reference internal" href="glossary.html#term_token">token</a> stream produced from the <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of the
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>, excluding outer <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiters</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">make_answer_to_life</span><span class="p">(</span><span class="n">_items</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;fn answer_to_life() -&gt; u32 { 42 }&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="derive-macros">
+<span id="fls_o8s3r7m90q59"></span><h3><span class="section-number">20.2.2. </span>Derive Macros<a class="headerlink" href="#derive-macros" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_e5x92q2rq8a0">20.2.2:1</span>
+A <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> is a <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a> that consumes a stream of
+<a class="reference internal" href="glossary.html#term_token">tokens</a> and produces a stream of <a class="reference internal" href="glossary.html#term_token">tokens</a>. <a class="reference internal" href="glossary.html#term_derive_macro">Derive macros</a> are
+used to construct new syntax for <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ldw75sy5uj7p">20.2.2:2</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> of a <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> shall be subject
+to the following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_7gcnui9beky">20.2.2:3</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_proc_macro_derive"><code class="docutils literal notranslate"><span class="pre">proc_macro_derive</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ef30ropg7dhx">20.2.2:4</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_visibility_modifier">visibility modifier</a> <code class="docutils literal notranslate"><span class="pre">pub</span></code>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mo00vqm9xfqc">20.2.2:5</span>
+It shall lack <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gr9wugeqyb3b">20.2.2:6</span>
+It shall lack <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_npnze2cg8ae">20.2.2:7</span>
+It shall have a single <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specification</a>
+indicates <a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w2h4lk6bmht">20.2.2:8</span>
+It shall have a <a class="reference internal" href="glossary.html#term_return_type">return type</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> indicates
+<a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_x96a0xzcyrko">20.2.2:9</span>
+A <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> is invoked using <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_caa16usjxryg">20.2.2:10</span>
+The sole parameter of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> captures
+the <a class="reference internal" href="glossary.html#term_token">token</a> stream produced from the related <a class="reference internal" href="types-and-traits.html#syntax_enumdeclaration"><code class="docutils literal notranslate"><span class="pre">EnumDeclaration</span></code></a>,
+<a class="reference internal" href="types-and-traits.html#syntax_structdeclaration"><code class="docutils literal notranslate"><span class="pre">StructDeclaration</span></code></a>, or <a class="reference internal" href="types-and-traits.html#syntax_uniondeclaration"><code class="docutils literal notranslate"><span class="pre">UnionDeclaration</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_H5ipqqlH3pJh">20.2.2:11</span>
+A <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> adds all its declared <a class="reference internal" href="#term_derive_helper_attribute">derive helper attributes</a> into
+the <a class="reference internal" href="#term_derive_helper_attribute">derive helper attribute</a> scope of the <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> the
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> is attached to.</p>
+<p><span class="spec-paragraph-id" id="fls_mobky5ck1mi">20.2.2:12</span>
+A <em id="term_derive_helper_attribute">derive helper attribute</em> is an <a class="reference internal" href="glossary.html#term_inert_attribute">inert attribute</a> that acts as a
+hint to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro_derive(Answer)]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">derive_answer_to_life</span><span class="p">(</span><span class="n">_items</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;fn answer_to_life() -&gt; u32 { 42 }&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-macros">
+<span id="fls_4vjbkm4ceymk"></span><h3><span class="section-number">20.2.3. </span>Attribute Macros<a class="headerlink" href="#attribute-macros" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_l3epi1dqpi8o">20.2.3:1</span>
+An <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> is a <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a> that consumes two streams
+of <a class="reference internal" href="glossary.html#term_token">tokens</a> to produce a single stream of <a class="reference internal" href="glossary.html#term_token">tokens</a>, and defines a
+new <a class="reference internal" href="glossary.html#term_outer_attribute">outer attribute</a> that can be attached to <a class="reference internal" href="glossary.html#term_item">items</a>.
+<a class="reference internal" href="glossary.html#term_attribute_macro">Attribute macros</a> are used to replace <a class="reference internal" href="glossary.html#term_item">items</a> with other
+<a class="reference internal" href="glossary.html#term_item">items</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3sublbi9bz7k">20.2.3:2</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> of an <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> shall be
+subject to the following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_eb8jxl70wmeh">20.2.3:3</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_proc_macro_attribute"><code class="docutils literal notranslate"><span class="pre">proc_macro_attribute</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7ugtmobgb2t9">20.2.3:4</span>
+It shall be subject to <a class="reference internal" href="glossary.html#term_visibility_modifier">visibility modifier</a> <code class="docutils literal notranslate"><span class="pre">pub</span></code>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_y700oif45wum">20.2.3:5</span>
+It shall lack <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_hhsf1a9p6o55">20.2.3:6</span>
+It shall lack <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4g932k8ueyqp">20.2.3:7</span>
+It shall have two <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specifications</a>
+indicate <a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_f5qy1pnlbpng">20.2.3:8</span>
+It shall have a <a class="reference internal" href="glossary.html#term_return_type">return type</a> whose <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> indicates type
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_rzn48xylk4yj">20.2.3:9</span>
+An <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> is invoked using an <a class="reference internal" href="glossary.html#term_attribute">attribute</a> of the form</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_78400zh02sdq">20.2.3:10</span>
+<code class="docutils literal notranslate"><span class="pre">#[SimplePath]</span></code>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eyesmvuwpjn1">20.2.3:11</span>
+<code class="docutils literal notranslate"><span class="pre">#[SimplePath</span> <span class="pre">DelimitedTokenTree]</span></code></p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_fku5beu3mr4c">20.2.3:12</span>
+The first <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a>
+captures the <a class="reference internal" href="glossary.html#term_token">token</a> stream produced from the <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a>
+of the invoking <a class="reference internal" href="glossary.html#term_attribute">attribute</a>, excluding outer <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiters</span></code></a>. If no
+<a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> is provided, then the <a class="reference internal" href="glossary.html#term_token">token</a> stream is considered
+empty.</p>
+<p><span class="spec-paragraph-id" id="fls_knjsslplv5ri">20.2.3:13</span>
+The second <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a>
+captures the <a class="reference internal" href="glossary.html#term_token">token</a> stream produced from the related <a class="reference internal" href="glossary.html#term_item">item</a>, including
+all <a class="reference internal" href="glossary.html#term_outer_attribute">outer attributes</a> that apply to that <a class="reference internal" href="glossary.html#term_item">item</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro_attribute]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">output_and_return_item</span>
+<span class="w">    </span><span class="p">(</span><span class="n">attr</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;attr: </span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;item: </span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span>
+<span class="w">    </span><span class="n">item</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="macro-invocation">
+<span id="fls_vnvt40pa48n8"></span><h2><span class="section-number">20.3. </span>Macro Invocation<a class="headerlink" href="#macro-invocation" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macroinvocation"><span class="pre">MacroInvocation</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_simplepath"><code class="docutils literal notranslate"><span class="pre">SimplePath</span></code></a> <strong class="spec-syntax-literal">!</strong> <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_delimitedtokentree"><span class="pre">DelimitedTokenTree</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">)</strong>
+  | <strong class="spec-syntax-literal">[</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">]</strong>
+  | <strong class="spec-syntax-literal">{</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">}</strong>
+
+<code class="docutils literal notranslate" id="syntax_tokentree"><span class="pre">TokenTree</span></code> ::=
+    <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a>
+  | <a class="reference internal" href="#syntax_nondelimitedtoken"><code class="docutils literal notranslate"><span class="pre">NonDelimitedToken</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_terminatedmacroinvocation"><span class="pre">TerminatedMacroInvocation</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_simplepath"><code class="docutils literal notranslate"><span class="pre">SimplePath</span></code></a> <strong class="spec-syntax-literal">!</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">)</strong> <strong class="spec-syntax-literal">;</strong>
+  | <a class="reference internal" href="entities-and-resolution.html#syntax_simplepath"><code class="docutils literal notranslate"><span class="pre">SimplePath</span></code></a> <strong class="spec-syntax-literal">!</strong> <strong class="spec-syntax-literal">[</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">]</strong> <strong class="spec-syntax-literal">;</strong>
+  | <a class="reference internal" href="entities-and-resolution.html#syntax_simplepath"><code class="docutils literal notranslate"><span class="pre">SimplePath</span></code></a> <strong class="spec-syntax-literal">!</strong> <strong class="spec-syntax-literal">{</strong> <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">}</strong></pre>
+<p><span class="spec-paragraph-id" id="fls_wushtmw9qt3y">20.3:1</span>
+A <code class="docutils literal notranslate" id="syntax_nondelimitedtoken"><span class="pre">NonDelimitedToken</span></code> is any <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> in category
+<a class="reference internal" href="lexical-elements.html#syntax_lexicalelement"><code class="docutils literal notranslate"><span class="pre">LexicalElement</span></code></a>, except category <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiter</span></code></a>.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_snpxxcqhtjfv">20.3:2</span>
+A <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> is a call of a <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> or
+<a class="reference internal" href="glossary.html#term_function_like_macro">function-like macro</a> that is expanded statically and replaced with the
+result of the <a class="reference internal" href="glossary.html#term_macro">macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6v06zvi1ctub">20.3:3</span>
+A <a class="reference internal" href="glossary.html#term_terminated_macro_invocation">terminated macro invocation</a> is a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> that may be used
+as a <a class="reference internal" href="glossary.html#term_statement">statement</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_338rmbazl67o">20.3:4</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_xa7lp0zg1ol2</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">answer_to_life</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">answer_to_life</span><span class="o">!</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_lrr7gg8tian">20.3:5</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_8nzypdu9j3ge</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">square</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">square</span><span class="o">!</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_8qxwwf4trnl">20.3:6</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_k01lsksqtq1r</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">generate_pairs</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">generate_pairs</span><span class="o">!</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_8z1sgtvchhhw">20.3:7</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_2d6bqnpy6tvs</em></span> for the declaration of
+<code class="docutils literal notranslate"><span class="pre">make_answer_to_life</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">make_answer_to_life</span><span class="o">!</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_d9w3dn2yn7mo">20.3:8</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_o8s3r7m90q59</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">Answer</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[derive(Answer)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">derive_macro_invoker</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_1tftbd91yfpd">20.3:9</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_4vjbkm4ceymk</em></span> for the declaration of
+<code class="docutils literal notranslate"><span class="pre">output_and_return_item</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[output_and_return_item]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">attribute_macro_invoker</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="macro-expansion">
+<span id="fls_wjldgtio5o75"></span><h2><span class="section-number">20.4. </span>Macro Expansion<a class="headerlink" href="#macro-expansion" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_xscdaxvs4wx4">20.4:1</span>
+<a class="reference internal" href="glossary.html#term_macro_expansion">Macro expansion</a> is the process of statically executing a
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> and replacing it with the produced output of the
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_nz5stwcc41gk">20.4:2</span>
+<a class="reference internal" href="glossary.html#term_macro_expansion">Macro expansion</a> of <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macros</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_40xq8Ri1OMZZ">20.4:3</span>
+The <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> has all
+<a class="reference internal" href="glossary.html#term_outer_block_doc">outer block docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> contained within replaced
+by their equivalent <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> representation.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_76prdp6k1fga">20.4:4</span>
+The <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> is matched against the
+<a class="reference internal" href="glossary.html#term_macro_rule">macro rules</a> of the resolved <a class="reference internal" href="glossary.html#term_macro">macro</a> by considering individual
+<a class="reference internal" href="glossary.html#term_macro_matcher">macro matchers</a>. It is a static error if no <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is
+satisfied.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_76u274l4kew8">20.4:5</span>
+The <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> of the satisfied <a class="reference internal" href="glossary.html#term_macro_rule">macro rule</a> produces its
+result, with all <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indications</a> resolved. It is a static
+error if the <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> fails to produce its result.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lakpily1zwfl">20.4:6</span>
+The <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> is replaced with the result of the
+<a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a>. It is a static error if the result cannot be parsed
+according to the expected expansion syntax of the context where the
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> resides. The expected expansion syntax is as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_y20pmwo3v3uu">20.4:7</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of an <a class="reference internal" href="glossary.html#term_associated_item">associated item</a>,
+an <a class="reference internal" href="glossary.html#term_item">item</a> within an <a class="reference internal" href="glossary.html#term_external_block">external block</a>, or another
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>, the output is required to constitute zero or more
+<a class="reference internal" href="glossary.html#term_item">items</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_nsh2vwx8oiw">20.4:8</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of an
+<a class="reference internal" href="glossary.html#term_expression_without_block">expression-without-block</a>, the output is required to constitute an
+<a class="reference internal" href="glossary.html#term_expression">expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tu6kmwm4v9nj">20.4:9</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a
+<a class="reference internal" href="glossary.html#term_pattern_without_range">pattern-without-range</a>, the output is required to constitute a
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3zn4dz19nyvq">20.4:10</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a <a class="reference internal" href="glossary.html#term_statement">statement</a>, the
+output is required to constitute zero or more <a class="reference internal" href="glossary.html#term_statement">statements</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_t89sw6az99z7">20.4:11</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a
+<a class="reference internal" href="glossary.html#term_type_specification">type specification</a> without <a class="reference internal" href="glossary.html#term_bound">bounds</a>, the output is required to
+constitute a <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+</ol>
+</li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_417hvhvj2554">20.4:12</span>
+<a class="reference internal" href="glossary.html#term_macro_expansion">Macro expansion</a> of <a class="reference internal" href="glossary.html#term_function_like_macro">function-like macros</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_nNrs4EC3ff5T">20.4:13</span>
+The <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> has all <a class="reference internal" href="glossary.html#term_outer_block_doc">outer block
+docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> contained within replaced by their
+equivalent <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> representation.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_srtqkdceaz5t">20.4:14</span>
+The <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> is transformed into a
+corresponding <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mi92etjtpamu">20.4:15</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> is called with the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> as its sole argument. It is a static error
+if the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> call fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n8beqlt54rhy">20.4:16</span>
+The <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> is replaced with the returned
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a>
+call. It is a static error if the result can not be parsed according
+to the expected expansion syntax of the context where the <a class="reference internal" href="glossary.html#term_macro_invocation">macro
+invocation</a> resides. The expected expansion syntax is as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_vd3dzvr6re19">20.4:17</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of an <a class="reference internal" href="glossary.html#term_associated_item">associated item</a>,
+an <a class="reference internal" href="glossary.html#term_item">item</a> within an <a class="reference internal" href="glossary.html#term_external_block">external block</a>, or another
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>, the output is required to constitute zero or more
+<a class="reference internal" href="glossary.html#term_item">items</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_l8j2jiuuao4f">20.4:18</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of an
+<a class="reference internal" href="glossary.html#term_expression_without_block">expression-without-block</a>, the output is required to constitute an
+<a class="reference internal" href="glossary.html#term_expression">expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xvemyqj5gc6g">20.4:19</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a
+<a class="reference internal" href="glossary.html#term_pattern_without_range">pattern-without-range</a>, the output is required to constitute zero or
+more <a class="reference internal" href="glossary.html#term_pattern">patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_stseor6tln22">20.4:20</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a <a class="reference internal" href="glossary.html#term_statement">statement</a>, the
+output is required to constitute zero or more <a class="reference internal" href="glossary.html#term_statement">statements</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_u11o90szy68s">20.4:21</span>
+If the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> appears as part of a
+<a class="reference internal" href="glossary.html#term_type_specification">type specification</a> without <a class="reference internal" href="glossary.html#term_bound">bounds</a>, the output is required to
+constitute a <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+</ol>
+</li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_qi5kyvj1e8th">20.4:22</span>
+<a class="reference internal" href="glossary.html#term_macro_expansion">Macro expansion</a> of <a class="reference internal" href="glossary.html#term_derive_macro">derive macros</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_vqIZaEl4EKu5">20.4:23</span>
+The <a class="reference internal" href="glossary.html#term_item">item</a> subject to the <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> has all
+<a class="reference internal" href="glossary.html#term_outer_block_doc">outer block docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> contained within replaced
+by their equivalent <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> representation.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_grtiwf7q8jah">20.4:24</span>
+The <a class="reference internal" href="glossary.html#term_item">item</a> subject to the <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> is transformed into a
+corresponding <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> without the
+invoking <a class="reference internal" href="attributes.html#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a> <a class="reference internal" href="glossary.html#term_attribute">attribute</a> as well as any preceding <a class="reference internal" href="attributes.html#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a>
+<a class="reference internal" href="glossary.html#term_attribute">attributes</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tbe2qq7whq10">20.4:25</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> is called with the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> as its sole argument. It is a static error
+if the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> call fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_my93neopj9x0">20.4:26</span>
+The returned <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> of the
+<a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> call is appended to the enclosing
+<a class="reference internal" href="glossary.html#term_block_expression">block expression</a> or <a class="reference internal" href="glossary.html#term_module">module</a> where the related <a class="reference internal" href="types-and-traits.html#syntax_enumdeclaration"><code class="docutils literal notranslate"><span class="pre">EnumDeclaration</span></code></a>,
+<a class="reference internal" href="types-and-traits.html#syntax_structdeclaration"><code class="docutils literal notranslate"><span class="pre">StructDeclaration</span></code></a>, or <a class="reference internal" href="types-and-traits.html#syntax_uniondeclaration"><code class="docutils literal notranslate"><span class="pre">UnionDeclaration</span></code></a> resides. It is a static
+error if the output <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> does not constitute zero
+or more <a class="reference internal" href="glossary.html#term_item">items</a>.</p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_zat7kwi5vc5c">20.4:27</span>
+<a class="reference internal" href="glossary.html#term_macro_expansion">Macro expansion</a> of <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macros</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_tjn92evtlflq">20.4:28</span>
+The <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of the invoking <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> is
+transformed into a corresponding <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> without
+the outer <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiters</span></code></a>. If no <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> is provided,
+and empty <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> is used. This
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> constitutes the first <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a>
+of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_AJmPrhHfZo6J">20.4:29</span>
+The <a class="reference internal" href="glossary.html#term_item">item</a> subject to the <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> has all
+<a class="reference internal" href="glossary.html#term_outer_block_doc">outer block docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> contained within replaced
+by their equivalent <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> representation.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mpgh22bi8caz">20.4:30</span>
+The <a class="reference internal" href="glossary.html#term_item">item</a> subject to the <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> is transformed into a
+corresponding <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> without the invoking
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a>. This <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> constitutes the second
+<a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> of the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ul7nhfyvyzh">20.4:31</span>
+The <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> is called with the two
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStreams</span></code></a> as the two arguments. It is a static error
+if the <a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> call fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_z6xfhf71w10a">20.4:32</span>
+The <a class="reference internal" href="glossary.html#term_item">item</a> subject to the <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a> is replaced with the
+returned <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> of the
+<a class="reference internal" href="glossary.html#term_macro_implementation_function">macro implementation function</a> call. It is a static error if the output
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=proc_macro%3A%3ATokenStream"><code class="docutils literal notranslate"><span class="pre">proc_macro::TokenStream</span></code></a> does not constitute zero or more <a class="reference internal" href="glossary.html#term_item">items</a>.</p></li>
+</ol>
+<section id="macro-matching">
+<span id="fls_4apk1exafxii"></span><h3><span class="section-number">20.4.1. </span>Macro Matching<a class="headerlink" href="#macro-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ZmQZ8HQWv77L">20.4.1:1</span>
+<a class="reference internal" href="glossary.html#term_macro_matching">Macro matching</a> is the process of performing <a class="reference internal" href="glossary.html#term_rule_matching">rule matching</a> and
+<a class="reference internal" href="glossary.html#term_token_matching">token matching</a>.</p>
+<section id="rule-matching">
+<span id="fls_n3ktmjqf87qb"></span><h4><span class="section-number">20.4.1.1. </span>Rule Matching<a class="headerlink" href="#rule-matching" title="Link to this heading">¶</a></h4>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_77ucvwu6idms">20.4.1.1:1</span>
+<a class="reference internal" href="glossary.html#term_rule_matching">Rule matching</a> is the process of consuming a <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> in an attempt
+to fully satisfy the <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> of a <a class="reference internal" href="glossary.html#term_macro_rule">macro rule</a> that belongs to a
+resolved <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6h1jqhxzku5v">20.4.1.1:2</span>
+<a class="reference internal" href="glossary.html#term_rule_matching">Rule matching</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_r6i1ykrhb49j">20.4.1.1:3</span>
+The <a class="reference internal" href="glossary.html#term_macro_matcher">macro matchers</a> of all <a class="reference internal" href="glossary.html#term_macro_rule">macro rules</a> that belong to a resolved
+<a class="reference internal" href="glossary.html#term_macro">macro</a> are tried against the <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>,
+in declarative order. In the event of a static error, no further attempts at
+selecting a subsequent <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> are made.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3qzes4lr8yuv">20.4.1.1:4</span>
+The <a class="reference internal" href="glossary.html#term_macro_match">macro match</a> of a candidate <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is tried against
+the <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> by matching individual
+<a class="reference internal" href="glossary.html#term_token">tokens</a>, in left-to-right order. Matching does not employ lookahead.
+It is a static error if matching a candidate <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is ambiguous.
+Matching does not employ backtracking. It is a static error if matching a
+candidate <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> fails while parsing into a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> and
+having consumed at least one <a class="reference internal" href="glossary.html#term_token">token</a> while parsing the <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_r878ysvsy4jb">20.4.1.1:5</span>
+It is a static error if no <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is selected.</p></li>
+</ol>
+</section>
+<section id="token-matching">
+<span id="fls_qpx6lgapce57"></span><h4><span class="section-number">20.4.1.2. </span>Token Matching<a class="headerlink" href="#token-matching" title="Link to this heading">¶</a></h4>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_k6a24sbon5v9">20.4.1.2:1</span>
+<a class="reference internal" href="glossary.html#term_token_matching">Token matching</a> is the process of consuming a <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> in an attempt
+to fully satisfy a <a class="reference internal" href="glossary.html#term_macro_match">macro match</a> of a selected <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> that
+belongs to a resolved <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6uuxv91xgmfz">20.4.1.2:2</span>
+<a class="reference internal" href="glossary.html#term_token_matching">Token matching</a> proceeds as follows:</p>
+<p><span class="spec-paragraph-id" id="fls_g1rml9tavh8v">20.4.1.2:3</span>
+The outer <a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiters</span></code></a> of a <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> match any outer
+<a class="reference internal" href="lexical-elements.html#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiters</span></code></a> in the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h7x3tc208zpk">20.4.1.2:4</span>
+A <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> in a <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is matched against a sequence of
+<a class="reference internal" href="glossary.html#term_token">tokens</a> in the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> based on its <a class="reference internal" href="glossary.html#term_fragment_specifier">fragment specifier</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_p9eqa17d3dx">20.4.1.2:5</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>block</strong> requires a <a class="reference internal" href="glossary.html#term_block_expression">block expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_k00bck2k8tde">20.4.1.2:6</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>expr</strong> and <strong>expr_2021</strong> requires an <a class="reference internal" href="glossary.html#term_expression">expression</a> that is not an <a class="reference internal" href="glossary.html#term_underscore_expression">underscore expression</a> or <a class="reference internal" href="glossary.html#term_const_block_expression">const block expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pf0qrz5nadl2">20.4.1.2:7</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>ident</strong> requires a <a class="reference internal" href="glossary.html#term_pure_identifier">pure identifier</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_9fioah171ojx">20.4.1.2:8</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>item</strong> requires an <a class="reference internal" href="glossary.html#term_item">item</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_j2o0f52zyvyb">20.4.1.2:9</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>lifetime</strong> requires character sequence 0x27
+0x5F (apostrophe, low line), or character 0x27 (apostrophe) followed by an
+<a class="reference internal" href="glossary.html#term_identifier">identifier</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w5dzv3z4zd5a">20.4.1.2:10</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>literal</strong> requires optional character 0x2D
+(hyphen-minus), followed by a <a class="reference internal" href="glossary.html#term_literal_expression">literal expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wtol98rrqka5">20.4.1.2:11</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>meta</strong> requires an <a class="reference internal" href="glossary.html#term_attribute_content">attribute content</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_iorqt9q4ie9j">20.4.1.2:12</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>pat</strong> requires a <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2zjed913qpvi">20.4.1.2:13</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>pat_param</strong> requires a
+<a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3zdts0fsa36u">20.4.1.2:14</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>path</strong> requires a <a class="reference internal" href="glossary.html#term_type_path">type path</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mb3yr1j7npv5">20.4.1.2:15</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>stmt</strong> requires a <a class="reference internal" href="glossary.html#term_statement">statement</a> without trailing
+character 0x3B (semicolon), excluding <a class="reference internal" href="glossary.html#term_item">items</a> that require character
+0x3B (semicolon).</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xbuixjt9pum6">20.4.1.2:16</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>tt</strong> requires a <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6annifhk6cd8">20.4.1.2:17</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>ty</strong> requires a <a class="reference internal" href="glossary.html#term_type_specification">type specification</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2zu22efr6ncy">20.4.1.2:18</span>
+<a class="reference internal" href="glossary.html#term_fragment_specifier">Fragment specifier</a> <strong>vis</strong> requires a possibly empty visibility modifier.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_dqroklsaayzb">20.4.1.2:19</span>
+Once a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> is matched, the matching sequence of <a class="reference internal" href="glossary.html#term_token">tokens</a> is
+bound to that <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ghqjk6xj85ng">20.4.1.2:20</span>
+Repetition in a <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is matched based on how many times the
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a> appears consecutively optionally separated by a <a class="reference internal" href="glossary.html#term_separator">separator</a> in
+the <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>, as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_lzwl4en5wcw0">20.4.1.2:21</span>
+If the repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a> includes a <a class="reference internal" href="glossary.html#term_separator">separator</a>, then the
+<a class="reference internal" href="glossary.html#term_separator">separator</a> must be able to follow the repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_cz44evkjzv29">20.4.1.2:22</span>
+If the repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a> can appear multiple times, then the repeated
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a> must be able to follow itself.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_o2exsai4m0gy">20.4.1.2:23</span>
+If the repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a> can appear zero times, then the preceding
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a> must be able to follow the succeeding <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_1ch299zp8h7">20.4.1.2:24</span>
+The repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a> must be able to follow the preceding <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_55ptfjlvoo8o">20.4.1.2:25</span>
+The succeeding <a class="reference internal" href="glossary.html#term_pattern">pattern</a> must be able to follow the repeated <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_finzfb5ljkf8">20.4.1.2:26</span>
+A <em id="term_repetition_index">repetition index</em> is a monotonically increasing number that is
+initialized to zero, and incremented by one.</p>
+<p><span class="spec-paragraph-id" id="fls_s1ccs6jocsgr">20.4.1.2:27</span>
+Once a <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> is matched, the matching sequence of <a class="reference internal" href="glossary.html#term_token">tokens</a> is
+treated as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_wpi2i6hoj3li">20.4.1.2:28</span>
+The matching sequence of <a class="reference internal" href="glossary.html#term_token">tokens</a> is stored in an ordered collection at
+the current <a class="reference internal" href="#term_repetition_index">repetition index</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_uuey421a8n96">20.4.1.2:29</span>
+The current <a class="reference internal" href="#term_repetition_index">repetition index</a> is incremented by one.</p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_b5u47tuu136r">20.4.1.2:30</span>
+Each matched <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> in a <a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a> is bound
+separately, where the matches are stored in an ordered collection.</p>
+<p><span class="spec-paragraph-id" id="fls_rb1tu4e7dpma">20.4.1.2:31</span>
+Any other <a class="reference internal" href="glossary.html#term_token">token</a> in a <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a> is matched literally against the
+<a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_c76sdvos5xeo">20.4.1.2:32</span>
+It is a static error if the <a class="reference internal" href="#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> contains
+leftover <a class="reference internal" href="glossary.html#term_token">tokens</a> after <a class="reference internal" href="glossary.html#term_macro_matching">macro matching</a>.</p>
+</section>
+</section>
+<section id="macro-transcription">
+<span id="fls_ym00b6ewf4n3"></span><h3><span class="section-number">20.4.2. </span>Macro Transcription<a class="headerlink" href="#macro-transcription" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_y21i8062mft0">20.4.2:1</span>
+<a class="reference internal" href="glossary.html#term_macro_transcription">Macro transcription</a> is the process of producing the expansion of a
+<a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_n2dx4ug5nd5w">20.4.2:2</span>
+<a class="reference internal" href="glossary.html#term_macro_transcription">Macro transcription</a> proceeds as follows:</p>
+<p><span class="spec-paragraph-id" id="fls_iw7322ycvhkc">20.4.2:3</span>
+Every <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> found in the <a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of the
+<a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> that belongs to a matched <a class="reference internal" href="glossary.html#term_macro_rule">macro rule</a> is replaced by
+the matched sequence of <a class="reference internal" href="glossary.html#term_token">tokens</a> of the <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jgitbqmyixem">20.4.2:4</span>
+Unresolved <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indications</a> are kept as <a class="reference internal" href="glossary.html#term_token">tokens</a> in the
+output verbatim.</p>
+<p><span class="spec-paragraph-id" id="fls_ihcwl6taptas">20.4.2:5</span>
+Every <a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> found in the
+<a class="reference internal" href="#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of the <a class="reference internal" href="glossary.html#term_macro_transcriber">macro transcriber</a> shall be transcribed by
+repeatedly transcribing the <a class="reference internal" href="glossary.html#term_token">tokens</a> inside of it.</p>
+<p><span class="spec-paragraph-id" id="fls_g3dtpw4rtgdr">20.4.2:6</span>
+The number of transcription repetitions for a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> shall depend on its
+<a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a>, as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_pvp6dxykuv66">20.4.2:7</span>
+A <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> denoted by <code class="docutils literal notranslate"><span class="pre">+</span></code> shall require one or more
+repetitions.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bd673n5awwbz">20.4.2:8</span>
+A <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> denoted by <code class="docutils literal notranslate"><span class="pre">*</span></code> shall require zero or more
+repetitions.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_zbtwrtcy7pzf">20.4.2:9</span>
+A <a class="reference internal" href="glossary.html#term_repetition_operator">repetition operator</a> denoted by <code class="docutils literal notranslate"><span class="pre">?</span></code> shall require zero or one
+repetition.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_eacyb6jap9ru">20.4.2:10</span>
+A <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> that is matched inside of a
+<a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> shall not be used outside of a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_y4podc7ee8lf">20.4.2:11</span>
+A <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> shall be used in a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> of the same nesting depth as its
+corresponding <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> appears in the <a class="reference internal" href="glossary.html#term_macro_matcher">macro matcher</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wbys0m4a1omg">20.4.2:12</span>
+A <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> within a <a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a>
+shall repeat the same number of times in its matching <a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> if
+the <a class="reference internal" href="glossary.html#term_macro_repetition">macro repetition</a> occurs at the same nesting depth.</p>
+<p><span class="spec-paragraph-id" id="fls_g445ovedgo4q">20.4.2:13</span>
+Multiple transcribed <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indications</a> in the same <a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro
+repetition in transcription</a> shall repeat the same number of times.</p>
+<p><span class="spec-paragraph-id" id="fls_ctzthi6keit2">20.4.2:14</span>
+When transcribing a <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> in a
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a>, the <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> is
+replaced with the matched sequence of <a class="reference internal" href="glossary.html#term_token">tokens</a> of the corresponding
+iteration of the repetition <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> taken from the ordered collection.</p>
+<p><span class="spec-paragraph-id" id="fls_9n46ugmcqmix">20.4.2:15</span>
+A <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indication</a> in a <a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> shall
+be transcribed to the matched <a class="reference internal" href="glossary.html#term_token">tokens</a> in order, as follows:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="cp">$($expr</span><span class="p">:</span><span class="nc">expr</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$expr</span><span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="p">)</span><span class="o">*</span>
+<span class="w">        </span><span class="c1">// $expr is an error</span>
+<span class="w">    </span><span class="p">};</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$expr</span><span class="p">:</span><span class="nc">expr</span><span class="w"> </span><span class="p">)</span><span class="o">*</span><span class="w">  </span><span class="p">)</span><span class="o">*</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cp">$($($expr</span><span class="p">)</span><span class="o">*</span><span class="p">)</span><span class="o">*</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">foo</span><span class="o">!</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="mi">0</span>
+<span class="w">  </span><span class="mi">1</span>
+<span class="w">  </span><span class="mi">2</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_JinrPA0pMZCr">20.4.2:16</span>
+yields <code class="docutils literal notranslate"><span class="pre">0;1;2;</span></code></p>
+<p><span class="spec-paragraph-id" id="fls_95rn4cvgznmd">20.4.2:17</span>
+Given a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> with <code class="docutils literal notranslate"><span class="pre">N</span></code> <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> arguments, a
+<a class="reference internal" href="glossary.html#term_macro">macro</a> of the form</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="cp">$(</span><span class="n">param</span><span class="p">:</span><span class="w"> </span><span class="nc">expr</span><span class="p">)</span><span class="o">*</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cp">$(</span><span class="w"> </span><span class="cp">$param</span><span class="w"> </span><span class="p">)</span><span class="o">*</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_yg4c9x7049y4">20.4.2:18</span>
+is equivalent to a <a class="reference internal" href="glossary.html#term_macro">macro</a> of the form</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="fm">macro_rules!</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">(</span><span class="w"> </span><span class="cp">$param_1</span><span class="p">:</span><span class="w"> </span><span class="nc">expr</span><span class="w"> </span><span class="cp">$param_2</span><span class="p">:</span><span class="w"> </span><span class="nc">expr</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="cp">$param_N</span><span class="p">:</span><span class="w"> </span><span class="nc">expr</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cp">$param_1</span><span class="w"> </span><span class="cp">$param_2</span><span class="w"> </span><span class="o">..</span><span class="p">.</span><span class="w"> </span><span class="cp">$param_N</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_o9rwz9z0a2h4">20.4.2:19</span>
+where the <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> of the <a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a> are
+repeated <code class="docutils literal notranslate"><span class="pre">N</span></code> times, and the <a class="reference internal" href="glossary.html#term_metavariable_indication">metavariable indications</a> of the
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_transcription">macro repetition in transcription</a> are repeated <code class="docutils literal notranslate"><span class="pre">N</span></code> times. Invoking such
+a <a class="reference internal" href="glossary.html#term_macro">macro</a> relates the first <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> argument of the
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> with the first <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> of the
+<a class="reference internal" href="glossary.html#term_macro_repetition_in_matching">macro repetition in matching</a>, the second <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> argument with
+the second <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>, and so on.</p>
+</section>
+</section>
+<section id="hygiene">
+<span id="fls_xlfo7di0gsqz"></span><h2><span class="section-number">20.5. </span>Hygiene<a class="headerlink" href="#hygiene" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_7ezc7ncs678f">20.5:1</span>
+<a class="reference internal" href="glossary.html#term_hygiene">Hygiene</a> is a property of <a class="reference internal" href="glossary.html#term_macro">macros</a> and <a class="reference internal" href="glossary.html#term_identifier">identifiers</a> that appear
+within them, which aims to eliminate the syntactic interference between a
+<a class="reference internal" href="glossary.html#term_macro">macro</a> and its environment.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3axjf28xb1nt">20.5:2</span>
+<a class="reference internal" href="glossary.html#term_hygiene">Hygiene</a> is categorized as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_dz2mvodl818d">20.5:3</span>
+<a class="reference internal" href="glossary.html#term_definition_site_hygiene">Definition site hygiene</a>, which resolves to a <a class="reference internal" href="#syntax_macrorulesdeclaration"><code class="docutils literal notranslate"><span class="pre">MacroRulesDeclaration</span></code></a>
+site. <a class="reference internal" href="glossary.html#term_identifier">Identifiers</a> with <a class="reference internal" href="glossary.html#term_definition_site_hygiene">definition site hygiene</a> cannot reference
+the environment of the <a class="reference internal" href="#syntax_macrorulesdeclaration"><code class="docutils literal notranslate"><span class="pre">MacroRulesDeclaration</span></code></a>, cannot be referenced by the
+environment of a <a class="reference internal" href="#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a>, and are considered <a class="reference internal" href="glossary.html#term_hygienic">hygienic</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_puqhytfzfsg6">20.5:4</span>
+<a class="reference internal" href="glossary.html#term_call_site_hygiene">Call site hygiene</a>, which resolves to a <a class="reference internal" href="#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a> site.
+<a class="reference internal" href="glossary.html#term_identifier">Identifiers</a> with <a class="reference internal" href="glossary.html#term_call_site_hygiene">call site hygiene</a> can reference the environment
+of the <a class="reference internal" href="#syntax_macrorulesdeclaration"><code class="docutils literal notranslate"><span class="pre">MacroRulesDeclaration</span></code></a>, can reference the environment of the
+<a class="reference internal" href="#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a>, and are considered <a class="reference internal" href="glossary.html#term_unhygienic">unhygienic</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_uyvnq88y9gk3">20.5:5</span>
+<a class="reference internal" href="glossary.html#term_mixed_site_hygiene">Mixed site hygiene</a>, which resolves to a <a class="reference internal" href="#syntax_macrorulesdeclaration"><code class="docutils literal notranslate"><span class="pre">MacroRulesDeclaration</span></code></a>
+site for <a class="reference internal" href="glossary.html#term_label">labels</a>, <a class="reference internal" href="glossary.html#term_variable">variables</a>, and the <code class="docutils literal notranslate"><span class="pre">$crate</span></code>
+<a class="reference internal" href="glossary.html#term_metavariable">metavariable</a>, and to the <a class="reference internal" href="#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a> site otherwise, and is
+considered <em id="term_partially_hygienic">partially hygienic</em>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_yxqcr19dig18">20.5:6</span>
+Every <a class="reference internal" href="glossary.html#term_macro">macro</a> has associated <a class="reference internal" href="glossary.html#term_hygiene">hygiene</a> that depends on its kind:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_kx25olky1jov">20.5:7</span>
+<a class="reference internal" href="glossary.html#term_declarative_macro">Declarative macros</a> have <a class="reference internal" href="glossary.html#term_mixed_site_hygiene">mixed site hygiene</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_v46v0t2vh6x4">20.5:8</span>
+<a class="reference internal" href="glossary.html#term_procedural_macro">Procedural macros</a> have <a class="reference internal" href="glossary.html#term_call_site_hygiene">call site hygiene</a> and
+<a class="reference internal" href="glossary.html#term_mixed_site_hygiene">mixed site hygiene</a> depending on the implementation of the
+<a class="reference internal" href="glossary.html#term_procedural_macro">procedural macro</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_7eqqk2cj0clr">20.5:9</span>
+The <a class="reference internal" href="glossary.html#term_metavariable">metavariable</a> <code class="docutils literal notranslate"><span class="pre">$crate</span></code> in a <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a>‘s expansion refers
+to the crate the <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> was declared in.</p>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

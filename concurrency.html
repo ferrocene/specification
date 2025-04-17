@@ -1,0 +1,231 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>17. Concurrency &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="18. Program Structure and Compilation" href="program-structure-and-compilation.html" />
+    <link rel="prev" title="16. Exceptions and Errors" href="exceptions-and-errors.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="concurrency">
+<span id="fls_3v733mnewssy"></span><h1><span class="section-number">17. </span>Concurrency<a class="headerlink" href="#concurrency" title="Link to this heading">¶</a></h1>
+<p><span class="spec-paragraph-id" id="fls_opt7v0mopxc8">17:1</span>
+The Rust programming language provides features for concurrent programming
+without <a class="reference internal" href="glossary.html#term_data_race">data races</a>, whose rules are presented in this chapter.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_tx4b8r6i93n4">17:2</span>
+A <a class="reference internal" href="glossary.html#term_data_race">data race</a> is a scenario where two or more threads access a shared memory
+location concurrently without any synchronization, where one of the accesses is
+a modification.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_isypweqewe78">17:3</span>
+It is undefined behavior if two or more threads engage in a <a class="reference internal" href="glossary.html#term_data_race">data race</a>.</p>
+<section id="send-and-sync">
+<span id="fls_eiw4by8z75di"></span><h2><span class="section-number">17.1. </span>Send and Sync<a class="headerlink" href="#send-and-sync" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_n5l17mlglq11">17.1:1</span>
+The Rust programming language provides the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASend"><code class="docutils literal notranslate"><span class="pre">core::marker::Send</span></code></a> and
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASync"><code class="docutils literal notranslate"><span class="pre">core::marker::Sync</span></code></a> <a class="reference internal" href="glossary.html#term_trait">traits</a> for preventing data races at the
+<a class="reference internal" href="glossary.html#term_type">type</a> level.</p>
+<p><span class="spec-paragraph-id" id="fls_2jujsujpjp3w">17.1:2</span>
+A <a class="reference internal" href="glossary.html#term_send_type">send type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASend"><code class="docutils literal notranslate"><span class="pre">core::marker::Send</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cax6fe4em23k">17.1:3</span>
+An <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> automatically implements the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASend"><code class="docutils literal notranslate"><span class="pre">core::marker::Send</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a> if the <a class="reference internal" href="glossary.html#term_type">types</a> of all its
+<a class="reference internal" href="glossary.html#term_field">fields</a> are <a class="reference internal" href="glossary.html#term_send_type">send types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4ypqdehn7b0v">17.1:4</span>
+A <a class="reference internal" href="glossary.html#term_send_type">send type</a> shall have <a class="reference internal" href="glossary.html#term_value">values</a> that are safe to transfer across
+thread boundaries.</p>
+<p><span class="spec-paragraph-id" id="fls_dekskhk4g895">17.1:5</span>
+A <a class="reference internal" href="glossary.html#term_sync_type">sync type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASync"><code class="docutils literal notranslate"><span class="pre">core::marker::Sync</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_y0iqr5ibnbfe">17.1:6</span>
+An <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> automatically implements the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASync"><code class="docutils literal notranslate"><span class="pre">core::marker::Sync</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a> if the <a class="reference internal" href="glossary.html#term_type">types</a> of all its
+<a class="reference internal" href="glossary.html#term_field">fields</a> are <a class="reference internal" href="glossary.html#term_sync_type">sync types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_zgemofbs5q2x">17.1:7</span>
+A <a class="reference internal" href="glossary.html#term_sync_type">sync type</a> shall have <a class="reference internal" href="glossary.html#term_value">values</a> that are allowed to be shared across
+multiple threads at any given time without incurring data races.</p>
+</section>
+<section id="atomics">
+<span id="fls_vyc9vcuamlph"></span><h2><span class="section-number">17.2. </span>Atomics<a class="headerlink" href="#atomics" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3pjla9s93mhd">17.2:1</span>
+An <a class="reference internal" href="glossary.html#term_atomic_type">atomic type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> defined in <a class="reference internal" href="glossary.html#term_module">module</a>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic</span></code></a>. <a class="reference internal" href="glossary.html#term_atomic_type">Atomic types</a> provide primitive shared-memory
+communication between threads.</p>
+<p><span class="spec-paragraph-id" id="fls_wn4ynaio8u47">17.2:2</span>
+<a class="reference internal" href="glossary.html#term_atomic_type">Atomic types</a> are related to <a class="reference internal" href="glossary.html#term_type">types</a> as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_q7mn6pdd8bix">17.2:3</span></p></td>
+<td><p><strong>Type</strong></p></td>
+<td><p><strong>Atomic Type</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_jx0784jzxy00">17.2:4</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_bool"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicBool"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicBool</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_vzuwnpx7mt08">17.2:5</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicI8"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicI8</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_cpcd0vexfbhj">17.2:6</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicI16"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicI16</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_jt7rfq9atbiv">17.2:7</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicI32"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicI32</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2hqmfwswc6k">17.2:8</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicI64"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicI64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5ab2sw3gwmt3">17.2:9</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_isize"><code class="docutils literal notranslate"><span class="pre">isize</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicIsize"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicIsize</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_w2mw833g28eb">17.2:10</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*mut</span> <span class="pre">T</span></code></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicPtr"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicPtr</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_mjq1l1y0vmz4">17.2:11</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_u8"><code class="docutils literal notranslate"><span class="pre">u8</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicU8"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicU8</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_906978wtss6n">17.2:12</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_u16"><code class="docutils literal notranslate"><span class="pre">u16</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicU16"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicU16</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_4urmnh4mfehl">17.2:13</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_u32"><code class="docutils literal notranslate"><span class="pre">u32</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicU32"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicU32</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2qkrcd5eovpe">17.2:14</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_u64"><code class="docutils literal notranslate"><span class="pre">u64</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicU64"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicU64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_cry1e78gp19q">17.2:15</span></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_usize"><code class="docutils literal notranslate"><span class="pre">usize</span></code></a></p></td>
+<td><p><a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicUsize"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicUsize</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="asynchronous-computation">
+<span id="fls_mtuwzinpfvkl"></span><h2><span class="section-number">17.3. </span>Asynchronous Computation<a class="headerlink" href="#asynchronous-computation" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_g40xp4andj5g">17.3:1</span>
+The Rust programming language provides asynchronous computation through
+<a class="reference internal" href="glossary.html#term_module">module</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Atask"><code class="docutils literal notranslate"><span class="pre">core::task</span></code></a> and the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Afuture%3A%3AFuture"><code class="docutils literal notranslate"><span class="pre">core::future::Future</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fte085hi1yqj">17.3:2</span>
+A <a class="reference internal" href="glossary.html#term_future">future</a> represents a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Afuture%3A%3AFuture"><code class="docutils literal notranslate"><span class="pre">core::future::Future</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a> which may not have finished computing
+yet.</p>
+<p><span class="spec-paragraph-id" id="fls_7muubin2wn1v">17.3:3</span>
+The computed <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_future">future</a> is obtained by using an
+<a class="reference internal" href="glossary.html#term_await_expression">await expression</a> or by invoking <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Afuture%3A%3AFuture%3A%3Apoll"><code class="docutils literal notranslate"><span class="pre">core::future::Future::poll</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ftzey2156ha">17.3:4</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Afuture%3A%3AFuture%3A%3Apoll"><code class="docutils literal notranslate"><span class="pre">core::future::Future::poll</span></code></a> shall not be invoked on a <a class="reference internal" href="glossary.html#term_future">future</a> that has
+already returned <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Atask%3A%3APoll%3A%3AReady"><code class="docutils literal notranslate"><span class="pre">core::task::Poll::Ready</span></code></a>.</p>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

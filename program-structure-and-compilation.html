@@ -1,0 +1,305 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>18. Program Structure and Compilation &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="19. Unsafety" href="unsafety.html" />
+    <link rel="prev" title="17. Concurrency" href="concurrency.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="program-structure-and-compilation">
+<span id="fls_hdwwrsyunir"></span><h1><span class="section-number">18. </span>Program Structure and Compilation<a class="headerlink" href="#program-structure-and-compilation" title="Link to this heading">¶</a></h1>
+<section id="source-files">
+<span id="fls_s35hob3i7lr"></span><h2><span class="section-number">18.1. </span>Source Files<a class="headerlink" href="#source-files" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_sourcefile"><span class="pre">SourceFile</span></code> ::=
+    <a class="reference internal" href="#syntax_zerowidthnobreakspace"><code class="docutils literal notranslate"><span class="pre">ZeroWidthNoBreakSpace</span></code></a>?
+    <a class="reference internal" href="#syntax_shebang"><code class="docutils literal notranslate"><span class="pre">Shebang</span></code></a>?
+    <a class="reference internal" href="attributes.html#syntax_innerattributeordoc"><code class="docutils literal notranslate"><span class="pre">InnerAttributeOrDoc</span></code></a>*
+    <a class="reference internal" href="items.html#syntax_item"><code class="docutils literal notranslate"><span class="pre">Item</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_zerowidthnobreakspace"><span class="pre">ZeroWidthNoBreakSpace</span></code> ::=
+    <strong class="spec-syntax-literal">\u{FEFF}</strong>
+
+<code class="docutils literal notranslate" id="syntax_shebang"><span class="pre">Shebang</span></code> ::=
+    <strong class="spec-syntax-literal">#!</strong> ~[<a class="reference internal" href="#syntax_newline"><code class="docutils literal notranslate"><span class="pre">NewLine</span></code></a>]*
+
+<code class="docutils literal notranslate" id="syntax_newline"><span class="pre">NewLine</span></code> ::=
+    <strong class="spec-syntax-literal">\n</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_4vicosdeaqmp">18.1:1</span>
+A <a class="reference internal" href="glossary.html#term_source_file">source file</a> contains the program text consisting of <a class="reference internal" href="glossary.html#term_inner_attribute">inner
+attributes</a>, <a class="reference internal" href="glossary.html#term_inner_doc_comment">inner doc comments</a>, and <a class="reference internal" href="glossary.html#term_item">items</a>. The location of a
+<a class="reference internal" href="glossary.html#term_source_file">source file</a> is tool defined.</p>
+<p><span class="spec-paragraph-id" id="fls_ann3cha1xpek">18.1:2</span>
+A <a class="reference internal" href="#syntax_shebang"><code class="docutils literal notranslate"><span class="pre">Shebang</span></code></a> does not have an effect on the compilation.</p>
+</section>
+<section id="modules">
+<span id="fls_e9hwvqsib5d5"></span><h2><span class="section-number">18.2. </span>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_moduledeclaration"><span class="pre">ModuleDeclaration</span></code> ::=
+    <strong class="spec-syntax-literal">unsafe</strong>? <strong class="spec-syntax-literal">mod</strong> <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> <a class="reference internal" href="#syntax_modulespecification"><code class="docutils literal notranslate"><span class="pre">ModuleSpecification</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_modulespecification"><span class="pre">ModuleSpecification</span></code> ::=
+    <a class="reference internal" href="#syntax_inlinemodulespecification"><code class="docutils literal notranslate"><span class="pre">InlineModuleSpecification</span></code></a>
+  | <a class="reference internal" href="#syntax_outlinemodulespecification"><code class="docutils literal notranslate"><span class="pre">OutlineModuleSpecification</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_inlinemodulespecification"><span class="pre">InlineModuleSpecification</span></code> ::=
+    <strong class="spec-syntax-literal">{</strong>
+      <a class="reference internal" href="attributes.html#syntax_innerattributeordoc"><code class="docutils literal notranslate"><span class="pre">InnerAttributeOrDoc</span></code></a>*
+      <a class="reference internal" href="items.html#syntax_item"><code class="docutils literal notranslate"><span class="pre">Item</span></code></a>*
+    <strong class="spec-syntax-literal">}</strong>
+
+<code class="docutils literal notranslate" id="syntax_outlinemodulespecification"><span class="pre">OutlineModuleSpecification</span></code> ::=
+    <strong class="spec-syntax-literal">;</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_odd1hj3y1mgu">18.2:1</span>
+A <a class="reference internal" href="glossary.html#term_module">module</a> is a container for zero or more <a class="reference internal" href="glossary.html#term_item">items</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_whgv72emrm47">18.2:2</span>
+The <code class="docutils literal notranslate"><span class="pre">unsafe</span></code> <a class="reference internal" href="glossary.html#term_keyword">keyword</a> of a <a class="reference internal" href="glossary.html#term_module">module</a> is rejected, but may still
+be consumed by <a class="reference internal" href="glossary.html#term_macro">macros</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qypjjpcf8uwq">18.2:3</span>
+An <a class="reference internal" href="glossary.html#term_inline_module">inline module</a> is a <a class="reference internal" href="glossary.html#term_module">module</a> with an <a class="reference internal" href="#syntax_inlinemodulespecification"><code class="docutils literal notranslate"><span class="pre">InlineModuleSpecification</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cavwpr1ybk37">18.2:4</span>
+An <a class="reference internal" href="glossary.html#term_outline_module">outline module</a> is a <a class="reference internal" href="glossary.html#term_module">module</a> with an <a class="reference internal" href="#syntax_outlinemodulespecification"><code class="docutils literal notranslate"><span class="pre">OutlineModuleSpecification</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_plepew2319g4">18.2:5</span>
+An <a class="reference internal" href="glossary.html#term_outline_module">outline module</a> loads a <a class="reference internal" href="glossary.html#term_source_file">source file</a> and considers the text of the
+<a class="reference internal" href="glossary.html#term_source_file">source file</a> to be inlined within the context of the <a class="reference internal" href="glossary.html#term_outline_module">outline module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1aruwps62c4p">18.2:6</span>
+The location of a <a class="reference internal" href="glossary.html#term_module">module</a> <a class="reference internal" href="glossary.html#term_source_file">source file</a> can be specified using
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[path = </span><span class="s">&quot;path/to/module&quot;</span><span class="cp">]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="cp">#![allow(dead_code)]</span>
+
+<span class="w">     </span><span class="k">struct</span><span class="w"> </span><span class="nc">Struct</span><span class="p">;</span>
+<span class="w">     </span><span class="k">pub</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="nn">other</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="crates">
+<span id="fls_maw4u1o8q37u"></span><h2><span class="section-number">18.3. </span>Crates<a class="headerlink" href="#crates" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_qwghk79ok5h0">18.3:1</span>
+A <a class="reference internal" href="glossary.html#term_crate">crate</a> is a unit of compilation and linking that contains a tree of
+nested <a class="reference internal" href="glossary.html#term_module">modules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_unxalgMqIr3v">18.3:2</span>
+The <a class="reference internal" href="glossary.html#term_crate_type">crate type</a> of a <a class="reference internal" href="glossary.html#term_crate">crate</a> is the value of the <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<code class="docutils literal notranslate"><span class="pre">crate_type</span></code> of a <a class="reference internal" href="glossary.html#term_crate">crate</a> or the value of <code class="docutils literal notranslate"><span class="pre">--crate-type</span></code> flag passed to
+the tool compiling the <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_e7jGvXvTsFpC">18.3:3</span>
+The <a class="reference internal" href="glossary.html#term_crate_type">crate type</a> of a <a class="reference internal" href="glossary.html#term_crate">crate</a> if not specified is <code class="docutils literal notranslate"><span class="pre">bin</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_kQiJPwb2Hjcc">18.3:4</span>
+A <a class="reference internal" href="glossary.html#term_crate">crate</a> may be subject to multiple <a class="reference internal" href="glossary.html#term_crate_type">crate types</a>, treating each type
+as a separate <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9ub6ks8qrang">18.3:5</span>
+A <a class="reference internal" href="glossary.html#term_binary_crate">binary crate</a> is a <a class="reference internal" href="glossary.html#term_crate">crate</a> whose <a class="reference internal" href="glossary.html#term_crate_type">crate type</a> is <code class="docutils literal notranslate"><span class="pre">bin</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_OyFwBtDGVimT">18.3:6</span>
+A <a class="reference internal" href="glossary.html#term_binary_crate">binary crate</a> that is not subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <code class="docutils literal notranslate"><span class="pre">no_main</span></code> shall have
+a <a class="reference internal" href="glossary.html#term_function">function</a> in scope of its <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> under the <a class="reference internal" href="glossary.html#term_name">name</a>
+<code class="docutils literal notranslate"><span class="pre">main</span></code> with a <a class="reference internal" href="glossary.html#term_main_function_signature">main function signature</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jQqXxPyND1ds">18.3:7</span>
+The <a class="reference internal" href="glossary.html#term_function">function</a> in scope of a <a class="reference internal" href="glossary.html#term_binary_crate">binary crate</a>‘s <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> under
+the <a class="reference internal" href="glossary.html#term_name">name</a> <code class="docutils literal notranslate"><span class="pre">main</span></code> with a <a class="reference internal" href="glossary.html#term_main_function_signature">main function signature</a> is the <a class="reference internal" href="glossary.html#term_binary_crate">binary
+crate</a>‘s <a class="reference internal" href="glossary.html#term_program_entry_point">program entry point</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_d9nn4yuiw1ja">18.3:8</span>
+A <a class="reference internal" href="glossary.html#term_library_crate">library crate</a> is a <a class="reference internal" href="glossary.html#term_crate">crate</a> whose <a class="reference internal" href="glossary.html#term_crate_type">crate type</a> is <code class="docutils literal notranslate"><span class="pre">lib</span></code>, <code class="docutils literal notranslate"><span class="pre">rlib</span></code>,
+<code class="docutils literal notranslate"><span class="pre">staticlib</span></code>, <code class="docutils literal notranslate"><span class="pre">dylib</span></code>, or <code class="docutils literal notranslate"><span class="pre">cdylib</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_Mf62VqAhoZ3c">18.3:9</span>
+A <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a> is a <a class="reference internal" href="glossary.html#term_crate">crate</a> whose <a class="reference internal" href="glossary.html#term_crate_type">crate type</a> is <code class="docutils literal notranslate"><span class="pre">proc-macro</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_RJJmN4tP7j4m">18.3:10</span>
+A <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a> shall not declare <a class="reference internal" href="glossary.html#term_item">items</a> in its <a class="reference internal" href="glossary.html#term_crate_root_module">crate root
+module</a> with  <a class="reference internal" href="glossary.html#term_public_visibility">public visibility</a> unless the <a class="reference internal" href="glossary.html#term_item">item</a> is a <a class="reference internal" href="glossary.html#term_procedural_macro">procedural
+macro</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h93C3wfbAoz1">18.3:11</span>
+Only a <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a> shall declare <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macros</a>.</p>
+</section>
+<section id="crate-imports">
+<span id="fls_gklst7joeo33"></span><h2><span class="section-number">18.4. </span>Crate Imports<a class="headerlink" href="#crate-imports" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_externalcrateimport"><span class="pre">ExternalCrateImport</span></code> ::=
+    <strong class="spec-syntax-literal">extern</strong> <strong class="spec-syntax-literal">crate</strong> <a class="reference internal" href="#syntax_crateindication"><code class="docutils literal notranslate"><span class="pre">CrateIndication</span></code></a> <a class="reference internal" href="lexical-elements.html#syntax_renaming"><code class="docutils literal notranslate"><span class="pre">Renaming</span></code></a>? <strong class="spec-syntax-literal">;</strong>
+
+<code class="docutils literal notranslate" id="syntax_crateindication"><span class="pre">CrateIndication</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+  | <strong class="spec-syntax-literal">self</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_d0pa807s5d5h">18.4:1</span>
+A <a class="reference internal" href="glossary.html#term_crate_import">crate import</a> specifies a required dependency on an external <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vfam3wzeAiah">18.4:2</span>
+A <a class="reference internal" href="glossary.html#term_crate_indication">crate indication</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that indicates a <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ft860vkz0lkc">18.4:3</span>
+A <a class="reference internal" href="glossary.html#term_crate_import">crate import</a> binds an external <a class="reference internal" href="glossary.html#term_crate">crate</a> to its <a class="reference internal" href="glossary.html#term_crate_indication">crate indication</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k90qtnf8kgu1">18.4:4</span>
+<a class="reference internal" href="glossary.html#term_crate_indication">Crate indication</a> <code class="docutils literal notranslate"><span class="pre">self</span></code> shall require a <a class="reference internal" href="glossary.html#term_renaming">renaming</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_siv8bl6s2ndu">18.4:5</span>
+A <a class="reference internal" href="glossary.html#term_crate_import">crate import</a> with a <a class="reference internal" href="glossary.html#term_renaming">renaming</a> with an <a class="reference internal" href="glossary.html#term_identifier">identifier</a> binds the
+external <a class="reference internal" href="glossary.html#term_crate">crate</a> to a local <a class="reference internal" href="glossary.html#term_name">name</a> and introduces the local <a class="reference internal" href="glossary.html#term_name">name</a> into
+the enclosing <a class="reference internal" href="glossary.html#term_scope">scope</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_7vz5n3x6jo1s">18.4:6</span>
+If a <a class="reference internal" href="glossary.html#term_crate_import">crate import</a> appears at the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>, then the
+<a class="reference internal" href="glossary.html#term_crate_indication">crate indication</a> is added to the <a class="reference internal" href="entities-and-resolution.html#term_external_prelude">external prelude</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3bgpc8m8yk4p">18.4:7</span>
+A <a class="reference internal" href="glossary.html#term_crate_indication">crate indication</a> shall resolve to an external <a class="reference internal" href="glossary.html#term_crate">crate</a>. The process of
+resolving a <a class="reference internal" href="glossary.html#term_crate_indication">crate indication</a> to an external <a class="reference internal" href="glossary.html#term_crate">crate</a> is tool-defined.</p>
+</section>
+<section id="compilation-roots">
+<span id="fls_5w50kf83oo1u"></span><h2><span class="section-number">18.5. </span>Compilation Roots<a class="headerlink" href="#compilation-roots" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fhiqvgdamq5">18.5:1</span>
+A <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> is the root of the nested <a class="reference internal" href="glossary.html#term_module">module</a> tree of a
+<a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_tk8tl2e0a34">18.5:2</span>
+A tool can define a <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> for a single <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bsyfxdk3ap1t">18.5:3</span>
+A <a class="reference internal" href="glossary.html#term_compilation_root">compilation root</a> is an input to a compilation performed by a tool. A
+<a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> is a <a class="reference internal" href="glossary.html#term_compilation_root">compilation root</a>.</p>
+</section>
+<section id="conditional-compilation">
+<span id="fls_u1afezy1ye99"></span><h2><span class="section-number">18.6. </span>Conditional Compilation<a class="headerlink" href="#conditional-compilation" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_9stc6nul6vq9">18.6:1</span>
+<a class="reference internal" href="glossary.html#term_conditionally_compiled_source_code">Conditionally-compiled source code</a> is source code that may or may
+not be considered a part of a Rust program depending on
+<a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicates</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_a0u9nnaf6drz">18.6:2</span>
+<a class="reference internal" href="glossary.html#term_conditional_compilation">Conditional compilation</a> is the process of compiling
+<a class="reference internal" href="glossary.html#term_conditionally_compiled_source_code">conditionally-compiled source code</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pf1v89h7pjhh">18.6:3</span>
+A <a class="reference internal" href="glossary.html#term_construct">construct</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></a> where the related
+<a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> evaluates to <code class="docutils literal notranslate"><span class="pre">false</span></code> is not considered part of a
+Rust program.</p>
+<p><span class="spec-paragraph-id" id="fls_y56RGw3cbFex">18.6:4</span>
+A <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></a> where the related
+<a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> evaluates to <code class="docutils literal notranslate"><span class="pre">false</span></code> is considered empty except
+for all <a class="reference internal" href="glossary.html#term_attribute">attributes</a> up to the invoked <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h6b1fuw4nvi1">18.6:5</span>
+An <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_cfg_attr"><code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code></a> where the related <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a>
+evaluates to <code class="docutils literal notranslate"><span class="pre">false</span></code> is not considered part of a Rust program.</p>
+</section>
+<section id="program-entry-point">
+<span id="fls_8jb3sjqamdpu"></span><h2><span class="section-number">18.7. </span>Program Entry Point<a class="headerlink" href="#program-entry-point" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_dp64b08em9BJ">18.7:1</span>
+A <a class="reference internal" href="glossary.html#term_program_entry_point">program entry point</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> that is invoked at the start of
+a Rust program.</p>
+<p><span class="spec-paragraph-id" id="fls_sbGnkm8Ephiu">18.7:2</span>
+A <a class="reference internal" href="glossary.html#term_main_function_signature">main function signature</a> is a <a class="reference internal" href="glossary.html#term_function_signature">function signature</a> subject to the
+following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_o4fxok23134r">18.7:3</span>
+It lacks <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a> <code class="docutils literal notranslate"><span class="pre">async</span></code> and <code class="docutils literal notranslate"><span class="pre">unsafe</span></code>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bk755pvc1l53">18.7:4</span>
+Its <a class="reference internal" href="glossary.html#term_abi">ABI</a> is Rust,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_a3je4wc53bmo">18.7:5</span>
+It lacks <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w8q15zp7kyl0">18.7:6</span>
+It lacks <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4psnfphsgdek">18.7:7</span>
+It lacks a <a class="reference internal" href="glossary.html#term_return_type">return type</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_m7xfrhqif74">18.7:8</span>
+It lacks a <a class="reference internal" href="glossary.html#term_where_clause">where clause</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qq9fzrw4aykd">18.7:9</span>
+It has a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p></li>
+</ul>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

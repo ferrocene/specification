@@ -1,0 +1,421 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. General &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="2. Lexical Elements" href="lexical-elements.html" />
+    <link rel="prev" title="Ferrocene Language Specification" href="index.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this page are informational.</p>
+</div>
+<section id="general">
+<span id="fls_48qldfwwh493"></span><h1><span class="section-number">1. </span>General<a class="headerlink" href="#general" title="Link to this heading">¶</a></h1>
+<p><span class="spec-paragraph-id" id="fls_c4ry0kgmvk9z">1:1</span>
+This document is influenced by the <a class="reference external" href="http://www.ada-auth.org/standards/2xrm/html/RM-TTL.html">Ada Reference Manual</a>
+Ada 202x edition, as well as the <a class="reference external" href="https://doc.rust-lang.org/stable/reference/">Rust Language Reference</a>, the <a class="reference external" href="https://doc.rust-lang.org/book/">Rust
+Guidebook</a>, and the <a class="reference external" href="https://doc.rust-lang.org/nomicon/">Rustonomicon</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gxqbj0qoiaio">1:2</span>
+Parts of these documents have been copied, in whole or in part, in particular
+but not limited to:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_u8k9zr8da30">1:3</span>
+The outline and structure of the documents;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8mt9iigoboba">1:4</span>
+The title, outline, organization, and numbering of chapters;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_suhf2g3fatfa">1:5</span>
+The structure, formality, wording, and numbering of paragraphs;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jjr5kbn0wuco">1:6</span>
+The definitions and uses of terms;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4dfcjyprkzbx">1:7</span>
+The categories of syntactic and semantic rules.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_tq9jcv5ddvwn">1:8</span>
+Consult <a class="reference internal" href="licenses.html"><span class="doc">Licenses</span></a> for the relevant copyright notices and licenses.</p>
+<section id="scope">
+<span id="fls_fo1c7pg2mw1"></span><h2><span class="section-number">1.1. </span>Scope<a class="headerlink" href="#scope" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_srdq4mota5pr">1.1:1</span>
+This document specifies the form and meaning of programs written in the
+programming language Rust, as implemented by the <a class="reference internal" href="glossary.html#term_rustc">rustc</a> 1.84.0 compiler shipped
+with Ferrocene. It documents the current understanding for the purposes of
+compiler validation. As such, given any doubt, it prefers documenting behavior
+of <a class="reference internal" href="glossary.html#term_rustc">rustc</a> as included in the associated Ferrocene release over claiming
+correctness as a specification.</p>
+<p><span class="spec-paragraph-id" id="fls_dv1qish8svc">1.1:2</span>
+This document is made available for contribution and review as it is useful
+outside of the Ferrocene effort and can be a place of shared understanding. It
+is not intended as a discussion ground for language evolution. It is also not
+intended as a document enabling conformance between compilers.</p>
+<p><span class="spec-paragraph-id" id="fls_osh9tiwpnsn1">1.1:3</span>
+Contribution and review is managed by the Ferrocene project developers.</p>
+<section id="extent">
+<span id="fls_10yukmkhl0ng"></span><h3><span class="section-number">1.1.1. </span>Extent<a class="headerlink" href="#extent" title="Link to this heading">¶</a></h3>
+<p><span class="spec-paragraph-id" id="fls_x78yd1sszydv">1.1.1:1</span>
+This document specifies:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_9e032738udnb">1.1.1:2</span>
+The form of a program written in Rust;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jk7scu5xs17z">1.1.1:3</span>
+The effect of translating and executing such a program;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jiryupa5fxgf">1.1.1:4</span>
+The manner in which <a class="reference internal" href="glossary.html#term_crate">crates</a> and <a class="reference internal" href="glossary.html#term_module">modules</a> may be combined to form
+Rust programs;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_sph1a3sapinh">1.1.1:5</span>
+The language-defined libraries that a conforming tool is required to supply;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7tm19jxtffc8">1.1.1:6</span>
+The violations that a conforming tool is required to detect, and the effect of
+attempting to translate or execute a program containing such violations;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5pbrl8lhuth1">1.1.1:7</span>
+The violations that a conforming tool is not required to detect.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_o8fc3e53vp7g">1.1.1:8</span>
+This document does not specify:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_rw0y5t13y6gs">1.1.1:9</span>
+The means by which a Rust program is transformed into object code executable
+by a processor;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_x7c3o621qj9z">1.1.1:10</span>
+The means by which translation or execution of Rust programs is invoked and
+the executing units are controlled;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5y2b6yjcl1vz">1.1.1:11</span>
+The size or speed of the object code, or the relative execution speed of
+different language constructs;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8dennhk2dha">1.1.1:12</span>
+The form or contents of any listings produced by a tool; in particular, the
+form or contents of error or warning messages;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_j2gs3hrbxtyx">1.1.1:13</span>
+The effect of undefined behavior;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gy2c7vfwkd8j">1.1.1:14</span>
+The size of a program or program unit that will exceed the capacity of a
+conforming tool.</p></li>
+</ul>
+</section>
+<section id="structure">
+<span id="fls_xscgklvg1wd2"></span><h3><span class="section-number">1.1.2. </span>Structure<a class="headerlink" href="#structure" title="Link to this heading">¶</a></h3>
+<p><span class="spec-paragraph-id" id="fls_6lrqailxjb02">1.1.2:1</span>
+This document contains 22 chapters, 4 appendices, and an index.</p>
+<p><span class="spec-paragraph-id" id="fls_tys7ciqnp8bn">1.1.2:2</span>
+The specification of the Rust language is separated into:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_3ubhkaheu8i1">1.1.2:3</span>
+Chapters 1 through 22,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xw3grr2g5zgi">1.1.2:4</span>
+Appendices A through D</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_6srbinvnyd54">1.1.2:5</span>
+The specification is normative, except for the material in each of the items
+listed below, which is informative:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ciixfg9jhv42">1.1.2:6</span>
+Text under an “Examples” heading.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ej94lm2682kg">1.1.2:7</span>
+Each subchapter whose title starts with the word “Example” or “Examples”.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_xgk91jrbpyoc">1.1.2:8</span>
+All appendices are informative.</p>
+<p><span class="spec-paragraph-id" id="fls_jc4upf6685bw">1.1.2:9</span>
+Each chapter is divided into subchapters that have a common structure. Each
+chapter and subchapter is then organized to include the following segments as is
+relevant to the topic:</p>
+<p class="rubric">Syntax</p>
+<p><span class="spec-paragraph-id" id="fls_oxzjqxgejx9t">1.1.2:10</span>
+The syntax representation of a <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_gmx688d6ek1o">1.1.2:11</span>
+Compile-time rules and facts for each <a class="reference internal" href="glossary.html#term_construct">construct</a>. A <a class="reference internal" href="glossary.html#term_construct">construct</a> is legal
+if it obeys all of the Legality Rules.</p>
+<p><span class="spec-paragraph-id" id="fls_5zdjikp1jhc">1.1.2:12</span>
+Legality Rules are verified after <a class="reference internal" href="glossary.html#term_macro_expansion">macro expansion</a> takes place.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_as5bhc5t285g">1.1.2:13</span>
+Run-time effects of each <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_70qjvaqoz007">1.1.2:14</span>
+Situations that result in unbounded errors.</p>
+<p class="rubric">Implementation Requirements</p>
+<p><span class="spec-paragraph-id" id="fls_o4rdsbc7u98">1.1.2:15</span>
+Additional requirements for conforming tools.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_w8j575w2hmc8">1.1.2:16</span>
+Examples illustrating the possible forms of a <a class="reference internal" href="glossary.html#term_construct">construct</a>. This material
+is informative.</p>
+</section>
+<section id="conformity">
+<span id="fls_99b7xi1bkgih"></span><h3><span class="section-number">1.1.3. </span>Conformity<a class="headerlink" href="#conformity" title="Link to this heading">¶</a></h3>
+<p class="rubric">Implementation Requirements</p>
+<p><span class="spec-paragraph-id" id="fls_kdyqtnc6loam">1.1.3:1</span>
+A conforming tool shall:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ctwsz8sl7lbq">1.1.3:2</span>
+Translate and correctly execute legal programs written in Rust, provided that
+they are not so large as to exceed the capacity of the tool,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bvpekhdaxctq">1.1.3:3</span>
+Identify all programs or program units that are so large as to exceed the
+capacity of the tool (or raise an appropriate exception at run time),</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_kfs8gsd36d91">1.1.3:4</span>
+Identify all programs or program units that contain errors whose detection is
+required by this document,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_k5sozk8jhrmg">1.1.3:5</span>
+Supply all language-defined library units required by this document,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_nwx1fdq6b4mg">1.1.3:6</span>
+Contain no variations except those explicitly permitted by this document, or
+those that are impossible or impractical to avoid given the tool’s execution
+environment,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n3ypaile1a36">1.1.3:7</span>
+Specify all such variations in the manner prescribed by this document.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_nnmx2qsu14ft">1.1.3:8</span>
+The external effect of the execution of a Rust program is defined in terms of
+its interactions with its external environment. The following are defined as
+external interactions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_gu3331rmv2ho">1.1.3:9</span>
+Any call on an foreign <a class="reference internal" href="glossary.html#term_function">function</a>, including any <a class="reference internal" href="glossary.html#term_argument_operand">argument operands</a>
+passed to it;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3iekobt8qqi">1.1.3:10</span>
+Any result returned or <a class="reference internal" href="glossary.html#term_panic">panic</a> propagated from a <a class="reference internal" href="glossary.html#term_program_entry_point">program entry point</a>
+or an <a class="reference internal" href="glossary.html#term_exported_function">exported function</a> to an external caller;</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qx9fxf4py0j0">1.1.3:11</span>
+The imported and exported <a class="reference internal" href="glossary.html#term_value">values</a> at the time of any other interaction
+with the external environment.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_pl0fyjcwslqm">1.1.3:12</span>
+A tool that conforms to this document shall produce for the execution of a given
+Rust program a set of interactions with the external environment whose order and
+timing are consistent with the definitions and requirements of this document for
+the semantics of the given program.</p>
+<p><span class="spec-paragraph-id" id="fls_lkdm0mdghppv">1.1.3:13</span>
+A tool that conforms to this document shall support each capability required by
+the language as specified.</p>
+<p><span class="spec-paragraph-id" id="fls_d07x1mbhgpsd">1.1.3:14</span>
+A tool that conforms to this document may provide additional <a class="reference internal" href="glossary.html#term_attribute">attributes</a>
+as long as their names are not the same as the names of <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in
+attributes</a>.</p>
+</section>
+<section id="method-of-description-and-syntax-notation">
+<span id="fls_79rl6ylmct07"></span><h3><span class="section-number">1.1.4. </span>Method of Description and Syntax Notation<a class="headerlink" href="#method-of-description-and-syntax-notation" title="Link to this heading">¶</a></h3>
+<p><span class="spec-paragraph-id" id="fls_mc4a28do6kcp">1.1.4:1</span>
+The form of a Rust program is described by means of a context-free syntax
+together with context-dependent requirements expressed by narrative rules.</p>
+<p><span class="spec-paragraph-id" id="fls_ioyp4wux6skt">1.1.4:2</span>
+The meaning of a Rust program is described by means of narrative rules defining
+both the effects of each construct and the composition rules for constructs.</p>
+<p><span class="spec-paragraph-id" id="fls_jsflt7691ye4">1.1.4:3</span>
+The context-free syntax of Rust is described using a simple variant of the
+Backus-Naur form. In particular:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_98fm7z04lq9">1.1.4:4</span>
+A <code class="docutils literal notranslate"><span class="pre">monospaced</span></code> font is used to denote Rust syntax.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ceb5a8t6cakr">1.1.4:5</span>
+Words in PascalCase font are used to denote a syntactic category, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><a class="reference internal" href="lexical-elements.html#syntax_floatexponent"><code class="docutils literal notranslate"><span class="pre">FloatExponent</span></code></a></pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_pts29mb5ld68">1.1.4:6</span>
+Words in <strong>bold</strong> font are used to indicate literal words and <a class="reference internal" href="glossary.html#term_keyword">keywords</a>,
+for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">crate</strong>
+<strong class="spec-syntax-literal">proc_macro_derive</strong>
+<strong class="spec-syntax-literal">Self</strong>
+<strong class="spec-syntax-literal">tt</strong></pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_gqjo5oh7vn3b">1.1.4:7</span>
+Characters in <strong>bold</strong> font are used to indicate literal characters and
+literal punctuation, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">1</strong>
+<strong class="spec-syntax-literal">F</strong>
+<strong class="spec-syntax-literal">{</strong>
+<strong class="spec-syntax-literal">&amp;&amp;</strong>
+<strong class="spec-syntax-literal">&gt;&gt;=</strong></pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_1dz634xp8xp5">1.1.4:8</span>
+A character preceded by <code class="docutils literal notranslate"><span class="pre">\</span></code> (bold reverse solidus) is used to denote an
+<a class="reference internal" href="glossary.html#term_escaped_character">escaped character</a>, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">\t</strong>
+<strong class="spec-syntax-literal">\\</strong></pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_pp9vtjlyblrl">1.1.4:9</span>
+A prefix followed by <code class="docutils literal notranslate"><span class="pre">?</span></code> (question mark) is used to denote an optional
+prefix, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><a class="reference internal" href="lexical-elements.html#syntax_integersuffix"><code class="docutils literal notranslate"><span class="pre">IntegerSuffix</span></code></a>?</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_6e2vd9fvhsmk">1.1.4:10</span>
+A prefix followed by <code class="docutils literal notranslate"><span class="pre">*</span></code> (asterisk) is used to denote zero or more
+repetitions of the prefix, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>*</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_4onq0kkrt6qv">1.1.4:11</span>
+A prefix followed by <code class="docutils literal notranslate"><span class="pre">+</span></code> (plus sign) is used to denote one or more
+repetitions of the prefix, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><a class="reference internal" href="macros.html#syntax_macromatch"><code class="docutils literal notranslate"><span class="pre">MacroMatch</span></code></a>+</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_qu4rsmnq659w">1.1.4:12</span>
+A prefix followed by <code class="docutils literal notranslate"><span class="pre">L-H</span></code> is used to denote the number of repetitions of
+the prefix within the range from L to H, inclusive. For example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><a class="reference internal" href="lexical-elements.html#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a>1-6</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_rllu7aksf17e">1.1.4:13</span>
+<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">]</span></code> (square brackets) indicate any character within, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block">[<strong class="spec-syntax-literal">8</strong> <strong class="spec-syntax-literal">a</strong> <strong class="spec-syntax-literal">\r</strong> <strong class="spec-syntax-literal">:</strong>]</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_blvsfqeevosr">1.1.4:14</span>
+<code class="docutils literal notranslate"><span class="pre">~[</span> <span class="pre">]</span></code> (square brackets preceded by tilde) indicate any character except the
+characters within, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block">~[<strong class="spec-syntax-literal">8</strong> <strong class="spec-syntax-literal">a</strong> <strong class="spec-syntax-literal">\r</strong> <strong class="spec-syntax-literal">:</strong>]</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_lwcjq3wzjyvb">1.1.4:15</span>
+<code class="docutils literal notranslate"><span class="pre">[</span> <span class="pre">-</span> <span class="pre">]</span></code> indicates any character within the specified range, inclusive. For
+example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block">[<strong class="spec-syntax-literal">a</strong>-<strong class="spec-syntax-literal">f</strong>]</pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_v7wd5yk00im6">1.1.4:16</span>
+A <code class="docutils literal notranslate"><span class="pre">|</span></code> (vertical line) separates alternative items, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">self</strong> | <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> | <strong class="spec-syntax-literal">_</strong></pre>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_nf8alga8uz6c">1.1.4:17</span>
+<code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code> (parentheses) are used to group items, for example:</p></li>
+</ul>
+<pre class="spec-syntax literal-block">(<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="attributes.html#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a>)</pre>
+</section>
+</section>
+<section id="versioning">
+<span id="fls_9cd746qe40ag"></span><h2><span class="section-number">1.2. </span>Versioning<a class="headerlink" href="#versioning" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_l80e3kdwnldc">1.2:1</span>
+Ferrocene is a qualified compiler and this is the accompanying language
+specification for the qualified version of the compiler. This document will
+be updated with each qualification to accurately reflect the behavior of the
+compiler qualified under that version of Ferrocene.</p>
+</section>
+<section id="definitions">
+<span id="fls_ijzgf4h0mp3c"></span><h2><span class="section-number">1.3. </span>Definitions<a class="headerlink" href="#definitions" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_sm2kexes5pr7">1.3:1</span>
+Terms are defined throughout this document, indicated by <em>italic</em> type. Terms
+explicitly defined in this document are not to be presumed to refer implicitly
+to similar terms defined elsewhere.</p>
+<p><span class="spec-paragraph-id" id="fls_2o98zw29xc46">1.3:2</span>
+Mathematical terms not defined in this document are to be interpreted according
+to the CRC Concise Encyclopedia of Mathematics, Second Edition.</p>
+<p><span class="spec-paragraph-id" id="fls_lon5qffd65fi">1.3:3</span>
+Other terms not defined in this document are to be interpreted according to the
+Webster’s Third New International Dictionary of the English Language.</p>
+<p><span class="spec-paragraph-id" id="fls_qeolgxvcy75">1.3:4</span>
+The definitions of terms are available in <a class="reference internal" href="glossary.html"><span class="doc">Glossary</span></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h2m244agxaxs">1.3:5</span>
+A <em>rule</em> is a requirement imposed on the programmer, stated in normative
+language such as “shall”, “shall not”, “must”, “must not”, except for text
+under Implementation Requirements heading.</p>
+<p><span class="spec-paragraph-id" id="fls_47svine904xk">1.3:6</span>
+A <em>fact</em> is a requirement imposed on a conforming tool, stated in informative
+language such as “is”, “is not”, “can”, “cannot”.</p>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

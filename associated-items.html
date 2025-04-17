@@ -1,0 +1,274 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>10. Associated Items &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="11. Implementations" href="implementations.html" />
+    <link rel="prev" title="9. Functions" href="functions.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="associated-items">
+<span id="fls_l21tjqjkkaa0"></span><h1><span class="section-number">10. </span>Associated Items<a class="headerlink" href="#associated-items" title="Link to this heading">¶</a></h1>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_associateditem"><span class="pre">AssociatedItem</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* (<a class="reference internal" href="#syntax_associateditemwithvisibility"><code class="docutils literal notranslate"><span class="pre">AssociatedItemWithVisibility</span></code></a> | <a class="reference internal" href="macros.html#syntax_terminatedmacroinvocation"><code class="docutils literal notranslate"><span class="pre">TerminatedMacroInvocation</span></code></a>)
+
+<code class="docutils literal notranslate" id="syntax_associateditemwithvisibility"><span class="pre">AssociatedItemWithVisibility</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_visibilitymodifier"><code class="docutils literal notranslate"><span class="pre">VisibilityModifier</span></code></a>? (
+        <a class="reference internal" href="values.html#syntax_constantdeclaration"><code class="docutils literal notranslate"><span class="pre">ConstantDeclaration</span></code></a>
+      | <a class="reference internal" href="functions.html#syntax_functiondeclaration"><code class="docutils literal notranslate"><span class="pre">FunctionDeclaration</span></code></a>
+      | <a class="reference internal" href="types-and-traits.html#syntax_typealiasdeclaration"><code class="docutils literal notranslate"><span class="pre">TypeAliasDeclaration</span></code></a>
+    )</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ckzd25qd213t">10:1</span>
+An <a class="reference internal" href="glossary.html#term_associated_item">associated item</a> is an <a class="reference internal" href="glossary.html#term_item">item</a> that appears within an
+<a class="reference internal" href="glossary.html#term_implementation">implementation</a> or a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5y6ae0xqux57">10:2</span>
+An <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> is a <a class="reference internal" href="glossary.html#term_constant">constant</a> that appears as an
+<a class="reference internal" href="glossary.html#term_associated_item">associated item</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_lj7492aq7fzo">10:3</span>
+An <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> that appears as an
+<a class="reference internal" href="glossary.html#term_associated_item">associated item</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8cz4rdrklaj4">10:4</span>
+An <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> is a <a class="reference internal" href="glossary.html#term_type_alias">type alias</a> that appears as an
+<a class="reference internal" href="glossary.html#term_associated_item">associated item</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_w8nu8suy7t5">10:5</span>
+An <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> shall not be used in the <a class="reference internal" href="glossary.html#term_path_expression">path expression</a> of a
+<a class="reference internal" href="glossary.html#term_struct_expression">struct expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wasocqdnuzd1">10:6</span>
+An <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> with a <a class="reference internal" href="types-and-traits.html#syntax_typeboundlist"><code class="docutils literal notranslate"><span class="pre">TypeBoundList</span></code></a> shall appear only as an
+<a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_PeD0DzjK57be">10:7</span>
+A <a class="reference internal" href="glossary.html#term_generic_associated_type">generic associated type</a> is an <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> with
+<a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3foYUch29ZtF">10:8</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a> of a <a class="reference internal" href="glossary.html#term_generic_associated_type">generic associated type</a> requires a
+<a class="reference internal" href="glossary.html#term_bound">bound</a> of the form <code class="docutils literal notranslate"><span class="pre">T:</span> <span class="pre">'lifetime</span></code>, where <code class="docutils literal notranslate"><span class="pre">T</span></code> is a <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>
+or <a class="reference internal" href="glossary.html#codeterm_self"><code class="docutils literal notranslate"><span class="pre">Self</span></code></a> and <code class="docutils literal notranslate"><span class="pre">'lifetime</span></code> is the <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a>, when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_SnQc0zZS57Cz">10:9</span>
+The <a class="reference internal" href="glossary.html#term_generic_associated_type">generic associated type</a> is used in an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> of
+the same <a class="reference internal" href="glossary.html#term_trait">trait</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6Z05BK2JSzpP">10:10</span>
+The corresponding <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime argument</a> in the use is not the <code class="docutils literal notranslate"><span class="pre">'static</span></code>
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> and has either an explicit <a class="reference internal" href="glossary.html#term_bound">bound</a> or an <a class="reference internal" href="glossary.html#term_implied_bound">implied bound</a>
+that constrains the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_AtItgS1UvwiX">10:11</span>
+The intersection of all such uses is not empty.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_l3iwn56n1uz8">10:12</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_constant">associated implementation constant</a> is an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> that
+appears within an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4ftfefcotb4g">10:13</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_constant">associated implementation constant</a> shall have a <a class="reference internal" href="glossary.html#term_constant_initializer">constant
+initializer</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qb5qpfe0uwk">10:14</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_function">associated implementation function</a> is an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> that
+appears within an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1zlkeb6fz10j">10:15</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_function">associated implementation function</a> shall have a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_tw8u0cc5867l">10:16</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_type">associated implementation type</a> is an <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> that appears
+within an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bx7931x4155h">10:17</span>
+An <a class="reference internal" href="glossary.html#term_associated_implementation_type">associated implementation type</a> shall have an <a class="reference internal" href="glossary.html#term_initialization_type">initialization type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bnTcCbDvdp94">10:18</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_item">associated trait item</a> is an <a class="reference internal" href="glossary.html#term_associated_item">associated item</a> that appears
+within a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_N3cdn4lCZ2Bf">10:19</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_implementation_item">associated trait implementation item</a> is an <a class="reference internal" href="glossary.html#term_associated_item">associated item</a> that
+appears within a <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_x564isbhobym">10:20</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_constant">associated trait constant</a> is an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> that appears
+within a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_b6nns7oqvdpm">10:21</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> is an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> that appears
+within a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2TRwCz38kuRz">10:22</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> shall not be subject to <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">const</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_WnsVATJvUdza">10:23</span>
+Every occurrence of an <a class="reference internal" href="glossary.html#term_impl_trait_type">impl trait type</a> in the <a class="reference internal" href="glossary.html#term_return_type">return type</a> of an
+<a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> is equivalent to referring to a new
+anonymous <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yyhebj4qyk34">10:24</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> is an <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> that appears within
+a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kl9p3ycl5mzf">10:25</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> shall not have an <a class="reference internal" href="glossary.html#term_initialization_type">initialization type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_a5prbmuruma4">10:26</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> has an implicit <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a>
+<a class="reference internal" href="glossary.html#term_bound">bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vp2ov6ykueue">10:27</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> of the form</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">X</span><span class="p">:</span><span class="w"> </span><span class="nc">Bound</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_5uf74nvdm64o">10:28</span>
+is equivalent to a <a class="reference internal" href="glossary.html#term_where_clause">where clause</a> of the following form:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="bp">Self</span><span class="p">::</span><span class="n">X</span><span class="p">:</span><span class="w"> </span><span class="nc">Bound</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">X</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_amWtS80fPtza">10:29</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_implementation_function">associated trait implementation function</a> is an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a>
+that appears within a <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_Cu8FWrisrqz1">10:30</span>
+Every occurrence of an <a class="reference internal" href="glossary.html#term_impl_trait_type">impl trait type</a> in the <a class="reference internal" href="glossary.html#term_return_type">return type</a> of an
+<a class="reference internal" href="glossary.html#term_associated_trait_implementation_function">associated trait implementation function</a> is equivalent to referring to the
+corresponding <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> of the corresponding <a class="reference internal" href="glossary.html#term_associated_trait_function">associated
+trait function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_oy92gzxgc273">10:31</span>
+A <a class="reference internal" href="glossary.html#term_method">method</a> is an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> with a <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_WXnCWfJGoQx3">10:32</span>
+The type of a <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> shall be one of the following:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_OaszUw4IFobz">10:33</span>
+A <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> resolving to the <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a> of the
+related <a class="reference internal" href="glossary.html#term_implementation">implementation</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Wd2FZRomB5yn">10:34</span>
+<code class="docutils literal notranslate"><span class="pre">&amp;T</span></code> where <code class="docutils literal notranslate"><span class="pre">T</span></code> is one of the <a class="reference internal" href="glossary.html#term_type">types</a> listed in this enumeration,
+or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lcEyToYIlcmf">10:35</span>
+<code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">T</span></code> where <code class="docutils literal notranslate"><span class="pre">T</span></code> is one of the <a class="reference internal" href="glossary.html#term_type">types</a> listed in this
+enumeration, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_IKSPR7ZQMErU">10:36</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Apin%3A%3APin"><code class="docutils literal notranslate"><span class="pre">core::pin::Pin&lt;T&gt;</span></code></a> where <code class="docutils literal notranslate"><span class="pre">T</span></code> is one of the the <a class="reference internal" href="glossary.html#term_type">types</a> listed in this
+enumeration.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_oHxzyaiT7Qm6">10:37</span>
+The <a class="reference internal" href="glossary.html#term_visibility_modifier">visibility modifier</a> of an <a class="reference internal" href="glossary.html#term_associated_trait_item">associated trait item</a> or <a class="reference internal" href="glossary.html#term_associated_trait_implementation_item">associated
+trait implementation item</a> is rejected, but may still be consumed by
+<a class="reference internal" href="glossary.html#term_macro">macros</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">Greeter</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MAX_GREETINGS</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="kt">str</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Implementor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">delivered_greetings</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span>
+<span class="p">}</span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">Greeter</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Implementor</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">MAX_GREETINGS</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">greet</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="kt">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">delivered_greetings</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="bp">Self</span><span class="p">::</span><span class="n">MAX_GREETINGS</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="bp">self</span><span class="p">.</span><span class="n">delivered_greetings</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_znfADVeOvXHD">10:38</span>
+Generic associated type with lifetime bound.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">LendingIterator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Item</span><span class="o">&lt;&#39;</span><span class="na">x</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="bp">Self</span><span class="p">:</span><span class="w"> </span><span class="o">&#39;</span><span class="na">x</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">next</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="p">(</span><span class="o">&amp;&#39;</span><span class="na">a</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">Self</span><span class="p">::</span><span class="n">Item</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

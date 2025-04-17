@@ -1,0 +1,327 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Values &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Statements" href="statements.html" />
+    <link rel="prev" title="6. Expressions" href="expressions.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="values">
+<span id="fls_94a8v54bufn8"></span><h1><span class="section-number">7. </span>Values<a class="headerlink" href="#values" title="Link to this heading">¶</a></h1>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_buyaqara7am4">7:1</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> is either a <a class="reference internal" href="glossary.html#term_literal">literal</a> or the result of a computation, that may
+be stored in a memory location, and interpreted based on some <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_CUJyMj0Sj8NS">7:2</span>
+An <em id="term_allocated_object">allocated object</em> is a <a class="reference internal" href="glossary.html#term_value">value</a> stored at some memory address.</p>
+<p><span class="spec-paragraph-id" id="fls_kaomYy0Ml4Nh">7:3</span>
+An <a class="reference internal" href="#term_allocated_object">allocated objects</a> <em id="term_base_address">base address</em> is the the memory address the
+object is stored.</p>
+<p><span class="spec-paragraph-id" id="fls_B5cmkWfD5GNt">7:4</span>
+An <a class="reference internal" href="#term_allocated_object">allocated objects</a> <em id="term_memory_size">memory size</em> is the number of bytes the object
+spans in memory from its <a class="reference internal" href="#term_base_address">base address</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_rixdyyc525xp">7:5</span>
+Two <a class="reference internal" href="glossary.html#term_value">values</a> <a class="reference internal" href="glossary.html#term_overlap">overlap</a> when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_m6ctqq70vcxr">7:6</span>
+Both <a class="reference internal" href="glossary.html#term_value">values</a> are the same, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_s231d18x5eay">7:7</span>
+One <a class="reference internal" href="glossary.html#term_value">value</a> is of an <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> and the other denotes a
+<a class="reference internal" href="glossary.html#term_field">field</a> of the same <a class="reference internal" href="glossary.html#term_value">value</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_dfr4yqo93fsn">7:8</span>
+One <a class="reference internal" href="glossary.html#term_value">value</a> denotes an <a class="reference internal" href="glossary.html#term_array">array</a> and the other denotes an element of the
+same <a class="reference internal" href="glossary.html#term_value">value</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eoak5mdl6ma">7:9</span>
+Both <a class="reference internal" href="glossary.html#term_value">values</a> are elements of the same <a class="reference internal" href="glossary.html#term_array">array</a>.</p></li>
+</ul>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_6lg0oaaopc26">7:10</span>
+It is undefined behavior to create a <a class="reference internal" href="glossary.html#term_value">value</a> from uninitialized memory unless
+the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_value">value</a> is a <a class="reference internal" href="glossary.html#term_union_type">union type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_oqhQ62mDLckN">7:11</span>
+It is undefined behavior to create an <a class="reference internal" href="#term_allocated_object">allocated object</a> at <a class="reference internal" href="#term_base_address">base address</a>
+<a class="reference internal" href="glossary.html#codeterm_null"><code class="docutils literal notranslate"><span class="pre">null</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_uhwpuv6cx4ip">7:12</span>
+It is undefined behavior to create an <a class="reference internal" href="#term_allocated_object">allocated object</a> with <a class="reference internal" href="#term_memory_size">memory
+size</a> <code class="docutils literal notranslate"><span class="pre">size</span></code> at a <a class="reference internal" href="#term_base_address">base address</a> <code class="docutils literal notranslate"><span class="pre">base</span></code> where <code class="docutils literal notranslate"><span class="pre">base</span> <span class="pre">+</span> <span class="pre">size</span></code> is greater
+than the architectures maximum <a class="reference internal" href="glossary.html#codeterm_usize"><code class="docutils literal notranslate"><span class="pre">usize</span></code></a> value.</p>
+<p><span class="spec-paragraph-id" id="fls_xuuFKmm181bs">7:13</span>
+It is undefined behavior to create an <a class="reference internal" href="#term_allocated_object">allocated object</a> with <a class="reference internal" href="#term_memory_size">memory
+size</a> <code class="docutils literal notranslate"><span class="pre">size</span></code> where <code class="docutils literal notranslate"><span class="pre">size</span></code> is greater than the architectures maximum
+<a class="reference internal" href="glossary.html#codeterm_isize"><code class="docutils literal notranslate"><span class="pre">isize</span></code></a> value.</p>
+<section id="constants">
+<span id="fls_ixjc5jaamx84"></span><h2><span class="section-number">7.1. </span>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_constantdeclaration"><span class="pre">ConstantDeclaration</span></code> ::=
+    <strong class="spec-syntax-literal">const</strong> (<a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> | <strong class="spec-syntax-literal">_</strong>) <a class="reference internal" href="types-and-traits.html#syntax_typeascription"><code class="docutils literal notranslate"><span class="pre">TypeAscription</span></code></a> <a class="reference internal" href="#syntax_constantinitializer"><code class="docutils literal notranslate"><span class="pre">ConstantInitializer</span></code></a>? <strong class="spec-syntax-literal">;</strong>
+
+<code class="docutils literal notranslate" id="syntax_constantinitializer"><span class="pre">ConstantInitializer</span></code> ::=
+    <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_5o5iu4j8in4l">7.1:1</span>
+A <a class="reference internal" href="glossary.html#term_constant">constant</a> is an <a class="reference internal" href="glossary.html#term_immutable">immutable</a> <a class="reference internal" href="glossary.html#term_value">value</a> whose uses are substituted by
+the <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3mhj0kkupwuz">7.1:2</span>
+An <a class="reference internal" href="glossary.html#term_unnamed_constant">unnamed constant</a> is a <a class="reference internal" href="glossary.html#term_constant">constant</a> declared with character 0x5F (low
+line).</p>
+<p><span class="spec-paragraph-id" id="fls_ka4y2yd100dx">7.1:3</span>
+The <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> of a <a class="reference internal" href="glossary.html#term_constant">constant</a> shall have <code class="docutils literal notranslate"><span class="pre">'static</span></code>
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vt9tlkd676ql">7.1:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_constant">constant</a> shall implement the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ndmfqxjpvsqy">7.1:5</span>
+A <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that provides the <a class="reference internal" href="glossary.html#term_value">value</a> of
+its related <a class="reference internal" href="glossary.html#term_constant">constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6rxwbbhf5tc5">7.1:6</span>
+A <a class="reference internal" href="glossary.html#term_constant">constant</a> shall have a <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a>, unless it is an
+<a class="reference internal" href="glossary.html#term_associated_trait_constant">associated trait constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vnc3ttnid1qr">7.1:7</span>
+The <a class="reference internal" href="glossary.html#term_expression">expression</a> of a <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a> shall be a
+<a class="reference internal" href="glossary.html#term_constant_expression">constant expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_deuo1pn8cjd6">7.1:8</span>
+The value of a <a class="reference internal" href="glossary.html#term_constant">constant</a> is determined by evaluating its
+<a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5x0jv4cgbolx">7.1:9</span>
+A use of a <a class="reference internal" href="glossary.html#term_constant">constant</a> is a <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> and creates a copy of the
+constant’s value.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_xezt9hl069h4">7.1:10</span>
+The <a class="reference internal" href="glossary.html#term_elaboration">elaboration</a> of a <a class="reference internal" href="glossary.html#term_constant">constant</a> evaluates its <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ndobth7s92if">7.1:11</span>
+A <a class="reference internal" href="glossary.html#term_path">path</a> that refers to a <a class="reference internal" href="glossary.html#term_constant">constant</a> is replaced with the <a class="reference internal" href="glossary.html#term_value">value</a> of
+the <a class="reference internal" href="glossary.html#term_constant">constant</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">ZERO</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="statics">
+<span id="fls_xdvdl2ssnhlo"></span><h2><span class="section-number">7.2. </span>Statics<a class="headerlink" href="#statics" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_staticdeclaration"><span class="pre">StaticDeclaration</span></code> ::=
+    <a class="reference internal" href="items.html#syntax_itemsafety"><code class="docutils literal notranslate"><span class="pre">ItemSafety</span></code></a>? <strong class="spec-syntax-literal">static</strong> <strong class="spec-syntax-literal">mut</strong>? <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> <a class="reference internal" href="types-and-traits.html#syntax_typeascription"><code class="docutils literal notranslate"><span class="pre">TypeAscription</span></code></a> <a class="reference internal" href="#syntax_staticinitializer"><code class="docutils literal notranslate"><span class="pre">StaticInitializer</span></code></a>? <strong class="spec-syntax-literal">;</strong>
+
+<code class="docutils literal notranslate" id="syntax_staticinitializer"><span class="pre">StaticInitializer</span></code> ::=
+    <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ibrmiwfypldh">7.2:1</span>
+A <a class="reference internal" href="glossary.html#term_static">static</a> is a <a class="reference internal" href="glossary.html#term_value">value</a> that is associated with a specific memory
+location.</p>
+<p><span class="spec-paragraph-id" id="fls_mt94jvoot9dx">7.2:2</span>
+A <a class="reference internal" href="glossary.html#term_static">static</a> defined within a <a class="reference internal" href="glossary.html#term_generic_function">generic function</a> exists once in the
+output executable or library.</p>
+<p><span class="spec-paragraph-id" id="fls_k0r2c6uq29tu">7.2:3</span>
+The <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> of a <a class="reference internal" href="glossary.html#term_static">static</a> shall have <code class="docutils literal notranslate"><span class="pre">'static</span></code>
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_b6ods85htuyn">7.2:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_static">static</a> shall implement the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_WRpcVF1fLEpr">7.2:5</span>
+A <a class="reference internal" href="glossary.html#term_static">static</a> shall only be subject to an <a class="reference internal" href="items.html#syntax_itemsafety"><code class="docutils literal notranslate"><span class="pre">ItemSafety</span></code></a> if it is an <a class="reference internal" href="glossary.html#term_external_static">external static</a> in an <a class="reference internal" href="glossary.html#term_unsafe_external_block">unsafe external block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_doi4z6u55bi7">7.2:6</span>
+A <a class="reference internal" href="glossary.html#term_mutable_static">mutable static</a> is a <a class="reference internal" href="glossary.html#term_static">static</a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code> whose
+<a class="reference internal" href="glossary.html#term_value">value</a> can be modified.</p>
+<p><span class="spec-paragraph-id" id="fls_74hp208pto22">7.2:7</span>
+Access to a <a class="reference internal" href="glossary.html#term_mutable_static">mutable static</a> shall require <a class="reference internal" href="glossary.html#term_unsafe_context">unsafe context</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jfde2vg6mtww">7.2:8</span>
+An <a class="reference internal" href="glossary.html#term_immutable_static">immutable static</a> is a <a class="reference internal" href="glossary.html#term_static">static</a> whose <a class="reference internal" href="glossary.html#term_value">value</a> cannot be modified.</p>
+<p><span class="spec-paragraph-id" id="fls_k4tyqb1j6zjo">7.2:9</span>
+The type of an <a class="reference internal" href="glossary.html#term_immutable_static">immutable static</a> shall implement the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASync"><code class="docutils literal notranslate"><span class="pre">core::marker::Sync</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_t17h5h6a6v4c">7.2:10</span>
+A <a class="reference internal" href="glossary.html#term_static_initializer">static initializer</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that provides the <a class="reference internal" href="glossary.html#term_value">value</a> of
+its related <a class="reference internal" href="glossary.html#term_static">static</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yq0hpy4jx2qb">7.2:11</span>
+A <a class="reference internal" href="glossary.html#term_static">static</a> shall have a <a class="reference internal" href="glossary.html#term_static_initializer">static initializer</a>, unless it is an
+<a class="reference internal" href="glossary.html#term_external_static">external static</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vgidvfwzm4ks">7.2:12</span>
+The <a class="reference internal" href="glossary.html#term_expression">expression</a> of a <a class="reference internal" href="glossary.html#term_static_initializer">static initializer</a> shall be a
+<a class="reference internal" href="glossary.html#term_constant_expression">constant expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8dcldbvu7lav">7.2:13</span>
+A use of a <a class="reference internal" href="glossary.html#term_static">static</a> is a <a class="reference internal" href="glossary.html#term_place_expression">place expression</a> referring to the unique
+location of the <a class="reference internal" href="glossary.html#term_static">static</a>.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_w0nb0mphho7b">7.2:14</span>
+The <a class="reference internal" href="glossary.html#term_elaboration">elaboration</a> of a <a class="reference internal" href="glossary.html#term_static">static</a> evaluates its <a class="reference internal" href="glossary.html#term_static_initializer">static initializer</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_eeocxst9vafn">7.2:15</span>
+All <a class="reference internal" href="glossary.html#term_path">paths</a> that refer to a <a class="reference internal" href="glossary.html#term_static">static</a> refer to the same memory location.</p>
+<p><span class="spec-paragraph-id" id="fls_47khd5ljsxeq">7.2:16</span>
+A <a class="reference internal" href="glossary.html#term_static">static</a> is not <a class="reference internal" href="ownership-and-deconstruction.html#term_dropped">dropped</a> during <a class="reference internal" href="glossary.html#term_destruction">destruction</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dowxbphqvk3n">7.2:17</span>
+An <a class="reference internal" href="glossary.html#term_immutable_static">immutable static</a> whose <a class="reference internal" href="glossary.html#term_type">type</a> is not subject to
+<a class="reference internal" href="glossary.html#term_interior_mutability">interior mutability</a> may reside in read-only memory.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_b5wsmii7vz3v">7.2:18</span>
+It is undefined behavior to mutate an <a class="reference internal" href="glossary.html#term_immutable_static">immutable static</a> whose <a class="reference internal" href="glossary.html#term_type">type</a> is
+not subject to <a class="reference internal" href="glossary.html#term_interior_mutability">interior mutability</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">static</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">GLOBAL</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="temporaries">
+<span id="fls_cleoffpn5ew6"></span><h2><span class="section-number">7.3. </span>Temporaries<a class="headerlink" href="#temporaries" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_awpw61yofckz">7.3:1</span>
+A <a class="reference internal" href="glossary.html#term_temporary">temporary</a> is an anonymous <a class="reference internal" href="glossary.html#term_variable">variable</a> produced by some intermediate
+computation.</p>
+</section>
+<section id="variables">
+<span id="fls_gho955gmob73"></span><h2><span class="section-number">7.4. </span>Variables<a class="headerlink" href="#variables" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_hl5tnd9yy252">7.4:1</span>
+A <a class="reference internal" href="glossary.html#term_variable">variable</a> is a placeholder for a <a class="reference internal" href="glossary.html#term_value">value</a> that is allocated on the
+stack.</p>
+<p><span class="spec-paragraph-id" id="fls_vgi0gh5zmoiu">7.4:2</span>
+The following <a class="reference internal" href="glossary.html#term_construct">constructs</a> are <a class="reference internal" href="glossary.html#term_variable">variables</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_81dlbula47nu">7.4:3</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3p0sb9ppmg3w">7.4:4</span>
+A <a class="reference internal" href="glossary.html#term_temporary">temporary</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_r9km9f969bu8">7.4:5</span>
+A <a class="reference internal" href="glossary.html#term_variable">variable</a> shall be used only after it has been initialized through all
+<a class="reference internal" href="glossary.html#term_reachable_control_flow_path">reachable control flow paths</a> up to the point of its usage.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_g8etd5lsgn9j">7.4:6</span>
+A <a class="reference internal" href="glossary.html#term_variable">variable</a> is not initialized when allocated.</p>
+<section id="constant-promotion">
+<span id="fls_wttihxen35as"></span><h3><span class="section-number">7.4.1. </span>Constant Promotion<a class="headerlink" href="#constant-promotion" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_udn9lyf3m0z6">7.4.1:1</span>
+<a class="reference internal" href="glossary.html#term_constant_promotion">Constant promotion</a> is the process of converting a <a class="reference internal" href="glossary.html#term_value_expression">value expression</a>
+into a <a class="reference internal" href="glossary.html#term_constant">constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yvkdcs4pmxjf">7.4.1:2</span>
+<a class="reference internal" href="glossary.html#term_constant_promotion">Constant promotion</a> is possible only when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_n570za6a9nqd">7.4.1:3</span>
+The <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> is a <a class="reference internal" href="glossary.html#term_constant_expression">constant expression</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tms5r9f5ogcb">7.4.1:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> does not have a <a class="reference internal" href="glossary.html#term_destructor">destructor</a>,
+and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bysv5r7iuf5j">7.4.1:5</span>
+The <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> does not employ a <a class="reference internal" href="glossary.html#term_struct_expression">struct expression</a>
+constructing a <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Acell%3A%3AUnsafeCell"><code class="docutils literal notranslate"><span class="pre">core::cell::UnsafeCell</span></code></a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3h5vr7xk2rrt">7.4.1:6</span>
+The <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> only consists of operations that will always succeed
+evaluation, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3BGncWvMumEt">7.4.1:7</span>
+The <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> is the <a class="reference internal" href="glossary.html#term_operand">operand</a> of an
+<a class="reference internal" href="glossary.html#term_immutable_borrow_expression">immutable borrow expression</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_m690b8qg9d9r">7.4.1:8</span>
+<a class="reference internal" href="glossary.html#term_constant_promotion">Constant promotion</a> is always possible for <a class="reference internal" href="glossary.html#term_expression">expression</a> <code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">[]</span></code>,
+promoting the produced <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a> to have <code class="docutils literal notranslate"><span class="pre">'static</span></code> <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_uf0sg25awre6">7.4.1:9</span>
+<a class="reference internal" href="glossary.html#term_constant_promotion">Constant promotion</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_o7cqfdnr253y">7.4.1:10</span>
+An anonymous <a class="reference internal" href="glossary.html#term_constant">constant</a> is created, whose <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a> holds
+the result of the <a class="reference internal" href="glossary.html#term_value_expression">value expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ap85svxyuhvg">7.4.1:11</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> of the anonymous <a class="reference internal" href="glossary.html#term_constant">constant</a> is <a class="reference internal" href="glossary.html#term_borrowed">borrowed</a> with
+<code class="docutils literal notranslate"><span class="pre">'static</span></code> <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

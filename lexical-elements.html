@@ -1,0 +1,1387 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2. Lexical Elements &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Items" href="items.html" />
+    <link rel="prev" title="1. General" href="general.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="lexical-elements">
+<span id="fls_411up5z0b6n6"></span><h1><span class="section-number">2. </span>Lexical Elements<a class="headerlink" href="#lexical-elements" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this section are informational.</p>
+</div>
+<p><span class="spec-paragraph-id" id="fls_pqwpf87b84tr">2:1</span>
+The text of a Rust program consists of <a class="reference internal" href="glossary.html#term_module">modules</a> organized into <a class="reference internal" href="glossary.html#term_source_file">source
+files</a>. The text of a <a class="reference internal" href="glossary.html#term_source_file">source file</a> is a sequence of <a class="reference internal" href="glossary.html#term_lexical_element">lexical
+elements</a>, each composed of characters, whose rules are presented in this
+chapter.</p>
+<section id="character-set">
+<span id="fls_2i089jvv8j5g"></span><h2><span class="section-number">2.1. </span>Character Set<a class="headerlink" href="#character-set" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_itcth8292ud6">2.1:1</span>
+The program text of a Rust program is written using the <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> character
+set.</p>
+<p class="rubric">Syntax</p>
+<p><span class="spec-paragraph-id" id="fls_vfx8byq5zo8t">2.1:2</span>
+A character is defined by this document for each cell in the coding space
+described by <a class="reference internal" href="glossary.html#term_unicode">Unicode</a>, regardless of whether or not <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> allocates a
+character to that cell.</p>
+<p><span class="spec-paragraph-id" id="fls_pvslhm3chtlb">2.1:3</span>
+A <em id="term_whitespace_character">whitespace character</em> is one of the following characters:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_a5ec9cpn4sc8">2.1:4</span>
+0x09 (horizontal tabulation)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_dgyrj49y3c7c">2.1:5</span>
+0x0A (new line)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5ocmngyur7by">2.1:6</span>
+0x0B (vertical tabulation)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_1aj0rgi9kpib">2.1:7</span>
+0x0C (form feed)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bfzdxsbq2c2q">2.1:8</span>
+0x0D (carriage return)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_vw0kq2y1o63m">2.1:9</span>
+0x20 (space)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ao296bmamwzh">2.1:10</span>
+0x85 (next line)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6kymhq7embdh">2.1:11</span>
+0x200E (left-to-right mark)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8mxmrxvhn3by">2.1:12</span>
+0x200F (right-to-left mark)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bc6D1ATvmJJr">2.1:13</span>
+0x2028 (line separator)</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_zfs15iel08y0">2.1:14</span>
+0x2029 (paragraph separator)</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_7eifv4ksunu1">2.1:15</span>
+A <a class="reference internal" href="glossary.html#term_whitespace_string">whitespace string</a> is a string that consists of one or more
+<a class="reference internal" href="#term_whitespace_character">whitespace characters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_PIDKEm8GiLNL">2.1:16</span>
+An <code class="docutils literal notranslate" id="syntax_asciicharacter"><span class="pre">AsciiCharacter</span></code> is any <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> character in the range 0x00 - 0x7F, both inclusive.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_2brw13n9ldgy">2.1:17</span>
+The coded representation of a character is tool-defined.</p>
+</section>
+<section id="lexical-elements-separators-and-punctuation">
+<span id="fls_fgnllgz5k3e6"></span><h2><span class="section-number">2.2. </span>Lexical Elements, Separators, and Punctuation<a class="headerlink" href="#lexical-elements-separators-and-punctuation" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_lexicalelement"><span class="pre">LexicalElement</span></code> ::=
+    <a class="reference internal" href="#syntax_comment"><code class="docutils literal notranslate"><span class="pre">Comment</span></code></a>
+  | <a class="reference internal" href="#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+  | <a class="reference internal" href="#syntax_keyword"><code class="docutils literal notranslate"><span class="pre">Keyword</span></code></a>
+  | <a class="reference internal" href="#syntax_literal"><code class="docutils literal notranslate"><span class="pre">Literal</span></code></a>
+  | <a class="reference internal" href="#syntax_punctuation"><code class="docutils literal notranslate"><span class="pre">Punctuation</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_punctuation"><span class="pre">Punctuation</span></code> ::=
+    <a class="reference internal" href="#syntax_delimiter"><code class="docutils literal notranslate"><span class="pre">Delimiter</span></code></a>
+  | <strong class="spec-syntax-literal">+</strong>
+  | <strong class="spec-syntax-literal">-</strong>
+  | <strong class="spec-syntax-literal">*</strong>
+  | <strong class="spec-syntax-literal">/</strong>
+  | <strong class="spec-syntax-literal">%</strong>
+  | <strong class="spec-syntax-literal">^</strong>
+  | <strong class="spec-syntax-literal">!</strong>
+  | <strong class="spec-syntax-literal">&amp;</strong>
+  | <strong class="spec-syntax-literal">|</strong>
+  | <strong class="spec-syntax-literal">&amp;&amp;</strong>
+  | <strong class="spec-syntax-literal">||</strong>
+  | <strong class="spec-syntax-literal">&lt;&lt;</strong>
+  | <strong class="spec-syntax-literal">&gt;&gt;</strong>
+  | <strong class="spec-syntax-literal">+=</strong>
+  | <strong class="spec-syntax-literal">-=</strong>
+  | <strong class="spec-syntax-literal">*=</strong>
+  | <strong class="spec-syntax-literal">/=</strong>
+  | <strong class="spec-syntax-literal">%=</strong>
+  | <strong class="spec-syntax-literal">^=</strong>
+  | <strong class="spec-syntax-literal">&amp;=</strong>
+  | <strong class="spec-syntax-literal">|=</strong>
+  | <strong class="spec-syntax-literal">&lt;&lt;=</strong>
+  | <strong class="spec-syntax-literal">&gt;&gt;=</strong>
+  | <strong class="spec-syntax-literal">=</strong>
+  | <strong class="spec-syntax-literal">==</strong>
+  | <strong class="spec-syntax-literal">!=</strong>
+  | <strong class="spec-syntax-literal">&gt;</strong>
+  | <strong class="spec-syntax-literal">&lt;</strong>
+  | <strong class="spec-syntax-literal">&gt;=</strong>
+  | <strong class="spec-syntax-literal">&lt;=</strong>
+  | <strong class="spec-syntax-literal">&#64;</strong>
+  | <strong class="spec-syntax-literal">_</strong>
+  | <strong class="spec-syntax-literal">.</strong>
+  | <strong class="spec-syntax-literal">..</strong>
+  | <strong class="spec-syntax-literal">...</strong>
+  | <strong class="spec-syntax-literal">..=</strong>
+  | <strong class="spec-syntax-literal">,</strong>
+  | <strong class="spec-syntax-literal">;</strong>
+  | <strong class="spec-syntax-literal">:</strong>
+  | <strong class="spec-syntax-literal">::</strong>
+  | <strong class="spec-syntax-literal">-&gt;</strong>
+  | <strong class="spec-syntax-literal">=&gt;</strong>
+  | <strong class="spec-syntax-literal">#</strong>
+  | <strong class="spec-syntax-literal">$</strong>
+  | <strong class="spec-syntax-literal">?</strong>
+
+<code class="docutils literal notranslate" id="syntax_delimiter"><span class="pre">Delimiter</span></code> ::=
+    <strong class="spec-syntax-literal">{</strong>
+  | <strong class="spec-syntax-literal">}</strong>
+  | <strong class="spec-syntax-literal">[</strong>
+  | <strong class="spec-syntax-literal">]</strong>
+  | <strong class="spec-syntax-literal">(</strong>
+  | <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_d4nvxsvxj537">2.2:1</span>
+The text of a <a class="reference internal" href="glossary.html#term_source_file">source file</a> is a sequence of separate <a class="reference internal" href="glossary.html#term_lexical_element">lexical
+elements</a>. The meaning of a program depends only on the particular sequence of
+<a class="reference internal" href="glossary.html#term_lexical_element">lexical elements</a>, excluding <a class="reference internal" href="glossary.html#term_doc_comment">non-doc comments</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_a1zylpqha73x">2.2:2</span>
+A <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> is the most basic syntactic element in program text.</p>
+<p><span class="spec-paragraph-id" id="fls_jy6wifn5r2bu">2.2:3</span>
+The text of a <a class="reference internal" href="glossary.html#term_source_file">source file</a> is divided into <a class="reference internal" href="glossary.html#term_line">lines</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_efdfq9nhpmp5">2.2:4</span>
+A <a class="reference internal" href="glossary.html#term_line">line</a> is a sequence of zero or more characters followed by an end of
+line.</p>
+<p><span class="spec-paragraph-id" id="fls_go25sisi5fdp">2.2:5</span>
+The representation of an end of line is tool-defined.</p>
+<p><span class="spec-paragraph-id" id="fls_a6t53o8h1vdk">2.2:6</span>
+A <a class="reference internal" href="glossary.html#term_separator">separator</a> is a character or a string that separates adjacent <a class="reference internal" href="glossary.html#term_lexical_element">lexical
+elements</a>. A <a class="reference internal" href="glossary.html#term_whitespace_string">whitespace string</a> is a <a class="reference internal" href="glossary.html#term_separator">separator</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8fv63w6f4udl">2.2:7</span>
+A <em id="term_simple_punctuator">simple punctuator</em> is one of the following special characters:</p>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">+</strong>
+<strong class="spec-syntax-literal">-</strong>
+<strong class="spec-syntax-literal">*</strong>
+<strong class="spec-syntax-literal">/</strong>
+<strong class="spec-syntax-literal">%</strong>
+<strong class="spec-syntax-literal">^</strong>
+<strong class="spec-syntax-literal">!</strong>
+<strong class="spec-syntax-literal">&amp;</strong>
+<strong class="spec-syntax-literal">|</strong>
+<strong class="spec-syntax-literal">=</strong>
+<strong class="spec-syntax-literal">&gt;</strong>
+<strong class="spec-syntax-literal">&lt;</strong>
+<strong class="spec-syntax-literal">&#64;</strong>
+<strong class="spec-syntax-literal">_</strong>
+<strong class="spec-syntax-literal">.</strong>
+<strong class="spec-syntax-literal">,</strong>
+<strong class="spec-syntax-literal">;</strong>
+<strong class="spec-syntax-literal">:</strong>
+<strong class="spec-syntax-literal">#</strong>
+<strong class="spec-syntax-literal">$</strong>
+<strong class="spec-syntax-literal">?</strong>
+<strong class="spec-syntax-literal">{</strong>
+<strong class="spec-syntax-literal">}</strong>
+<strong class="spec-syntax-literal">[</strong>
+<strong class="spec-syntax-literal">]</strong>
+<strong class="spec-syntax-literal">(</strong>
+<strong class="spec-syntax-literal">)</strong></pre>
+<p><span class="spec-paragraph-id" id="fls_es0tz1q9cmoo">2.2:8</span>
+A <em id="term_compound_punctuator">compound punctuator</em> is one of the following two or more adjacent special
+characters:</p>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">&amp;&amp;</strong>
+<strong class="spec-syntax-literal">||</strong>
+<strong class="spec-syntax-literal">&lt;&lt;</strong>
+<strong class="spec-syntax-literal">&gt;&gt;</strong>
+<strong class="spec-syntax-literal">+=</strong>
+<strong class="spec-syntax-literal">-=</strong>
+<strong class="spec-syntax-literal">*=</strong>
+<strong class="spec-syntax-literal">/=</strong>
+<strong class="spec-syntax-literal">%=</strong>
+<strong class="spec-syntax-literal">^=</strong>
+<strong class="spec-syntax-literal">&amp;=</strong>
+<strong class="spec-syntax-literal">|=</strong>
+<strong class="spec-syntax-literal">&lt;&lt;=</strong>
+<strong class="spec-syntax-literal">&gt;&gt;=</strong>
+<strong class="spec-syntax-literal">==</strong>
+<strong class="spec-syntax-literal">!=</strong>
+<strong class="spec-syntax-literal">&gt;=</strong>
+<strong class="spec-syntax-literal">&lt;=</strong>
+<strong class="spec-syntax-literal">..</strong>
+<strong class="spec-syntax-literal">...</strong>
+<strong class="spec-syntax-literal">..=</strong>
+<strong class="spec-syntax-literal">::</strong>
+<strong class="spec-syntax-literal">-&gt;</strong>
+<strong class="spec-syntax-literal">=&gt;</strong></pre>
+<p><span class="spec-paragraph-id" id="fls_vm86olkeecer">2.2:9</span>
+The following <a class="reference internal" href="#term_compound_punctuator">compound punctuators</a> are <em id="term_flexible_compound_punctuator">flexible compound
+punctuators</em>.</p>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">&amp;&amp;</strong>
+<strong class="spec-syntax-literal">||</strong>
+<strong class="spec-syntax-literal">&lt;&lt;</strong>
+<strong class="spec-syntax-literal">&gt;&gt;</strong></pre>
+<p><span class="spec-paragraph-id" id="fls_5zxdgxy8tjrq">2.2:10</span>
+A <a class="reference internal" href="#term_flexible_compound_punctuator">flexible compound punctuator</a> may be treated as a single <a class="reference internal" href="#term_compound_punctuator">compound
+punctuator</a> or two adjacent <a class="reference internal" href="#term_simple_punctuator">simple punctuators</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_x89vkq9rwlyt">2.2:11</span>
+Each of the special characters listed for single character <a class="reference internal" href="glossary.html#term_punctuator">punctuator</a>
+is a <a class="reference internal" href="#term_simple_punctuator">simple punctuator</a> except if this character is used as a character
+of a <a class="reference internal" href="#term_compound_punctuator">compound punctuator</a>, or a character of a <a class="reference internal" href="glossary.html#term_character_literal">character literal</a>, a
+<a class="reference internal" href="glossary.html#term_comment">comment</a>, a <a class="reference internal" href="glossary.html#term_numeric_literal">numeric literal</a>, or a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bo3xh8r60ji1">2.2:12</span>
+The following names are used when referring to <a class="reference internal" href="glossary.html#term_punctuator">punctuators</a>:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_sslkjuxjnteu">2.2:13</span></p></td>
+<td><p><strong>punctuator</strong></p></td>
+<td><p><strong>name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_9g1godm0jp0z">2.2:14</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p>Plus</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6oith9q0soot">2.2:15</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Minus</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_1dledwdc8fa6">2.2:16</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>Star</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_lunw7ucj5ius">2.2:17</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p>Slash</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_a4oiuhz95uiv">2.2:18</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>Percent</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_137x9s6guj6h">2.2:19</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^</span></code></p></td>
+<td><p>Caret</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_y0wdb09cpp1w">2.2:20</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!</span></code></p></td>
+<td><p>Not</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_48b7mepiuupz">2.2:21</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;</span></code></p></td>
+<td><p>And</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_g9h9bsvrsmk1">2.2:22</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|</span></code></p></td>
+<td><p>Or</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_fxne2xd0zzzo">2.2:23</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></p></td>
+<td><p>And and, lazy boolean and</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_il7zv5x3aw0q">2.2:24</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">||</span></code></p></td>
+<td><p>Or or, lazy boolean or</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ovcs1qm86ss9">2.2:25</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code></p></td>
+<td><p>Shift left</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_wmhlvjm0b0j9">2.2:26</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code></p></td>
+<td><p>Shift right</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_gg42klb2gn9v">2.2:27</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+=</span></code></p></td>
+<td><p>Plus equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_icahptg5enj4">2.2:28</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-=</span></code></p></td>
+<td><p>Minus equals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_baawlxoi7yd4">2.2:29</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">*=</span></code></p></td>
+<td><p>Star equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_m7gt3wfbtm81">2.2:30</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/=</span></code></p></td>
+<td><p>Slash equals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6ewl7gn3sjm2">2.2:31</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">%=</span></code></p></td>
+<td><p>Percent equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_nb8q6oq8txv3">2.2:32</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">^=</span></code></p></td>
+<td><p>Caret equals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_4nnky9ansr9j">2.2:33</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&amp;=</span></code></p></td>
+<td><p>And equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_h1gvudehmnn9">2.2:34</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">|=</span></code></p></td>
+<td><p>Or equals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6yj1c3lh691s">2.2:35</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;&lt;=</span></code></p></td>
+<td><p>Shift left equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2d3oo9nou9vv">2.2:36</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;&gt;=</span></code></p></td>
+<td><p>Shift right equals</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_st2vhcy14ud9">2.2:37</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=</span></code></p></td>
+<td><p>Equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_9gdyw71dl25">2.2:38</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>Equals equals, logical equality</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_sp8ufz28l9w3">2.2:39</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>Not equals</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_7kdr8biodxvz">2.2:40</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>Greater than</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_pf92l9bkte2u">2.2:41</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p>Less than</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ui40thspgyav">2.2:42</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>Greater than equals, greater than or equal to</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_h33qzachmimc">2.2:43</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p>Less than equals, less than or equal to</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_13ud1clgdnyv">2.2:44</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&#64;</span></code></p></td>
+<td><p>At</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_7fosi8l2ktz2">2.2:45</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">_</span></code></p></td>
+<td><p>Underscore</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_9qitp6r75ia6">2.2:46</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.</span></code></p></td>
+<td><p>Dot</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_g0umao9roi2l">2.2:47</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">..</span></code></p></td>
+<td><p>Dot dot, exclusive range</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_lamrpdpko48">2.2:48</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">...</span></code></p></td>
+<td><p>Dot dot dot, ellipsis</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_s4lte9onbmqb">2.2:49</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">..=</span></code></p></td>
+<td><p>Dot dot equals, inclusive range</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ywc297y8s0dt">2.2:50</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p>Comma</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ijb0fws4gshu">2.2:51</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">;</span></code></p></td>
+<td><p>Semicolon</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_c25ur4xwbpk0">2.2:52</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">:</span></code></p></td>
+<td><p>Colon</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_9dd9479zzq30">2.2:53</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">::</span></code></p></td>
+<td><p>Colon colon, path separator</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_kwsu9d3ppv3f">2.2:54</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-&gt;</span></code></p></td>
+<td><p>Right arrow</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_oh62j9unw4mg">2.2:55</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">=&gt;</span></code></p></td>
+<td><p>Fat arrow, Hashrocket</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_g0tltt8qmbum">2.2:56</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">#</span></code></p></td>
+<td><p>Pound</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ounkw8b8tk4f">2.2:57</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$</span></code></p></td>
+<td><p>Dollar sign</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_8ywv8gftsfr1">2.2:58</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">?</span></code></p></td>
+<td><p>Question mark</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_hsn6zc29ifyx">2.2:59</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{</span></code></p></td>
+<td><p>Left curly brace</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_o3amqe3ca82d">2.2:60</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">}</span></code></p></td>
+<td><p>Right curly brace</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_lkevfpj7sqd3">2.2:61</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[</span></code></p></td>
+<td><p>Left square bracket</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ff05ge2189z">2.2:62</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">]</span></code></p></td>
+<td><p>Right square bracket</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_nplkudde6oxf">2.2:63</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(</span></code></p></td>
+<td><p>Left parenthesis</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_qwnrklmbz0b">2.2:64</span></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">)</span></code></p></td>
+<td><p>Right parenthesis</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="identifiers">
+<span id="fls_21vnag69kbwe"></span><h2><span class="section-number">2.3. </span>Identifiers<a class="headerlink" href="#identifiers" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_identifier"><span class="pre">Identifier</span></code> ::=
+    <a class="reference internal" href="#syntax_nonkeywordidentifier"><code class="docutils literal notranslate"><span class="pre">NonKeywordIdentifier</span></code></a>
+  | <a class="reference internal" href="#syntax_rawidentifier"><code class="docutils literal notranslate"><span class="pre">RawIdentifier</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_identifierlist"><span class="pre">IdentifierList</span></code> ::=
+    <a class="reference internal" href="#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?
+
+<code class="docutils literal notranslate" id="syntax_nonkeywordidentifier"><span class="pre">NonKeywordIdentifier</span></code> ::=
+    <a class="reference internal" href="#syntax_pureidentifier"><code class="docutils literal notranslate"><span class="pre">PureIdentifier</span></code></a>
+  | <a class="reference internal" href="#syntax_weakkeyword"><code class="docutils literal notranslate"><span class="pre">WeakKeyword</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rawidentifier"><span class="pre">RawIdentifier</span></code> ::=
+    <strong class="spec-syntax-literal">r#</strong> (<a class="reference internal" href="#syntax_pureidentifier"><code class="docutils literal notranslate"><span class="pre">PureIdentifier</span></code></a> | <a class="reference internal" href="#syntax_rawidentifierkeyword"><code class="docutils literal notranslate"><span class="pre">RawIdentifierKeyword</span></code></a>)
+
+<code class="docutils literal notranslate" id="syntax_pureidentifier"><span class="pre">PureIdentifier</span></code> ::=
+    <a class="reference internal" href="#syntax_xid_start"><code class="docutils literal notranslate"><span class="pre">XID_Start</span></code></a> <a class="reference internal" href="#syntax_xid_continue"><code class="docutils literal notranslate"><span class="pre">XID_Continue</span></code></a>*
+  | <strong class="spec-syntax-literal">_</strong> <a class="reference internal" href="#syntax_xid_continue"><code class="docutils literal notranslate"><span class="pre">XID_Continue</span></code></a>+
+
+<code class="docutils literal notranslate" id="syntax_identifierorunderscore"><span class="pre">IdentifierOrUnderscore</span></code> ::=
+    <a class="reference internal" href="#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+  | <strong class="spec-syntax-literal">_</strong>
+
+<code class="docutils literal notranslate" id="syntax_renaming"><span class="pre">Renaming</span></code> ::=
+    <strong class="spec-syntax-literal">as</strong> <a class="reference internal" href="#syntax_identifierorunderscore"><code class="docutils literal notranslate"><span class="pre">IdentifierOrUnderscore</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_ls7ymvgd5kfa">2.3:1</span>
+A <code class="docutils literal notranslate" id="syntax_rawidentifierkeyword"><span class="pre">RawIdentifierKeyword</span></code> is any <a class="reference internal" href="glossary.html#term_keyword">keyword</a> in category <a class="reference internal" href="#syntax_keyword"><code class="docutils literal notranslate"><span class="pre">Keyword</span></code></a>,
+except <code class="docutils literal notranslate"><span class="pre">crate</span></code>, <code class="docutils literal notranslate"><span class="pre">self</span></code>, <code class="docutils literal notranslate"><span class="pre">Self</span></code>, and <code class="docutils literal notranslate"><span class="pre">super</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_aqj9aguczgqs">2.3:2</span>
+<code class="docutils literal notranslate" id="syntax_xid_start"><span class="pre">XID_Start</span></code> and <code class="docutils literal notranslate" id="syntax_xid_continue"><span class="pre">XID_Continue</span></code> are defined in Unicode Standard Annex
+#31.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_xsdmun5uqy4c">2.3:3</span>
+An <a class="reference internal" href="glossary.html#term_identifier">identifier</a> is a <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> that refers to a <a class="reference internal" href="glossary.html#term_name">name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ktnf6zkrdy45">2.3:4</span>
+A <a class="reference internal" href="glossary.html#term_pure_identifier">pure identifier</a> is an <a class="reference internal" href="glossary.html#term_identifier">identifier</a> that does not include <a class="reference internal" href="glossary.html#term_weak_keyword">weak
+keywords</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jpecw46eh061">2.3:5</span>
+A <a class="reference internal" href="glossary.html#term_pure_identifier">pure identifier</a> shall follow the specification in Unicode Standard Annex
+#31 for <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> version 13.0, with the following profile:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_lwcflgezgs5z">2.3:6</span>
+<code class="docutils literal notranslate"><span class="pre">Start</span></code> = <code class="docutils literal notranslate"><span class="pre">XID_Start</span></code>, plus character 0x5F (low line).</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_uts0hywaw1rq">2.3:7</span>
+<code class="docutils literal notranslate"><span class="pre">Continue</span></code> = <code class="docutils literal notranslate"><span class="pre">XID_Continue</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lju1avcn0pfd">2.3:8</span>
+<code class="docutils literal notranslate"><span class="pre">Medial</span></code> = empty</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_cs6cbw625np1">2.3:9</span>
+Characters 0x200C (zero width non-joiner) and 0x200D (zero width joiner) shall
+not appear in a <a class="reference internal" href="glossary.html#term_pure_identifier">pure identifier</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_irwcldiotei2">2.3:10</span>
+A <a class="reference internal" href="glossary.html#term_pure_identifier">pure identifier</a> shall be restricted to characters in category
+<a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacter</span></code></a> in the following contexts:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_g72rxs2z5960">2.3:11</span>
+<a class="reference internal" href="glossary.html#term_crate_import">Crate imports</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w473jevurlt1">2.3:12</span>
+<a class="reference internal" href="glossary.html#term_name">Names</a> of external <a class="reference internal" href="glossary.html#term_crate">crates</a> represented in a <a class="reference internal" href="glossary.html#term_simple_path">simple path</a>, when
+the <a class="reference internal" href="glossary.html#term_simple_path">simple path</a> starts with namespace qualifier <code class="docutils literal notranslate"><span class="pre">::</span></code>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mt1u4m3simhc">2.3:13</span>
+<a class="reference internal" href="glossary.html#term_name">Names</a> of <a class="reference internal" href="glossary.html#term_outline_module">outline modules</a> that lack <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_e2v58o233lvd">2.3:14</span>
+<a class="reference internal" href="glossary.html#term_name">Names</a> of <a class="reference internal" href="glossary.html#term_item">items</a> that are subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="attributes.html#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_op0lp1i065di">2.3:15</span>
+<a class="reference internal" href="glossary.html#term_name">Names</a> of <a class="reference internal" href="glossary.html#term_item">items</a> within <a class="reference internal" href="glossary.html#term_external_block">external blocks</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_vde7gev5rz4q">2.3:16</span>
+<a class="reference internal" href="glossary.html#term_identifier">Identifiers</a> are normalized using Normalization Form C as defined in
+Unicode Standard Annex #15.</p>
+<p><span class="spec-paragraph-id" id="fls_j9yh8j8jgdeu">2.3:17</span>
+Two <a class="reference internal" href="glossary.html#term_identifier">identifiers</a> are considered the same if they consist of the same
+sequence of characters after performing normalization.</p>
+<p><span class="spec-paragraph-id" id="fls_jejt5z8m1yew">2.3:18</span>
+<a class="reference internal" href="glossary.html#term_declarative_macro">Declarative macros</a> and <a class="reference internal" href="glossary.html#term_procedural_macro">procedural macros</a> shall receive normalized
+<a class="reference internal" href="glossary.html#term_identifier">identifiers</a> in their input.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>foo
+_identifier
+r#true
+Москва
+東京
+</pre></div>
+</div>
+</section>
+<section id="literals">
+<span id="fls_nrkd5wpi64oo"></span><h2><span class="section-number">2.4. </span>Literals<a class="headerlink" href="#literals" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_literal"><span class="pre">Literal</span></code> ::=
+    <a class="reference internal" href="#syntax_booleanliteral"><code class="docutils literal notranslate"><span class="pre">BooleanLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_byteliteral"><code class="docutils literal notranslate"><span class="pre">ByteLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_bytestringliteral"><code class="docutils literal notranslate"><span class="pre">ByteStringLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_cstringliteral"><code class="docutils literal notranslate"><span class="pre">CStringLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_characterliteral"><code class="docutils literal notranslate"><span class="pre">CharacterLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_numericliteral"><code class="docutils literal notranslate"><span class="pre">NumericLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_s76un78zyd0j">2.4:1</span>
+A <a class="reference internal" href="glossary.html#term_literal">literal</a> is a fixed <a class="reference internal" href="glossary.html#term_value">value</a> in program text.</p>
+<section id="byte-literals">
+<span id="fls_2ifjqwnw03ms"></span><h3><span class="section-number">2.4.1. </span>Byte Literals<a class="headerlink" href="#byte-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_byteliteral"><span class="pre">ByteLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">b'</strong> <a class="reference internal" href="#syntax_bytecontent"><code class="docutils literal notranslate"><span class="pre">ByteContent</span></code></a> <strong class="spec-syntax-literal">'</strong>
+
+<code class="docutils literal notranslate" id="syntax_bytecontent"><span class="pre">ByteContent</span></code> ::=
+    <a class="reference internal" href="#syntax_bytecharacter"><code class="docutils literal notranslate"><span class="pre">ByteCharacter</span></code></a>
+  | <a class="reference internal" href="#syntax_byteescape"><code class="docutils literal notranslate"><span class="pre">ByteEscape</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_byteescape"><span class="pre">ByteEscape</span></code> ::=
+  | <strong class="spec-syntax-literal">\0</strong>
+  | <strong class="spec-syntax-literal">\&quot;</strong>
+  | <strong class="spec-syntax-literal">\'</strong>
+  | <strong class="spec-syntax-literal">\t</strong>
+  | <strong class="spec-syntax-literal">\n</strong>
+  | <strong class="spec-syntax-literal">\r</strong>
+  | <strong class="spec-syntax-literal">\\</strong>
+  | <strong class="spec-syntax-literal">\x</strong> <a class="reference internal" href="#syntax_octaldigit"><code class="docutils literal notranslate"><span class="pre">OctalDigit</span></code></a> <a class="reference internal" href="#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_3hpzf12h60u4">2.4.1:1</span>
+A <code class="docutils literal notranslate" id="syntax_bytecharacter"><span class="pre">ByteCharacter</span></code> is any character in category <a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacter</span></code></a>
+except characters 0x09 (horizontal tabulation), 0x0A (new line), 0x0D (carriage
+return), 0x27 (apostrophe), and 0x5C (reverse solidus).</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_q0qwr83frszx">2.4.1:2</span>
+A <a class="reference internal" href="glossary.html#term_byte_literal">byte literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that denotes a fixed byte <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fggytrv5jvw0">2.4.1:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_byte_literal">byte literal</a> is <a class="reference internal" href="glossary.html#codeterm_u8"><code class="docutils literal notranslate"><span class="pre">u8</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="sc">b&#39;h&#39;</span>
+<span class="sc">b&#39;\n&#39;</span>
+<span class="sc">b&#39;\x1B&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="byte-string-literals">
+<span id="fls_fqaffyrjob7v"></span><h3><span class="section-number">2.4.2. </span>Byte String Literals<a class="headerlink" href="#byte-string-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_bytestringliteral"><span class="pre">ByteStringLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_rawbytestringliteral"><code class="docutils literal notranslate"><span class="pre">RawByteStringLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_simplebytestringliteral"><code class="docutils literal notranslate"><span class="pre">SimpleByteStringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_t63zfv5JdUhj">2.4.2:1</span>
+A <a class="reference internal" href="glossary.html#term_byte_string_literal">byte string literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that consists of multiple
+<a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacters</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_Xd6LnfzMb7t7">2.4.2:2</span>
+The character sequence 0x0D 0x0A (carriage return, new line) is replaced by 0x0A
+(new line) inside of a <a class="reference internal" href="glossary.html#term_byte_string_literal">byte string literal</a>.</p>
+<section id="simple-byte-string-literals">
+<span id="fls_msbaxfc09vkk"></span><h4><span class="section-number">2.4.2.1. </span>Simple Byte String Literals<a class="headerlink" href="#simple-byte-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_simplebytestringliteral"><span class="pre">SimpleByteStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">b&quot;</strong> <a class="reference internal" href="#syntax_simplebytestringcontent"><code class="docutils literal notranslate"><span class="pre">SimpleByteStringContent</span></code></a>* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_simplebytestringcontent"><span class="pre">SimpleByteStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_byteescape"><code class="docutils literal notranslate"><span class="pre">ByteEscape</span></code></a>
+  | <a class="reference internal" href="#syntax_simplebytestringcharacter"><code class="docutils literal notranslate"><span class="pre">SimpleByteStringCharacter</span></code></a>
+  | <a class="reference internal" href="#syntax_stringcontinuation"><code class="docutils literal notranslate"><span class="pre">StringContinuation</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_3dcqhuosqb84">2.4.2.1:1</span>
+A <code class="docutils literal notranslate" id="syntax_simplebytestringcharacter"><span class="pre">SimpleByteStringCharacter</span></code> is any character in category <a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacter</span></code></a>
+except characters 0x0D (carriage return), 0x22 (quotation mark), and 0x5C
+(reverse solidus).</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_moe3zfx39ox2">2.4.2.1:2</span>
+A <a class="reference internal" href="glossary.html#term_simple_byte_string_literal">simple byte string literal</a> is a <a class="reference internal" href="glossary.html#term_byte_string_literal">byte string literal</a> that consists of multiple
+<a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacters</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vffxb6arj9jf">2.4.2.1:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_simple_byte_string_literal">simple byte string literal</a> of size <code class="docutils literal notranslate"><span class="pre">N</span></code> is <code class="docutils literal notranslate"><span class="pre">&amp;'static</span> <span class="pre">[u8;</span>
+<span class="pre">N]</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="s">b&quot;&quot;</span>
+<span class="s">b&quot;a</span><span class="se">\t</span><span class="s">b&quot;</span>
+<span class="s">b&quot;Multi\</span>
+<span class="s">line&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="raw-byte-string-literals">
+<span id="fls_jps9102q0qfi"></span><h4><span class="section-number">2.4.2.2. </span>Raw Byte String Literals<a class="headerlink" href="#raw-byte-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_rawbytestringliteral"><span class="pre">RawByteStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">br</strong> <a class="reference internal" href="#syntax_rawbytestringcontent"><code class="docutils literal notranslate"><span class="pre">RawByteStringContent</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rawbytestringcontent"><span class="pre">RawByteStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_nestedrawbytestringcontent"><code class="docutils literal notranslate"><span class="pre">NestedRawByteStringContent</span></code></a>
+  | <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_asciicharacter"><code class="docutils literal notranslate"><span class="pre">AsciiCharacter</span></code></a>* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_nestedrawbytestringcontent"><span class="pre">NestedRawByteStringContent</span></code> ::=
+    <strong class="spec-syntax-literal">#</strong> <a class="reference internal" href="#syntax_rawbytestringcontent"><code class="docutils literal notranslate"><span class="pre">RawByteStringContent</span></code></a> <strong class="spec-syntax-literal">#</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_yyw7nv651580">2.4.2.2:1</span>
+A <a class="reference internal" href="glossary.html#term_raw_byte_string_literal">raw byte string literal</a> is a <a class="reference internal" href="glossary.html#term_simple_byte_string_literal">simple byte string literal</a> that does not
+recognize <a class="reference internal" href="glossary.html#term_escaped_character">escaped characters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5ybq0euwya42">2.4.2.2:2</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_raw_byte_string_literal">raw byte string literal</a> of size <code class="docutils literal notranslate"><span class="pre">N</span></code> is <code class="docutils literal notranslate"><span class="pre">&amp;'static</span>
+<span class="pre">[u8;</span> <span class="pre">N]</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="s">br&quot;&quot;</span>
+<span class="s">br#&quot;&quot;#</span>
+<span class="s">br##&quot;left #&quot;# right&quot;##</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="c-string-literals">
+<span id="fls_u1ghcy16emve"></span><h3><span class="section-number">2.4.3. </span>C String Literals<a class="headerlink" href="#c-string-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_cstringliteral"><span class="pre">CStringLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_rawcstringliteral"><code class="docutils literal notranslate"><span class="pre">RawCStringLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_simplecstringliteral"><code class="docutils literal notranslate"><span class="pre">SimpleCStringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_VKCW830CzhhN">2.4.3:1</span>
+A <a class="reference internal" href="glossary.html#term_c_string_literal">c string literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that consists of multiple characters
+with an implicit 0x00 byte appended to it.</p>
+<p><span class="spec-paragraph-id" id="fls_XJprzaEn82Xs">2.4.3:2</span>
+The character sequence 0x0D 0x0A (carriage return, new line) is replaced by 0x0A
+(new line) inside of a <a class="reference internal" href="glossary.html#term_c_string_literal">c string literal</a>.</p>
+<section id="simple-c-string-literals">
+<span id="fls_p090c5otnelw"></span><h4><span class="section-number">2.4.3.1. </span>Simple C String Literals<a class="headerlink" href="#simple-c-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_simplecstringliteral"><span class="pre">SimpleCStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">c&quot;</strong> <a class="reference internal" href="#syntax_simplecstringcontent"><code class="docutils literal notranslate"><span class="pre">SimpleCStringContent</span></code></a>* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_simplecstringcontent"><span class="pre">SimpleCStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_asciiescape"><code class="docutils literal notranslate"><span class="pre">AsciiEscape</span></code></a>
+  | <a class="reference internal" href="#syntax_simplestringcharacter"><code class="docutils literal notranslate"><span class="pre">SimpleStringCharacter</span></code></a>
+  | <a class="reference internal" href="#syntax_stringcontinuation"><code class="docutils literal notranslate"><span class="pre">StringContinuation</span></code></a>
+  | <a class="reference internal" href="#syntax_unicodeescape"><code class="docutils literal notranslate"><span class="pre">UnicodeEscape</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_fnwQHo7twAom">2.4.3.1:1</span>
+A <a class="reference internal" href="glossary.html#term_simple_c_string_literal">simple c string literal</a> is any <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> character except characters
+0x0D (carriage return), 0x22 (quotation mark), 0x5C (reverse solidus) and 0x00
+(null byte).</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_nPI7j0siGP8G">2.4.3.1:2</span>
+A <a class="reference internal" href="glossary.html#term_simple_c_string_literal">simple c string literal</a> is a <a class="reference internal" href="glossary.html#term_c_string_literal">c string literal</a> where the characters are
+<a class="reference internal" href="glossary.html#term_unicode">Unicode</a> characters.</p>
+<p><span class="spec-paragraph-id" id="fls_Ae7LM4Wg0NA7">2.4.3.1:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_simple_string_literal">simple string literal</a> is <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Affi%3A%3ACStr"><code class="docutils literal notranslate"><span class="pre">&amp;'static</span>
+<span class="pre">core::ffi::CStr</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="s">&quot;&quot;</span>
+<span class="n">c</span><span class="s">&quot;cat&quot;</span>
+<span class="n">c</span><span class="s">&quot;</span><span class="se">\t</span><span class="s">col</span><span class="se">\n</span><span class="s">row&quot;</span>
+<span class="n">c</span><span class="s">&quot;bell</span><span class="se">\x07</span><span class="s">&quot;</span>
+<span class="n">c</span><span class="s">&quot;</span><span class="se">\u{B80a}</span><span class="s">&quot;</span>
+<span class="n">c</span><span class="s">&quot;\</span>
+<span class="s">multi\</span>
+<span class="s">line\</span>
+<span class="s">string&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="raw-c-string-literals">
+<span id="fls_g4ldypf3rl6i"></span><h4><span class="section-number">2.4.3.2. </span>Raw C String Literals<a class="headerlink" href="#raw-c-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_rawcstringliteral"><span class="pre">RawCStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">cr</strong> <a class="reference internal" href="#syntax_rawcstringcontent"><code class="docutils literal notranslate"><span class="pre">RawCStringContent</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rawcstringcontent"><span class="pre">RawCStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_nestedrawcstringcontent"><code class="docutils literal notranslate"><span class="pre">NestedRawCStringContent</span></code></a>
+  | <strong class="spec-syntax-literal">&quot;</strong> ~[<strong class="spec-syntax-literal">\r</strong>]* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_nestedrawcstringcontent"><span class="pre">NestedRawCStringContent</span></code> ::=
+    <strong class="spec-syntax-literal">#</strong> <a class="reference internal" href="#syntax_rawcstringcontent"><code class="docutils literal notranslate"><span class="pre">RawCStringContent</span></code></a> <strong class="spec-syntax-literal">#</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_gLrei65i8Uzq">2.4.3.2:1</span>
+A <a class="reference internal" href="glossary.html#term_raw_c_string_literal">raw c string literal</a> is a <a class="reference internal" href="glossary.html#term_simple_c_string_literal">simple c string literal</a> that does not
+recognize <a class="reference internal" href="glossary.html#term_escaped_character">escaped characters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9nJHsg9dCi66">2.4.3.2:2</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_simple_string_literal">simple string literal</a> is <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Affi%3A%3ACStr"><code class="docutils literal notranslate"><span class="pre">&amp;'static</span>
+<span class="pre">core::ffi::CStr</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">cr</span><span class="s">&quot;&quot;</span>
+<span class="n">cr</span><span class="p">#</span><span class="s">&quot;&quot;</span><span class="p">#</span>
+<span class="n">cr</span><span class="p">##</span><span class="s">&quot;left #&quot;</span><span class="p">#</span><span class="w"> </span><span class="n">right</span><span class="s">&quot;##</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="numeric-literals">
+<span id="fls_hv9jtycp0o1y"></span><h3><span class="section-number">2.4.4. </span>Numeric Literals<a class="headerlink" href="#numeric-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_numericliteral"><span class="pre">NumericLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_floatliteral"><code class="docutils literal notranslate"><span class="pre">FloatLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_integerliteral"><code class="docutils literal notranslate"><span class="pre">IntegerLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fqpqnku27v99">2.4.4:1</span>
+A <a class="reference internal" href="glossary.html#term_numeric_literal">numeric literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that denotes a number.</p>
+<section id="integer-literals">
+<span id="fls_2ed4axpsy9u0"></span><h4><span class="section-number">2.4.4.1. </span>Integer Literals<a class="headerlink" href="#integer-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_integerliteral"><span class="pre">IntegerLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_integercontent"><code class="docutils literal notranslate"><span class="pre">IntegerContent</span></code></a> <a class="reference internal" href="#syntax_integersuffix"><code class="docutils literal notranslate"><span class="pre">IntegerSuffix</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_integercontent"><span class="pre">IntegerContent</span></code> ::=
+    <a class="reference internal" href="#syntax_binaryliteral"><code class="docutils literal notranslate"><span class="pre">BinaryLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_hexadecimalliteral"><code class="docutils literal notranslate"><span class="pre">HexadecimalLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_octalliteral"><code class="docutils literal notranslate"><span class="pre">OctalLiteral</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_binaryliteral"><span class="pre">BinaryLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">0b</strong> <a class="reference internal" href="#syntax_binarydigitorunderscore"><code class="docutils literal notranslate"><span class="pre">BinaryDigitOrUnderscore</span></code></a>* <a class="reference internal" href="#syntax_binarydigit"><code class="docutils literal notranslate"><span class="pre">BinaryDigit</span></code></a> <a class="reference internal" href="#syntax_binarydigitorunderscore"><code class="docutils literal notranslate"><span class="pre">BinaryDigitOrUnderscore</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_binarydigitorunderscore"><span class="pre">BinaryDigitOrUnderscore</span></code> ::=
+    <a class="reference internal" href="#syntax_binarydigit"><code class="docutils literal notranslate"><span class="pre">BinaryDigit</span></code></a>
+  | <strong class="spec-syntax-literal">_</strong>
+
+<code class="docutils literal notranslate" id="syntax_binarydigit"><span class="pre">BinaryDigit</span></code> ::=
+    [<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">1</strong>]
+
+<code class="docutils literal notranslate" id="syntax_decimalliteral"><span class="pre">DecimalLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_decimaldigit"><code class="docutils literal notranslate"><span class="pre">DecimalDigit</span></code></a> <a class="reference internal" href="#syntax_decimaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">DecimalDigitOrUnderscore</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_decimaldigitorunderscore"><span class="pre">DecimalDigitOrUnderscore</span></code> ::=
+    <a class="reference internal" href="#syntax_decimaldigit"><code class="docutils literal notranslate"><span class="pre">DecimalDigit</span></code></a>
+  | <strong class="spec-syntax-literal">_</strong>
+
+<code class="docutils literal notranslate" id="syntax_decimaldigit"><span class="pre">DecimalDigit</span></code> ::=
+    [<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">9</strong>]
+
+<code class="docutils literal notranslate" id="syntax_hexadecimalliteral"><span class="pre">HexadecimalLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">0x</strong> <a class="reference internal" href="#syntax_hexadecimaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigitOrUnderscore</span></code></a>* <a class="reference internal" href="#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a> <a class="reference internal" href="#syntax_hexadecimaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigitOrUnderscore</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_hexadecimaldigitorunderscore"><span class="pre">HexadecimalDigitOrUnderscore</span></code> ::=
+    <a class="reference internal" href="#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a>
+  | <strong class="spec-syntax-literal">_</strong>
+
+<code class="docutils literal notranslate" id="syntax_hexadecimaldigit"><span class="pre">HexadecimalDigit</span></code> ::=
+    [<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">9</strong> <strong class="spec-syntax-literal">a</strong>-<strong class="spec-syntax-literal">f</strong> <strong class="spec-syntax-literal">A</strong>-<strong class="spec-syntax-literal">F</strong>]
+
+<code class="docutils literal notranslate" id="syntax_octalliteral"><span class="pre">OctalLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">0o</strong> <a class="reference internal" href="#syntax_octaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">OctalDigitOrUnderscore</span></code></a>* <a class="reference internal" href="#syntax_octaldigit"><code class="docutils literal notranslate"><span class="pre">OctalDigit</span></code></a> <a class="reference internal" href="#syntax_octaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">OctalDigitOrUnderscore</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_octaldigitorunderscore"><span class="pre">OctalDigitOrUnderscore</span></code> ::=
+    <a class="reference internal" href="#syntax_octaldigit"><code class="docutils literal notranslate"><span class="pre">OctalDigit</span></code></a>
+  | <strong class="spec-syntax-literal">_</strong>
+
+<code class="docutils literal notranslate" id="syntax_octaldigit"><span class="pre">OctalDigit</span></code> ::=
+    [<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]
+
+<code class="docutils literal notranslate" id="syntax_integersuffix"><span class="pre">IntegerSuffix</span></code> ::=
+    <a class="reference internal" href="#syntax_signedintegersuffix"><code class="docutils literal notranslate"><span class="pre">SignedIntegerSuffix</span></code></a>
+  | <a class="reference internal" href="#syntax_unsignedintegersuffix"><code class="docutils literal notranslate"><span class="pre">UnsignedIntegerSuffix</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_signedintegersuffix"><span class="pre">SignedIntegerSuffix</span></code> ::=
+    <strong class="spec-syntax-literal">i8</strong>
+  | <strong class="spec-syntax-literal">i16</strong>
+  | <strong class="spec-syntax-literal">i32</strong>
+  | <strong class="spec-syntax-literal">i64</strong>
+  | <strong class="spec-syntax-literal">i128</strong>
+  | <strong class="spec-syntax-literal">isize</strong>
+
+<code class="docutils literal notranslate" id="syntax_unsignedintegersuffix"><span class="pre">UnsignedIntegerSuffix</span></code> ::=
+    <strong class="spec-syntax-literal">u8</strong>
+  | <strong class="spec-syntax-literal">u16</strong>
+  | <strong class="spec-syntax-literal">u32</strong>
+  | <strong class="spec-syntax-literal">u64</strong>
+  | <strong class="spec-syntax-literal">u128</strong>
+  | <strong class="spec-syntax-literal">usize</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_vkk2krfn93ry">2.4.4.1:1</span>
+An <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> is a <a class="reference internal" href="glossary.html#term_numeric_literal">numeric literal</a> that denotes a whole number.</p>
+<p><span class="spec-paragraph-id" id="fls_nxqncu5yq4eu">2.4.4.1:2</span>
+A <a class="reference internal" href="glossary.html#term_binary_literal">binary literal</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> in base 2.</p>
+<p><span class="spec-paragraph-id" id="fls_rn8xfd66yvst">2.4.4.1:3</span>
+A <a class="reference internal" href="glossary.html#term_decimal_literal">decimal literal</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> in base 10.</p>
+<p><span class="spec-paragraph-id" id="fls_2268lchxkzjp">2.4.4.1:4</span>
+A <a class="reference internal" href="glossary.html#term_hexadecimal_literal">hexadecimal literal</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> in base 16.</p>
+<p><span class="spec-paragraph-id" id="fls_4v7awnutbpoe">2.4.4.1:5</span>
+An <a class="reference internal" href="glossary.html#term_octal_literal">octal literal</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> in base 8.</p>
+<p><span class="spec-paragraph-id" id="fls_f1e29aj0sqvl">2.4.4.1:6</span>
+An <a class="reference internal" href="glossary.html#term_integer_suffix">integer suffix</a> is a component of an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> that specifies
+an explicit <a class="reference internal" href="glossary.html#term_integer_type">integer type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_u83mffscqm6">2.4.4.1:7</span>
+A <a class="reference internal" href="glossary.html#term_suffixed_integer">suffixed integer</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> with an <a class="reference internal" href="glossary.html#term_integer_suffix">integer suffix</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_g10nuv14q4jn">2.4.4.1:8</span>
+An <a class="reference internal" href="glossary.html#term_unsuffixed_integer">unsuffixed integer</a> is an <a class="reference internal" href="glossary.html#term_integer_literal">integer literal</a> without an <a class="reference internal" href="glossary.html#term_integer_suffix">integer
+suffix</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hpkkvuj1z1ez">2.4.4.1:9</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_suffixed_integer">suffixed integer</a> is determined by its <a class="reference internal" href="glossary.html#term_integer_suffix">integer
+suffix</a> as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_7yq2fep848ky">2.4.4.1:10</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">i8</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bzm8lwq3qlat">2.4.4.1:11</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">i16</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_l4cx36brc1r5">2.4.4.1:12</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">i32</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wthchinwx996">2.4.4.1:13</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">i64</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7uoaet2pm3am">2.4.4.1:14</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">i128</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_i128"><code class="docutils literal notranslate"><span class="pre">i128</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_p4rw583o2qbi">2.4.4.1:15</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">isize</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_isize"><code class="docutils literal notranslate"><span class="pre">isize</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xrv4q56lmoo3">2.4.4.1:16</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">u8</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_u8"><code class="docutils literal notranslate"><span class="pre">u8</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_66e3q5um6cwc">2.4.4.1:17</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">u16</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_u16"><code class="docutils literal notranslate"><span class="pre">u16</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5asyk66y7c9d">2.4.4.1:18</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">u32</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_u32"><code class="docutils literal notranslate"><span class="pre">u32</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_76fifqjka0lx">2.4.4.1:19</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">u64</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_u64"><code class="docutils literal notranslate"><span class="pre">u64</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_fsaimo419gf0">2.4.4.1:20</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">u128</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_u128"><code class="docutils literal notranslate"><span class="pre">u128</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_hvzacbu7yiwc">2.4.4.1:21</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">usize</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_usize"><code class="docutils literal notranslate"><span class="pre">usize</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_50qipwqi3arw">2.4.4.1:22</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of an <a class="reference internal" href="glossary.html#term_unsuffixed_integer">unsuffixed integer</a> is determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>
+as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_idzhusp2l908">2.4.4.1:23</span>
+If an <a class="reference internal" href="glossary.html#term_integer_type">integer type</a> can be uniquely determined from the surrounding
+program context, then the <a class="reference internal" href="glossary.html#term_unsuffixed_integer">unsuffixed integer</a> has that <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qqrqyc6uhol">2.4.4.1:24</span>
+If the program context under-constrains the <a class="reference internal" href="glossary.html#term_type">type</a>, then the <a class="reference internal" href="glossary.html#term_inferred_type">inferred
+type</a> is <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pexi5jazthq6">2.4.4.1:25</span>
+If the program context over-constrains the <a class="reference internal" href="glossary.html#term_type">type</a>, then this is considered
+a static error.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="mb">0b0010_1110_</span><span class="k">u8</span>
+<span class="mi">1___2_3</span>
+<span class="mh">0x4D8a</span>
+<span class="mo">0o77_52</span><span class="kt">i128</span>
+</pre></div>
+</div>
+</section>
+<section id="float-literals">
+<span id="fls_29tlg1vyqay2"></span><h4><span class="section-number">2.4.4.2. </span>Float Literals<a class="headerlink" href="#float-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_floatliteral"><span class="pre">FloatLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">.</strong>
+  | <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <a class="reference internal" href="#syntax_floatexponent"><code class="docutils literal notranslate"><span class="pre">FloatExponent</span></code></a>
+  | <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">.</strong> <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <a class="reference internal" href="#syntax_floatexponent"><code class="docutils literal notranslate"><span class="pre">FloatExponent</span></code></a>?
+  | <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> (<strong class="spec-syntax-literal">.</strong> <a class="reference internal" href="#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a>)? <a class="reference internal" href="#syntax_floatexponent"><code class="docutils literal notranslate"><span class="pre">FloatExponent</span></code></a>? <a class="reference internal" href="#syntax_floatsuffix"><code class="docutils literal notranslate"><span class="pre">FloatSuffix</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_floatexponent"><span class="pre">FloatExponent</span></code> ::=
+    <a class="reference internal" href="#syntax_exponentletter"><code class="docutils literal notranslate"><span class="pre">ExponentLetter</span></code></a> <a class="reference internal" href="#syntax_exponentsign"><code class="docutils literal notranslate"><span class="pre">ExponentSign</span></code></a>? <a class="reference internal" href="#syntax_exponentmagnitude"><code class="docutils literal notranslate"><span class="pre">ExponentMagnitude</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_exponentletter"><span class="pre">ExponentLetter</span></code> ::=
+    <strong class="spec-syntax-literal">e</strong>
+  | <strong class="spec-syntax-literal">E</strong>
+
+<code class="docutils literal notranslate" id="syntax_exponentsign"><span class="pre">ExponentSign</span></code> ::=
+    <strong class="spec-syntax-literal">+</strong>
+  | <strong class="spec-syntax-literal">-</strong>
+
+<code class="docutils literal notranslate" id="syntax_exponentmagnitude"><span class="pre">ExponentMagnitude</span></code> ::=
+    <a class="reference internal" href="#syntax_decimaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">DecimalDigitOrUnderscore</span></code></a>* <a class="reference internal" href="#syntax_decimaldigit"><code class="docutils literal notranslate"><span class="pre">DecimalDigit</span></code></a> <a class="reference internal" href="#syntax_decimaldigitorunderscore"><code class="docutils literal notranslate"><span class="pre">DecimalDigitOrUnderscore</span></code></a>*
+
+<code class="docutils literal notranslate" id="syntax_floatsuffix"><span class="pre">FloatSuffix</span></code> ::=
+    <strong class="spec-syntax-literal">f32</strong>
+  | <strong class="spec-syntax-literal">f64</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_rzi7oeqokd6e">2.4.4.2:1</span>
+A <a class="reference internal" href="glossary.html#term_float_literal">float literal</a> is a <a class="reference internal" href="glossary.html#term_numeric_literal">numeric literal</a> that denotes a fractional number.</p>
+<p><span class="spec-paragraph-id" id="fls_2ru1zyrykd37">2.4.4.2:2</span>
+A <a class="reference internal" href="glossary.html#term_float_suffix">float suffix</a> is a component of a <a class="reference internal" href="glossary.html#term_float_literal">float literal</a> that specifies an
+explicit <a class="reference internal" href="glossary.html#term_floating_point_type">floating-point type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_21mhnhplzam7">2.4.4.2:3</span>
+A <a class="reference internal" href="glossary.html#term_suffixed_float">suffixed float</a> is a <a class="reference internal" href="glossary.html#term_float_literal">float literal</a> with a <a class="reference internal" href="glossary.html#term_float_suffix">float suffix</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_drqh80k0sfkb">2.4.4.2:4</span>
+An <a class="reference internal" href="glossary.html#term_unsuffixed_float">unsuffixed float</a> is a <a class="reference internal" href="glossary.html#term_float_literal">float literal</a> without a <a class="reference internal" href="glossary.html#term_float_suffix">float suffix</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cbs7j9pjpusw">2.4.4.2:5</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_suffixed_float">suffixed float</a> is determined by the <a class="reference internal" href="glossary.html#term_float_suffix">float suffix</a>
+as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_b9w7teaw1f8f">2.4.4.2:6</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">f32</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eawxng4ndhv0">2.4.4.2:7</span>
+Suffix <code class="docutils literal notranslate"><span class="pre">f64</span></code> specifies type <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_yuhza1muo7o">2.4.4.2:8</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of an <a class="reference internal" href="glossary.html#term_unsuffixed_float">unsuffixed float</a> is determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>
+as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_4sxt1ct7fyen">2.4.4.2:9</span>
+If a <a class="reference internal" href="glossary.html#term_floating_point_type">floating-point type</a> can be uniquely determined from the surrounding
+program context, then the <a class="reference internal" href="glossary.html#term_unsuffixed_float">unsuffixed float</a> has that <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wa72rssp0jnt">2.4.4.2:10</span>
+If the program context under-constrains the <a class="reference internal" href="glossary.html#term_type">type</a>, then the <a class="reference internal" href="glossary.html#term_inferred_type">inferred
+type</a> is <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_x2cw7g8g56f8">2.4.4.2:11</span>
+If the program context over-constrains the <a class="reference internal" href="glossary.html#term_type">type</a>, then this is considered
+a static error.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="mf">45.</span>
+<span class="mf">8E+1_820</span>
+<span class="mf">3.14e5</span>
+<span class="mf">8_031.4_e-12</span><span class="k">f64</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="character-literals">
+<span id="fls_ypa86oqxhn9u"></span><h3><span class="section-number">2.4.5. </span>Character Literals<a class="headerlink" href="#character-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_characterliteral"><span class="pre">CharacterLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">'</strong> <a class="reference internal" href="#syntax_charactercontent"><code class="docutils literal notranslate"><span class="pre">CharacterContent</span></code></a> <strong class="spec-syntax-literal">'</strong>
+
+<code class="docutils literal notranslate" id="syntax_charactercontent"><span class="pre">CharacterContent</span></code> ::=
+    <a class="reference internal" href="#syntax_asciiescape"><code class="docutils literal notranslate"><span class="pre">AsciiEscape</span></code></a>
+  | <a class="reference internal" href="#syntax_characterliteralcharacter"><code class="docutils literal notranslate"><span class="pre">CharacterLiteralCharacter</span></code></a>
+  | <a class="reference internal" href="#syntax_unicodeescape"><code class="docutils literal notranslate"><span class="pre">UnicodeEscape</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_asciiescape"><span class="pre">AsciiEscape</span></code> ::=
+  | <strong class="spec-syntax-literal">\0</strong>
+  | <strong class="spec-syntax-literal">\&quot;</strong>
+  | <strong class="spec-syntax-literal">\'</strong>
+  | <strong class="spec-syntax-literal">\t</strong>
+  | <strong class="spec-syntax-literal">\n</strong>
+  | <strong class="spec-syntax-literal">\r</strong>
+  | <strong class="spec-syntax-literal">\\</strong>
+  | <strong class="spec-syntax-literal">\x</strong> <a class="reference internal" href="#syntax_octaldigit"><code class="docutils literal notranslate"><span class="pre">OctalDigit</span></code></a> <a class="reference internal" href="#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_j9q9ton57rvl">2.4.5:1</span>
+A <code class="docutils literal notranslate" id="syntax_characterliteralcharacter"><span class="pre">CharacterLiteralCharacter</span></code> is any <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> character except
+characters 0x09 (horizontal tabulation), 0x0A (new line), 0x0D (carriage
+return), 0x27 (apostrophe), and 0x5c (reverse solidus).</p>
+<p><span class="spec-paragraph-id" id="fls_5v9gx22g5wPm">2.4.5:2</span>
+A <code class="docutils literal notranslate" id="syntax_unicodeescape"><span class="pre">UnicodeEscape</span></code> starts with a <code class="docutils literal notranslate"><span class="pre">\u{</span></code> literal, followed by 1 to 6
+instances of a <a class="reference internal" href="#syntax_hexadecimaldigit"><code class="docutils literal notranslate"><span class="pre">HexadecimalDigit</span></code></a>, inclusive, followed by a <code class="docutils literal notranslate"><span class="pre">}</span></code> character.
+It can represent any <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> codepoint between U+00000 and U+10FFFF,
+inclusive, except <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> surrogate codepoints, which exist between
+the range of U+D800 and U+DFFF, inclusive.</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_vag2oy4q7d4n">2.4.5:3</span>
+A <a class="reference internal" href="glossary.html#term_character_literal">character literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that denotes a fixed <a class="reference internal" href="glossary.html#term_unicode">Unicode</a>
+character.</p>
+<p><span class="spec-paragraph-id" id="fls_n8z6p6g564r2">2.4.5:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_character_literal">character literal</a> is <a class="reference internal" href="glossary.html#codeterm_char"><code class="docutils literal notranslate"><span class="pre">char</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&#39;a&#39;
+&#39;\t&#39;
+&#39;\x1b&#39;
+&#39;\u{1F30}&#39;
+</pre></div>
+</div>
+</section>
+<section id="string-literals">
+<span id="fls_boyhlu5srp6u"></span><h3><span class="section-number">2.4.6. </span>String Literals<a class="headerlink" href="#string-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_stringliteral"><span class="pre">StringLiteral</span></code> ::=
+    <a class="reference internal" href="#syntax_rawstringliteral"><code class="docutils literal notranslate"><span class="pre">RawStringLiteral</span></code></a>
+  | <a class="reference internal" href="#syntax_simplestringliteral"><code class="docutils literal notranslate"><span class="pre">SimpleStringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7fuctvtvdi7x">2.4.6:1</span>
+A <a class="reference internal" href="glossary.html#term_string_literal">string literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that consists of multiple characters.</p>
+<p><span class="spec-paragraph-id" id="fls_NyiCpU2tzJlQ">2.4.6:2</span>
+The character sequence 0x0D 0x0A (carriage return, new line) is replaced by 0x0A
+(new line) inside of a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a>.</p>
+<section id="simple-string-literals">
+<span id="fls_hucd52suu6it"></span><h4><span class="section-number">2.4.6.1. </span>Simple String Literals<a class="headerlink" href="#simple-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_simplestringliteral"><span class="pre">SimpleStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_simplestringcontent"><code class="docutils literal notranslate"><span class="pre">SimpleStringContent</span></code></a>* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_simplestringcontent"><span class="pre">SimpleStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_asciiescape"><code class="docutils literal notranslate"><span class="pre">AsciiEscape</span></code></a>
+  | <a class="reference internal" href="#syntax_simplestringcharacter"><code class="docutils literal notranslate"><span class="pre">SimpleStringCharacter</span></code></a>
+  | <a class="reference internal" href="#syntax_stringcontinuation"><code class="docutils literal notranslate"><span class="pre">StringContinuation</span></code></a>
+  | <a class="reference internal" href="#syntax_unicodeescape"><code class="docutils literal notranslate"><span class="pre">UnicodeEscape</span></code></a></pre>
+<p><span class="spec-paragraph-id" id="fls_1pdzwkt5txfj">2.4.6.1:1</span>
+A <code class="docutils literal notranslate" id="syntax_simplestringcharacter"><span class="pre">SimpleStringCharacter</span></code> is any <a class="reference internal" href="glossary.html#term_unicode">Unicode</a> character except characters
+0x0D (carriage return), 0x22 (quotation mark), and 0x5C (reverse solidus).</p>
+<p><span class="spec-paragraph-id" id="fls_wawtu6j3fiqn">2.4.6.1:2</span>
+<code class="docutils literal notranslate" id="syntax_stringcontinuation"><span class="pre">StringContinuation</span></code> is the character sequence 0x5C 0x0A (reverse solidus,
+new line).</p>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ycy5ee6orjx">2.4.6.1:3</span>
+A <a class="reference internal" href="glossary.html#term_simple_string_literal">simple string literal</a> is a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a> where the characters are
+<a class="reference internal" href="glossary.html#term_unicode">Unicode</a> characters.</p>
+<p><span class="spec-paragraph-id" id="fls_6nt5kls21xes">2.4.6.1:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_simple_string_literal">simple string literal</a> is <code class="docutils literal notranslate"><span class="pre">&amp;'static</span> <span class="pre">str</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;&quot;</span>
+<span class="s">&quot;cat&quot;</span>
+<span class="s">&quot;</span><span class="se">\t</span><span class="s">col</span><span class="se">\n</span><span class="s">row&quot;</span>
+<span class="s">&quot;bell</span><span class="se">\x07</span><span class="s">&quot;</span>
+<span class="s">&quot;</span><span class="se">\u{B80a}</span><span class="s">&quot;</span>
+<span class="s">&quot;\</span>
+<span class="s">multi\</span>
+<span class="s">line\</span>
+<span class="s">string&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="raw-string-literals">
+<span id="fls_usr6iuwpwqqh"></span><h4><span class="section-number">2.4.6.2. </span>Raw String Literals<a class="headerlink" href="#raw-string-literals" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_rawstringliteral"><span class="pre">RawStringLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">r</strong> <a class="reference internal" href="#syntax_rawstringcontent"><code class="docutils literal notranslate"><span class="pre">RawStringContent</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rawstringcontent"><span class="pre">RawStringContent</span></code> ::=
+    <a class="reference internal" href="#syntax_nestedrawstringcontent"><code class="docutils literal notranslate"><span class="pre">NestedRawStringContent</span></code></a>
+  | <strong class="spec-syntax-literal">&quot;</strong> ~[<strong class="spec-syntax-literal">\r</strong>]* <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_nestedrawstringcontent"><span class="pre">NestedRawStringContent</span></code> ::=
+    <strong class="spec-syntax-literal">#</strong> <a class="reference internal" href="#syntax_rawstringcontent"><code class="docutils literal notranslate"><span class="pre">RawStringContent</span></code></a> <strong class="spec-syntax-literal">#</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_36suwhbwmq1t">2.4.6.2:1</span>
+A <a class="reference internal" href="glossary.html#term_raw_string_literal">raw string literal</a> is a <a class="reference internal" href="glossary.html#term_simple_string_literal">simple string literal</a> that does not
+recognize <a class="reference internal" href="glossary.html#term_escaped_character">escaped characters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ms43w1towz40">2.4.6.2:2</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_raw_string_literal">raw string literal</a> is <code class="docutils literal notranslate"><span class="pre">&amp;'static</span> <span class="pre">str</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="s">r&quot;&quot;</span>
+<span class="s">r#&quot;&quot;#</span>
+<span class="s">r##&quot;left #&quot;# right&quot;##</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="boolean-literals">
+<span id="fls_jkab8eevzbte"></span><h3><span class="section-number">2.4.7. </span>Boolean Literals<a class="headerlink" href="#boolean-literals" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_booleanliteral"><span class="pre">BooleanLiteral</span></code> ::=
+    <strong class="spec-syntax-literal">false</strong>
+  | <strong class="spec-syntax-literal">true</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_1lll64ftupjd">2.4.7:1</span>
+A <a class="reference internal" href="glossary.html#term_boolean_literal">boolean literal</a> is a <a class="reference internal" href="glossary.html#term_literal">literal</a> that denotes the truth <a class="reference internal" href="glossary.html#term_value">values</a> of
+logic and Boolean algebra.</p>
+<p><span class="spec-paragraph-id" id="fls_pgngble3ilyx">2.4.7:2</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_boolean_literal">boolean literal</a> is <a class="reference internal" href="glossary.html#codeterm_bool"><code class="docutils literal notranslate"><span class="pre">bool</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kc">true</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="comments">
+<span id="fls_q8l2jza7d9xa"></span><h2><span class="section-number">2.5. </span>Comments<a class="headerlink" href="#comments" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_comment"><span class="pre">Comment</span></code> ::=
+    <a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a>
+  | <a class="reference internal" href="#syntax_linecommentordoc"><code class="docutils literal notranslate"><span class="pre">LineCommentOrDoc</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_blockcommentordoc"><span class="pre">BlockCommentOrDoc</span></code> ::=
+    <a class="reference internal" href="#syntax_blockcomment"><code class="docutils literal notranslate"><span class="pre">BlockComment</span></code></a>
+  | <a class="reference internal" href="#syntax_innerblockdoc"><code class="docutils literal notranslate"><span class="pre">InnerBlockDoc</span></code></a>
+  | <a class="reference internal" href="#syntax_outerblockdoc"><code class="docutils literal notranslate"><span class="pre">OuterBlockDoc</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_linecommentordoc"><span class="pre">LineCommentOrDoc</span></code> ::=
+    <a class="reference internal" href="#syntax_linecomment"><code class="docutils literal notranslate"><span class="pre">LineComment</span></code></a>
+  | <a class="reference internal" href="#syntax_innerlinedoc"><code class="docutils literal notranslate"><span class="pre">InnerLineDoc</span></code></a>
+  | <a class="reference internal" href="#syntax_outerlinedoc"><code class="docutils literal notranslate"><span class="pre">OuterLineDoc</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_linecomment"><span class="pre">LineComment</span></code> ::=
+    <strong class="spec-syntax-literal">//</strong>
+  | <strong class="spec-syntax-literal">//</strong> (~[<strong class="spec-syntax-literal">!</strong> <strong class="spec-syntax-literal">/</strong>] | <strong class="spec-syntax-literal">//</strong>) ~[<strong class="spec-syntax-literal">\n</strong>]*
+
+<code class="docutils literal notranslate" id="syntax_blockcomment"><span class="pre">BlockComment</span></code> ::=
+    <strong class="spec-syntax-literal">/*</strong> (~[<strong class="spec-syntax-literal">!</strong> <strong class="spec-syntax-literal">*</strong>] | <strong class="spec-syntax-literal">**</strong> | <a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a>) (<a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a> | ~[<strong class="spec-syntax-literal">*/</strong>])* <strong class="spec-syntax-literal">*/</strong>
+  | <strong class="spec-syntax-literal">/**/</strong>
+  | <strong class="spec-syntax-literal">/***/</strong>
+
+<code class="docutils literal notranslate" id="syntax_innerblockdoc"><span class="pre">InnerBlockDoc</span></code> ::=
+    <strong class="spec-syntax-literal">/*!</strong> (<a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a> | ~[<strong class="spec-syntax-literal">*/</strong> <strong class="spec-syntax-literal">\r</strong>])* <strong class="spec-syntax-literal">*/</strong>
+
+<code class="docutils literal notranslate" id="syntax_innerlinedoc"><span class="pre">InnerLineDoc</span></code> ::=
+    <strong class="spec-syntax-literal">//!</strong> ~[<strong class="spec-syntax-literal">\n</strong> <strong class="spec-syntax-literal">\r</strong>]*
+
+<code class="docutils literal notranslate" id="syntax_outerblockdoc"><span class="pre">OuterBlockDoc</span></code> ::=
+    <strong class="spec-syntax-literal">/**</strong> (~[<strong class="spec-syntax-literal">*</strong>] | <a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a>) (<a class="reference internal" href="#syntax_blockcommentordoc"><code class="docutils literal notranslate"><span class="pre">BlockCommentOrDoc</span></code></a> | ~[<strong class="spec-syntax-literal">*/</strong> <strong class="spec-syntax-literal">\r</strong>])* <strong class="spec-syntax-literal">*/</strong>
+
+<code class="docutils literal notranslate" id="syntax_outerlinedoc"><span class="pre">OuterLineDoc</span></code> ::=
+    <strong class="spec-syntax-literal">///</strong> (~[<strong class="spec-syntax-literal">/</strong>] ~[<strong class="spec-syntax-literal">\n</strong> <strong class="spec-syntax-literal">\r</strong>]*)?</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_8obn3dtzpe5f">2.5:1</span>
+A <a class="reference internal" href="glossary.html#term_comment">comment</a> is a <a class="reference internal" href="glossary.html#term_lexical_element">lexical element</a> that acts as an annotation or an
+explanation in program text.</p>
+<p><span class="spec-paragraph-id" id="fls_qsbnl11be35s">2.5:2</span>
+A <a class="reference internal" href="glossary.html#term_block_comment">block comment</a> is a <a class="reference internal" href="glossary.html#term_comment">comment</a> that spans one or more <a class="reference internal" href="glossary.html#term_line">lines</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_nayisy85kyq2">2.5:3</span>
+A <a class="reference internal" href="glossary.html#term_line_comment">line comment</a> is a <a class="reference internal" href="glossary.html#term_comment">comment</a> that spans exactly one <a class="reference internal" href="glossary.html#term_line">line</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k3hj30hjkdhw">2.5:4</span>
+An <a class="reference internal" href="glossary.html#term_inner_block_doc">inner block doc</a> is a <a class="reference internal" href="glossary.html#term_block_comment">block comment</a> that applies to an enclosing
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_tspijl68lduc">2.5:5</span>
+An <a class="reference internal" href="glossary.html#term_inner_line_doc">inner line doc</a> is a <a class="reference internal" href="glossary.html#term_line_comment">line comment</a> that applies to an enclosing
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_KZp0yiFLTqxb">2.5:6</span>
+An <a class="reference internal" href="glossary.html#term_inner_doc_comment">inner doc comment</a> is either an <a class="reference internal" href="glossary.html#term_inner_block_doc">inner block doc</a> or an
+<a class="reference internal" href="glossary.html#term_inner_line_doc">inner line doc</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_63gzofa9ktic">2.5:7</span>
+An <a class="reference internal" href="glossary.html#term_outer_block_doc">outer block doc</a> is a <a class="reference internal" href="glossary.html#term_block_comment">block comment</a> that applies to a subsequent
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_scko7crha0um">2.5:8</span>
+An <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line doc</a> is a <a class="reference internal" href="glossary.html#term_line_comment">line comment</a> that applies to a subsequent
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_RYVL9KgaxKvl">2.5:9</span>
+An <a class="reference internal" href="glossary.html#term_outer_doc_comment">outer doc comment</a> is either an <a class="reference internal" href="glossary.html#term_outer_block_doc">outer block doc</a> or an
+<a class="reference internal" href="glossary.html#term_outer_line_doc">outer line doc</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_7n6d3jx61ose">2.5:10</span>
+A <a class="reference internal" href="glossary.html#term_doc_comment">doc comment</a> is a <a class="reference internal" href="glossary.html#term_comment">comment</a> class that includes <a class="reference internal" href="glossary.html#term_inner_block_doc">inner block
+docs</a>, <a class="reference internal" href="glossary.html#term_inner_line_doc">inner line docs</a>, <a class="reference internal" href="glossary.html#term_outer_block_doc">outer block docs</a>, and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line
+docs</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6fxcs17n4kw">2.5:11</span>
+Character 0x0D (carriage return) shall not appear in a <a class="reference internal" href="glossary.html#term_comment">comment</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_uze7l7cxonk1">2.5:12</span>
+<a class="reference internal" href="glossary.html#term_block_comment">Block comments</a>, <a class="reference internal" href="glossary.html#term_inner_block_doc">inner block docs</a>, and <a class="reference internal" href="glossary.html#term_outer_block_doc">outer block docs</a>
+shall extend one or more <a class="reference internal" href="glossary.html#term_line">lines</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gy23lwlqw2mc">2.5:13</span>
+<a class="reference internal" href="glossary.html#term_line_comment">Line comments</a>, <a class="reference internal" href="glossary.html#term_inner_line_doc">inner line docs</a>, and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> shall
+extend exactly one <a class="reference internal" href="glossary.html#term_line">line</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_w7d0skpov1is">2.5:14</span>
+<a class="reference internal" href="glossary.html#term_outer_block_doc">Outer block docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> shall apply to a subsequent
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_32ncjvj2kn7z">2.5:15</span>
+<a class="reference internal" href="glossary.html#term_inner_block_doc">Inner block docs</a> and <a class="reference internal" href="glossary.html#term_inner_line_doc">inner line docs</a> shall apply to an enclosing
+<a class="reference internal" href="glossary.html#term_comment">non-comment</a> <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ok0zvo9vcmzo">2.5:16</span>
+<a class="reference internal" href="glossary.html#term_inner_block_doc">Inner block docs</a> and <a class="reference internal" href="glossary.html#term_inner_line_doc">inner line docs</a> are equivalent to
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> of the form <code class="docutils literal notranslate"><span class="pre">#![doc</span> <span class="pre">=</span> <span class="pre">content]</span></code>, where <code class="docutils literal notranslate"><span class="pre">content</span></code>
+is a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a> form of the <a class="reference internal" href="glossary.html#term_comment">comment</a> without the leading <code class="docutils literal notranslate"><span class="pre">//!</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/*!</span></code> amd trailing <code class="docutils literal notranslate"><span class="pre">*/</span></code> characters.</p>
+<p><span class="spec-paragraph-id" id="fls_nWtKuPi8Fw6v">2.5:17</span>
+<a class="reference internal" href="glossary.html#term_outer_block_doc">Outer block docs</a> and <a class="reference internal" href="glossary.html#term_outer_line_doc">outer line docs</a> are equivalent to
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a> of the form <code class="docutils literal notranslate"><span class="pre">#[doc</span> <span class="pre">=</span> <span class="pre">content]</span></code>, where <code class="docutils literal notranslate"><span class="pre">content</span></code>
+is a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a> form of the <a class="reference internal" href="glossary.html#term_comment">comment</a> without the leading <code class="docutils literal notranslate"><span class="pre">///</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/**</span></code> and trailing <code class="docutils literal notranslate"><span class="pre">*/</span></code> characters.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a stand-alone line comment. So is the next line.</span>
+
+<span class="c1">////</span>
+
+<span class="cm">/* This is a stand-alone</span>
+<span class="cm">   block comment. */</span>
+
+<span class="cm">/*</span>
+<span class="cm">  /* This is a nested block comment */</span>
+<span class="cm">*/</span>
+
+<span class="sd">/// This outer line comment applies to commented_module.</span>
+
+<span class="sd">/** This outer block comment applies to commented_module,</span>
+<span class="sd">    and is considered documentation. */</span>
+
+<span class="k">pub</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="nn">commented_module</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="sd">//! This inner line comment applies to commented_mode.</span>
+
+<span class="w">    </span><span class="sd">/*! This inner block comment applies to commented_module,</span>
+<span class="sd">        and is considered documentation. */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="keywords">
+<span id="fls_lish33a1naw5"></span><h2><span class="section-number">2.6. </span>Keywords<a class="headerlink" href="#keywords" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_keyword"><span class="pre">Keyword</span></code> ::=
+    <a class="reference internal" href="#syntax_reservedkeyword"><code class="docutils literal notranslate"><span class="pre">ReservedKeyword</span></code></a>
+  | <a class="reference internal" href="#syntax_strictkeyword"><code class="docutils literal notranslate"><span class="pre">StrictKeyword</span></code></a>
+  | <a class="reference internal" href="#syntax_weakkeyword"><code class="docutils literal notranslate"><span class="pre">WeakKeyword</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_dti0uu7rz81w">2.6:1</span>
+A <a class="reference internal" href="glossary.html#term_keyword">keyword</a> is a word in program text that has special meaning.</p>
+<p><span class="spec-paragraph-id" id="fls_sxg1o4oxql51">2.6:2</span>
+<a class="reference internal" href="glossary.html#term_keyword">Keywords</a> are case sensitive.</p>
+<section id="strict-keywords">
+<span id="fls_mec5cg5aptf8"></span><h3><span class="section-number">2.6.1. </span>Strict Keywords<a class="headerlink" href="#strict-keywords" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_strictkeyword"><span class="pre">StrictKeyword</span></code> ::=
+    <strong class="spec-syntax-literal">as</strong>
+  | <strong class="spec-syntax-literal">async</strong>
+  | <strong class="spec-syntax-literal">await</strong>
+  | <strong class="spec-syntax-literal">break</strong>
+  | <strong class="spec-syntax-literal">const</strong>
+  | <strong class="spec-syntax-literal">continue</strong>
+  | <strong class="spec-syntax-literal">crate</strong>
+  | <strong class="spec-syntax-literal">dyn</strong>
+  | <strong class="spec-syntax-literal">enum</strong>
+  | <strong class="spec-syntax-literal">extern</strong>
+  | <strong class="spec-syntax-literal">false</strong>
+  | <strong class="spec-syntax-literal">fn</strong>
+  | <strong class="spec-syntax-literal">for</strong>
+  | <strong class="spec-syntax-literal">if</strong>
+  | <strong class="spec-syntax-literal">impl</strong>
+  | <strong class="spec-syntax-literal">in</strong>
+  | <strong class="spec-syntax-literal">let</strong>
+  | <strong class="spec-syntax-literal">loop</strong>
+  | <strong class="spec-syntax-literal">match</strong>
+  | <strong class="spec-syntax-literal">mod</strong>
+  | <strong class="spec-syntax-literal">move</strong>
+  | <strong class="spec-syntax-literal">mut</strong>
+  | <strong class="spec-syntax-literal">pub</strong>
+  | <strong class="spec-syntax-literal">ref</strong>
+  | <strong class="spec-syntax-literal">return</strong>
+  | <strong class="spec-syntax-literal">self</strong>
+  | <strong class="spec-syntax-literal">Self</strong>
+  | <strong class="spec-syntax-literal">static</strong>
+  | <strong class="spec-syntax-literal">struct</strong>
+  | <strong class="spec-syntax-literal">super</strong>
+  | <strong class="spec-syntax-literal">trait</strong>
+  | <strong class="spec-syntax-literal">true</strong>
+  | <strong class="spec-syntax-literal">type</strong>
+  | <strong class="spec-syntax-literal">unsafe</strong>
+  | <strong class="spec-syntax-literal">use</strong>
+  | <strong class="spec-syntax-literal">where</strong>
+  | <strong class="spec-syntax-literal">while</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_bsh7qsyvox21">2.6.1:1</span>
+A <a class="reference internal" href="glossary.html#term_strict_keyword">strict keyword</a> is a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> that always holds its special meaning.</p>
+</section>
+<section id="reserved-keywords">
+<span id="fls_cbsgp6k0qa82"></span><h3><span class="section-number">2.6.2. </span>Reserved Keywords<a class="headerlink" href="#reserved-keywords" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_reservedkeyword"><span class="pre">ReservedKeyword</span></code> ::=
+    <strong class="spec-syntax-literal">abstract</strong>
+  | <strong class="spec-syntax-literal">become</strong>
+  | <strong class="spec-syntax-literal">box</strong>
+  | <strong class="spec-syntax-literal">do</strong>
+  | <strong class="spec-syntax-literal">final</strong>
+  | <strong class="spec-syntax-literal">macro</strong>
+  | <strong class="spec-syntax-literal">override</strong>
+  | <strong class="spec-syntax-literal">priv</strong>
+  | <strong class="spec-syntax-literal">try</strong>
+  | <strong class="spec-syntax-literal">typeof</strong>
+  | <strong class="spec-syntax-literal">unsized</strong>
+  | <strong class="spec-syntax-literal">virtual</strong>
+  | <strong class="spec-syntax-literal">yield</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_w4b97ewwnql">2.6.2:1</span>
+A <a class="reference internal" href="glossary.html#term_reserved_keyword">reserved keyword</a> is a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> that is not yet in use.</p>
+</section>
+<section id="weak-keywords">
+<span id="fls_9kjpxri0axvg"></span><h3><span class="section-number">2.6.3. </span>Weak Keywords<a class="headerlink" href="#weak-keywords" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_weakkeyword"><span class="pre">WeakKeyword</span></code> ::=
+    <strong class="spec-syntax-literal">macro_rules</strong>
+  | <strong class="spec-syntax-literal">'static</strong>
+  | <strong class="spec-syntax-literal">union</strong>
+  | <strong class="spec-syntax-literal">safe</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_bv87t1gvj7bz">2.6.3:1</span>
+A <a class="reference internal" href="glossary.html#term_weak_keyword">weak keyword</a> is a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> whose special meaning depends on the
+context.</p>
+<p><span class="spec-paragraph-id" id="fls_bl55g03jmayf">2.6.3:2</span>
+Word <code class="docutils literal notranslate"><span class="pre">macro_rules</span></code> acts as a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> only when used in the context of a
+<a class="reference internal" href="macros.html#syntax_macrorulesdefinition"><code class="docutils literal notranslate"><span class="pre">MacroRulesDefinition</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_c354oryv513p">2.6.3:3</span>
+Word <code class="docutils literal notranslate"><span class="pre">'static</span></code> acts as a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> only when used in the context of a
+<a class="reference internal" href="types-and-traits.html#syntax_lifetimeindication"><code class="docutils literal notranslate"><span class="pre">LifetimeIndication</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_r9fhuiq1ys1p">2.6.3:4</span>
+Word <code class="docutils literal notranslate"><span class="pre">union</span></code> acts as a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> only when used in the context of a
+<a class="reference internal" href="types-and-traits.html#syntax_uniondeclaration"><code class="docutils literal notranslate"><span class="pre">UnionDeclaration</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_g0JEluWqBpNc">2.6.3:5</span>
+Word <code class="docutils literal notranslate"><span class="pre">safe</span></code> acts as a <a class="reference internal" href="glossary.html#term_keyword">keyword</a> only when used as a qualifier of <a class="reference internal" href="functions.html#syntax_functiondeclaration"><code class="docutils literal notranslate"><span class="pre">FunctionDeclaration</span></code></a> or <a class="reference internal" href="values.html#syntax_staticdeclaration"><code class="docutils literal notranslate"><span class="pre">StaticDeclaration</span></code></a> in the context of a <a class="reference internal" href="ffi.html#syntax_externalblock"><code class="docutils literal notranslate"><span class="pre">ExternalBlock</span></code></a>.</p>
+</section>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

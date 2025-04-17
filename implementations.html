@@ -1,0 +1,319 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>11. Implementations &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. Generics" href="generics.html" />
+    <link rel="prev" title="10. Associated Items" href="associated-items.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="implementations">
+<span id="fls_fk2m2irwpeof"></span><h1><span class="section-number">11. </span>Implementations<a class="headerlink" href="#implementations" title="Link to this heading">¶</a></h1>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_implementation"><span class="pre">Implementation</span></code> ::=
+    <a class="reference internal" href="#syntax_inherentimplementation"><code class="docutils literal notranslate"><span class="pre">InherentImplementation</span></code></a>
+  | <a class="reference internal" href="#syntax_traitimplementation"><code class="docutils literal notranslate"><span class="pre">TraitImplementation</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_inherentimplementation"><span class="pre">InherentImplementation</span></code> ::=
+    <strong class="spec-syntax-literal">impl</strong> <a class="reference internal" href="generics.html#syntax_genericparameterlist"><code class="docutils literal notranslate"><span class="pre">GenericParameterList</span></code></a>? <a class="reference internal" href="#syntax_implementingtype"><code class="docutils literal notranslate"><span class="pre">ImplementingType</span></code></a> <a class="reference internal" href="generics.html#syntax_whereclause"><code class="docutils literal notranslate"><span class="pre">WhereClause</span></code></a>? <a class="reference internal" href="#syntax_implementationbody"><code class="docutils literal notranslate"><span class="pre">ImplementationBody</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_traitimplementation"><span class="pre">TraitImplementation</span></code> ::=
+    <strong class="spec-syntax-literal">unsafe</strong>? <strong class="spec-syntax-literal">impl</strong> <a class="reference internal" href="generics.html#syntax_genericparameterlist"><code class="docutils literal notranslate"><span class="pre">GenericParameterList</span></code></a>? <strong class="spec-syntax-literal">!</strong>? <a class="reference internal" href="#syntax_implementedtrait"><code class="docutils literal notranslate"><span class="pre">ImplementedTrait</span></code></a> <strong class="spec-syntax-literal">for</strong> <a class="reference internal" href="#syntax_implementingtype"><code class="docutils literal notranslate"><span class="pre">ImplementingType</span></code></a> <a class="reference internal" href="generics.html#syntax_whereclause"><code class="docutils literal notranslate"><span class="pre">WhereClause</span></code></a>? <a class="reference internal" href="#syntax_implementationbody"><code class="docutils literal notranslate"><span class="pre">ImplementationBody</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_implementingtype"><span class="pre">ImplementingType</span></code> ::=
+    <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_implementedtrait"><span class="pre">ImplementedTrait</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_typepath"><code class="docutils literal notranslate"><span class="pre">TypePath</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_implementationbody"><span class="pre">ImplementationBody</span></code> ::=
+    <strong class="spec-syntax-literal">{</strong>
+      <a class="reference internal" href="attributes.html#syntax_innerattributeordoc"><code class="docutils literal notranslate"><span class="pre">InnerAttributeOrDoc</span></code></a>*
+      <a class="reference internal" href="associated-items.html#syntax_associateditem"><code class="docutils literal notranslate"><span class="pre">AssociatedItem</span></code></a>*
+    <strong class="spec-syntax-literal">}</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ivxpoxggy7s6">11:1</span>
+An <a class="reference internal" href="glossary.html#term_implementation">implementation</a> is an <a class="reference internal" href="glossary.html#term_item">item</a> that supplements an
+<a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a> by extending its functionality.</p>
+<p><span class="spec-paragraph-id" id="fls_yopmjbnw8tbl">11:2</span>
+An <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> that the <a class="reference internal" href="glossary.html#term_associated_item">associated items</a> of
+an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> are associated with.</p>
+<p><span class="spec-paragraph-id" id="fls_eIHc8Y9fBtr0">11:3</span>
+Within an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>, the <a class="reference internal" href="glossary.html#term_type">type</a> <a class="reference internal" href="glossary.html#codeterm_self"><code class="docutils literal notranslate"><span class="pre">Self</span></code></a> acts as a <a class="reference internal" href="glossary.html#term_type_alias">type alias</a>
+for the <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_Mcpdzzcw43M7">11:4</span>
+An <a class="reference internal" href="glossary.html#term_implementation_body">implementation body</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that encapsulates the
+<a class="reference internal" href="glossary.html#term_associated_item">associated items</a>, <a class="reference internal" href="glossary.html#term_inner_attribute">inner attributes</a>, and
+<a class="reference internal" href="glossary.html#term_inner_doc_comment">inner doc comments</a> of an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_v0n0bna40dqr">11:5</span>
+An <a class="reference internal" href="glossary.html#term_inherent_implementation">inherent implementation</a> is an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> that adds direct
+functionality.</p>
+<p><span class="spec-paragraph-id" id="fls_797etpdk5dyb">11:6</span>
+<a class="reference internal" href="glossary.html#term_inherent_implementation">Inherent implementations</a> of the same <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a> shall be
+defined within the same <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ry3an0mwb63g">11:7</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> is an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> that adds functionality
+specified by a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8pwr7ibvhmhu">11:8</span>
+An <a class="reference internal" href="glossary.html#term_unsafe_trait_implementation">unsafe trait implementation</a> is a <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> subject to
+<a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">unsafe</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_47x0ep8of8wr">11:9</span>
+An <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> is a <a class="reference internal" href="glossary.html#term_trait">trait</a> whose functionality has been
+implemented by an <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_agitlryvyc16">11:10</span>
+The <a class="reference internal" href="glossary.html#term_type_path">type path</a> of a <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> shall resolve to a <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mx5xjcejwa6u">11:11</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> shall be an <a class="reference internal" href="glossary.html#term_unsafe_trait_implementation">unsafe trait implementation</a> if and
+only if it implements an <a class="reference internal" href="glossary.html#term_unsafe_trait">unsafe trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_z78dg261oob6">11:12</span>
+<a class="reference internal" href="glossary.html#term_trait_implementation">Trait implementations</a> are subject to <a class="reference internal" href="glossary.html#term_implementation_coherence">implementation coherence</a> and
+<a class="reference internal" href="glossary.html#term_implementation_conformance">implementation conformance</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_89yNjGNB7KI3">11:13</span>
+<a class="reference internal" href="glossary.html#term_inherent_implementation">Inherent implementations</a> of the same <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a> shall not
+define more than one <a class="reference internal" href="glossary.html#term_associated_item">associated item</a> with the same <a class="reference internal" href="glossary.html#term_name">name</a> in the same
+<a class="reference internal" href="glossary.html#term_namespace">namespace</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">f64</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_yuyesijndu9n">11:14</span>
+<code class="docutils literal notranslate"><span class="pre">Circle</span></code> is an implementing type.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Circle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">radius</span><span class="p">:</span><span class="w"> </span><span class="kt">f64</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_o62i75sjzp9y">11:15</span>
+The following is an inherent implementation:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">impl</span><span class="w"> </span><span class="n">Circle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">set_radius</span><span class="p">(</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">new_radius</span><span class="p">:</span><span class="w"> </span><span class="kt">f64</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">new_radius</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_a2utf0tmuhy4">11:16</span>
+The following is a trait implementation:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">impl</span><span class="w"> </span><span class="n">Shape</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Circle</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">f64</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">radius</span><span class="p">.</span><span class="n">powi</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">std</span><span class="p">::</span><span class="kt">f64</span><span class="p">::</span><span class="n">consts</span><span class="p">::</span><span class="n">PI</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="implementation-coherence">
+<span id="fls_46ork6fz5o2e"></span><h2><span class="section-number">11.1. </span>Implementation Coherence<a class="headerlink" href="#implementation-coherence" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fv1l4yjuut7p">11.1:1</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> exhibits <a class="reference internal" href="glossary.html#term_implementation_coherence">implementation coherence</a> when it is
+valid and does not overlap with another <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_swdusjwzgksx">11.1:2</span>
+Two <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementations</a> of the same <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> overlap when
+the intersection of the <a class="reference internal" href="glossary.html#term_implementing_type">implementing types</a> is non-empty.</p>
+<p><span class="spec-paragraph-id" id="fls_ir7hp941ky8t">11.1:3</span>
+Given <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a>
+<code class="docutils literal notranslate"><span class="pre">impl&lt;P1,</span> <span class="pre">P2,</span> <span class="pre">..,</span> <span class="pre">PN&gt;</span> <span class="pre">Trait&lt;T1,</span> <span class="pre">T2,</span> <span class="pre">..,</span> <span class="pre">TN&gt;</span> <span class="pre">for</span> <span class="pre">T0</span></code>, the
+<a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> is considered valid when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_3tbm20k2ixol">11.1:4</span>
+<code class="docutils literal notranslate"><span class="pre">Trait</span></code> is <a class="reference internal" href="glossary.html#term_fundamental">fundamental</a> or a <a class="reference internal" href="glossary.html#term_local_trait">local trait</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lscc9ileg3gm">11.1:5</span>
+All of</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_9klwbsh3vlxu">11.1:6</span>
+At least one of <a class="reference internal" href="glossary.html#term_type">types</a> <code class="docutils literal notranslate"><span class="pre">T0,</span> <span class="pre">T1,</span> <span class="pre">..,</span> <span class="pre">TN</span></code> is <a class="reference internal" href="glossary.html#term_fundamental">fundamental</a> or a
+<a class="reference internal" href="glossary.html#term_local_type">local type</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_9gmc1tcscq9v">11.1:7</span>
+No <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> of <code class="docutils literal notranslate"><span class="pre">P1,</span> <span class="pre">P2,</span> <span class="pre">..,</span> <span class="pre">PN</span></code> that is not used in another
+<a class="reference internal" href="glossary.html#term_type">type</a> may appear in the <a class="reference internal" href="glossary.html#term_local_type">non-local types</a> and
+<a class="reference internal" href="glossary.html#term_fundamental">non-fundamental</a> <a class="reference internal" href="glossary.html#term_type">types</a> of <code class="docutils literal notranslate"><span class="pre">T0,</span> <span class="pre">T1,</span> <span class="pre">..,</span> <span class="pre">TN</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_UkQhjEWSJpDq">11.1:8</span>
+A <a class="reference internal" href="glossary.html#term_trait">trait</a> or <a class="reference internal" href="glossary.html#term_type">type</a> is <a class="reference internal" href="glossary.html#term_fundamental">fundamental</a> when its
+<a class="reference internal" href="glossary.html#term_implementation_coherence">implementation coherence</a> rules are relaxed and the <a class="reference internal" href="glossary.html#term_trait">trait</a> or <a class="reference internal" href="glossary.html#term_type">type</a>
+is always treated as if it was a <a class="reference internal" href="glossary.html#term_local_trait">local trait</a> or a <a class="reference internal" href="glossary.html#term_local_type">local type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fSybUG40hA5r">11.1:9</span>
+The following <a class="reference internal" href="glossary.html#term_type">types</a> are <a class="reference internal" href="glossary.html#term_fundamental">fundamental</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_z8APl0CEF7a0">11.1:10</span>
+<a class="reference internal" href="glossary.html#term_reference_type">reference types</a></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_RJJafhpVsi6M">11.1:11</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Apin%3A%3APin"><code class="docutils literal notranslate"><span class="pre">core::pin::Pin</span></code></a></p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_dtUJxhNkl8Ty">11.1:12</span>
+The following <a class="reference internal" href="glossary.html#term_trait">traits</a> are <a class="reference internal" href="glossary.html#term_fundamental">fundamental</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_zJKovQrXQWdU">11.1:13</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3AFn"><code class="docutils literal notranslate"><span class="pre">core::ops::Fn</span></code></a></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_V6R8yQtsqNyv">11.1:14</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3AFnMut"><code class="docutils literal notranslate"><span class="pre">core::ops::FnMut</span></code></a></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_CpC6XQN1iWqU">11.1:15</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3AFnOnce"><code class="docutils literal notranslate"><span class="pre">core::ops::FnOnce</span></code></a></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_dj7YGw4e4i4H">11.1:16</span>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a></p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_koy70k770ayu">11.1:17</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> shall be coherent.</p>
+</section>
+<section id="implementation-conformance">
+<span id="fls_e1pgdlv81vul"></span><h2><span class="section-number">11.2. </span>Implementation Conformance<a class="headerlink" href="#implementation-conformance" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_YyUSuAYG4lX6">11.2:1</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> exhibits <a class="reference internal" href="glossary.html#term_implementation_conformance">implementation conformance</a> when it
+satisfies the constraints of its <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_v31idwjau90d">11.2:2</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_constant">associated trait constant</a> is conformant with an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a>
+of an <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_k3wfh5japmyw">11.2:3</span>
+The <a class="reference internal" href="glossary.html#term_name">names</a> of both <a class="reference internal" href="glossary.html#term_associated_constant">associated constants</a> are the same, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_11qrqfuc3rmh">11.2:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> in the <a class="reference internal" href="glossary.html#term_implementation">implementation</a> is a
+<a class="reference internal" href="glossary.html#term_subtype">subtype</a> of the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_associated_trait_constant">associated trait constant</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_qmhduwunxww0">11.2:5</span>
+An <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> is conformant with an <a class="reference internal" href="glossary.html#term_associated_function">associated function</a>
+of an <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_2500ivh0cc3y">11.2:6</span>
+The <a class="reference internal" href="glossary.html#term_function_signature">function signature</a> of the <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> of the
+<a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> is a <a class="reference internal" href="glossary.html#term_subtype">subtype</a> of the <a class="reference internal" href="glossary.html#term_function_signature">function signature</a> of
+the <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_18gimgfy0kw9">11.2:7</span>
+The <a class="reference internal" href="glossary.html#term_bound">bounds</a> of the <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> of the
+<a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> are more general that the <a class="reference internal" href="glossary.html#term_bound">bounds</a> of the
+<a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_fi4qmauirlsm">11.2:8</span>
+An <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> of a <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> is conformant with an
+<a class="reference internal" href="glossary.html#term_associated_type">associated type</a> of an <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_2s8lh3k4rw6u">11.2:9</span>
+The <a class="reference internal" href="glossary.html#term_name">names</a> of both <a class="reference internal" href="glossary.html#term_type">types</a> are the same, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bb874uu2alt3">11.2:10</span>
+The <a class="reference internal" href="glossary.html#term_type_specification">type specification</a> of the <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> of the
+<a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> conforms to the <a class="reference internal" href="glossary.html#term_bound">bounds</a> of the
+<a class="reference internal" href="glossary.html#term_associated_type">associated type</a> of the <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_so8em6rphkhv">11.2:11</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> is conformant with an <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> when:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ldu9bmb9cy10">11.2:12</span>
+The <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> has a conformant <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a>
+for each <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>, unless the
+<a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> has a default value,
+and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5cr6un2gzdft">11.2:13</span>
+The <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> has a conformant <a class="reference internal" href="glossary.html#term_associated_function">associated function</a>
+for each <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>, unless
+the <a class="reference internal" href="glossary.html#term_associated_function">associated function</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a> has a default
+implementation in the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pshfe3ioh0mg">11.2:14</span>
+The <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> has a conformant <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> for each
+<a class="reference internal" href="glossary.html#term_associated_type">associated type</a> of the <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_8yq1g7nzv9px">11.2:15</span>
+A <a class="reference internal" href="glossary.html#term_trait_implementation">trait implementation</a> shall be conformant.</p>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

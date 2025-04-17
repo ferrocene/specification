@@ -1,0 +1,669 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>15. Ownership and Destruction &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="16. Exceptions and Errors" href="exceptions-and-errors.html" />
+    <link rel="prev" title="14. Entities and Resolution" href="entities-and-resolution.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="ownership-and-destruction">
+<span id="fls_ronnwodjjjsh"></span><h1><span class="section-number">15. </span>Ownership and Destruction<a class="headerlink" href="#ownership-and-destruction" title="Link to this heading">¶</a></h1>
+<section id="ownership">
+<span id="fls_svkx6szhr472"></span><h2><span class="section-number">15.1. </span>Ownership<a class="headerlink" href="#ownership" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_wt81sbsecmu0">15.1:1</span>
+<a class="reference internal" href="glossary.html#term_ownership">Ownership</a> is a property of <a class="reference internal" href="glossary.html#term_value">values</a> that is central to the resource
+management model of Rust.</p>
+<p><span class="spec-paragraph-id" id="fls_ckcnkbb6y3cq">15.1:2</span>
+An <a class="reference internal" href="glossary.html#term_owner">owner</a> is a <a class="reference internal" href="glossary.html#term_variable">variable</a> that holds a <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ze0u9gfylmhn">15.1:3</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> shall have only one <a class="reference internal" href="glossary.html#term_owner">owner</a>.</p>
+</section>
+<section id="initialization">
+<span id="fls_3xvm61x0t251"></span><h2><span class="section-number">15.2. </span>Initialization<a class="headerlink" href="#initialization" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_drfzu02bo7oe">15.2:1</span>
+<a class="reference internal" href="glossary.html#term_initialization">Initialization</a> is the act of supplying an initial <a class="reference internal" href="glossary.html#term_value">value</a> to a
+<a class="reference internal" href="glossary.html#term_variable">variable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wnhci8phdu4m">15.2:2</span>
+When a <a class="reference internal" href="glossary.html#term_variable">variable</a> holds a <a class="reference internal" href="glossary.html#term_value">value</a>, the <a class="reference internal" href="glossary.html#term_variable">variable</a> is considered to be
+<em id="term_initialized">initialized</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_ch2lvm50olqd">15.2:3</span>
+When a <a class="reference internal" href="glossary.html#term_variable">variable</a> lacks a <a class="reference internal" href="glossary.html#term_value">value</a> or its <a class="reference internal" href="glossary.html#term_value">value</a> has been
+<a class="reference internal" href="glossary.html#term_passing_convention">passed</a> <a class="reference internal" href="#term_by_move">by move</a>, the <a class="reference internal" href="glossary.html#term_variable">variable</a> is considered
+to be <em id="term_uninitialized">uninitialized</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_46910buiwvv9">15.2:4</span>
+A <a class="reference internal" href="glossary.html#term_variable">variable</a> shall be <a class="reference internal" href="#term_initialized">initialized</a> before it is accessed.</p>
+<p class="rubric">Runtime Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_caufcwkpz689">15.2:5</span>
+All memory starts as uninitialized.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_4lg92b9yima6">15.2:6</span>
+Variable <code class="docutils literal notranslate"><span class="pre">a</span></code> is initialized.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_xn1au0blioa3">15.2:7</span>
+Variable <code class="docutils literal notranslate"><span class="pre">b</span></code> starts off as uninitialized, but is later initialized by virtue
+of the assignment statement.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">b</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="p">;</span>
+<span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_jmcjboopvytb">15.2:8</span>
+Variable <code class="docutils literal notranslate"><span class="pre">c</span></code> starts off initialized, but is later uninitialized by virtue of a
+transfer <a class="reference internal" href="#term_by_move">by move</a>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">atomic</span><span class="p">::</span><span class="n">AtomicI32</span><span class="p">;</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">c</span><span class="p">:</span><span class="w"> </span><span class="nc">AtomicI32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AtomicI32</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">d</span><span class="p">:</span><span class="w"> </span><span class="nc">AtomicI32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="references">
+<span id="fls_v5x85lt5ulva"></span><h2><span class="section-number">15.3. </span>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7x9pi2o7pee7">15.3:1</span>
+A <a class="reference internal" href="glossary.html#term_reference">reference</a> is a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_reference_type">reference type</a>. A <a class="reference internal" href="glossary.html#term_reference">reference</a>
+can be obtained explicitly by using a <a class="reference internal" href="glossary.html#term_borrow_expression">borrow expression</a> or implicitly in
+certain scenarios.</p>
+<p><span class="spec-paragraph-id" id="fls_tsqvr3fmcel">15.3:2</span>
+A <a class="reference internal" href="glossary.html#term_referent">referent</a> is the <a class="reference internal" href="glossary.html#term_value">value</a> pointed-to by a <a class="reference internal" href="glossary.html#term_reference">reference</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ev4a82fdhwr8">15.3:3</span>
+A <a class="reference internal" href="glossary.html#term_reference">reference</a> shall point to an <a class="reference internal" href="#term_initialized">initialized</a> <a class="reference internal" href="glossary.html#term_referent">referent</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cckf6dtkgwb4">15.3:4</span>
+The <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> of a <a class="reference internal" href="glossary.html#term_referent">referent</a> shall be at least as long as the
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> of its <a class="reference internal" href="glossary.html#term_reference">reference</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8kqb8754e6p4">15.3:5</span>
+A <a class="reference internal" href="glossary.html#term_reference">reference</a> is <em id="term_active">active</em> from the point of obtaining its <a class="reference internal" href="glossary.html#term_referent">referent</a>
+upto the last use of the <a class="reference internal" href="glossary.html#term_reference">reference</a>, prior to another assignment to the
+<a class="reference internal" href="glossary.html#term_reference">reference</a> or the end of the <a class="reference internal" href="glossary.html#term_scope">scope</a> of the <a class="reference internal" href="glossary.html#term_reference">reference</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_v69rptdjao42">15.3:6</span>
+A <a class="reference internal" href="glossary.html#term_referent">referent</a> shall not be <a class="reference internal" href="glossary.html#term_passing_convention">passed</a> <a class="reference internal" href="#term_by_move">by move</a> while
+a <a class="reference internal" href="glossary.html#term_reference">reference</a> to it is <a class="reference internal" href="#term_active">active</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vg9h6tz6z37w">15.3:7</span>
+A <a class="reference internal" href="glossary.html#term_referent">referent</a> shall not be modified while a <a class="reference internal" href="glossary.html#term_reference">reference</a> to it is
+<a class="reference internal" href="#term_active">active</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wcf5mxrzbujn">15.3:8</span>
+An <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a> is a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_shared_reference_type">shared reference type</a>, and
+prevents the mutation of its <a class="reference internal" href="glossary.html#term_referent">referent</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fckoj1jh5mrc">15.3:9</span>
+A <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> is a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_mutable_reference_type">mutable reference type</a>, and
+allows the mutation of its <a class="reference internal" href="glossary.html#term_referent">referent</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hqxsuyn285he">15.3:10</span>
+The <a class="reference internal" href="glossary.html#term_referent">referent</a> of an <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a> shall be mutated only when the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_referent">referent</a> is subject to <a class="reference internal" href="glossary.html#term_interior_mutability">interior mutability</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_i1ny0k726a4a">15.3:11</span>
+While a <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> is <a class="reference internal" href="#term_active">active</a>, no other <a class="reference internal" href="glossary.html#term_reference">reference</a> shall
+refer to a <a class="reference internal" href="glossary.html#term_value">value</a> that <a class="reference internal" href="glossary.html#term_overlap">overlaps</a> with the <a class="reference internal" href="glossary.html#term_referent">referent</a> of the
+<a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_eT1hnLOx6vxk">15.3:12</span>
+It is undefined behavior to access a <a class="reference internal" href="glossary.html#term_value">value</a> through aliasing
+<a class="reference internal" href="glossary.html#term_mutable_reference">mutable references</a> from <a class="reference internal" href="glossary.html#term_unsafe_context">unsafe context</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">immutable_reference</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="mi">42</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">mutable_reference</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="borrowing">
+<span id="fls_a14slch83hzn"></span><h2><span class="section-number">15.4. </span>Borrowing<a class="headerlink" href="#borrowing" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_c02flohk54pc">15.4:1</span>
+<a class="reference internal" href="glossary.html#term_borrowing">Borrowing</a> is the process of temporarily associating a <a class="reference internal" href="glossary.html#term_reference">reference</a> with a
+<a class="reference internal" href="glossary.html#term_value">value</a> without transferring <a class="reference internal" href="glossary.html#term_ownership">ownership</a> permanently.</p>
+<p><span class="spec-paragraph-id" id="fls_j9kof0px3l7s">15.4:2</span>
+A <a class="reference internal" href="glossary.html#term_borrow">borrow</a> is a <a class="reference internal" href="glossary.html#term_reference">reference</a> produced by <a class="reference internal" href="glossary.html#term_borrowing">borrowing</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_zepwytjwy049">15.4:3</span>
+An <a class="reference internal" href="glossary.html#term_implicit_borrow">implicit borrow</a> is a <a class="reference internal" href="glossary.html#term_borrow">borrow</a> that is not present syntactically in
+program text. An <a class="reference internal" href="glossary.html#term_implicit_borrow">implicit borrow</a> occurs in the following contexts:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_nordokzfy36d">15.4:4</span>
+The <a class="reference internal" href="glossary.html#term_call_operand">call operand</a> of a <a class="reference internal" href="glossary.html#term_call_expression">call expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bjf3futso849">15.4:5</span>
+The <a class="reference internal" href="glossary.html#term_operand">operands</a> of a <a class="reference internal" href="glossary.html#term_comparison_expression">comparison expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_yfmy4v5zlgw9">15.4:6</span>
+The <a class="reference internal" href="glossary.html#term_assigned_operand">assigned operand</a> of a <a class="reference internal" href="glossary.html#term_compound_assignment_expression">compound assignment expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jv18y618j2s3">15.4:7</span>
+The <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_field_access_expression">field access expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_g4i0jb27iryr">15.4:8</span>
+The <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_dereference_expression">dereference expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_kky9ufexrvaw">15.4:9</span>
+The <a class="reference internal" href="glossary.html#term_indexed_operand">indexed operand</a> of an <a class="reference internal" href="glossary.html#term_index_expression">index expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_o5oq4jfswr4q">15.4:10</span>
+The <a class="reference internal" href="glossary.html#term_receiver_operand">receiver operand</a> of a <a class="reference internal" href="glossary.html#term_method_call_expression">method call expression</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_MT69AGRXH9pS_">15.4:11</span>
+An <a class="reference internal" href="glossary.html#term_implicit_borrow">implicit borrow</a> may be an <a class="reference internal" href="glossary.html#term_immutable_borrow">immutable borrow</a> or a <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a>
+if required.</p>
+<p><span class="spec-paragraph-id" id="fls_hyl4bdjbuzbw">15.4:12</span>
+An <a class="reference internal" href="glossary.html#term_immutable_borrow">immutable borrow</a> is an <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a> produced by
+<a class="reference internal" href="glossary.html#term_borrowing">borrowing</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pu19i4sj6yg0">15.4:13</span>
+A <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a> is a <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> produced by <a class="reference internal" href="glossary.html#term_borrowing">borrowing</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kxws4zmaahj6">15.4:14</span>
+<a class="reference internal" href="glossary.html#term_borrowing">Borrowing</a> a <a class="reference internal" href="glossary.html#term_field">field</a> of a <a class="reference internal" href="glossary.html#term_union_type">union type</a> borrows all remaining
+<a class="reference internal" href="glossary.html#term_field">fields</a> using the same <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kup2ou22nwyl">15.4:15</span>
+Immutably <a class="reference internal" href="glossary.html#term_borrowing">borrowing</a> a <a class="reference internal" href="glossary.html#term_value">value</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_8q5ly4x104ai">15.4:16</span>
+An <a class="reference internal" href="glossary.html#term_immutable_borrow">immutable borrow</a> of <a class="reference internal" href="glossary.html#term_type">type</a> <code class="docutils literal notranslate"><span class="pre">&amp;'a</span> <span class="pre">T</span></code> is created, where
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> <code class="docutils literal notranslate"><span class="pre">'a</span></code> is replaced by a <a class="reference internal" href="glossary.html#term_lifetime_variable">lifetime variable</a>, and
+<code class="docutils literal notranslate"><span class="pre">T</span></code> is replaced by the borrowed <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_yhchu2bpil4m">15.4:17</span>
+Lifetime inference is performed.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_568o7nyihndd">15.4:18</span>
+The <a class="reference internal" href="glossary.html#term_immutable_borrow">immutable borrow</a> is checked against other <a class="reference internal" href="glossary.html#term_borrow">borrows</a> and
+<a class="reference internal" href="#term_by_move">by move</a> passing within the enclosing <a class="reference internal" href="glossary.html#term_item">item</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Z2n7EJiLY5CT">15.4:19</span>
+An <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a> to the borrowed <a class="reference internal" href="glossary.html#term_value">value</a> is produced.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ibi9mqGeHNLp">15.4:20</span>
+The <a class="reference internal" href="glossary.html#term_immutable_borrow">immutable borrow</a> is released immediately after the last usage of its
+related <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a>.</p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_f9we73i8vwq3">15.4:21</span>
+Mutably <a class="reference internal" href="glossary.html#term_borrowing">borrowing</a> a <a class="reference internal" href="glossary.html#term_value">value</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_w5bjgaov8w60">15.4:22</span>
+A <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a> of <a class="reference internal" href="glossary.html#term_type">type</a> <code class="docutils literal notranslate"><span class="pre">&amp;'a</span> <span class="pre">mut</span> <span class="pre">T</span></code> is created, where
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> <code class="docutils literal notranslate"><span class="pre">'a</span></code> is replaced by a <a class="reference internal" href="glossary.html#term_lifetime_variable">lifetime variable</a>, and
+<code class="docutils literal notranslate"><span class="pre">T</span></code> is replaced by the borrowed <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gbqizu6gu6kk">15.4:23</span>
+Lifetime inference is performed.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ovkkxeybumvt">15.4:24</span>
+The <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a> is checked against other <a class="reference internal" href="glossary.html#term_borrow">borrows</a> and
+<a class="reference internal" href="#term_by_move">by move</a> passing within the enclosing <a class="reference internal" href="glossary.html#term_item">item</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7Kzu0qXiBUCb">15.4:25</span>
+A <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> to the borrowed <a class="reference internal" href="glossary.html#term_value">value</a> is produced.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_VDHBP4oAoqT5">15.4:26</span>
+The <a class="reference internal" href="glossary.html#term_mutable_borrow">mutable borrow</a> is released immediately after the last usage of its
+related <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a>.</p></li>
+</ol>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">mutable_borrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">immutable_borrow</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="passing-conventions">
+<span id="fls_77scxuomlbgs"></span><h2><span class="section-number">15.5. </span>Passing Conventions<a class="headerlink" href="#passing-conventions" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fvwx2ufeyzcs">15.5:1</span>
+A <a class="reference internal" href="glossary.html#term_passing_convention">passing convention</a> is the mechanism that defines how a <a class="reference internal" href="glossary.html#term_value">value</a> is
+transferred between <a class="reference internal" href="glossary.html#term_place">places</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h2pgsij1rbms">15.5:2</span>
+A <a class="reference internal" href="glossary.html#term_copy_type">copy type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ACopy"><code class="docutils literal notranslate"><span class="pre">core::marker::Copy</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yx2knbby70fy">15.5:3</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_copy_type">copy type</a> is <a class="reference internal" href="glossary.html#term_passing_convention">passed</a>
+<em id="term_by_copy">by copy</em>. Passing <a class="reference internal" href="#term_by_copy">by copy</a> does not change the <a class="reference internal" href="glossary.html#term_owner">owner</a> of the
+<a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6ul3f6v0foma">15.5:4</span>
+A <a class="reference internal" href="glossary.html#term_move_type">move type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a> and is not a <a class="reference internal" href="glossary.html#term_copy_type">copy type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3ztdz02efeoc">15.5:5</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_move_type">move type</a> is <a class="reference internal" href="glossary.html#term_passing_convention">passed</a>
+<em id="term_by_move">by move</em>. Passing <a class="reference internal" href="#term_by_move">by move</a> changes the <a class="reference internal" href="glossary.html#term_owner">owner</a> of the <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_konzgoybhfqm">15.5:6</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_place_expression">place expression</a> shall be
+<a class="reference internal" href="glossary.html#term_passing_convention">passed</a> <a class="reference internal" href="#term_by_move">by move</a> only when it denotes:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_4bnbv7mqod57">15.5:7</span>
+A <a class="reference internal" href="glossary.html#term_field">field</a> of a <a class="reference internal" href="glossary.html#term_place_expression">place expression</a> that can be
+<a class="reference internal" href="glossary.html#term_passing_convention">passed</a> <a class="reference internal" href="#term_by_move">by move</a> and whose <a class="reference internal" href="glossary.html#term_type">type</a> does not
+implement the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3ADrop"><code class="docutils literal notranslate"><span class="pre">core::ops::Drop</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3xk3p1unbjy5">15.5:8</span>
+A <a class="reference internal" href="glossary.html#term_temporary">temporary</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_vk1xhvdaakh0">15.5:9</span>
+A <a class="reference internal" href="glossary.html#term_variable">variable</a> which is not currently <a class="reference internal" href="glossary.html#term_borrowed">borrowed</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_vveEJn7lngT8">15.5:10</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_value_expression">value expression</a> is always
+<a class="reference internal" href="glossary.html#term_passing_convention">passed</a> <a class="reference internal" href="#term_by_move">by move</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gq35gqagw35">15.5:11</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> not subject to <a class="reference internal" href="#term_by_copy">by copy</a> or <a class="reference internal" href="#term_by_move">by move</a> <a class="reference internal" href="glossary.html#term_passing_convention">passing convention</a>
+shall not be <a class="reference internal" href="glossary.html#term_passing_convention">passed</a> between <a class="reference internal" href="glossary.html#term_place">places</a>.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_cfqzpmnfeh8h">15.5:12</span>
+Passing a <a class="reference internal" href="glossary.html#term_value">value</a> <a class="reference internal" href="#term_by_copy">by copy</a> from a source <a class="reference internal" href="glossary.html#term_owner">owner</a> to a target
+<a class="reference internal" href="glossary.html#term_owner">owner</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_go9gdlk5d3km">15.5:13</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> of the source <a class="reference internal" href="glossary.html#term_owner">owner</a> is copied.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_459xx6febmf0">15.5:14</span>
+The copy is assigned to the target <a class="reference internal" href="glossary.html#term_owner">owner</a>.</p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_3xyq50abdiv6">15.5:15</span>
+Passing a <a class="reference internal" href="glossary.html#term_value">value</a> <a class="reference internal" href="#term_by_move">by move</a> from a source <a class="reference internal" href="glossary.html#term_owner">owner</a> to a target
+<a class="reference internal" href="glossary.html#term_owner">owner</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_7kcx3u8gvl1d">15.5:16</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> is unassigned from the source <a class="reference internal" href="glossary.html#term_owner">owner</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_i4hrifsb9msr">15.5:17</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> is assigned to the target <a class="reference internal" href="glossary.html#term_owner">owner</a>.</p></li>
+</ol>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_7tadh1zel0fc">15.5:18</span>
+Type <code class="docutils literal notranslate"><span class="pre">i32</span></code> is a copy type. By the end of the second let statement, <code class="docutils literal notranslate"><span class="pre">x</span></code> is
+the owner of the original <code class="docutils literal notranslate"><span class="pre">42</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> is the owner of a cloned <code class="docutils literal notranslate"><span class="pre">42</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_ywt328hcieka">15.5:19</span>
+Type <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Async%3A%3Aatomic%3A%3AAtomicI32"><code class="docutils literal notranslate"><span class="pre">core::sync::atomic::AtomicI32</span></code></a> is a move type. By the end of the
+second let statement, <code class="docutils literal notranslate"><span class="pre">x</span></code> is uninitialized and <code class="docutils literal notranslate"><span class="pre">y</span></code> is the sole owner of the
+atomic <code class="docutils literal notranslate"><span class="pre">42</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">atomic</span><span class="p">::</span><span class="n">AtomicI32</span><span class="p">;</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="p">:</span><span class="w"> </span><span class="nc">AtomicI32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AtomicI32</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">y</span><span class="p">:</span><span class="w"> </span><span class="nc">AtomicI32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="destruction">
+<span id="fls_4jiw35pan7vn"></span><h2><span class="section-number">15.6. </span>Destruction<a class="headerlink" href="#destruction" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_e7ucq87s806d">15.6:1</span>
+<a class="reference internal" href="glossary.html#term_destruction">Destruction</a> is the process of recovering resources associated with a
+<a class="reference internal" href="glossary.html#term_value">value</a> as it goes out of scope.</p>
+</section>
+<section id="destructors">
+<span id="fls_u2mzjgiwbkz0"></span><h2><span class="section-number">15.7. </span>Destructors<a class="headerlink" href="#destructors" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_9m0gszdle0qb">15.7:1</span>
+A <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_type">type</a> that implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3ADrop"><code class="docutils literal notranslate"><span class="pre">core::ops::Drop</span></code></a>
+<a class="reference internal" href="glossary.html#term_trait">trait</a> or contains a <a class="reference internal" href="glossary.html#term_field">field</a> that has a <a class="reference internal" href="glossary.html#term_drop_type">drop type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4nkzidytpi6">15.7:2</span>
+A <a class="reference internal" href="glossary.html#term_destructor">destructor</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> that is invoked immediately before the
+<a class="reference internal" href="glossary.html#term_destruction">destruction</a> of a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_drop_type">drop type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wzuwapjqtyyy">15.7:3</span>
+<a class="reference internal" href="glossary.html#term_dropping">Dropping</a> a <a class="reference internal" href="glossary.html#term_value">value</a> is the act of invoking the <a class="reference internal" href="glossary.html#term_destructor">destructor</a> of the
+related <a class="reference internal" href="glossary.html#term_type">type</a>. Such an object is said to be <em id="term_dropped">dropped</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_gfvm70iqu1l4">15.7:4</span>
+An <a class="reference internal" href="#term_uninitialized">uninitialized</a> <a class="reference internal" href="glossary.html#term_variable">variable</a> is not <a class="reference internal" href="#term_dropped">dropped</a>.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_l2xkdjeydqtx">15.7:5</span>
+<a class="reference internal" href="glossary.html#term_dropping">Dropping</a> an <a class="reference internal" href="#term_initialized">initialized</a> <a class="reference internal" href="glossary.html#term_variable">variable</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_bync24y6gp93">15.7:6</span>
+If the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> implements the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aops%3A%3ADrop"><code class="docutils literal notranslate"><span class="pre">core::ops::Drop</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>, then
+<code class="docutils literal notranslate"><span class="pre">core::ops::Drop::drop</span></code> of the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is invoked.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jzancf72i95f">15.7:7</span>
+If the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is an <a class="reference internal" href="glossary.html#term_array_type">array type</a>, then its elements are
+<a class="reference internal" href="#term_dropped">dropped</a> from the first element to the last element.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gjn2jnsal9gs">15.7:8</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_closure_type">closure type</a>, then all
+<a class="reference internal" href="glossary.html#term_capture_target">capture targets</a> whose <a class="reference internal" href="glossary.html#term_capture_mode">capture mode</a> is <a class="reference internal" href="#term_by_move">by move</a> are
+<a class="reference internal" href="#term_dropped">dropped</a> in unspecified order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ol2w2292frfi">15.7:9</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is an <a class="reference internal" href="glossary.html#term_enum_type">enum type</a>, then the <a class="reference internal" href="glossary.html#term_field">fields</a>
+of the active <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> are <a class="reference internal" href="#term_dropped">dropped</a> in declaration order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6ii5o68vuymj">15.7:10</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_slice_type">slice type</a>, then its elements are
+<a class="reference internal" href="#term_dropped">dropped</a> from the first element to the last element.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_sup43es8ps8r">15.7:11</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_struct_type">struct type</a>, then its
+<a class="reference internal" href="glossary.html#term_field">fields</a> are <a class="reference internal" href="#term_dropped">dropped</a> in declaration order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_y9q0eqr865b3">15.7:12</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_trait_object_type">trait object type</a>, then the
+<a class="reference internal" href="glossary.html#term_destructor">destructor</a> of the underlying <a class="reference internal" href="glossary.html#term_type">type</a> is invoked.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_kdqng6eovxns">15.7:13</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_drop_type">drop type</a> is a <a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a>, then its <a class="reference internal" href="glossary.html#term_field">fields</a>
+are <a class="reference internal" href="#term_dropped">dropped</a> in declaration order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ag249y74jg6c">15.7:14</span>
+Otherwise, <a class="reference internal" href="glossary.html#term_dropping">dropping</a> has no effect.</p></li>
+</ol>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">PrintOnDrop</span><span class="p">(</span><span class="o">&amp;&#39;</span><span class="nb">static</span><span class="w"> </span><span class="kt">str</span><span class="p">);</span>
+
+<span class="k">impl</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">ops</span><span class="p">::</span><span class="nb">Drop</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">PrintOnDrop</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">drop</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_tw36n3g32a0y">15.7:15</span>
+When object <code class="docutils literal notranslate"><span class="pre">array</span></code> is dropped, its destructor drops the first element, then
+the second element.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="n">PrintOnDrop</span><span class="p">(</span><span class="s">&quot;first element to be dropped&quot;</span><span class="p">),</span>
+<span class="w">             </span><span class="n">PrintOnDrop</span><span class="p">(</span><span class="s">&quot;second element to be dropped&quot;</span><span class="p">)];</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_fmn33zhorkf">15.7:16</span>
+Object <code class="docutils literal notranslate"><span class="pre">uninitialized</span></code> is not dropped.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">uninitialized</span><span class="p">:</span><span class="w"> </span><span class="nc">PrintOnDrop</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="drop-scopes">
+<span id="fls_rm4ncoopcdvj"></span><h2><span class="section-number">15.8. </span>Drop Scopes<a class="headerlink" href="#drop-scopes" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7uav7vkcv4pz">15.8:1</span>
+A <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> is a region of program text that governs the <a class="reference internal" href="glossary.html#term_dropping">dropping</a> of
+<a class="reference internal" href="glossary.html#term_value">values</a>. When control flow leaves a <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a>, all <a class="reference internal" href="glossary.html#term_value">values</a>
+associated with that <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> are <a class="reference internal" href="#term_dropped">dropped</a> based on a
+<a class="reference internal" href="glossary.html#term_drop_order">drop order</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_txvxrn6wbyql">15.8:2</span>
+A <a class="reference internal" href="glossary.html#term_drop_construct">drop construct</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that employs a <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a>. The
+following <a class="reference internal" href="glossary.html#term_construct">constructs</a> are <a class="reference internal" href="glossary.html#term_drop_construct">drop constructs</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_n6y6brm6pghr">15.8:3</span>
+<a class="reference internal" href="glossary.html#term_expression">Expressions</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gdh6wwvi7ci6">15.8:4</span>
+<a class="reference internal" href="glossary.html#term_function">Functions</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_owqk2fcpvc4s">15.8:5</span>
+A <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> of a <a class="reference internal" href="glossary.html#term_match_expression">match expression</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ckh8wkq0y5ja">15.8:6</span>
+<a class="reference internal" href="glossary.html#term_statement">Statements</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_2zwwnzepgmje">15.8:7</span>
+<a class="reference internal" href="glossary.html#term_drop_scope">Drop scopes</a> are nested within one another as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_vlbx5ukw5c8l">15.8:8</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_function">function</a> is the outermost <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_d5yg6w8gv6aq">15.8:9</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_function_body">function body</a> is the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of
+its related <a class="reference internal" href="glossary.html#term_function">function</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qidma4fpkhb0">15.8:10</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of an <a class="reference internal" href="glossary.html#term_operand">operand</a> in an <a class="reference internal" href="glossary.html#term_expression_statement">expression statement</a>
+is the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_expression_statement">expression statement</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_1o9ye6cwoyiq">15.8:11</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_expression">expression</a> of a <a class="reference internal" href="glossary.html#term_let_statement">let statement</a> is
+the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_let_statement">let statement</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_16htxf824xbk">15.8:12</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_statement">statement</a> is the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+<a class="reference internal" href="glossary.html#term_block_expression">block expression</a> that contains the <a class="reference internal" href="glossary.html#term_statement">statement</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lbsfhg42yiqy">15.8:13</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_match_arm_guard">match arm guard</a> is
+the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> that contains the
+<a class="reference internal" href="glossary.html#term_match_arm_guard">match arm guard</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5m3u3k6f00bd">15.8:14</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> is the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> that contains the <a class="reference internal" href="glossary.html#term_operand">operand</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_m86ljncnmo7j">15.8:15</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> is the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+related <a class="reference internal" href="glossary.html#term_match_expression">match expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bewcu5xceu8i">15.8:16</span>
+The parent <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of all other <a class="reference internal" href="glossary.html#term_drop_scope">drop scopes</a> is the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the immediately enclosing <a class="reference internal" href="glossary.html#term_expression">expression</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_iHHhlxCiqNWZ">15.8:17</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> declared in a <a class="reference internal" href="glossary.html#term_for_loop_expression">for loop expression</a> is associated with
+the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> of the
+<a class="reference internal" href="glossary.html#term_for_loop_expression">for loop expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_swXXkbZGLPKa">15.8:18</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> declared in an <a class="reference internal" href="glossary.html#term_if_let_expression">if let expression</a> is associated with the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> of the <a class="reference internal" href="glossary.html#term_if_let_expression">if let expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vrqgac634wpr">15.8:19</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> declared in a <a class="reference internal" href="glossary.html#term_let_statement">let statement</a> is associated with the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> that contains the
+<a class="reference internal" href="glossary.html#term_let_statement">let statement</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fnvr5w2wzxns">15.8:20</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> declared in a <a class="reference internal" href="glossary.html#term_match_expression">match expression</a> is associated with the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> of the <a class="reference internal" href="glossary.html#term_match_expression">match expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1vZFa5mDEbXW">15.8:21</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> declared in a <a class="reference internal" href="glossary.html#term_while_let_loop_expression">while let loop expression</a> is associated with
+the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> of the
+<a class="reference internal" href="glossary.html#term_while_let_loop_expression">while let loop expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3jtU8grRaMM9">15.8:22</span>
+A <a class="reference internal" href="glossary.html#term_value">value</a> or <a class="reference internal" href="glossary.html#term_binding">binding</a> of a <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is associated with the
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_function">function</a> of the <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8r39duatupxw">15.8:23</span>
+A <a class="reference internal" href="glossary.html#term_temporary">temporary</a> that is not subject to <a class="reference internal" href="glossary.html#term_constant_promotion">constant promotion</a> is associated
+with the innermost <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> that contains the <a class="reference internal" href="glossary.html#term_expression">expression</a> which
+produced the <a class="reference internal" href="glossary.html#term_temporary">temporary</a>, taking into account <a class="reference internal" href="glossary.html#term_drop_scope_extension">drop scope extension</a>. The
+possible <a class="reference internal" href="glossary.html#term_drop_scope">drop scopes</a> are as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_2peq1tihglnr">15.8:24</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_il09n7sq0a3k">15.8:25</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_statement">statement</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_s1wbqld139gz">15.8:26</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> of an <a class="reference internal" href="glossary.html#term_if_expression">if expression</a>, an
+<a class="reference internal" href="glossary.html#term_infinite_loop_expression">infinite loop expression</a>, or a <a class="reference internal" href="glossary.html#term_while_loop_expression">while loop expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_asvuef2pc3m0">15.8:27</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of an <a class="reference internal" href="glossary.html#term_else_expression">else expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_560437qmeqtr">15.8:28</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_subject_expression">subject expression</a> of an <a class="reference internal" href="glossary.html#term_if_expression">if expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8cunkfc6x24q">15.8:29</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_iteration_expression">iteration expression</a> of a
+<a class="reference internal" href="glossary.html#term_while_loop_expression">while loop expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n108lvc4otoc">15.8:30</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_match_arm">match arm</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ptk6yibqyfzi">15.8:31</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_match_arm_guard">match arm guard</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_dltmd8e8c5ia">15.8:32</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_right_operand">right operand</a> of a
+<a class="reference internal" href="glossary.html#term_lazy_boolean_expression">lazy boolean expression</a>.</p></li>
+</ul>
+<section id="drop-scope-extension">
+<span id="fls_5eima0pd31c0"></span><h3><span class="section-number">15.8.1. </span>Drop Scope Extension<a class="headerlink" href="#drop-scope-extension" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_kflqez2mtbit">15.8.1:1</span>
+<a class="reference internal" href="glossary.html#term_drop_scope_extension">Drop scope extension</a> is the process of extending a <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a>
+associated with a <a class="reference internal" href="glossary.html#term_temporary">temporary</a> to prevent the premature <a class="reference internal" href="glossary.html#term_dropping">dropping</a> of the
+<a class="reference internal" href="glossary.html#term_temporary">temporary</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_xjw82bujm148">15.8.1:2</span>
+An <em id="term_extending_pattern">extending pattern</em> is either</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_965wt48ooqyw">15.8.1:3</span>
+A <a class="reference internal" href="glossary.html#term_reference_identifier_pattern">reference identifier pattern</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_r8nt0zp8dnyp">15.8.1:4</span>
+A <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>, a <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a>, <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> or a
+<a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> that contains at least one <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> that is
+an <a class="reference internal" href="#term_extending_pattern">extending pattern</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_3ycn4u1fe9h">15.8.1:5</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> of a <a class="reference internal" href="glossary.html#term_let_statement">let statement</a> is an
+<a class="reference internal" href="#term_extending_pattern">extending pattern</a>, then the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_expression">expression</a> of
+the <a class="reference internal" href="glossary.html#term_let_statement">let statement</a> is extended to the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+<a class="reference internal" href="glossary.html#term_block_expression">block expression</a> that contains the <a class="reference internal" href="glossary.html#term_let_statement">let statement</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wyzau8hhq74d">15.8.1:6</span>
+An <em id="term_extending_expression">extending expression</em> is either</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ju7cpftd8r2g">15.8.1:7</span>
+The <a class="reference internal" href="glossary.html#term_expression">expression</a> of a <a class="reference internal" href="glossary.html#term_let_statement">let statement</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gjd1ow3l7swe">15.8.1:8</span>
+The <a class="reference internal" href="glossary.html#term_operand">operand</a> of an <a class="reference internal" href="#term_extending_expression">extending expression</a> that is an
+<a class="reference internal" href="glossary.html#term_array_expression">array expression</a>, a <a class="reference internal" href="glossary.html#term_borrow_expression">borrow expression</a>, a <a class="reference internal" href="glossary.html#term_struct_expression">struct expression</a>, a
+<a class="reference internal" href="glossary.html#term_tuple_expression">tuple expression</a>, or a <a class="reference internal" href="glossary.html#term_type_cast_expression">type cast expression</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Rj9zhVutfQod">15.8.1:9</span>
+The <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> and <a class="reference internal" href="glossary.html#term_else_expression">else expression</a> of an <a class="reference internal" href="glossary.html#term_if_expression">if expression</a>
+that is an <a class="reference internal" href="#term_extending_expression">extending expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_oodpp3LpXC13">15.8.1:10</span>
+The <a class="reference internal" href="glossary.html#term_expression">expression</a> of an <a class="reference internal" href="glossary.html#term_else_expression">else expression</a> that is an <a class="reference internal" href="#term_extending_expression">extending
+expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xGThCPoTUSAi">15.8.1:11</span>
+The <a class="reference internal" href="glossary.html#term_expression">expression</a> of a <a class="reference internal" href="glossary.html#term_match_arm">match arm</a> of a <a class="reference internal" href="glossary.html#term_match_expression">match expression</a> that is an
+<a class="reference internal" href="#term_extending_expression">extending expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_iqw0d1l1lj3i">15.8.1:12</span>
+The <a class="reference internal" href="glossary.html#term_tail_expression">tail expression</a> of a <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> that is an
+<a class="reference internal" href="#term_extending_expression">extending expression</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_aq01wjpkxhq9">15.8.1:13</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_borrow_expression">borrow expression</a> that is an
+<a class="reference internal" href="#term_extending_expression">extending expression</a> is extended to the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+<a class="reference internal" href="glossary.html#term_block_expression">block expression</a> that contains the <a class="reference internal" href="glossary.html#term_let_statement">let statement</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_VDPi1dJzJMUb">15.8.1:14</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_operand">operand</a> of a <a class="reference internal" href="glossary.html#term_borrow_expression">borrow expression</a>, a
+<a class="reference internal" href="glossary.html#term_dereference_expression">dereference expression</a>, or a <a class="reference internal" href="glossary.html#term_field_access_expression">field access expression</a> that has an
+extended <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> is extended to the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+<a class="reference internal" href="glossary.html#term_expression">expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_elGH7HSawMRb">15.8.1:15</span>
+The <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the <a class="reference internal" href="glossary.html#term_indexed_operand">indexed operand</a> of an <a class="reference internal" href="glossary.html#term_index_expression">index expression</a> that
+has an extended <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> is extended to the <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of the
+<a class="reference internal" href="glossary.html#term_expression">expression</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_29y59x8bmw75">15.8.1:16</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_u2mzjgiwbkz0</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">PrintOnDrop</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_subo2w7ln43q">15.8.1:17</span>
+The drop scope of the temporary created for expression <code class="docutils literal notranslate"><span class="pre">AtomicI32::new(42)</span></code> is
+extended to the drop scope of the block expression.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">sync</span><span class="p">::</span><span class="n">atomic</span><span class="p">::</span><span class="n">AtomicI32</span><span class="p">;</span>
+
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AtomicI32</span><span class="p">::</span><span class="n">new</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;{}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="drop-order">
+<span id="fls_afafmafz4hf2"></span><h2><span class="section-number">15.9. </span>Drop Order<a class="headerlink" href="#drop-order" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_n6o1xzjiz8cv">15.9:1</span>
+<a class="reference internal" href="glossary.html#term_drop_order">Drop order</a> is the order by which <a class="reference internal" href="glossary.html#term_value">values</a> are <a class="reference internal" href="#term_dropped">dropped</a> when a
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> is left.</p>
+<p><span class="spec-paragraph-id" id="fls_jwofws3022ar">15.9:2</span>
+When a <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> is left, all <a class="reference internal" href="glossary.html#term_value">values</a> associated with that
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> are <a class="reference internal" href="#term_dropped">dropped</a> as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_g07zq3n55094">15.9:3</span>
+<a class="reference internal" href="glossary.html#term_binding">Bindings</a> are <a class="reference internal" href="#term_dropped">dropped</a> in reverse declaration order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_a5tmilqxdb6f">15.9:4</span>
+<a class="reference internal" href="glossary.html#term_temporary">Temporaries</a> are <a class="reference internal" href="#term_dropped">dropped</a> in reverse creation order.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_zQGkVGWIzMQ7">15.9:5</span>
+When a <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> of a <a class="reference internal" href="glossary.html#term_function">function</a> is left, then each
+<a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is <a class="reference internal" href="#term_dropped">dropped</a> from right to left as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_K8whhUwAUVqR">15.9:6</span>
+All <a class="reference internal" href="glossary.html#term_binding">bindings</a> introduced by the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of the
+<a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> are <a class="reference internal" href="#term_dropped">dropped</a> in reverse declaration order,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_NpCrm4t03oQg">15.9:7</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is <a class="reference internal" href="#term_dropped">dropped</a>.</p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_3i348l3pbtrx">15.9:8</span>
+When multiple <a class="reference internal" href="glossary.html#term_drop_scope">drop scopes</a> are left at once, the <a class="reference internal" href="glossary.html#term_value">values</a> are
+<a class="reference internal" href="#term_dropped">dropped</a> from the innermost <a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a> to the outermost
+<a class="reference internal" href="glossary.html#term_drop_scope">drop scope</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_oe8l81y0wnao">15.9:9</span>
+See <span class="spec-missing-ref"><em>Paragraph fls_u2mzjgiwbkz0</em></span> for the declaration of <code class="docutils literal notranslate"><span class="pre">PrintOnDrop</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_4sgca9wcl8h0">15.9:10</span>
+The drop order of the following variables is <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>. Dropping
+proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_a2m4ibzhgupa">15.9:11</span>
+The scope of the block expression is left first because it is an inner scope.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_go3bvd23vzi9">15.9:12</span>
+<code class="docutils literal notranslate"><span class="pre">b</span></code> is dropped.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7rwo0he8x143">15.9:13</span>
+The outer scope is left.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_43yqlxjr3a10">15.9:14</span>
+<code class="docutils literal notranslate"><span class="pre">c</span></code> is dropped because dropping occurs in reverse declarative order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_a7lsq2kkzkk4">15.9:15</span>
+<code class="docutils literal notranslate"><span class="pre">a</span></code> is dropped.</p></li>
+</ol>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrintOnDrop</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">);</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrintOnDrop</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrintOnDrop</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

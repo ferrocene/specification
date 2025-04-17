@@ -1,0 +1,477 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>12. Generics &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="13. Attributes" href="attributes.html" />
+    <link rel="prev" title="11. Implementations" href="implementations.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="generics">
+<span id="fls_y2k5paj8m8ug"></span><h1><span class="section-number">12. </span>Generics<a class="headerlink" href="#generics" title="Link to this heading">¶</a></h1>
+<section id="generic-parameters">
+<span id="fls_vhpwge5123cm"></span><h2><span class="section-number">12.1. </span>Generic Parameters<a class="headerlink" href="#generic-parameters" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_genericparameterlist"><span class="pre">GenericParameterList</span></code> ::=
+    <strong class="spec-syntax-literal">&lt;</strong> (<a class="reference internal" href="#syntax_genericparameter"><code class="docutils literal notranslate"><span class="pre">GenericParameter</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_genericparameter"><code class="docutils literal notranslate"><span class="pre">GenericParameter</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?)? <strong class="spec-syntax-literal">&gt;</strong>
+
+<code class="docutils literal notranslate" id="syntax_genericparameter"><span class="pre">GenericParameter</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* (
+        <a class="reference internal" href="#syntax_constantparameter"><code class="docutils literal notranslate"><span class="pre">ConstantParameter</span></code></a>
+      | <a class="reference internal" href="#syntax_lifetimeparameter"><code class="docutils literal notranslate"><span class="pre">LifetimeParameter</span></code></a>
+      | <a class="reference internal" href="#syntax_typeparameter"><code class="docutils literal notranslate"><span class="pre">TypeParameter</span></code></a>
+    )
+
+<code class="docutils literal notranslate" id="syntax_constantparameter"><span class="pre">ConstantParameter</span></code> ::=
+   <strong class="spec-syntax-literal">const</strong> <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> <a class="reference internal" href="types-and-traits.html#syntax_typeascription"><code class="docutils literal notranslate"><span class="pre">TypeAscription</span></code></a> (<strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="#syntax_constantparameterinitializer"><code class="docutils literal notranslate"><span class="pre">ConstantParameterInitializer</span></code></a>)?
+
+<code class="docutils literal notranslate" id="syntax_constantparameterinitializer"><span class="pre">ConstantParameterInitializer</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_blockexpression"><code class="docutils literal notranslate"><span class="pre">BlockExpression</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+  | <strong class="spec-syntax-literal">-</strong>? <a class="reference internal" href="expressions.html#syntax_literalexpression"><code class="docutils literal notranslate"><span class="pre">LiteralExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_lifetimeparameter"><span class="pre">LifetimeParameter</span></code> ::=
+    <a class="reference internal" href="types-and-traits.html#syntax_lifetime"><code class="docutils literal notranslate"><span class="pre">Lifetime</span></code></a> (<strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="types-and-traits.html#syntax_lifetimeindicationlist"><code class="docutils literal notranslate"><span class="pre">LifetimeIndicationList</span></code></a>)?
+
+<code class="docutils literal notranslate" id="syntax_typeparameter"><span class="pre">TypeParameter</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> (<strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="types-and-traits.html#syntax_typeboundlist"><code class="docutils literal notranslate"><span class="pre">TypeBoundList</span></code></a>?)? (<strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="#syntax_typeparameterinitializer"><code class="docutils literal notranslate"><span class="pre">TypeParameterInitializer</span></code></a>)?
+
+<code class="docutils literal notranslate" id="syntax_typeparameterinitializer"><span class="pre">TypeParameterInitializer</span></code> ::=
+    <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_sye3d17l9bf5">12.1:1</span>
+A <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> is a placeholder for a <a class="reference internal" href="glossary.html#term_constant">constant</a>, a <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>,
+or a <a class="reference internal" href="glossary.html#term_type">type</a>, whose <a class="reference internal" href="glossary.html#term_constant">constant</a>, <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>, or <a class="reference internal" href="glossary.html#term_type">type</a> is supplied
+statically by a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dalqke3rznrb">12.1:2</span>
+All <a class="reference internal" href="#syntax_lifetimeparameter"><code class="docutils literal notranslate"><span class="pre">LifetimeParameters</span></code></a> in a <a class="reference internal" href="#syntax_genericparameterlist"><code class="docutils literal notranslate"><span class="pre">GenericParameterList</span></code></a> shall precede all
+<a class="reference internal" href="#syntax_constantparameter"><code class="docutils literal notranslate"><span class="pre">ConstantParameters</span></code></a> and <a class="reference internal" href="#syntax_typeparameter"><code class="docutils literal notranslate"><span class="pre">TypeParameters</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pi6eukz7kc99">12.1:3</span>
+A <a class="reference internal" href="glossary.html#term_generic_enum">generic enum</a> is an <a class="reference internal" href="glossary.html#term_enum">enum</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ixmgqupxvf73">12.1:4</span>
+A <a class="reference internal" href="glossary.html#term_generic_function">generic function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_z311nxou9yi3">12.1:5</span>
+A <a class="reference internal" href="glossary.html#term_generic_implementation">generic implementation</a> is an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> with
+<a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_wmcp0n36jlbr">12.1:6</span>
+A <a class="reference internal" href="glossary.html#term_generic_struct">generic struct</a> is a <a class="reference internal" href="glossary.html#term_struct">struct</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h42kg56vsefx">12.1:7</span>
+A <a class="reference internal" href="glossary.html#term_generic_trait">generic trait</a> is a <a class="reference internal" href="glossary.html#term_trait">trait</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_372h3oevejih">12.1:8</span>
+A <a class="reference internal" href="glossary.html#term_generic_type_alias">generic type alias</a> is a <a class="reference internal" href="glossary.html#term_type_alias">type alias</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_u8mqct93yimd">12.1:9</span>
+A <a class="reference internal" href="glossary.html#term_generic_union">generic union</a> is a <a class="reference internal" href="glossary.html#term_union">union</a> with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vpcqgec83ybt">12.1:10</span>
+A <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> is a <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> for a <a class="reference internal" href="glossary.html#term_constant">constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3SjMBlc0b7qo">12.1:11</span>
+A <a class="reference internal" href="glossary.html#term_constant_parameter_initializer">constant parameter initializer</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that provides the
+default <a class="reference internal" href="glossary.html#term_value">value</a> of its related <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_p4yb8EAXlRU0">12.1:12</span>
+A <a class="reference internal" href="glossary.html#term_constant_parameter_initializer">constant parameter initializer</a> shall be a <a class="reference internal" href="glossary.html#term_constant_expression">constant expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4a2qshaf5se7">12.1:13</span>
+It is a static error to use a <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> in the
+<a class="reference internal" href="glossary.html#term_discriminant_initializer">discriminant initializer</a> of an <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_s0nrjwqg2wox">12.1:14</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a> is a <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> for a <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2grtygcj8o3">12.1:15</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a> shall not be used within a <a class="reference internal" href="glossary.html#term_constant_context">constant context</a>,
+except for the <code class="docutils literal notranslate"><span class="pre">'static</span></code> <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_95eooah0vcqx">12.1:16</span>
+A <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> is a <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> for a <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ahCqtkh0m5sR">12.1:17</span>
+A <a class="reference internal" href="glossary.html#term_type_parameter_initializer">type parameter initializer</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that provides the
+default <a class="reference internal" href="glossary.html#term_value">value</a> of its related <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3qZRBp9j26w3">12.1:18</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_type_parameter_initializer">type parameter initializer</a> of a <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>
+shall satisfy the <a class="reference internal" href="glossary.html#term_trait_bound">trait bounds</a> of the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_x4s7p2v981r6">12.1:19</span>
+A <a class="reference internal" href="glossary.html#term_generic_enum">generic enum</a> shall use all of its <a class="reference internal" href="glossary.html#term_type_parameter">type parameters</a> and
+<a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameters</a> at least once in at least one of its
+<a class="reference internal" href="glossary.html#term_enum_variant">enum variants</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jzfk9fspzqja">12.1:20</span>
+A <a class="reference internal" href="glossary.html#term_generic_struct">generic struct</a> shall use all of its <a class="reference internal" href="glossary.html#term_type_parameter">type parameters</a> and
+<a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameters</a> at least once in at least one of its <a class="reference internal" href="glossary.html#term_field">fields</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6j616ydf2mnh">12.1:21</span>
+A <a class="reference internal" href="glossary.html#term_generic_union">generic union</a> shall use all of its <a class="reference internal" href="glossary.html#term_type_parameter">type parameters</a> and
+<a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameters</a> at least once in at least one of its <a class="reference internal" href="glossary.html#term_field">fields</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hyi2jnp38v1n">12.1:22</span>
+A <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> is said to constrain an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> if the
+<a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> appears at least once in one of the following:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_sseo6u6pbcki">12.1:23</span>
+As a <a class="reference internal" href="glossary.html#term_binding_argument">binding argument</a> in the <a class="reference internal" href="glossary.html#term_trait_bound">trait bounds</a> of a <a class="reference internal" href="glossary.html#term_type">type</a> that
+contains another <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> that constrains the
+<a class="reference internal" href="glossary.html#term_implementation">implementation</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_62b59qvom3nm">12.1:24</span>
+The <a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_oq76uff9gp0k">12.1:25</span>
+The <a class="reference internal" href="glossary.html#term_implementing_type">implementing type</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_ua3w16qo9o4">12.1:26</span>
+It is a static error if a <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> or a <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> of
+an <a class="reference internal" href="glossary.html#term_implementation">implementation</a> does not constrain the <a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_w9ol06mldwb">12.1:27</span>
+It is a static error if a <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a> of an <a class="reference internal" href="glossary.html#term_implementation">implementation</a>
+is used in an <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> without constraining the
+<a class="reference internal" href="glossary.html#term_implementation">implementation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_g2pfrqhmeys8">12.1:28</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> shall be a <a class="reference internal" href="glossary.html#term_scalar_type">scalar type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_56jq9k9l31rt">12.1:29</span>
+A <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> shall be used in the following contexts:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_sh669lnc5o1b">12.1:30</span>
+As a <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> in the signature and <a class="reference internal" href="glossary.html#term_field">fields</a> of an
+<a class="reference internal" href="glossary.html#term_item">item</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_h6kx8dxh5u96">12.1:31</span>
+In the <a class="reference internal" href="glossary.html#term_constant_initializer">constant initializer</a> of an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5r7ontjlmgwj">12.1:32</span>
+As a <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> of an <a class="reference internal" href="glossary.html#term_associated_type">associated type's</a>
+<a class="reference internal" href="types-and-traits.html#syntax_initializationtype"><code class="docutils literal notranslate"><span class="pre">InitializationType</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_prbwj1pmng6k">12.1:33</span>
+As a <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> of any <a class="reference internal" href="glossary.html#term_type">type</a> used within a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_byqjs5fvy2bj">12.1:34</span>
+As a <a class="reference internal" href="glossary.html#term_value">value</a> of any <a class="reference internal" href="glossary.html#term_expression">expression</a> within a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_hidfwkwr2r73">12.1:35</span>
+A <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> has an implicit <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a> <a class="reference internal" href="glossary.html#term_bound">bound</a>,
+unless an <a class="reference internal" href="glossary.html#term_opt_out_trait_bound">opt-out trait bound</a> for the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ASized"><code class="docutils literal notranslate"><span class="pre">core::marker::Sized</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>
+is present.</p>
+<p><span class="spec-paragraph-id" id="fls_yaYedRNaxhTe">12.1:36</span>
+A <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> of an <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> has implicit
+<a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a> depending on its usage in the <a class="reference internal" href="glossary.html#term_field">fields</a> of the
+<a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_axMVssU7an8p">12.1:37</span>
+If the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> is used in a <a class="reference internal" href="glossary.html#term_reference_type">reference type</a>, then the
+<a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> has an implicit <a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bound</a> for the
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> of the <a class="reference internal" href="glossary.html#term_reference_type">reference type</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_iAnCoxISuxxb">12.1:38</span>
+If the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> is used as a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> of an
+<a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a>, the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> inherits all the
+<a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a> from the corresponding <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> of
+the <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_wUwJEGzjCUAT">12.1:39</span>
+A <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> of a <a class="reference internal" href="glossary.html#term_function">function</a> has implicit <a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a>
+depending on its usages in the <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a> and <a class="reference internal" href="glossary.html#term_return_type">return type</a>
+as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_BN5nUuvq9AwY">12.1:40</span>
+If the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> is used in a <a class="reference internal" href="glossary.html#term_reference_type">reference type</a>, then the
+<a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> has an implicit <a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bound</a> for the <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a>
+of the <a class="reference internal" href="glossary.html#term_reference_type">reference type</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ouOm2TQKNsP3">12.1:41</span>
+If the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> is used as a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> of an
+<a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a>, the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> inherits all the
+<a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a> from the corresponding <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> of
+the <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_m0bzw4jap6sg">12.1:42</span>
+A <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> with a <a class="reference internal" href="glossary.html#term_bound">bound</a> of the form</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">X</span><span class="p">:</span><span class="w"> </span><span class="nc">Bound</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_vo7mgm34hwg2">12.1:43</span>
+is equivalent to the <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a> without the bound and a
+<a class="reference internal" href="glossary.html#term_where_clause">where clause</a> of the following form:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">where</span><span class="w"> </span><span class="n">X</span><span class="p">:</span><span class="w"> </span><span class="nc">Bound</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Array</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">N</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="o">&gt;</span><span class="p">([</span><span class="n">T</span><span class="p">;</span><span class="w"> </span><span class="n">N</span><span class="p">])</span>
+
+<span class="k">fn</span><span class="w"> </span><span class="nf">generic_function</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">Reference</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="o">&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">the_reference</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">a</span><span class="w"> </span><span class="nc">T</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="where-clauses">
+<span id="fls_7nv8ualeaqe3"></span><h2><span class="section-number">12.2. </span>Where Clauses<a class="headerlink" href="#where-clauses" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_whereclause"><span class="pre">WhereClause</span></code> ::=
+    <strong class="spec-syntax-literal">where</strong> <a class="reference internal" href="#syntax_whereclausepredicatelist"><code class="docutils literal notranslate"><span class="pre">WhereClausePredicateList</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_whereclausepredicatelist"><span class="pre">WhereClausePredicateList</span></code> ::=
+    <a class="reference internal" href="#syntax_whereclausepredicate"><code class="docutils literal notranslate"><span class="pre">WhereClausePredicate</span></code></a> (, <a class="reference internal" href="#syntax_whereclausepredicate"><code class="docutils literal notranslate"><span class="pre">WhereClausePredicate</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?
+
+<code class="docutils literal notranslate" id="syntax_whereclausepredicate"><span class="pre">WhereClausePredicate</span></code> ::=
+    <a class="reference internal" href="#syntax_lifetimeboundpredicate"><code class="docutils literal notranslate"><span class="pre">LifetimeBoundPredicate</span></code></a>
+  | <a class="reference internal" href="#syntax_typeboundpredicate"><code class="docutils literal notranslate"><span class="pre">TypeBoundPredicate</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_lifetimeboundpredicate"><span class="pre">LifetimeBoundPredicate</span></code> ::=
+   <a class="reference internal" href="types-and-traits.html#syntax_lifetimeindication"><code class="docutils literal notranslate"><span class="pre">LifetimeIndication</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="types-and-traits.html#syntax_lifetimeindicationlist"><code class="docutils literal notranslate"><span class="pre">LifetimeIndicationList</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_typeboundpredicate"><span class="pre">TypeBoundPredicate</span></code> ::=
+   <a class="reference internal" href="types-and-traits.html#syntax_forgenericparameterlist"><code class="docutils literal notranslate"><span class="pre">ForGenericParameterList</span></code></a>? <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="types-and-traits.html#syntax_typeboundlist"><code class="docutils literal notranslate"><span class="pre">TypeBoundList</span></code></a>?</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3nqb7p5ifvio">12.2:1</span>
+A <a class="reference internal" href="glossary.html#term_where_clause">where clause</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that specifies <a class="reference internal" href="glossary.html#term_bound">bounds</a> on
+<a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameters</a> and <a class="reference internal" href="glossary.html#term_type">types</a> that have
+to hold for the <a class="reference internal" href="glossary.html#term_construct">construct</a> subject to the <a class="reference internal" href="glossary.html#term_where_clause">where clause</a> to be valid.</p>
+<p><span class="spec-paragraph-id" id="fls_fhy4rsmmbvyy">12.2:2</span>
+A <a class="reference internal" href="glossary.html#term_where_clause_predicate">where clause predicate</a> is either a <a class="reference internal" href="glossary.html#term_lifetime_bound_predicate">lifetime bound predicate</a> or a
+<a class="reference internal" href="glossary.html#term_type_bound_predicate">type bound predicate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_V4PKFqtCsAv6">12.2:3</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_bound_predicate">lifetime bound predicate</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that specifies
+<a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a> on a <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cslGPmVjujHD">12.2:4</span>
+A <a class="reference internal" href="glossary.html#term_type_bound_predicate">type bound predicate</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that specifies
+<a class="reference internal" href="glossary.html#term_lifetime_bound">lifetime bounds</a> and <a class="reference internal" href="glossary.html#term_trait_bound">trait bounds</a> on a <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ytk74dyxuy6d">12.2:5</span>
+A <a class="reference internal" href="glossary.html#term_construct">construct</a> is valid when all of its <a class="reference internal" href="glossary.html#term_where_clause_predicate">where clause predicates</a> hold
+true for the supplied <a class="reference internal" href="glossary.html#term_generic_argument">generic arguments</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1xgw1dq60quz">12.2:6</span>
+A <a class="reference internal" href="glossary.html#term_trivial_predicate">trivial predicate</a> is a <a class="reference internal" href="glossary.html#term_where_clause_predicate">where clause predicate</a> that does not use
+the <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a> or <a class="reference internal" href="glossary.html#term_higher_ranked_trait_bound">higher-ranked trait bounds</a> of the related
+<a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_47s8i7pzb9gg">12.2:7</span>
+It is a static error to create a <a class="reference internal" href="glossary.html#term_trivial_predicate">trivial predicate</a> that does not hold.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Clause</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="nb">Iterator</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">field</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="generic-arguments">
+<span id="fls_utuu8mdbuyxm"></span><h2><span class="section-number">12.3. </span>Generic Arguments<a class="headerlink" href="#generic-arguments" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_genericargumentlist"><span class="pre">GenericArgumentList</span></code> ::=
+    <strong class="spec-syntax-literal">&lt;</strong> ( <a class="reference internal" href="#syntax_genericargument"><code class="docutils literal notranslate"><span class="pre">GenericArgument</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_genericargument"><code class="docutils literal notranslate"><span class="pre">GenericArgument</span></code></a>)* <strong class="spec-syntax-literal">,</strong>? )? <strong class="spec-syntax-literal">&gt;</strong>
+
+<code class="docutils literal notranslate" id="syntax_genericargument"><span class="pre">GenericArgument</span></code> ::=
+    <a class="reference internal" href="#syntax_bindingargument"><code class="docutils literal notranslate"><span class="pre">BindingArgument</span></code></a>
+  | <a class="reference internal" href="#syntax_bindingboundargument"><code class="docutils literal notranslate"><span class="pre">BindingBoundArgument</span></code></a>
+  | <a class="reference internal" href="#syntax_constantargument"><code class="docutils literal notranslate"><span class="pre">ConstantArgument</span></code></a>
+  | <a class="reference internal" href="#syntax_lifetimeargument"><code class="docutils literal notranslate"><span class="pre">LifetimeArgument</span></code></a>
+  | <a class="reference internal" href="#syntax_typeargument"><code class="docutils literal notranslate"><span class="pre">TypeArgument</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_bindingargument"><span class="pre">BindingArgument</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_bindingboundargument"><span class="pre">BindingBoundArgument</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="types-and-traits.html#syntax_typeboundlist"><code class="docutils literal notranslate"><span class="pre">TypeBoundList</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_constantargument"><span class="pre">ConstantArgument</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_blockexpression"><code class="docutils literal notranslate"><span class="pre">BlockExpression</span></code></a>
+  | <strong class="spec-syntax-literal">-</strong>? <a class="reference internal" href="expressions.html#syntax_literalexpression"><code class="docutils literal notranslate"><span class="pre">LiteralExpression</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_lifetimeargument"><span class="pre">LifetimeArgument</span></code> ::=
+    <a class="reference internal" href="types-and-traits.html#syntax_lifetimeindication"><code class="docutils literal notranslate"><span class="pre">LifetimeIndication</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_typeargument"><span class="pre">TypeArgument</span></code> ::=
+    <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3x6qd8vt5uus">12.3:1</span>
+A <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> supplies a static input for an
+<a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a> or a <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ky39fb2vcom6">12.3:2</span>
+A <a class="reference internal" href="#syntax_bindingargument"><code class="docutils literal notranslate"><span class="pre">BindingArgument</span></code></a> shall follow <a class="reference internal" href="#syntax_constantargument"><code class="docutils literal notranslate"><span class="pre">ConstantArguments</span></code></a>,
+<a class="reference internal" href="#syntax_lifetimeargument"><code class="docutils literal notranslate"><span class="pre">LifetimeArguments</span></code></a>, and <a class="reference internal" href="#syntax_typeargument"><code class="docutils literal notranslate"><span class="pre">TypeArguments</span></code></a> in a
+<a class="reference internal" href="#syntax_genericargumentlist"><code class="docutils literal notranslate"><span class="pre">GenericArgumentList</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9n1ejjili06h">12.3:3</span>
+A <a class="reference internal" href="#syntax_lifetimeargument"><code class="docutils literal notranslate"><span class="pre">LifetimeArgument</span></code></a> shall precede <a class="reference internal" href="#syntax_bindingargument"><code class="docutils literal notranslate"><span class="pre">BindingArguments</span></code></a>,
+<a class="reference internal" href="#syntax_constantargument"><code class="docutils literal notranslate"><span class="pre">ConstantArguments</span></code></a>, and <a class="reference internal" href="#syntax_typeargument"><code class="docutils literal notranslate"><span class="pre">TypeArguments</span></code></a> in a
+<a class="reference internal" href="#syntax_genericargumentlist"><code class="docutils literal notranslate"><span class="pre">GenericArgumentList</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9pda3ja0ihks">12.3:4</span>
+A <a class="reference internal" href="glossary.html#term_binding_argument">binding argument</a> is a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> that supplies the <a class="reference internal" href="glossary.html#term_type">type</a>
+of an <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mcUMWsYcxzmZ">12.3:5</span>
+A <a class="reference internal" href="glossary.html#term_binding_bound_argument">binding bound argument</a> is a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> that further imposes
+<a class="reference internal" href="glossary.html#term_bound">bounds</a> on an <a class="reference internal" href="glossary.html#term_associated_trait_type">associated trait type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dxMfAI4EZVS5">12.3:6</span>
+A <a class="reference internal" href="glossary.html#term_binding_bound_argument">binding bound argument</a> shall only be used within the confines of a
+<a class="reference internal" href="glossary.html#term_type_bound_predicate">type bound predicate</a>‘s <a class="reference internal" href="glossary.html#term_bound">bounds</a>, <a class="reference internal" href="glossary.html#term_impl_trait_type">impl trait type</a>‘s
+<a class="reference internal" href="glossary.html#term_bound">bounds</a>, <a class="reference internal" href="glossary.html#term_associated_type">associated type</a>‘s <a class="reference internal" href="glossary.html#term_bound">bounds</a> or <a class="reference internal" href="glossary.html#term_trait">trait</a>‘s
+<a class="reference internal" href="glossary.html#term_supertrait">supertraits</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_i3z9ueoe99zd">12.3:7</span>
+A <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> is a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> that supplies the
+<a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_al4dhmqodvwc">12.3:8</span>
+A <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> may only appear as a single segment
+<a class="reference internal" href="glossary.html#term_path_expression">path expression</a>, optionally encapsulated in a <a class="reference internal" href="glossary.html#term_block_expression">block expression</a>, within
+an <a class="reference internal" href="glossary.html#term_array_repetition_constructor">array repetition constructor</a> or a <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_10k9gdxlpuls">12.3:9</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime argument</a> is a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> that supplies the
+<a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> of a <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_d4vdvpihoeb1">12.3:10</span>
+A <a class="reference internal" href="glossary.html#term_type_argument">type argument</a> is a <a class="reference internal" href="glossary.html#term_generic_argument">generic argument</a> that supplies the <a class="reference internal" href="glossary.html#term_type">type</a> of
+a <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ukarc98ceesz">12.3:11</span>
+<a class="reference internal" href="glossary.html#term_generic_argument">Generic arguments</a> are subject to <a class="reference internal" href="glossary.html#term_generic_conformance">generic conformance</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">trait</span><span class="w"> </span><span class="n">Trait</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">type</span><span class="w"> </span><span class="nc">Assoc</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_l88o2snx9qbt">12.3:12</span>
+The following is a generic function with a binding argument.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">func</span><span class="o">&lt;&#39;</span><span class="na">lifetime</span><span class="p">,</span><span class="w"> </span><span class="n">T</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">C</span><span class="p">:</span><span class="w"> </span><span class="kt">usize</span><span class="o">&gt;</span><span class="p">()</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="nc">Trait</span><span class="o">&lt;</span><span class="n">Assoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">usize</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_thpj9io9tyuy">12.3:13</span>
+The following are generic arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p>
+<pre class="spec-syntax literal-block">func::&lt;'static, u32, 0&gt;();</pre>
+</section>
+<section id="generic-conformance">
+<span id="fls_i7g2n7hfg3ch"></span><h2><span class="section-number">12.4. </span>Generic Conformance<a class="headerlink" href="#generic-conformance" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_CBWyxBJeYeb2">12.4:1</span>
+<a class="reference internal" href="glossary.html#term_generic_conformance">Generic conformance</a> measures the compatibility between a set of
+<a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a> and a set of <a class="reference internal" href="glossary.html#term_generic_argument">generic arguments</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ltch5eivxgaa">12.4:2</span>
+A <a class="reference internal" href="glossary.html#term_binding_argument">binding argument</a> is conformant with an <a class="reference internal" href="glossary.html#term_associated_type">associated type</a> when the
+supplied <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_binding_argument">binding argument</a> fulfills the required
+<a class="reference internal" href="glossary.html#term_trait_bound">trait bounds</a> of the <a class="reference internal" href="glossary.html#term_associated_type">associated type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gb3mpt5rxjoa">12.4:3</span>
+A <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> is conformant with a <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> when
+the <a class="reference internal" href="glossary.html#term_type">types</a> of the <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a> and the <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a>
+are <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kdeltu9dsd0d">12.4:4</span>
+A <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime argument</a> is conformant with a <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a> when it
+outlives the <a class="reference internal" href="glossary.html#term_lifetime">lifetime</a> specified by the <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ws1h57fk1mkh">12.4:5</span>
+A <a class="reference internal" href="glossary.html#term_type_argument">type argument</a> is conformant with a <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a> when the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_type_argument">type argument</a> fulfills the required <a class="reference internal" href="glossary.html#term_trait_bound">trait bounds</a>
+of the <a class="reference internal" href="glossary.html#term_type_parameter">type parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_w0ozotuwtr9">12.4:6</span>
+<a class="reference internal" href="glossary.html#term_generic_argument">Generic arguments</a> are conformant with <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a> when</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_91bylteu35bi">12.4:7</span>
+The <a class="reference internal" href="glossary.html#term_generic_argument">generic arguments</a> consist only of conformant
+<a class="reference internal" href="glossary.html#term_binding_argument">binding arguments</a>, conformant <a class="reference internal" href="glossary.html#term_constant_argument">constant arguments</a>, conformant
+<a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime arguments</a>, and conformant <a class="reference internal" href="glossary.html#term_type_argument">type arguments</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_j6xtrxc6aik">12.4:8</span>
+Any remaining <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a> without corresponding conformant
+<a class="reference internal" href="glossary.html#term_generic_argument">generic arguments</a> are <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameters</a> with
+<a class="reference internal" href="glossary.html#term_constant_parameter_initializer">constant parameter initializers</a>, <a class="reference internal" href="glossary.html#term_lifetime_parameter">lifetime parameters</a> with
+either inferred <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime arguments</a> or <a class="reference internal" href="glossary.html#term_elided_lifetime">elided lifetimes</a>,
+<a class="reference internal" href="glossary.html#term_type_parameter">type parameters</a> with <a class="reference internal" href="glossary.html#term_type_parameter_initializer">type parameter initializers</a> or inferred
+<a class="reference internal" href="glossary.html#term_type_argument">type arguments</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_us7d30cbwgpz">12.4:9</span>
+All <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime arguments</a> come first, followed by
+<a class="reference internal" href="glossary.html#term_constant_argument">constant arguments</a> and <a class="reference internal" href="glossary.html#term_type_argument">type arguments</a> in the order defined by
+the <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>, followed by <a class="reference internal" href="glossary.html#term_binding_argument">binding arguments</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_dp3hpvf0fmr8">12.4:10</span>
+All <a class="reference internal" href="glossary.html#term_constant_argument">constant arguments</a>, <a class="reference internal" href="glossary.html#term_lifetime_argument">lifetime arguments</a>, and
+<a class="reference internal" href="glossary.html#term_type_argument">type arguments</a> have a corresponding <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameter</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_mg45zcguxxg5">12.4:11</span>
+<a class="reference internal" href="glossary.html#term_generic_argument">Generic arguments</a> shall be conformant.</p>
+<p><span class="spec-paragraph-id" id="fls_mDgq5XjzKAl3">12.4:12</span>
+The <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_YufUgB25ovh3">12.4:13</span>
+If the <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> has a conformant <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a>, then
+the <a class="reference internal" href="glossary.html#term_value">value</a> is that of the <a class="reference internal" href="glossary.html#term_constant_argument">constant argument</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_OhVxhJ23x7W2">12.4:14</span>
+Otherwise, if the <a class="reference internal" href="glossary.html#term_constant_parameter">constant parameter</a> has a
+<a class="reference internal" href="glossary.html#term_constant_parameter_initializer">constant parameter initializer</a>, then the <a class="reference internal" href="glossary.html#term_value">value</a> is that of the
+<a class="reference internal" href="glossary.html#term_constant_parameter_initializer">constant parameter initializer</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Kyar0jH9BqeW">12.4:15</span>
+Otherwise this is a static error.</p></li>
+</ul>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

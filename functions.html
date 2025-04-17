@@ -1,0 +1,257 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>9. Functions &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. Associated Items" href="associated-items.html" />
+    <link rel="prev" title="8. Statements" href="statements.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="functions">
+<span id="fls_qcb1n9c0e5hz"></span><h1><span class="section-number">9. </span>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h1>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_functiondeclaration"><span class="pre">FunctionDeclaration</span></code> ::=
+    <a class="reference internal" href="#syntax_functionqualifierlist"><code class="docutils literal notranslate"><span class="pre">FunctionQualifierList</span></code></a> <strong class="spec-syntax-literal">fn</strong> <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a> <a class="reference internal" href="generics.html#syntax_genericparameterlist"><code class="docutils literal notranslate"><span class="pre">GenericParameterList</span></code></a>? <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_functionparameterlist"><code class="docutils literal notranslate"><span class="pre">FunctionParameterList</span></code></a>? <strong class="spec-syntax-literal">)</strong> <a class="reference internal" href="#syntax_returntype"><code class="docutils literal notranslate"><span class="pre">ReturnType</span></code></a>? <a class="reference internal" href="generics.html#syntax_whereclause"><code class="docutils literal notranslate"><span class="pre">WhereClause</span></code></a>? (<a class="reference internal" href="#syntax_functionbody"><code class="docutils literal notranslate"><span class="pre">FunctionBody</span></code></a> | ;)
+
+<code class="docutils literal notranslate" id="syntax_functionqualifierlist"><span class="pre">FunctionQualifierList</span></code> ::=
+    <strong class="spec-syntax-literal">const</strong>? <strong class="spec-syntax-literal">async</strong>? <a class="reference internal" href="items.html#syntax_itemsafety"><code class="docutils literal notranslate"><span class="pre">ItemSafety</span></code></a>? <a class="reference internal" href="ffi.html#syntax_abispecification"><code class="docutils literal notranslate"><span class="pre">AbiSpecification</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_functionparameterlist"><span class="pre">FunctionParameterList</span></code> ::=
+    (<a class="reference internal" href="#syntax_functionparameter"><code class="docutils literal notranslate"><span class="pre">FunctionParameter</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_functionparameter"><code class="docutils literal notranslate"><span class="pre">FunctionParameter</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?)
+  | (<a class="reference internal" href="#syntax_selfparameter"><code class="docutils literal notranslate"><span class="pre">SelfParameter</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_functionparameter"><code class="docutils literal notranslate"><span class="pre">FunctionParameter</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?)
+
+<code class="docutils literal notranslate" id="syntax_functionparameter"><span class="pre">FunctionParameter</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* (<a class="reference internal" href="#syntax_functionparameterpattern"><code class="docutils literal notranslate"><span class="pre">FunctionParameterPattern</span></code></a> | <a class="reference internal" href="#syntax_functionparametervariadicpart"><code class="docutils literal notranslate"><span class="pre">FunctionParameterVariadicPart</span></code></a> | <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>)
+
+<code class="docutils literal notranslate" id="syntax_functionparameterpattern"><span class="pre">FunctionParameterPattern</span></code> ::=
+    <a class="reference internal" href="patterns.html#syntax_patternwithoutalternation"><code class="docutils literal notranslate"><span class="pre">PatternWithoutAlternation</span></code></a> (<a class="reference internal" href="types-and-traits.html#syntax_typeascription"><code class="docutils literal notranslate"><span class="pre">TypeAscription</span></code></a> | (<strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="#syntax_functionparametervariadicpart"><code class="docutils literal notranslate"><span class="pre">FunctionParameterVariadicPart</span></code></a>))
+
+<code class="docutils literal notranslate" id="syntax_functionparametervariadicpart"><span class="pre">FunctionParameterVariadicPart</span></code> ::=
+    <strong class="spec-syntax-literal">...</strong>
+
+<code class="docutils literal notranslate" id="syntax_returntype"><span class="pre">ReturnType</span></code> ::=
+    <strong class="spec-syntax-literal">-&gt;</strong> <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_functionbody"><span class="pre">FunctionBody</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_blockexpression"><code class="docutils literal notranslate"><span class="pre">BlockExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_selfparameter"><span class="pre">SelfParameter</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* (<a class="reference internal" href="#syntax_shorthandself"><code class="docutils literal notranslate"><span class="pre">ShorthandSelf</span></code></a> | <a class="reference internal" href="#syntax_typedself"><code class="docutils literal notranslate"><span class="pre">TypedSelf</span></code></a>)
+
+<code class="docutils literal notranslate" id="syntax_shorthandself"><span class="pre">ShorthandSelf</span></code> ::=
+    (<strong class="spec-syntax-literal">&amp;</strong> <a class="reference internal" href="types-and-traits.html#syntax_lifetimeindication"><code class="docutils literal notranslate"><span class="pre">LifetimeIndication</span></code></a>?)? <strong class="spec-syntax-literal">mut</strong>? <strong class="spec-syntax-literal">self</strong>
+
+<code class="docutils literal notranslate" id="syntax_typedself"><span class="pre">TypedSelf</span></code> ::=
+    <strong class="spec-syntax-literal">mut</strong>? <strong class="spec-syntax-literal">self</strong> <a class="reference internal" href="types-and-traits.html#syntax_typeascription"><code class="docutils literal notranslate"><span class="pre">TypeAscription</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_gn1ngtx2tp2s">9:1</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> is a <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_function_type">function type</a> that models a behavior.</p>
+<p><span class="spec-paragraph-id" id="fls_bdx9gnnjxru3">9:2</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> declares a unique <a class="reference internal" href="glossary.html#term_function_item_type">function item type</a> for itself.</p>
+<p><span class="spec-paragraph-id" id="fls_87jnkimc15gi">9:3</span>
+A <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifier</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that determines the role of
+a <a class="reference internal" href="glossary.html#term_function">function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_nwywh1vjt6rr">9:4</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> shall not be subject to both <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">async</span></code> and
+<a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">const</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_uwuthzfgslif">9:5</span>
+A <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that yields a set of
+<a class="reference internal" href="glossary.html#term_binding">bindings</a> that bind matched input <a class="reference internal" href="glossary.html#term_value">values</a> to <a class="reference internal" href="glossary.html#term_name">names</a> at the
+site of a <a class="reference internal" href="glossary.html#term_call_expression">call expression</a> or a <a class="reference internal" href="glossary.html#term_method_call_expression">method call expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ymeo93t4mz4">9:6</span>
+A <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> is a <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> expressed by <a class="reference internal" href="glossary.html#term_keyword">keyword</a>
+<code class="docutils literal notranslate"><span class="pre">self</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_ijbt4tgnl95n">9:7</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> shall not specify a <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> unless it is an
+<a class="reference internal" href="glossary.html#term_associated_function">associated function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_AAYJDCNMJgTq">9:8</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_PGtp39f6gJwU">9:9</span>
+If the <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is a <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> without a <a class="reference internal" href="types-and-traits.html#syntax_typespecification"><code class="docutils literal notranslate"><span class="pre">TypeSpecification</span></code></a>:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_yZ2yIXxmy2ri">9:10</span>
+And the <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> has token <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">Self</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_35aSvBxBnIzm">9:11</span>
+And the <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> has token <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and lacks <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;Self</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_Ogziu8S01qPQ">9:12</span>
+And the <a class="reference internal" href="glossary.html#term_self_parameter">self parameter</a> lacks token <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">Self</span></code>.</p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_xCSsxYUZUFed">9:13</span>
+Otherwise the <a class="reference internal" href="glossary.html#term_type">type</a> is the specified <a class="reference internal" href="glossary.html#term_type">type</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_lxzinvqveuqh">9:14</span>
+The <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of a <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> shall be an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable
+pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kcAbTPZXQ5Y8">9:15</span>
+The <a class="reference internal" href="types-and-traits.html#term_expected_type">expected type</a> of the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of a <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_PGDKWK7nPvgw">9:16</span>
+The <a class="reference internal" href="glossary.html#term_binding">bindings</a> of all <a class="reference internal" href="glossary.html#term_pattern">patterns</a> of all <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a> of a <a class="reference internal" href="glossary.html#term_function">function</a> shall not shadow another.</p>
+<p><span class="spec-paragraph-id" id="fls_icdzs1mjh0n4">9:17</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> shall not specify a <a class="reference internal" href="#syntax_functionparametervariadicpart"><code class="docutils literal notranslate"><span class="pre">FunctionParameterVariadicPart</span></code></a> unless
+it is an <a class="reference internal" href="glossary.html#term_external_function">external function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vljy4mm0zca2">9:18</span>
+A <a class="reference internal" href="glossary.html#term_return_type">return type</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the result a <a class="reference internal" href="glossary.html#term_function">function</a>, <a class="reference internal" href="glossary.html#term_closure_type">closure type</a> or <a class="reference internal" href="glossary.html#term_function_pointer_type">function pointer type</a> returns.</p>
+<p><span class="spec-paragraph-id" id="fls_EqJb3Jl3vK8K">9:19</span>
+The <a class="reference internal" href="glossary.html#term_return_type">return type</a> of a <a class="reference internal" href="glossary.html#term_function">function</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_C7dvzcXcpQCy">9:20</span>
+If the <a class="reference internal" href="#syntax_functiondeclaration"><code class="docutils literal notranslate"><span class="pre">FunctionDeclaration</span></code></a> specifies a <a class="reference internal" href="#syntax_returntype"><code class="docutils literal notranslate"><span class="pre">ReturnType</span></code></a>, then the <a class="reference internal" href="glossary.html#term_return_type">return type</a> is the specified <a class="reference internal" href="#syntax_returntype"><code class="docutils literal notranslate"><span class="pre">ReturnType</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_J8X8ahnJLrMo">9:21</span>
+Otherwise the <a class="reference internal" href="glossary.html#term_return_type">return type</a> is the <a class="reference internal" href="glossary.html#term_unit_type">unit type</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_927nfm5mkbsp">9:22</span>
+A <a class="reference internal" href="glossary.html#term_function_body">function body</a> is the <a class="reference internal" href="glossary.html#term_block_expression">block expression</a> of a <a class="reference internal" href="glossary.html#term_function">function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yfm0jh62oaxr">9:23</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> shall have a <a class="reference internal" href="glossary.html#term_function_body">function body</a> unless it is an
+<a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> or an <a class="reference internal" href="glossary.html#term_external_function">external function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bHwy8FLzEUi3">9:24</span>
+A <a class="reference internal" href="glossary.html#term_function_body">function body</a> denotes a <a class="reference internal" href="glossary.html#term_control_flow_boundary">control flow boundary</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5Q861wb08DU3">9:25</span>
+A <a class="reference internal" href="glossary.html#term_function_body">function body</a> of an <a class="reference internal" href="glossary.html#term_async_function">async function</a> denotes an
+<a class="reference internal" href="glossary.html#term_async_control_flow_boundary">async control flow boundary</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_owdlsaaygtho">9:26</span>
+A <a class="reference internal" href="glossary.html#term_function_signature">function signature</a> is a unique identification of a <a class="reference internal" href="glossary.html#term_function">function</a>
+that encompasses of its <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a>, <a class="reference internal" href="glossary.html#term_name">name</a>,
+<a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>, <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a>, <a class="reference internal" href="glossary.html#term_return_type">return type</a>, and
+<a class="reference internal" href="glossary.html#term_where_clause">where clause</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2049qu3ji5x7">9:27</span>
+A <a class="reference internal" href="glossary.html#term_constant_function">constant function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> subject to <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">const</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_7mlanuh5mvpn">9:28</span>
+The <a class="reference internal" href="glossary.html#term_function_body">function body</a> of a <a class="reference internal" href="glossary.html#term_constant_function">constant function</a> shall be a
+<a class="reference internal" href="glossary.html#term_constant_expression">constant expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_otr3hgp8lj1q">9:29</span>
+A <a class="reference internal" href="glossary.html#term_constant_function">constant function</a> shall be callable from a <a class="reference internal" href="glossary.html#term_constant_context">constant context</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_m3jiunibqj81">9:30</span>
+An <a class="reference internal" href="glossary.html#term_async_function">async function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> subject to <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">async</span></code>. An
+<a class="reference internal" href="glossary.html#term_async_function">async function</a> of the form</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">async_fn</span><span class="p">(</span><span class="n">param</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">param_type</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">return_type</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* tail expression */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_7vogmqyd87ey">9:31</span>
+is equivalent to <a class="reference internal" href="glossary.html#term_function">function</a></p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">async_fn</span><span class="o">&lt;&#39;</span><span class="na">a</span><span class="o">&gt;</span><span class="p">(</span><span class="n">param</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="o">&#39;</span><span class="na">a</span><span class="w"> </span><span class="nc">param_type</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">impl</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">return_type</span><span class="o">&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">&#39;</span><span class="na">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* tail expression */</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_7ucwmzqtittv">9:32</span>
+An <a class="reference internal" href="glossary.html#term_unsafe_function">unsafe function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> subject to an <a class="reference internal" href="items.html#syntax_itemsafety"><code class="docutils literal notranslate"><span class="pre">ItemSafety</span></code></a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">unsafe</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_nUADhgcfvvGC">9:33</span>
+A <a class="reference internal" href="glossary.html#term_function">function</a> shall only be subject to an <a class="reference internal" href="items.html#syntax_itemsafety"><code class="docutils literal notranslate"><span class="pre">ItemSafety</span></code></a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">safe</span></code> if it is an <a class="reference internal" href="glossary.html#term_external_function">external function</a> in an <a class="reference internal" href="glossary.html#term_unsafe_external_block">unsafe external block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5hn8fkf7rcvz">9:34</span>
+The invocation of an <a class="reference internal" href="glossary.html#term_unsafe_function">unsafe function</a> shall require <a class="reference internal" href="glossary.html#term_unsafe_context">unsafe context</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">eucledian_distance</span><span class="p">(</span><span class="n">left</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Point</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">Point</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">f64</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x_delta_squared</span><span class="p">:</span><span class="w"> </span><span class="kt">f64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">.</span><span class="n">x</span><span class="p">).</span><span class="n">powi</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">y_delta_squared</span><span class="p">:</span><span class="w"> </span><span class="kt">f64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="p">.</span><span class="n">y</span><span class="p">).</span><span class="n">powi</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="w">    </span><span class="p">(</span><span class="n">x_delta_squared</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">y_delta_squared</span><span class="p">).</span><span class="n">sqrt</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="k">fn</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

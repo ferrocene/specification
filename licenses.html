@@ -1,0 +1,351 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>A. Licenses &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="B. Glossary" href="glossary.html" />
+    <link rel="prev" title="22. Inline Assembly" href="inline-assembly.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this page are informational.</p>
+</div>
+<section id="licenses">
+<span id="fls_kd7fcvfrwks0"></span><h1><span class="section-number">A. </span>Licenses<a class="headerlink" href="#licenses" title="Link to this heading">¶</a></h1>
+<section id="ada-reference-manual-copyright-notice">
+<span id="fls_mwoe9jy6l7er"></span><h2><span class="section-number">A.1. </span>Ada Reference Manual Copyright Notice<a class="headerlink" href="#ada-reference-manual-copyright-notice" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_9rpvtm5tjrpp">A.1:1</span>
+<strong>Fourth Edition (Ada</strong> 202x<strong>)</strong></p>
+<p><span class="spec-paragraph-id" id="fls_7uhb9t9x8r0c">A.1:2</span>
+Copyright © 2016, 2017, 2018, 2019, 2020, 2021 AXE Consultants. All Rights
+Reserved.</p>
+<p><span class="spec-paragraph-id" id="fls_ej4g7lz5eqm8">A.1:3</span>
+This document may be copied, in whole or in part, in any form or by any means,
+as is, or with alterations, provided that (1) alterations are clearly marked as
+alterations and (2) this copyright notice is included unmodified in any copy.
+Any other use or distribution of this document is prohibited without the prior
+express permission of AXE.</p>
+<p><span class="spec-paragraph-id" id="fls_l9uu4q48v1co">A.1:4</span>
+You use this document on the condition that you indemnify and hold harmless
+AXE, its board, officers, agents, and employees, from any and all liability or
+damages to yourself or your hardware or software, or third parties, including
+attorneys’ fees, court costs, and other related costs and expenses, arising out
+of your use of this document irrespective of the cause of said liability.</p>
+<p><span class="spec-paragraph-id" id="fls_3j7jx4qsqucs">A.1:5</span>
+AXE MAKES THIS DOCUMENT AVAILABLE ON AN “AS IS” BASIS AND MAKES NO WARRANTY,
+EXPRESS OR IMPLIED, AS TO THE ACCURACY, CAPABILITY, EFFICIENCY MERCHANTABILITY,
+OR FUNCTIONING OF THIS DOCUMENT. IN NO EVENT WILL AXE BE LIABLE FOR ANY GENERAL,
+CONSEQUENTIAL, INDIRECT, INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES, EVEN IF AXE
+HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+</section>
+<section id="rust-reference-apache-license">
+<span id="fls_w6b35kn6la40"></span><h2><span class="section-number">A.2. </span>Rust Reference Apache License<a class="headerlink" href="#rust-reference-apache-license" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_wn4kcs3skqra">A.2:1</span>
+Apache License</p>
+<p><span class="spec-paragraph-id" id="fls_mtcsb64efiw1">A.2:2</span>
+Version 2.0, January 2004</p>
+<p><span class="spec-paragraph-id" id="fls_9tssu3wp22cz">A.2:3</span>
+<a class="reference external" href="http://www.apache.org/licenses/">http://www.apache.org/licenses/</a></p>
+<p><span class="spec-paragraph-id" id="fls_4pclfuqukw5o">A.2:4</span>
+TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION</p>
+<p><span class="spec-paragraph-id" id="fls_rgn86bsd9tl5">A.2:5</span>
+1. Definitions.</p>
+<p><span class="spec-paragraph-id" id="fls_n6ash4u0e838">A.2:6</span>
+“License” shall mean the terms and conditions for use, reproduction, and
+distribution as defined by Sections 1 through 9 of this document.</p>
+<p><span class="spec-paragraph-id" id="fls_4z50m2plw8lg">A.2:7</span>
+“Licensor” shall mean the copyright owner or entity authorized by the copyright
+owner that is granting the License.</p>
+<p><span class="spec-paragraph-id" id="fls_bmx87il86j77">A.2:8</span>
+“Legal Entity” shall mean the union of the acting entity and all other entities
+that control, are controlled by, or are under common control with that entity.
+For the purposes of this definition,  “control” means (i) the power, direct
+or indirect, to cause the direction or management of such entity, whether by
+contract or otherwise, or (ii) ownership of fifty percent (50%) or more of the
+outstanding shares, or (iii) beneficial ownership of such entity.</p>
+<p><span class="spec-paragraph-id" id="fls_467b9ucekcv3">A.2:9</span>
+“You” (or “Your”) shall mean an individual or Legal Entity exercising
+permissions granted by this License.</p>
+<p><span class="spec-paragraph-id" id="fls_9ws2rqie234r">A.2:10</span>
+“Source” form shall mean the preferred form for making modifications, including
+but not limited to software source code, documentation source, and configuration
+files.</p>
+<p><span class="spec-paragraph-id" id="fls_j075fx75s7wg">A.2:11</span>
+“Object” form shall mean any form resulting from mechanical transformation or
+translation of a Source form, including but not limited to compiled object code,
+generated documentation, and conversions to other media types.</p>
+<p><span class="spec-paragraph-id" id="fls_akjks1czkd7n">A.2:12</span>
+“Work” shall mean the work of authorship, whether in Source or Object form, made
+available under the License, as indicated by a copyright notice that is included
+in or attached to the work (an example is provided in the Appendix below).</p>
+<p><span class="spec-paragraph-id" id="fls_6n4t2e7lxq3">A.2:13</span>
+“Derivative Works” shall mean any work, whether in Source or Object form, that
+is based on (or derived from) the Work and for which the editorial revisions,
+annotations, elaborations, or other modifications represent, as a whole, an
+original work of authorship. For the purposes of this License, Derivative Works
+shall not include works that remain separable from, or merely link (or bind by
+name) to the interfaces of, the Work and Derivative Works thereof.</p>
+<p><span class="spec-paragraph-id" id="fls_g0gyduo0wc55">A.2:14</span>
+“Contribution” shall mean any work of authorship, including the original version
+of the Work and any modifications or additions to that Work or Derivative
+Works thereof, that is intentionally submitted to Licensor for inclusion in the
+Work by the copyright owner or by an individual or Legal Entity authorized to
+submit on behalf of the copyright owner. For the purposes of this definition,
+“submitted” means any form of electronic, verbal, or written communication
+sent to the Licensor or its representatives, including but not limited to
+communication on electronic mailing lists, source code control systems, and
+issue tracking systems that are managed by, or on behalf of, the Licensor for
+the purpose of discussing and improving the Work, but excluding communication
+that is conspicuously marked or otherwise designated in writing by the copyright
+owner as “Not a Contribution.”</p>
+<p><span class="spec-paragraph-id" id="fls_w8npkgeox7u5">A.2:15</span>
+“Contributor” shall mean Licensor and any individual or Legal Entity on
+behalf of whom a contribution has been received by Licensor and subsequently
+incorporated within the Work.</p>
+<p><span class="spec-paragraph-id" id="fls_iygftblnws72">A.2:16</span>
+2. Grant of Copyright License. Subject to the terms and conditions of this
+License, each Contributor hereby grants to You a perpetual, worldwide,
+non-exclusive, no-charge, royalty-free, irrevocable copyright license to
+reproduce, prepare Derivative Works of, publicly display, publicly perform,
+sublicense, and distribute the Work and such Derivative Works in Source or
+Object form.</p>
+<p><span class="spec-paragraph-id" id="fls_s32i8ovj5nqu">A.2:17</span>
+3. Grant of Patent License. Subject to the terms and conditions of this License,
+each Contributor hereby grants to You a perpetual, worldwide, non-exclusive,
+no-charge, royalty-free, irrevocable (except as stated in this section)
+patent license to make, have made, use, offer to sell, sell, import, and
+otherwise transfer the Work, where such license applies only to those patent
+claims licensable by such Contributor that are necessarily infringed by their
+Contribution(s) alone or by combination of their Contribution(s) with the
+Work to which such Contribution(s) was submitted. If You institute patent
+litigation against any entity (including a cross-claim or counterclaim in a
+lawsuit) alleging that the Work or a Contribution incorporated within the Work
+constitutes direct or contributory patent infringement, then any patent licenses
+granted to You under this License for that Work shall terminate as of the date
+such litigation is filed.</p>
+<p><span class="spec-paragraph-id" id="fls_c673i0mbecb9">A.2:18</span>
+4. Redistribution. You may reproduce and distribute copies of the Work or
+Derivative Works thereof in any medium, with or without modifications, and in
+Source or Object form, provided that You meet the following conditions:</p>
+<p><span class="spec-paragraph-id" id="fls_pwpt8rg76oj3">A.2:19</span>
+(a) You must give any other recipients of the Work or Derivative Works a copy of
+this License; and</p>
+<p><span class="spec-paragraph-id" id="fls_yu3hgzo57bvm">A.2:20</span>
+(b) You must cause any modified files to carry prominent notices stating that
+You changed the files; and</p>
+<p><span class="spec-paragraph-id" id="fls_37aibo9w67e8">A.2:21</span>
+(c) You must retain, in the Source form of any Derivative Works that You
+distribute, all copyright, patent, trademark, and attribution notices from the
+Source form of the Work, excluding those notices that do not pertain to any part
+of the Derivative Works; and</p>
+<p><span class="spec-paragraph-id" id="fls_py9om9jvbulw">A.2:22</span>
+(d) If the Work includes a “NOTICE” text file as part of its distribution, then
+any Derivative Works that You distribute must include a readable copy of the
+attribution notices contained within such NOTICE file, excluding those notices
+that do not pertain to any part of the Derivative Works, in at least one of
+the following places: within a NOTICE text file distributed as part of the
+Derivative Works; within the Source form or documentation, if provided along
+with the Derivative Works; or, within a display generated by the Derivative
+Works, if and wherever such third-party notices normally appear. The contents
+of the NOTICE file are for informational purposes only and do not modify the
+License. You may add Your own attribution notices within Derivative Works
+that You distribute, alongside or as an addendum to the NOTICE text from the
+Work, provided that such additional attribution notices cannot be construed as
+modifying the License.</p>
+<p><span class="spec-paragraph-id" id="fls_wkf26wyy0ndr">A.2:23</span>
+You may add Your own copyright statement to Your modifications and may provide
+additional or different license terms and conditions for use, reproduction, or
+distribution of Your modifications, or for any such Derivative Works as a whole,
+provided Your use, reproduction, and distribution of the Work otherwise complies
+with the conditions stated in this License.</p>
+<p><span class="spec-paragraph-id" id="fls_qsvzdiicam4f">A.2:24</span>
+5. Submission of Contributions. Unless You explicitly state otherwise, any
+Contribution intentionally submitted for inclusion in the Work by You to the
+Licensor shall be under the terms and conditions of this License, without any
+additional terms or conditions. Notwithstanding the above, nothing herein shall
+supersede or modify the terms of any separate license agreement you may have
+executed with Licensor regarding such Contributions.</p>
+<p><span class="spec-paragraph-id" id="fls_n4zpph83hza1">A.2:25</span>
+6. Trademarks. This License does not grant permission to use the trade names,
+trademarks, service marks, or product names of the Licensor, except as required
+for reasonable and customary use in describing the origin of the Work and
+reproducing the content of the NOTICE file.</p>
+<p><span class="spec-paragraph-id" id="fls_6gvjqsyyk3sg">A.2:26</span>
+7. Disclaimer of Warranty. Unless required by applicable law or agreed to
+in writing, Licensor provides the Work (and each Contributor provides its
+Contributions) on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ANY KIND, either express or implied, including, without limitation, any
+warranties or conditions of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or
+FITNESS FOR A PARTICULAR PURPOSE. You are solely responsible for determining
+the appropriateness of using or redistributing the Work and assume any risks
+associated with Your exercise of permissions under this License.</p>
+<p><span class="spec-paragraph-id" id="fls_evwltjyhvhz">A.2:27</span>
+8. Limitation of Liability. In no event and under no legal theory, whether
+in tort (including negligence), contract, or otherwise, unless required by
+applicable law (such as deliberate and grossly negligent acts) or agreed to
+in writing, shall any Contributor be liable to You for damages, including any
+direct, indirect, special, incidental, or consequential damages of any character
+arising as a result of this License or out of the use or inability to use the
+Work (including but not limited to damages for loss of goodwill, work stoppage,
+computer failure or malfunction, or any and all other commercial damages or
+losses), even if such Contributor has been advised of the possibility of such
+damages.</p>
+<p><span class="spec-paragraph-id" id="fls_xj0b5mrjgdbt">A.2:28</span>
+9. Accepting Warranty or Additional Liability. While redistributing the
+Work or Derivative Works thereof, You may choose to offer, and charge a
+fee for, acceptance of support, warranty, indemnity, or other liability
+obligations and/or rights consistent with this License. However, in accepting
+such obligations, You may act only on Your own behalf and on Your sole
+responsibility, not on behalf of any other Contributor, and only if You agree to
+indemnify, defend, and hold each Contributor harmless for any liability incurred
+by, or claims asserted against, such Contributor by reason of your accepting any
+such warranty or additional liability.</p>
+<p><span class="spec-paragraph-id" id="fls_ecitsmzb8l28">A.2:29</span>
+END OF TERMS AND CONDITIONS</p>
+<p><span class="spec-paragraph-id" id="fls_wx0hv6f68i4f">A.2:30</span>
+APPENDIX: How to apply the Apache License to your work.</p>
+<p><span class="spec-paragraph-id" id="fls_fgjjzdwbw1t8">A.2:31</span>
+To apply the Apache License to your work, attach the following boilerplate
+notice, with the fields enclosed by brackets “[]” replaced with your own
+identifying information. (Don’t include the brackets!)  The text should
+be enclosed in the appropriate comment syntax for the file format. We also
+recommend that a file or class name and description of purpose be included on
+the same “printed page” as the copyright notice for easier identification within
+third-party archives.</p>
+<p><span class="spec-paragraph-id" id="fls_hnxekf2ahnif">A.2:32</span>
+Copyright [yyyy] [name of copyright owner]</p>
+<p><span class="spec-paragraph-id" id="fls_e0ytxo6b451">A.2:33</span>
+Licensed under the Apache License, Version 2.0 (the “License”);</p>
+<p><span class="spec-paragraph-id" id="fls_145e22m6bw47">A.2:34</span>
+you may not use this file except in compliance with the License.</p>
+<p><span class="spec-paragraph-id" id="fls_9o0wr812ggf2">A.2:35</span>
+You may obtain a copy of the License at</p>
+<p><span class="spec-paragraph-id" id="fls_cqaian5c7mwr">A.2:36</span>
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p><span class="spec-paragraph-id" id="fls_eil4b7ffojqa">A.2:37</span>
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.</p>
+</section>
+<section id="rust-reference-mit-license">
+<span id="fls_un9oqipiretc"></span><h2><span class="section-number">A.3. </span>Rust Reference MIT License<a class="headerlink" href="#rust-reference-mit-license" title="Link to this heading">¶</a></h2>
+<p><span class="spec-paragraph-id" id="fls_bkxw1o1hanmk">A.3:1</span>
+<strong>Copyright (c) 2010 The Rust Project Developers</strong></p>
+<p><span class="spec-paragraph-id" id="fls_yc3wyw3plm1s">A.3:2</span>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the “Software”), to deal
+in the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:</p>
+<p><span class="spec-paragraph-id" id="fls_ypomxdgiswq8">A.3:3</span>
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+<p><span class="spec-paragraph-id" id="fls_q6rhvbuhxa21">A.3:4</span>
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS
+OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

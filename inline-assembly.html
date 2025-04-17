@@ -1,0 +1,1770 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>22. Inline Assembly &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="A. Licenses" href="licenses.html" />
+    <link rel="prev" title="21. FFI" href="ffi.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="inline-assembly">
+<span id="fls_z1il3w9nulzy"></span><h1><span class="section-number">22. </span>Inline Assembly<a class="headerlink" href="#inline-assembly" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this section are informational.</p>
+</div>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_leamdp1r3hez">22:1</span>
+<a class="reference internal" href="glossary.html#term_inline_assembly">Inline assembly</a> is hand-written assembly code that is integrated into a
+Rust program.</p>
+<p><span class="spec-paragraph-id" id="fls_3fg60jblx0xb">22:2</span>
+<a class="reference internal" href="glossary.html#term_inline_assembly">Inline assembly</a> is written as an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> that is
+wrapped inside a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> of <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a> or
+<a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aglobal_asm"><code class="docutils literal notranslate"><span class="pre">core::arch::global_asm</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_helnk2iz8qhp">22:3</span>
+<a class="reference internal" href="glossary.html#term_inline_assembly">Inline assembly</a> is available on the following architectures:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_vanmt2dv7hzd">22:4</span>
+AArch64</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_g8fuy1qnebxe">22:5</span>
+ARM</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2n9el98anp8c">22:6</span>
+RISC-V</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pnoh31rvu9a6">22:7</span>
+x86 and x86-64</p></li>
+</ul>
+<section id="registers">
+<span id="fls_j9l8wn6wgm06"></span><h2><span class="section-number">22.1. </span>Registers<a class="headerlink" href="#registers" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_registername"><span class="pre">RegisterName</span></code> ::=
+    <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_explicitregistername"><code class="docutils literal notranslate"><span class="pre">ExplicitRegisterName</span></code></a> <strong class="spec-syntax-literal">&quot;</strong>
+  | <a class="reference internal" href="#syntax_registerclassname"><code class="docutils literal notranslate"><span class="pre">RegisterClassName</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_explicitregistername"><span class="pre">ExplicitRegisterName</span></code> ::=
+    <strong class="spec-syntax-literal">a</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">ah</strong>    | <strong class="spec-syntax-literal">al</strong>    | <strong class="spec-syntax-literal">ax</strong>
+  | <strong class="spec-syntax-literal">b</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">bh</strong>    | <strong class="spec-syntax-literal">bl</strong>    | <strong class="spec-syntax-literal">bp</strong>    | <strong class="spec-syntax-literal">bpl</strong>   | <strong class="spec-syntax-literal">bx</strong>
+  | <strong class="spec-syntax-literal">ch</strong>    | <strong class="spec-syntax-literal">cl</strong>    | <strong class="spec-syntax-literal">cx</strong>
+  | <strong class="spec-syntax-literal">d</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">dh</strong>    | <strong class="spec-syntax-literal">di</strong>    | <strong class="spec-syntax-literal">dil</strong>   | <strong class="spec-syntax-literal">dl</strong>    | <strong class="spec-syntax-literal">dx</strong>
+  | <strong class="spec-syntax-literal">eax</strong>   | <strong class="spec-syntax-literal">ebp</strong>   | <strong class="spec-syntax-literal">ebx</strong>   | <strong class="spec-syntax-literal">ecx</strong>   | <strong class="spec-syntax-literal">edi</strong>   | <strong class="spec-syntax-literal">edx</strong>   | <strong class="spec-syntax-literal">eip</strong>   | <strong class="spec-syntax-literal">esi</strong>
+  | <strong class="spec-syntax-literal">esp</strong>
+  | <strong class="spec-syntax-literal">f</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">fa</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]
+  | <strong class="spec-syntax-literal">ffr</strong>   | <strong class="spec-syntax-literal">fp</strong>
+  | <strong class="spec-syntax-literal">fs</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">11</strong>]
+  | <strong class="spec-syntax-literal">ft</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">11</strong>]
+  | <strong class="spec-syntax-literal">gp</strong>
+  | <strong class="spec-syntax-literal">h</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">ip</strong>
+  | <strong class="spec-syntax-literal">k</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]
+  | <strong class="spec-syntax-literal">lr</strong>
+  | <strong class="spec-syntax-literal">m</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]
+  | <strong class="spec-syntax-literal">p</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">15</strong>]
+  | <strong class="spec-syntax-literal">pc</strong>
+  | <strong class="spec-syntax-literal">q</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">r</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">15</strong>]
+  | <strong class="spec-syntax-literal">r</strong>[<strong class="spec-syntax-literal">8</strong>-<strong class="spec-syntax-literal">15</strong>]<strong class="spec-syntax-literal">d</strong>
+  | <strong class="spec-syntax-literal">r</strong>[<strong class="spec-syntax-literal">8</strong>-<strong class="spec-syntax-literal">15</strong>]<strong class="spec-syntax-literal">w</strong>
+  | <strong class="spec-syntax-literal">ra</strong>    | <strong class="spec-syntax-literal">rax</strong>
+  | <strong class="spec-syntax-literal">rb</strong>[<strong class="spec-syntax-literal">8</strong>-<strong class="spec-syntax-literal">15</strong>]
+  | <strong class="spec-syntax-literal">rbp</strong>   | <strong class="spec-syntax-literal">rbx</strong>   | <strong class="spec-syntax-literal">rcx</strong>
+  | <strong class="spec-syntax-literal">rdi</strong>   | <strong class="spec-syntax-literal">rdx</strong>   | <strong class="spec-syntax-literal">rfp</strong>   | <strong class="spec-syntax-literal">rip</strong>   | <strong class="spec-syntax-literal">rsi</strong>   | <strong class="spec-syntax-literal">rsp</strong>
+  | <strong class="spec-syntax-literal">s</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">si</strong>    | <strong class="spec-syntax-literal">sil</strong>   | <strong class="spec-syntax-literal">sl</strong>    | <strong class="spec-syntax-literal">sp</strong>    | <strong class="spec-syntax-literal">spl</strong>
+  | <strong class="spec-syntax-literal">st(</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]<strong class="spec-syntax-literal">)</strong>
+  | <strong class="spec-syntax-literal">t</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">6</strong>]
+  | <strong class="spec-syntax-literal">tmm</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">7</strong>]
+  | <strong class="spec-syntax-literal">tp</strong>
+  | <strong class="spec-syntax-literal">v</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">w</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">wsp</strong>   | <strong class="spec-syntax-literal">wzr</strong>
+  | <strong class="spec-syntax-literal">x</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">xmm</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">xzr</strong>
+  | <strong class="spec-syntax-literal">ymm</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]
+  | <strong class="spec-syntax-literal">zero</strong>
+  | <strong class="spec-syntax-literal">zmm</strong>[<strong class="spec-syntax-literal">0</strong>-<strong class="spec-syntax-literal">31</strong>]</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_w5a6rybvptn6">22.1:1</span>
+A <a class="reference internal" href="glossary.html#term_register">register</a> is a hardware component capable of holding data that can be
+read and written.</p>
+<p><span class="spec-paragraph-id" id="fls_rr8rsy7oilf0">22.1:2</span>
+An <a class="reference internal" href="glossary.html#term_input_register">input register</a> is a <a class="reference internal" href="glossary.html#term_register">register</a> whose <a class="reference internal" href="glossary.html#term_register_name">register name</a> is used in
+a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> subject to <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">in</span></code>, <code class="docutils literal notranslate"><span class="pre">inout</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">inlateout</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_5ruu8n6r9mvp">22.1:3</span>
+An <a class="reference internal" href="glossary.html#term_output_register">output register</a> is a <a class="reference internal" href="glossary.html#term_register">register</a> whose <a class="reference internal" href="glossary.html#term_register_name">register name</a> is
+used in a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> subject to <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">out</span></code>,
+<code class="docutils literal notranslate"><span class="pre">lateout</span></code>, <code class="docutils literal notranslate"><span class="pre">inout</span></code>, or <code class="docutils literal notranslate"><span class="pre">inlateout</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_HV3Y1A2xn0zr">22.1:4</span>
+A <a class="reference internal" href="glossary.html#term_register">register</a> that is not specified as an <a class="reference internal" href="glossary.html#term_output_register">output register</a> shall have the
+same <a class="reference internal" href="glossary.html#term_value">value</a> upon exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> as it did upon entry
+into the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vesfzh8h6qzu">22.1:5</span>
+A <a class="reference internal" href="glossary.html#term_register_name">register name</a> is either the <a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register name</a> of a
+<a class="reference internal" href="glossary.html#term_register">register</a>, or the <a class="reference internal" href="glossary.html#term_register_class_name">register class name</a> of the <a class="reference internal" href="glossary.html#term_register_class">register class</a> a
+<a class="reference internal" href="glossary.html#term_register">register</a> belongs to.</p>
+<p><span class="spec-paragraph-id" id="fls_ffwqxlh60i5w">22.1:6</span>
+An <a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register name</a> is a target-specific string that identifies
+a <a class="reference internal" href="glossary.html#term_register">register</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3p8akc7gcsnx">22.1:7</span>
+An <a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register name</a> may be aliased as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_7dlx7nt77xk">22.1:8</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Explicit register name</strong></p></td>
+<td><p><strong>Aliases</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_w4z7yh5qyyed">22.1:9</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wsp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_rzp8eg6z6x3q">22.1:10</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v[0-31]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">b[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">d[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">h[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">q[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">s[0-31]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_e1w41918j49">22.1:11</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[0-30]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">w[0-30]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_q0s90h7xmnn4">22.1:12</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x29</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_3pt63w76isay">22.1:13</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x30</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lr</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_f3clxd3vidhh">22.1:14</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xzr</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">wzr</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_vyeczg1cjxys">22.1:15</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[0-3]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a[1-4]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_h5t153uhzoq3">22.1:16</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[4-9]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v[1-6]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_jhph577nqds1">22.1:17</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rfp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_mobj1y67vxvb">22.1:18</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r10</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sl</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_9ke412je1hqn">22.1:19</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r11</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_hndlas58937e">22.1:20</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r12</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ip</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_5x0yvjil3z8p">22.1:21</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r13</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_gxvlvnqs436h">22.1:22</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r14</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lr</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_mra7zuu7uzmb">22.1:23</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r15</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_maa7w0jwvat2">22.1:24</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[0-7]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ft[0-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_az7kcaq70h4d">22.1:25</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[8-9]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fs[0-1]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_xudmsflrhvo3">22.1:26</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[10-17]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fa[0-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_px77cr1k8coy">22.1:27</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[18-27]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fs[2-11]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_y1m7tlqk2dv7">22.1:28</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[28-31]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ft[8-11]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_3dqq9319okv5">22.1:29</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zero</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5l9qo5c0gek8">22.1:30</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ra</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_1m68zqsxjuyp">22.1:31</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_bck9slu4hsn1">22.1:32</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gp</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_3x72q39c8iwt">22.1:33</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_yfbrla8c801g">22.1:34</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[5-7]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t[0-2]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_3nuf1gcldamv">22.1:35</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fp</span></code>, <code class="docutils literal notranslate"><span class="pre">s0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_nquf1uaoezx6">22.1:36</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x9</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_91oeyxc75vu5">22.1:37</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[10-17]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a[0-7]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_r5btazdpwqtw">22.1:38</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[18-27]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s[2-11]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_vpibsan8aful">22.1:39</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[28-31]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t[3-6]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_lj6xcaaecokk">22.1:40</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eax</span></code>, <code class="docutils literal notranslate"><span class="pre">rax</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_bb1qjfin4zjc">22.1:41</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bpl</span></code>, <code class="docutils literal notranslate"><span class="pre">ebp</span></code>, <code class="docutils literal notranslate"><span class="pre">rbp</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_7qj6pxuq2x9e">22.1:42</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ebx</span></code>, <code class="docutils literal notranslate"><span class="pre">rbx</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2xkw4nqt1s5a">22.1:43</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">cx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ecx</span></code>, <code class="docutils literal notranslate"><span class="pre">rcx</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_dpzi4ygox7jw">22.1:44</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">di</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">edi</span></code>, <code class="docutils literal notranslate"><span class="pre">rdi</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_yr5ztipvgezk">22.1:45</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dx</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">edx</span></code>, <code class="docutils literal notranslate"><span class="pre">rdx</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_n8ccafjut1yd">22.1:46</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ip</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eip</span></code>, <code class="docutils literal notranslate"><span class="pre">rip</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_iv23mcgw6l3r">22.1:47</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[8-15]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[8-15]b</span></code>, <code class="docutils literal notranslate"><span class="pre">r[8-15]d</span></code>, <code class="docutils literal notranslate"><span class="pre">r[8-15]w</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_yr7bac5k3uk7">22.1:48</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">si</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">esi</span></code>, <code class="docutils literal notranslate"><span class="pre">rsi</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_gvb2zcrseqci">22.1:49</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">esp</span></code>, <code class="docutils literal notranslate"><span class="pre">rsp</span></code>, <code class="docutils literal notranslate"><span class="pre">spl</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_z1b9nf49nbjh">22.1:50</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">st(0)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">st</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_etfkcesnrlwt">22.1:51</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm[0-31]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">zmm[0-31]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_8sqzva4ibf0i">22.1:52</span>
+Certain <a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register names</a> are not supported on selected
+architectures, as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_8bo9p6mybuzi">22.1:53</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Explicit register name</strong></p></td>
+<td><p><strong>Reason</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_dk4z9dracvps">22.1:54</span></p></td>
+<td><p>all</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sp</span></code></p></td>
+<td><p>The stack pointer must be restored to its original value on exit from an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_7c7lgvw8gbkb">22.1:55</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x18</span></code></p></td>
+<td><p>OS-reserved register on some AArch64 targets.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_sb0ffx31gul9">22.1:56</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x19</span></code></p></td>
+<td><p>Internally used by LLVM as a base pointer for <a class="reference internal" href="glossary.html#term_function">functions</a> with
+complex stack frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_f9psgjl6ervm">22.1:57</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x29</span></code></p></td>
+<td><p>The frame pointer cannot be used as an input or output.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_3y3b7znxznzu">22.1:58</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xzr</span></code></p></td>
+<td><p>The constant zero <a class="reference internal" href="glossary.html#term_register">register</a> cannot be modified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_7y201ev5b0mq">22.1:59</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pc</span></code></p></td>
+<td><p>The program counter cannot be modified.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_r2aoetnwhjkf">22.1:60</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r6</span></code></p></td>
+<td><p>Internally used by LLVM as a base pointer for <a class="reference internal" href="glossary.html#term_function">functions</a> with
+complex stack frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_54n4ie3frc39">22.1:61</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r7</span></code>, <code class="docutils literal notranslate"><span class="pre">r11</span></code></p></td>
+<td><p>The frame pointer cannot be used as an input or output.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_iok8gc906tc8">22.1:62</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r9</span></code></p></td>
+<td><p>OS-reserved <a class="reference internal" href="glossary.html#term_register">register</a> on some ARM targets.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_2mgjkyngbmbr">22.1:63</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">gp</span></code>, <code class="docutils literal notranslate"><span class="pre">tp</span></code></p></td>
+<td><p>Reserved <a class="reference internal" href="glossary.html#term_register">registers</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_6tlnpguf23y3">22.1:64</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></td>
+<td><p>The constant zero <a class="reference internal" href="glossary.html#term_register">register</a> cannot be modified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_bz5xyv89i5m7">22.1:65</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x8</span></code></p></td>
+<td><p>The frame pointer cannot be used as an input or output.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_soitzjqze3rf">22.1:66</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x9</span></code></p></td>
+<td><p>Internally used by LLVM as a base pointer for <a class="reference internal" href="glossary.html#term_function">functions</a> with
+complex stack frames.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_b2c02r5y6zm9">22.1:67</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bp</span></code></p></td>
+<td><p>The frame pointer cannot be used as an input or output.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2ufm8y5ttcxf">22.1:68</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ip</span></code></p></td>
+<td><p>The program counter cannot be modified.</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ub321ic94bbl">22.1:69</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">si</span></code></p></td>
+<td><p>Internally used by LLVM as a base pointer for <a class="reference internal" href="glossary.html#term_function">functions</a> with
+complex stack frames.</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_gtwmwsmyrdxe">22.1:70</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">bx</span></code></p></td>
+<td><p>Internally used by LLVM as a base pointer for <a class="reference internal" href="glossary.html#term_function">functions</a> with
+complex stack frames.</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_vy8alu9yuza9">22.1:71</span>
+It is a static error to use an unsupported <a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register name</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_zEtLZ5KjQcHS">22.1:72</span>
+It is undefined behavior if a <a class="reference internal" href="glossary.html#term_register">register</a> that is not specified as an
+<a class="reference internal" href="glossary.html#term_output_register">output register</a> has a different <a class="reference internal" href="glossary.html#term_value">value</a> upon exit from an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> from the <a class="reference internal" href="glossary.html#term_value">value</a> it had upon entry into the
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+</section>
+<section id="register-classes">
+<span id="fls_pz2ioqchjtym"></span><h2><span class="section-number">22.2. </span>Register Classes<a class="headerlink" href="#register-classes" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_registerclassname"><span class="pre">RegisterClassName</span></code> ::=
+    <strong class="spec-syntax-literal">dreg</strong>
+  | <strong class="spec-syntax-literal">dreg_low16</strong>
+  | <strong class="spec-syntax-literal">dreg_low8</strong>
+  | <strong class="spec-syntax-literal">freg</strong>
+  | <strong class="spec-syntax-literal">kreg</strong>
+  | <strong class="spec-syntax-literal">kreg0</strong>
+  | <strong class="spec-syntax-literal">mmx_reg</strong>
+  | <strong class="spec-syntax-literal">preg</strong>
+  | <strong class="spec-syntax-literal">qreg</strong>
+  | <strong class="spec-syntax-literal">qreg_low4</strong>
+  | <strong class="spec-syntax-literal">qreg_low8</strong>
+  | <strong class="spec-syntax-literal">reg</strong>
+  | <strong class="spec-syntax-literal">reg_abcd</strong>
+  | <strong class="spec-syntax-literal">reg_byte</strong>
+  | <strong class="spec-syntax-literal">sreg</strong>
+  | <strong class="spec-syntax-literal">sreg_low16</strong>
+  | <strong class="spec-syntax-literal">tmm_reg</strong>
+  | <strong class="spec-syntax-literal">vreg</strong>
+  | <strong class="spec-syntax-literal">vreg_low16</strong>
+  | <strong class="spec-syntax-literal">x86_reg</strong>
+  | <strong class="spec-syntax-literal">xmm_reg</strong>
+  | <strong class="spec-syntax-literal">ymm_reg</strong>
+  | <strong class="spec-syntax-literal">zmm_reg</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7gxb7ztpuofj">22.2:1</span>
+A <a class="reference internal" href="glossary.html#term_register_class">register class</a> represents a set of <a class="reference internal" href="glossary.html#term_register">registers</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_on0i2cpk254y">22.2:2</span>
+A <a class="reference internal" href="glossary.html#term_register_class_name">register class name</a> is a target-specific string that identifies a
+<a class="reference internal" href="glossary.html#term_register_class">register class</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_40ksem5g5xx9">22.2:3</span>
+<a class="reference internal" href="glossary.html#term_register">Registers</a> are organized into <a class="reference internal" href="glossary.html#term_register_class">register classes</a> as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_fqvjk6caipq">22.2:4</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Register class name</strong></p></td>
+<td><p><strong>Explicit register names</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_u0ie66ep3glg">22.2:5</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">preg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">p[0-15]</span></code>, <code class="docutils literal notranslate"><span class="pre">ffr</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_wcvcansd88je">22.2:6</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x[0-30]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_sbllpky4d7ka">22.2:7</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_nmx5xs829ms">22.2:8</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg_low16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v[0-15]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_nars4y8tv2w6">22.2:9</span></p></td>
+<td><p>ARM / Thumb2</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[0-12]</span></code>, <code class="docutils literal notranslate"><span class="pre">r14</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_b5juxguclqjs">22.2:10</span></p></td>
+<td><p>ARM / Thumb1</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r[0-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_vmigixoxm5uf">22.2:11</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_vdqtbc4t69v2">22.2:12</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dreg_low8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d[0-8]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_t2d77dazjyjo">22.2:13</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dreg_low16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d[0-15]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_jh02uk3ypett">22.2:14</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q[0-15]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_rjk5laiyqagy">22.2:15</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qreg_low4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q[0-3]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_26bq6wbwznx">22.2:16</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qreg_low8</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q[0-8]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_6d25i0lkzd7u">22.2:17</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_y52suhleyid2">22.2:18</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sreg_low16</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s[0-15]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_7b7c8xtm8fr7">22.2:19</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">freg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ue0se3dcop6w">22.2:20</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">x[9-15]</span></code>, <code class="docutils literal notranslate"><span class="pre">x[16-31]</span></code> (on non-RV32E)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2m49cyfqffvo">22.2:21</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_mj1t0f9lp6v8">22.2:22</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k[1-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_tpkkubhjt7lk">22.2:23</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kreg0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_ivq874v4lmga">22.2:24</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mmx_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mm[0-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2wdcrocczwyi">22.2:25</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">bp</span></code>, <code class="docutils literal notranslate"><span class="pre">bx</span></code>, <code class="docutils literal notranslate"><span class="pre">cx</span></code>, <code class="docutils literal notranslate"><span class="pre">di</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">r[8-15]</span></code>, <code class="docutils literal notranslate"><span class="pre">si</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_v04te7p28dth">22.2:26</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_abcd</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">bx</span></code>, <code class="docutils literal notranslate"><span class="pre">cx</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_uypct69j2h6a">22.2:27</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x87_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">st([0-7])</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_gyet9huf6nr">22.2:28</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">xmm[8-15]</span></code> (on 64bit only)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_5ekbq9hacho9">22.2:29</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">ymm[8-15]</span></code> (on 64bit only)</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_furnyxmwqn09">22.2:30</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">zmm[8-15]</span></code> (on 64bit only)</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_1c4ts991vkpq">22.2:31</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_byte</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ah</span></code>, <code class="docutils literal notranslate"><span class="pre">al</span></code>, <code class="docutils literal notranslate"><span class="pre">bh</span></code>, <code class="docutils literal notranslate"><span class="pre">bl</span></code>, <code class="docutils literal notranslate"><span class="pre">ch</span></code>, <code class="docutils literal notranslate"><span class="pre">cl</span></code>, <code class="docutils literal notranslate"><span class="pre">dh</span></code>, <code class="docutils literal notranslate"><span class="pre">dl</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_iwnb72jb9iwj">22.2:32</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_byte</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">al</span></code>, <code class="docutils literal notranslate"><span class="pre">bl</span></code>,  <code class="docutils literal notranslate"><span class="pre">bpl</span></code>, <code class="docutils literal notranslate"><span class="pre">cl</span></code>, <code class="docutils literal notranslate"><span class="pre">dil</span></code>, <code class="docutils literal notranslate"><span class="pre">dl</span></code>, <code class="docutils literal notranslate"><span class="pre">sil</span></code>, <code class="docutils literal notranslate"><span class="pre">r[8-15]b</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_mw3axoixjgnq">22.2:33</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tmm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tmm[0-7]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_mnzt6bxhycv9">22.2:34</span>
+If a <a class="reference internal" href="glossary.html#term_value">value</a> has a smaller size than the <a class="reference internal" href="glossary.html#term_register">register</a> it is allocated in,
+then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_drg7v8hxb5ca">22.2:35</span>
+On RISC-V architectures, if the <a class="reference internal" href="glossary.html#term_register">register</a> belongs to <a class="reference internal" href="glossary.html#term_register_class">register class</a>
+<code class="docutils literal notranslate"><span class="pre">freg</span></code>, then <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a> <a class="reference internal" href="glossary.html#term_value">values</a> are <a class="reference internal" href="glossary.html#term_nan_boxing">NaN-boxed</a>. in a
+<a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a> <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_78gb8z1fyluc">22.2:36</span>
+Otherwise, for an <a class="reference internal" href="glossary.html#term_input_register">input register</a>, the upper bits of the <a class="reference internal" href="glossary.html#term_register">register</a>
+have an undefined <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7dii7lee457t">22.2:37</span>
+Otherwise, for an <a class="reference internal" href="glossary.html#term_output_register">output register</a>, the upper bits are ignored.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_ujhjocg1361b">22.2:38</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inout</span></code> and an
+<a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a>, then the <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a>
+and the <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a> shall have the same <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+</section>
+<section id="register-arguments">
+<span id="fls_hejgghwzblf"></span><h2><span class="section-number">22.3. </span>Register Arguments<a class="headerlink" href="#register-arguments" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_registerargument"><span class="pre">RegisterArgument</span></code> ::=
+    (<a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> <strong class="spec-syntax-literal">=</strong>)? <a class="reference internal" href="#syntax_directionmodifier"><code class="docutils literal notranslate"><span class="pre">DirectionModifier</span></code></a> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_registername"><code class="docutils literal notranslate"><span class="pre">RegisterName</span></code></a> <strong class="spec-syntax-literal">)</strong> <a class="reference internal" href="#syntax_registerexpression"><code class="docutils literal notranslate"><span class="pre">RegisterExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_directionmodifier"><span class="pre">DirectionModifier</span></code> ::=
+    <strong class="spec-syntax-literal">in</strong>
+  | <strong class="spec-syntax-literal">inlateout</strong>
+  | <strong class="spec-syntax-literal">inout</strong>
+  | <strong class="spec-syntax-literal">lateout</strong>
+  | <strong class="spec-syntax-literal">out</strong>
+
+<code class="docutils literal notranslate" id="syntax_registerexpression"><span class="pre">RegisterExpression</span></code> ::=
+    <a class="reference internal" href="#syntax_inputoutputregisterexpression"><code class="docutils literal notranslate"><span class="pre">InputOutputRegisterExpression</span></code></a>
+  | <a class="reference internal" href="#syntax_simpleregisterexpression"><code class="docutils literal notranslate"><span class="pre">SimpleRegisterExpression</span></code></a>
+  | <a class="reference internal" href="#syntax_constregisterexpression"><code class="docutils literal notranslate"><span class="pre">ConstRegisterExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_inputoutputregisterexpression"><span class="pre">InputOutputRegisterExpression</span></code> ::=
+    <a class="reference internal" href="#syntax_inputregisterexpression"><code class="docutils literal notranslate"><span class="pre">InputRegisterExpression</span></code></a> <strong class="spec-syntax-literal">=&gt;</strong> <a class="reference internal" href="#syntax_outputregisterexpression"><code class="docutils literal notranslate"><span class="pre">OutputRegisterExpression</span></code></a>
+  | <a class="reference internal" href="#syntax_inputregisterexpression"><code class="docutils literal notranslate"><span class="pre">InputRegisterExpression</span></code></a> <strong class="spec-syntax-literal">=&gt;</strong> <a class="reference internal" href="expressions.html#syntax_underscoreexpression"><code class="docutils literal notranslate"><span class="pre">UnderscoreExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_inputregisterexpression"><span class="pre">InputRegisterExpression</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_outputregisterexpression"><span class="pre">OutputRegisterExpression</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_simpleregisterexpression"><span class="pre">SimpleRegisterExpression</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a>
+  | <a class="reference internal" href="expressions.html#syntax_underscoreexpression"><code class="docutils literal notranslate"><span class="pre">UnderscoreExpression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_constregisterexpression"><span class="pre">ConstRegisterExpression</span></code> ::=
+    <strong class="spec-syntax-literal">const</strong> <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_455dmnp4cxqv">22.3:1</span>
+A <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that configures the input
+and output of a <a class="reference internal" href="glossary.html#term_register">register</a>, and optionally binds the configuration to an
+<a class="reference internal" href="glossary.html#term_identifier">identifier</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6bv3s8be5xif">22.3:2</span>
+A <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> shall be used within an <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instruction</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_uddjvkz4g899">22.3:3</span>
+A <a class="reference internal" href="glossary.html#term_named_register_argument">named register argument</a> is a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> whose configuration
+is bound to an <a class="reference internal" href="glossary.html#term_identifier">identifier</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_sqs5to20p0te">22.3:4</span>
+A <a class="reference internal" href="glossary.html#term_positional_register_argument">positional register argument</a> is a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> whose
+configuration is not bound to an <a class="reference internal" href="glossary.html#term_identifier">identifier</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dzlycyk24euk">22.3:5</span>
+A <a class="reference internal" href="glossary.html#term_named_register_argument">named register argument</a> shall appear after a
+<a class="reference internal" href="glossary.html#term_positional_register_argument">positional register argument</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ics6gdzww1p">22.3:6</span>
+An <a class="reference internal" href="glossary.html#term_explicit_register_argument">explicit register argument</a> is a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> that uses an
+<a class="reference internal" href="glossary.html#term_explicit_register_name">explicit register name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mmc1w8jjr55r">22.3:7</span>
+An <a class="reference internal" href="glossary.html#term_explicit_register_argument">explicit register argument</a> shall appear after a
+<a class="reference internal" href="glossary.html#term_named_register_argument">named register argument</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9hhtcey2d4t6">22.3:8</span>
+A <a class="reference internal" href="glossary.html#term_register_class_argument">register class argument</a> is a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> that uses a
+<a class="reference internal" href="glossary.html#term_register_class_name">register class name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8aynifgq02gt">22.3:9</span>
+A <a class="reference internal" href="glossary.html#term_register_class_argument">register class argument</a> causes an assembler to select a suitable
+<a class="reference internal" href="glossary.html#term_register">register</a> from the related <a class="reference internal" href="glossary.html#term_register_class">register class</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_5a3vfresnv5z">22.3:10</span>
+A <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that indicates whether a
+<a class="reference internal" href="glossary.html#term_register_argument">register argument</a> initializes a <a class="reference internal" href="glossary.html#term_register">register</a>, assigns the <a class="reference internal" href="glossary.html#term_value">value</a> of a
+<a class="reference internal" href="glossary.html#term_register">register</a> to an <a class="reference internal" href="glossary.html#term_expression">expression</a>, or both.</p>
+<p><span class="spec-paragraph-id" id="fls_fta1gb5tzi3a">22.3:11</span>
+An <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a> is an <a class="reference internal" href="glossary.html#term_expression">expression</a> that provides the
+initial <a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_register">register</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_sopiivuae0x7">22.3:12</span>
+An <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a> is an <a class="reference internal" href="glossary.html#term_expression">expression</a> that is assigned the
+<a class="reference internal" href="glossary.html#term_value">value</a> of a <a class="reference internal" href="glossary.html#term_register">register</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_81Ju1TEqJ48K">22.3:13</span>
+A <em id="term_const_register_expression">const register expression</em> is an <a class="reference internal" href="glossary.html#term_expression">expression</a> that is evaluated at compile-time.</p>
+<p><span class="spec-paragraph-id" id="fls_kkrcyk96w8x1">22.3:14</span>
+An <a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that specifies
+both an <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a> and an <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_aniw4ehsn2kb">22.3:15</span>
+A <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> is either an <a class="reference internal" href="glossary.html#term_expression">expression</a> or an
+<a class="reference internal" href="glossary.html#term_underscore_expression">underscore expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_j9XOoXDmN5Dq">22.3:16</span>
+A <a class="reference internal" href="glossary.html#term_register_expression">register expression</a> is either an <a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a>, a <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> or a <a class="reference internal" href="#term_const_register_expression">const register expression</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jU8zg4k8dFsY">22.3:17</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="#term_const_register_expression">const register expression</a> shall be an <a class="reference internal" href="glossary.html#term_integer_type">integer type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_66owmltvhnu4">22.3:18</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of an <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a>,
+<a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a>, or <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> shall
+depend on the architecture and the target feature in effect, as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_72p8e4bo6pns">22.3:19</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Register class name</strong></p></td>
+<td><p><strong>Target feature</strong></p></td>
+<td><p><strong>Allowed types</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_z0dbmmp5yblf">22.3:20</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">preg</span></code></p></td>
+<td><p>n/a</p></td>
+<td><p>Only clobbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_4jdnt8uap95i">22.3:21</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_wd2hzsbzdg2y">22.3:22</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neon</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_sqy00lg5j7c6">22.3:23</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vfp2</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_vxba1ttvz6hh">22.3:24</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_xkbnla2avrn0">22.3:25</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vfp2</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_w6jhcv616l9o">22.3:26</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">freg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_xweobiwapog1">22.3:27</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">freg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_4matyejw6cls">22.3:28</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p>n/a</p></td>
+<td><p>Only clobbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_hklqabav1jju">22.3:29</span></p></td>
+<td><p>RISC-V32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_nq22h8gragil">22.3:30</span></p></td>
+<td><p>RISC-V64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_uxgcrs57bznk">22.3:31</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avx512f</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ym05938ejwng">22.3:32</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kreg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avx512bw</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5l77g8h8et2o">22.3:33</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">mmx_reg</span></code></p></td>
+<td><p>n/a</p></td>
+<td><p>Only clobbers</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_xlcliuums5b0">22.3:34</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_byte</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i8"><code class="docutils literal notranslate"><span class="pre">i8</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5p4hyl7mxgai">22.3:35</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">tmm_reg</span></code></p></td>
+<td><p>n/a</p></td>
+<td><p>Only clobbers</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ilepg263w5o7">22.3:36</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x87_reg</span></code></p></td>
+<td><p>n/a</p></td>
+<td><p>Only clobbers</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_tubmavru8wvn">22.3:37</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sse</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_b1xi3u9k4pdl">22.3:38</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avx</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_i9ds6724tv20">22.3:39</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">avx512f</span></code></p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_trldyekxxlzx">22.3:40</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_efmpbyi4qjmf">22.3:41</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><a class="reference internal" href="glossary.html#codeterm_i16"><code class="docutils literal notranslate"><span class="pre">i16</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i32"><code class="docutils literal notranslate"><span class="pre">i32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f32"><code class="docutils literal notranslate"><span class="pre">f32</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_i64"><code class="docutils literal notranslate"><span class="pre">i64</span></code></a>, <a class="reference internal" href="glossary.html#codeterm_f64"><code class="docutils literal notranslate"><span class="pre">f64</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_4x3w50w7qm8w">22.3:42</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">in</span></code> and a
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_6cne58tlquze">22.3:43</span>
+Upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_register">register</a> contains the
+<a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5w718fne9jsh">22.3:44</span>
+On exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_register">register</a> shall contain
+the same <a class="reference internal" href="glossary.html#term_value">value</a>, unless the <a class="reference internal" href="glossary.html#term_register">register</a> is subject to
+<a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">lateout</span></code>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_tel7kogaqytg">22.3:45</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">out</span></code> and a
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_aw61psz5drg8">22.3:46</span>
+Upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_register">register</a> contains an
+undefined <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_sv2x3x81b32j">22.3:47</span>
+On exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_register">register</a>
+is assigned to the <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>. The
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> shall be a <a class="reference internal" href="glossary.html#term_place_expression">place expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_nebb0nhxf5ix">22.3:48</span>
+If the <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> is an <a class="reference internal" href="glossary.html#term_underscore_expression">underscore expression</a>, then
+the <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_register">register</a> is discarded.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_j0pxc8g8kcxm">22.3:49</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">lateout</span></code> and a
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then the <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> behaves as a
+<a class="reference internal" href="glossary.html#term_register_argument">register argument</a> with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">out</span></code>, except that the
+<a class="reference internal" href="glossary.html#term_register">register</a> can be reused with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_wwh6xyclxwqj">22.3:50</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inout</span></code> and a
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_qcb47z1ap9dz">22.3:51</span>
+Upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_register">register</a> contains the
+<a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_h01au4vk8mjd">22.3:52</span>
+On exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_register">register</a>
+is assigned to the place indicated by the <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>.
+The <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> shall be a <a class="reference internal" href="glossary.html#term_mutable_place_expression">mutable place expression</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_92ijsf4p6yn">22.3:53</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inout</span></code> and an
+<a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_xkui7j3gnfg0">22.3:54</span>
+Upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_register">register</a> contains the
+<a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eahyqniqs2pn">22.3:55</span>
+On exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_register">register</a>
+is assigned to the place indicated by the <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a>.
+The <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a> shall be a <a class="reference internal" href="glossary.html#term_place_expression">place expression</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5g7p2zo07gfe">22.3:56</span>
+If the <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a> is an <a class="reference internal" href="glossary.html#term_underscore_expression">underscore expression</a>, then
+the <a class="reference internal" href="glossary.html#term_value">value</a> of the <a class="reference internal" href="glossary.html#term_register">register</a> is discarded.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_dobbatnjs0yt">22.3:57</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inlateout</span></code> and a
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then the <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> behaves as a
+<a class="reference internal" href="glossary.html#term_register_argument">register argument</a> with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inout</span></code>, except that the
+<a class="reference internal" href="glossary.html#term_register">register</a> can be reused with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_ax8t4uta34ym">22.3:58</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inlateout</span></code> and an
+<a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a>, then the <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> behaves
+as a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">inout</span></code>, except that
+the <a class="reference internal" href="glossary.html#term_register">register</a> can be reused with <a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_dvft4ha00wj3">22.3:59</span>
+It is a static error to specify a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> with
+<a class="reference internal" href="glossary.html#term_direction_modifier">direction modifier</a> and <a class="reference internal" href="glossary.html#term_register_expression">register expression</a> other than the
+combinations listed above.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_2ekwpx2bwj1b">22.3:60</span>
+The <a class="reference internal" href="glossary.html#term_evaluation">evaluation</a> of a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> proceeds as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_3s2n9dlrlhz9">22.3:61</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has an <a class="reference internal" href="glossary.html#term_input_output_register_expression">input-output register expression</a>,
+then</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_nbkkz6krcngi">22.3:62</span>
+The <a class="reference internal" href="glossary.html#term_input_register_expression">input register expression</a> is evaluated.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_utrvenwrettz">22.3:63</span>
+The <a class="reference internal" href="glossary.html#term_output_register_expression">output register expression</a> is evaluated.</p></li>
+</ol>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_n85sjh925x">22.3:64</span>
+If a <a class="reference internal" href="glossary.html#term_register_argument">register argument</a> has a <a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a>, then the
+<a class="reference internal" href="glossary.html#term_simple_register_expression">simple register expression</a> is evaluated.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">left_value</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">right_value</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="fm">asm!</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;add {left} {right}&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inout</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="n">left_value</span><span class="p">,</span>
+<span class="w">        </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="n">right_value</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="assembly-instructions">
+<span id="fls_e0896uk0mdyl"></span><h2><span class="section-number">22.4. </span>Assembly Instructions<a class="headerlink" href="#assembly-instructions" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_assemblycodeblock"><span class="pre">AssemblyCodeBlock</span></code> ::=
+    <a class="reference internal" href="#syntax_assemblyinstruction"><code class="docutils literal notranslate"><span class="pre">AssemblyInstruction</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_assemblyinstruction"><code class="docutils literal notranslate"><span class="pre">AssemblyInstruction</span></code></a>)*
+
+<code class="docutils literal notranslate" id="syntax_assemblyinstruction"><span class="pre">AssemblyInstruction</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_4jr7eg6e0g4w">22.4:1</span>
+An <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instruction</a> is a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a> that represents a
+low-level assembly operation or an <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directive</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ihjhpy4osl53">22.4:2</span>
+An <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instruction</a> shall use the syntax of format strings as
+defined in <a class="reference internal" href="glossary.html#term_module">module</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=std%3A%3Afmt"><code class="docutils literal notranslate"><span class="pre">std::fmt</span></code></a>, and contain zero or more
+<a class="reference internal" href="glossary.html#term_register_parameter">register parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2d05gcixjrzt">22.4:3</span>
+An <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> is a sequence of <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instructions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_z64f094aivp6">22.4:4</span>
+When an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> contains multiple <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instructions</a>,
+the <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instructions</a> are treated as concatenated into a single
+<a class="reference internal" href="glossary.html#term_string_literal">string literal</a>, with character 0x0A (new line) between them.</p>
+<p><span class="spec-paragraph-id" id="fls_u8lifqig90gq">22.4:5</span>
+The set of memory locations that an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> is allowed to
+read and write are the same as those for an <a class="reference internal" href="glossary.html#term_external_function">external function</a>, excluding
+the memory locations that are private to the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_lfeun3er5sc9">22.4:6</span>
+A tool is not required to guarantee that an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> appears
+exactly once in the final assembly output.</p>
+<p><span class="spec-paragraph-id" id="fls_mmdmymljq8a3">22.4:7</span>
+A tool is not required to guarantee that two <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code blocks</a>
+appear in the same declarative order in the final assembly output, or appear
+contiguously in successive addresses.</p>
+<p><span class="spec-paragraph-id" id="fls_xugsn2ghh73c">22.4:8</span>
+A <a class="reference internal" href="glossary.html#term_register_parameter">register parameter</a> is a substring delimited by characters 0x7B (left
+curly bracket) and 0x7D (right curly bracket) that is substituted with a
+<a class="reference internal" href="glossary.html#term_register_argument">register argument</a> in an <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instruction</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_opnxq5kyw9jo">22.4:9</span>
+On x86 architectures, direction flag <code class="docutils literal notranslate"><span class="pre">DF</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">EFLAGS</span></code> shall
+be cleared on exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_wydu9yft7a3r">22.4:10</span>
+On x86 architectures, it is undefined behavior if direction flag <code class="docutils literal notranslate"><span class="pre">DF</span></code> in
+<a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">EFLAGS</span></code> remains set on exit from an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;shl {value} 2&quot;</span>
+</pre></div>
+</div>
+<section id="register-parameter-modifiers">
+<span id="fls_lv19xysy1f7e"></span><h3><span class="section-number">22.4.1. </span>Register Parameter Modifiers<a class="headerlink" href="#register-parameter-modifiers" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_2xilifichdqu">22.4.1:1</span>
+A <a class="reference internal" href="glossary.html#term_register_parameter_modifier">register parameter modifier</a> is a substring that starts with character
+0x3A (colon), follows a <a class="reference internal" href="glossary.html#term_register_parameter">register parameter</a>, and changes the formatting of
+the related <a class="reference internal" href="glossary.html#term_register_parameter">register parameter</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_o3fx9397ib74">22.4.1:2</span>
+The effects of a <a class="reference internal" href="glossary.html#term_register_parameter_modifier">register parameter modifier</a> depends on the architecture
+and <a class="reference internal" href="glossary.html#term_register_class">register class</a>, as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_3atrad53m22a">22.4.1:3</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Register class</strong></p></td>
+<td><p><strong>Modifier</strong></p></td>
+<td><p><strong>Example output</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_5zaqgz9jc8gy">22.4.1:4</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_erjczjotwqc3">22.4.1:5</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:w</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">w0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_z8m45i9xqkct">22.4.1:6</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:x</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_adaavz3olha3">22.4.1:7</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_u5dzca5f2pfm">22.4.1:8</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:b</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">b0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6542a2hi5yhc">22.4.1:9</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:d</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_94thqwabspw2">22.4.1:10</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:h</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">h0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_xhp8xu8xvvgd">22.4.1:11</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:q</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_g0p2ebuffnxb">22.4.1:12</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:s</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_d0e2weni8q87">22.4.1:13</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">vreg</span></code></p></td>
+<td><p><strong>:v</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">v0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_bq3p4k42tzh8">22.4.1:14</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">dreg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_l5mkfdot97fz">22.4.1:15</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qreg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">q0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_sarl1hoq0lco">22.4.1:16</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">qreg</span></code></p></td>
+<td><p><strong>:e</strong>, <strong>:f</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d0</span></code>, <code class="docutils literal notranslate"><span class="pre">d1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_f4q9a0jrs4ek">22.4.1:17</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">r0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_w0hn6vkpuvpc">22.4.1:18</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sreg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">s0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_a7bvkyh5otx5">22.4.1:19</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">freg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_klthi4cczkem">22.4.1:20</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_pizgnxvcnj46">22.4.1:21</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">kreg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">k1</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_pvzfiuxka6wg">22.4.1:22</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:e</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eax</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_pf8yj3m81wk4">22.4.1:23</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:x</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_2bf3ady2idq1">22.4.1:24</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_abcd</span></code></p></td>
+<td><p><strong>:h</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ah</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_x1se4r75v58o">22.4.1:25</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_byte</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">al</span></code> / <code class="docutils literal notranslate"><span class="pre">ah</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_rgovn5r3caif">22.4.1:26</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_faxm8xkhruvz">22.4.1:27</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_x1kkkvugpkyd">22.4.1:28</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_uonqmj16oqxe">22.4.1:29</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p><strong>:x</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ydhwlp56vmrz">22.4.1:30</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p><strong>:y</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ymm0</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_yolqzfqbfjoh">22.4.1:31</span></p></td>
+<td><p>x86</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">xmm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">ymm_reg</span></code>,  <code class="docutils literal notranslate"><span class="pre">zmm_reg</span></code></p></td>
+<td><p><strong>:z</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">zmm0</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ojzzhoed6t9l">22.4.1:32</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">eax</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_gw56ok8llid3">22.4.1:33</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg_abcd</span></code></p></td>
+<td><p><strong>:l</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">al</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ry7qoosmjrev">22.4.1:34</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p>none</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rax</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_i0ax45x2wskd">22.4.1:35</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:l</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">al</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_op4dx1rqwhsf">22.4.1:36</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">reg</span></code></p></td>
+<td><p><strong>:r</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">rax</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">left_value</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="n">right_value</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="fm">asm!</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;add {left}:e {right}:x&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inout</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="n">left_value</span><span class="p">,</span>
+<span class="w">        </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="n">right_value</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="directive-support">
+<span id="fls_6momhvgx4w21"></span><h3><span class="section-number">22.4.2. </span>Directive Support<a class="headerlink" href="#directive-support" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_4tfod2vgz2m6">22.4.2:1</span>
+An <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directive</a> is a request to the assembler to perform a
+particular action or change a setting.</p>
+<p><span class="spec-paragraph-id" id="fls_3b0ab1nlo641">22.4.2:2</span>
+If an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> contains stateful <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a>
+that modify how subsequent assembly code is processed, then the
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> shall undo the effects of the stateful
+<a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> before the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> is completed.</p>
+<p><span class="spec-paragraph-id" id="fls_caqznttql5p8">22.4.2:3</span>
+The common <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> are as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_bcheqswo7a1">22.4.2:4</span>
+<code class="docutils literal notranslate"><span class="pre">.2byte</span></code>, <code class="docutils literal notranslate"><span class="pre">.4byte</span></code>, <code class="docutils literal notranslate"><span class="pre">.8byte</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qxcl999rdwam">22.4.2:5</span>
+<code class="docutils literal notranslate"><span class="pre">.align</span></code>, <code class="docutils literal notranslate"><span class="pre">.ascii</span></code>, <code class="docutils literal notranslate"><span class="pre">.asciz</span></code>, <code class="docutils literal notranslate"><span class="pre">.alt_entry</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2yi7kjnhkfme">22.4.2:6</span>
+<code class="docutils literal notranslate"><span class="pre">.balign</span></code>, <code class="docutils literal notranslate"><span class="pre">.balignl</span></code>, <code class="docutils literal notranslate"><span class="pre">.balignw</span></code>, <code class="docutils literal notranslate"><span class="pre">.balign</span></code>, <code class="docutils literal notranslate"><span class="pre">.balignl</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.balignw</span></code>, <code class="docutils literal notranslate"><span class="pre">.bss</span></code>, <code class="docutils literal notranslate"><span class="pre">.byte</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_q0jp60aj81nv">22.4.2:7</span>
+<code class="docutils literal notranslate"><span class="pre">.comm</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_akny3esj88yy">22.4.2:8</span>
+<code class="docutils literal notranslate"><span class="pre">.data</span></code>, <code class="docutils literal notranslate"><span class="pre">.def</span></code>, <code class="docutils literal notranslate"><span class="pre">.double</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_9jajt7jn9cxk">22.4.2:9</span>
+<code class="docutils literal notranslate"><span class="pre">.endef</span></code>, <code class="docutils literal notranslate"><span class="pre">.equ</span></code>, <code class="docutils literal notranslate"><span class="pre">.equiv</span></code>, <code class="docutils literal notranslate"><span class="pre">.eqv</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_i7dr87fyrei8">22.4.2:10</span>
+<code class="docutils literal notranslate"><span class="pre">.fill</span></code>, <code class="docutils literal notranslate"><span class="pre">.float</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rjzgpxt8z8x">22.4.2:11</span>
+<code class="docutils literal notranslate"><span class="pre">.globl</span></code>, <code class="docutils literal notranslate"><span class="pre">.global</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_iqrjkvgae5k">22.4.2:12</span>
+<code class="docutils literal notranslate"><span class="pre">.inst</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tzb5diegx3d5">22.4.2:13</span>
+<code class="docutils literal notranslate"><span class="pre">.lcomm</span></code>, <code class="docutils literal notranslate"><span class="pre">.long</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_82nia9oagat">22.4.2:14</span>
+<code class="docutils literal notranslate"><span class="pre">.octa</span></code>, <code class="docutils literal notranslate"><span class="pre">.option</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qg6wt4plwnw6">22.4.2:15</span>
+<code class="docutils literal notranslate"><span class="pre">.private_extern</span></code>, <code class="docutils literal notranslate"><span class="pre">.p2align</span></code>, <code class="docutils literal notranslate"><span class="pre">.pushsection</span></code>, <code class="docutils literal notranslate"><span class="pre">.popsection</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_8ci8ukk25nz3">22.4.2:16</span>
+<code class="docutils literal notranslate"><span class="pre">.quad</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ysbaz052rjg4">22.4.2:17</span>
+<code class="docutils literal notranslate"><span class="pre">.scl</span></code>, <code class="docutils literal notranslate"><span class="pre">.section</span></code>, <code class="docutils literal notranslate"><span class="pre">.set</span></code>, <code class="docutils literal notranslate"><span class="pre">.short</span></code>, <code class="docutils literal notranslate"><span class="pre">.size</span></code>, <code class="docutils literal notranslate"><span class="pre">.skip</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.sleb128</span></code>, <code class="docutils literal notranslate"><span class="pre">.space</span></code>, <code class="docutils literal notranslate"><span class="pre">.string</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lbazk0g9r350">22.4.2:18</span>
+<code class="docutils literal notranslate"><span class="pre">.text</span></code>, <code class="docutils literal notranslate"><span class="pre">.type</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2dui79hn30o7">22.4.2:19</span>
+<code class="docutils literal notranslate"><span class="pre">.uleb128</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qzwyjj6xxwc2">22.4.2:20</span>
+<code class="docutils literal notranslate"><span class="pre">.word</span></code></p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_9flwdfh5crsk">22.4.2:21</span>
+The following <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> are relevant on ELF targets that
+support DWARF unwind info.</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_u1c09ssrllil">22.4.2:22</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_adjust_cfa_offset</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tx58qbvh3jz3">22.4.2:23</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_def_cfa</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_def_cfa_offset</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_def_cfa_register</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_anwe21ypcjws">22.4.2:24</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_endproc</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_escape</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_43rchr5ffxsv">22.4.2:25</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_lsda</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rscmbo3kbrsm">22.4.2:26</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_offset</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_hnol9houwn1f">22.4.2:27</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_personality</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_es1lo6siw702">22.4.2:28</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_register</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_rel_offset</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_remember_state</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.cfi_restore</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_restore_state</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_return_column</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xlk7kd26j2rm">22.4.2:29</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_same_value</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_sections</span></code>, <code class="docutils literal notranslate"><span class="pre">.cfi_signal_frame</span></code>,
+<code class="docutils literal notranslate"><span class="pre">.cfi_startproc</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_x9kaplz9g1z9">22.4.2:30</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_undefined</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_928ermlgde11">22.4.2:31</span>
+<code class="docutils literal notranslate"><span class="pre">.cfi_window_save</span></code></p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_49bkqmxwl0d2">22.4.2:32</span>
+The following <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> are relevant on targets with
+structured exception handling.</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_xlvkpe975b58">22.4.2:33</span>
+<code class="docutils literal notranslate"><span class="pre">.seh_endproc</span></code>, <code class="docutils literal notranslate"><span class="pre">.seh_endprologue</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_k3sy1ph0kvy">22.4.2:34</span>
+<code class="docutils literal notranslate"><span class="pre">.seh_proc</span></code>, <code class="docutils literal notranslate"><span class="pre">.seh_pushreg</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ku6noqc0poxq">22.4.2:35</span>
+<code class="docutils literal notranslate"><span class="pre">.seh_savereg</span></code>, <code class="docutils literal notranslate"><span class="pre">.seh_setframe</span></code>, <code class="docutils literal notranslate"><span class="pre">.seh_stackalloc</span></code></p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_hny0patop479">22.4.2:36</span>
+The following <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> are relevant on ARM targets.</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_jm61m237cww">22.4.2:37</span>
+<code class="docutils literal notranslate"><span class="pre">.code</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wvje5eua16xm">22.4.2:38</span>
+<code class="docutils literal notranslate"><span class="pre">.even</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_frxn2f6v584d">22.4.2:39</span>
+<code class="docutils literal notranslate"><span class="pre">.fnstart</span></code>, <code class="docutils literal notranslate"><span class="pre">.fnend</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_x6azw3td92b3">22.4.2:40</span>
+<code class="docutils literal notranslate"><span class="pre">.movsp</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_twerrggztho5">22.4.2:41</span>
+<code class="docutils literal notranslate"><span class="pre">.save</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_s4cbxrc4ijyp">22.4.2:42</span>
+<code class="docutils literal notranslate"><span class="pre">.thumb</span></code>, <code class="docutils literal notranslate"><span class="pre">.thumb_func</span></code></p></li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_2hdsgqko25l5">22.4.2:43</span>
+The following <a class="reference internal" href="glossary.html#term_assembly_directive">assembly directives</a> are relevant on x86 targets.</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_5tzwwove8mgq">22.4.2:44</span>
+<code class="docutils literal notranslate"><span class="pre">.code16</span></code>, <code class="docutils literal notranslate"><span class="pre">.code32</span></code>, <code class="docutils literal notranslate"><span class="pre">.code64</span></code></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_e6nvq9xygvh">22.4.2:45</span>
+<code class="docutils literal notranslate"><span class="pre">.nops</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="abi-clobbers">
+<span id="fls_a3joqzqp1v9d"></span><h2><span class="section-number">22.5. </span>ABI Clobbers<a class="headerlink" href="#abi-clobbers" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_abiclobber"><span class="pre">AbiClobber</span></code> ::=
+    <strong class="spec-syntax-literal">clobber_abi</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_abikindlist"><code class="docutils literal notranslate"><span class="pre">AbiKindList</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_abikindlist"><span class="pre">AbiKindList</span></code> ::=
+    <a class="reference internal" href="ffi.html#syntax_abikind"><code class="docutils literal notranslate"><span class="pre">AbiKind</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="ffi.html#syntax_abikind"><code class="docutils literal notranslate"><span class="pre">AbiKind</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_xa11ggykg0sh">22.5:1</span>
+An <a class="reference internal" href="glossary.html#term_abi_clobber">ABI clobber</a> is an argument to <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a> which
+indicates that the <a class="reference internal" href="glossary.html#term_value">values</a> of selected <a class="reference internal" href="glossary.html#term_register">registers</a> might be
+overwritten during the <a class="reference internal" href="glossary.html#term_execution">execution</a> of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_e43sj9inlsym">22.5:2</span>
+Multiple <a class="reference internal" href="glossary.html#term_abi_clobber">ABI clobbers</a> may be specified for an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.
+Clobber constraints are applied for all unique <a class="reference internal" href="glossary.html#term_register">registers</a> in the union of
+all specified <a class="reference internal" href="glossary.html#term_abi">ABIs</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gq2khxl1hixg">22.5:3</span>
+The effects of an <a class="reference internal" href="glossary.html#term_abi_clobber">ABI clobber</a> depend on the <a class="reference internal" href="glossary.html#term_abi">ABI</a> in effect, as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_o2qn842y0vvc">22.5:4</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><a class="reference internal" href="ffi.html#syntax_abikind"><code class="docutils literal notranslate"><span class="pre">AbiKind</span></code></a></p></td>
+<td><p><strong>Clobbered registers</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_msysjt5m2941">22.5:5</span></p></td>
+<td><p>AArch64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;efiapi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ffr</span></code>, <code class="docutils literal notranslate"><span class="pre">p[0-15]</span></code>, <code class="docutils literal notranslate"><span class="pre">v[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">x[0-17]</span></code>, <code class="docutils literal notranslate"><span class="pre">x18</span></code> (when not
+reserved), <code class="docutils literal notranslate"><span class="pre">x30</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_vyhl5po6pl4x">22.5:6</span></p></td>
+<td><p>ARM</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;aapcs&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;efiapi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">d[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">d[16-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">r[0-3]</span></code>, <code class="docutils literal notranslate"><span class="pre">r12</span></code>, <code class="docutils literal notranslate"><span class="pre">r14</span></code>, <code class="docutils literal notranslate"><span class="pre">s[0-15]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_d1be48ik4a8">22.5:7</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;efiapi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">f[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">f[10-17]</span></code>, <code class="docutils literal notranslate"><span class="pre">f[28-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">v[0-31]</span></code>, <code class="docutils literal notranslate"><span class="pre">x1</span></code>, <code class="docutils literal notranslate"><span class="pre">x[5-7]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">x[10-17]</span></code>, <code class="docutils literal notranslate"><span class="pre">x[28-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_49pus6qqmf72">22.5:8</span></p></td>
+<td><p>x86-32</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cdecl&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;efiapi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;fastcall&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;stdcall&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">cx</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">k[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">mm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">st([0-7])</span></code>,
+<code class="docutils literal notranslate"><span class="pre">xmm[0-7]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_tc727ietnawz">22.5:9</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;efiapi&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code> (on Windows), <code class="docutils literal notranslate"><span class="pre">&quot;win64&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">cx</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">k[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">mm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">st([0-7])</span></code>,
+<code class="docutils literal notranslate"><span class="pre">r[8-11]</span></code>, <code class="docutils literal notranslate"><span class="pre">tmm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">xmm[0-31]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6jgsmfvww667">22.5:10</span></p></td>
+<td><p>x86-64</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;C&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;system&quot;</span></code> (on non-Windows), <code class="docutils literal notranslate"><span class="pre">&quot;sysv64&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ax</span></code>, <code class="docutils literal notranslate"><span class="pre">cx</span></code>, <code class="docutils literal notranslate"><span class="pre">di</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">k[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">mm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">r[8-11]</span></code>,
+<code class="docutils literal notranslate"><span class="pre">si</span></code>, <code class="docutils literal notranslate"><span class="pre">st([0-7])</span></code>, <code class="docutils literal notranslate"><span class="pre">tmm[0-7]</span></code>, <code class="docutils literal notranslate"><span class="pre">xmm[0-31]</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_gvzoq5mqwjx">22.5:11</span>
+On x86 architectures, the x87 floating-point <a class="reference internal" href="glossary.html#term_register">register</a> stack shall remain
+unchanged unless all <code class="docutils literal notranslate"><span class="pre">st(</span></code>[<code class="docutils literal notranslate"><span class="pre">0</span></code>-<code class="docutils literal notranslate"><span class="pre">7</span></code>]<code class="docutils literal notranslate"><span class="pre">)</span></code> <a class="reference internal" href="glossary.html#term_register">registers</a> have been
+clobbered.</p>
+<p><span class="spec-paragraph-id" id="fls_bnwzzpcmiero">22.5:12</span>
+On x86 architectures, if all x87 <a class="reference internal" href="glossary.html#term_register">registers</a> are clobbered, then the x87
+<a class="reference internal" href="glossary.html#term_register">register</a> stack is presumed empty upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.
+The x87 <a class="reference internal" href="glossary.html#term_register">register</a> stack shall be empty on exit from an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">clobber_abi</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;system&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="assembly-options">
+<span id="fls_ylli0ortyegk"></span><h2><span class="section-number">22.6. </span>Assembly Options<a class="headerlink" href="#assembly-options" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_assemblyoption"><span class="pre">AssemblyOption</span></code> ::=
+    <strong class="spec-syntax-literal">options</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_optionlist"><code class="docutils literal notranslate"><span class="pre">OptionList</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_optionlist"><span class="pre">OptionList</span></code> ::=
+    <a class="reference internal" href="#syntax_option"><code class="docutils literal notranslate"><span class="pre">Option</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_option"><code class="docutils literal notranslate"><span class="pre">Option</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?
+
+<code class="docutils literal notranslate" id="syntax_option"><span class="pre">Option</span></code> ::=
+    <strong class="spec-syntax-literal">att_syntax</strong>
+  | <strong class="spec-syntax-literal">nomem</strong>
+  | <strong class="spec-syntax-literal">noreturn</strong>
+  | <strong class="spec-syntax-literal">nostack</strong>
+  | <strong class="spec-syntax-literal">preserves_flags</strong>
+  | <strong class="spec-syntax-literal">pure</strong>
+  | <strong class="spec-syntax-literal">raw</strong>
+  | <strong class="spec-syntax-literal">readonly</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_i21l6t3vn95t">22.6:1</span>
+An <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> is used to specify a characteristic of or a restriction
+on the related <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_g09kmp2a04g9">22.6:2</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">att_syntax</span></code> is applicable only to x86 architectures
+and causes the assembler to use the <code class="docutils literal notranslate"><span class="pre">.att_syntax</span></code> prefix mode which prefixes
+<a class="reference internal" href="glossary.html#term_register">registers</a> with <code class="docutils literal notranslate"><span class="pre">%</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_quer8ltdwnf2">22.6:3</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">nomem</span></code> indicates that the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> does
+not read or write memory.</p>
+<p><span class="spec-paragraph-id" id="fls_5wpgqpcm1v40">22.6:4</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">noreturn</span></code> indicates that the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>
+does not return, preventing the <a class="reference internal" href="glossary.html#term_dropping">dropping</a> of <a class="reference internal" href="glossary.html#term_variable">variables</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ejuap3kkvs57">22.6:5</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">nostack</span></code> indicates that the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>
+does not push on the stack, or write to the stack red-zone (if supported).</p>
+<p><span class="spec-paragraph-id" id="fls_1nopbk5bkeqm">22.6:6</span>
+If <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> <code class="docutils literal notranslate"><span class="pre">nostack</span></code> is not in effect, then an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> is allowed to use stack space below the stack pointer.
+Upon entry of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>, the stack pointer is suitably
+aligned according to the target <a class="reference internal" href="glossary.html#term_abi">ABI</a> for <a class="reference internal" href="glossary.html#term_call_expression">call expressions</a>. The stack
+pointer shall be restored to its original <a class="reference internal" href="glossary.html#term_value">value</a> on exit from the
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_e5b1mp3byll2">22.6:7</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">preserves_flags</span></code> indicates that the
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> does not modify the flags <a class="reference internal" href="glossary.html#term_register">register</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2gf4wemrzaae">22.6:8</span>
+If <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> <code class="docutils literal notranslate"><span class="pre">preserves_flags</span></code> is in effect, then the <a class="reference internal" href="glossary.html#term_value">values</a>
+of the following flags <a class="reference internal" href="glossary.html#term_register">registers</a> shall be restored on exit from an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5ebifab8dhy">22.6:9</span></p></td>
+<td><p><strong>Architecture</strong></p></td>
+<td><p><strong>Flag registers</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ae2x4ho3i0zr">22.6:10</span></p></td>
+<td><p>AArch64</p></td>
+<td><p>Floating-point status <code class="docutils literal notranslate"><span class="pre">FPRS</span></code> <a class="reference internal" href="glossary.html#term_register">register</a></p>
+<p>Condition flags <code class="docutils literal notranslate"><span class="pre">NZCV</span></code> <a class="reference internal" href="glossary.html#term_register">register</a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_188ib65a1z36">22.6:11</span></p></td>
+<td><p>ARM</p></td>
+<td><p>Condition flags <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">CPSR</span></code></p>
+<p>Condition flags <code class="docutils literal notranslate"><span class="pre">C</span></code>, <code class="docutils literal notranslate"><span class="pre">N</span></code>, <code class="docutils literal notranslate"><span class="pre">V</span></code>, <code class="docutils literal notranslate"><span class="pre">Z</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">FPSCR</span></code></p>
+<p>Floating-point exception flags <code class="docutils literal notranslate"><span class="pre">DZC</span></code>, <code class="docutils literal notranslate"><span class="pre">IDC</span></code>, <code class="docutils literal notranslate"><span class="pre">IOC</span></code>, <code class="docutils literal notranslate"><span class="pre">IXC</span></code>,
+<code class="docutils literal notranslate"><span class="pre">OFC</span></code>, <code class="docutils literal notranslate"><span class="pre">UFC</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">FPSCR</span></code></p>
+<p>Greater than or equal flag <code class="docutils literal notranslate"><span class="pre">GE</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">CPRS</span></code></p>
+<p>Saturation flag <code class="docutils literal notranslate"><span class="pre">Q</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">CPRS</span></code></p>
+<p>Saturation flag <code class="docutils literal notranslate"><span class="pre">QC</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">FPSCR</span></code></p>
+</td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ia3cg424d601">22.6:12</span></p></td>
+<td><p>RISC-V</p></td>
+<td><p>Floating-point exception flags <code class="docutils literal notranslate"><span class="pre">fflags</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">fcsr</span></code></p>
+<p>Vector extension state <code class="docutils literal notranslate"><span class="pre">vcsr</span></code>, <code class="docutils literal notranslate"><span class="pre">vl</span></code>, <code class="docutils literal notranslate"><span class="pre">vtype</span></code></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_j09bo53i5n69">22.6:13</span></p></td>
+<td><p>x86</p></td>
+<td><p>Status flags <code class="docutils literal notranslate"><span class="pre">AF</span></code>, <code class="docutils literal notranslate"><span class="pre">CF</span></code>, <code class="docutils literal notranslate"><span class="pre">OF</span></code>, <code class="docutils literal notranslate"><span class="pre">PF</span></code>, <code class="docutils literal notranslate"><span class="pre">SF</span></code>, <code class="docutils literal notranslate"><span class="pre">ZF</span></code> in
+<a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">EFLAGS</span></code></p>
+<p>Floating-point exception flags <code class="docutils literal notranslate"><span class="pre">DE</span></code>, <code class="docutils literal notranslate"><span class="pre">IE</span></code>, <code class="docutils literal notranslate"><span class="pre">OE</span></code>, <code class="docutils literal notranslate"><span class="pre">PE</span></code>, <code class="docutils literal notranslate"><span class="pre">UE</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ZE</span></code> in <a class="reference internal" href="glossary.html#term_register">register</a> <code class="docutils literal notranslate"><span class="pre">MXCSR</span></code></p>
+<p>Floating-point status word</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_eka6chp3hapa">22.6:14</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">pure</span></code> indicates that the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> has no
+side effects, and its outputs depend only on direct inputs.</p>
+<p><span class="spec-paragraph-id" id="fls_nszx1gllufi2">22.6:15</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">raw</span></code> causes <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instructions</a> to be parsed
+raw, without any special handling of <a class="reference internal" href="glossary.html#term_register_parameter">register parameters</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_d169ppna563c">22.6:16</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">readonly</span></code> indicates that the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a>
+does not write memory.</p>
+<p><span class="spec-paragraph-id" id="fls_h8549stij7pj">22.6:17</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly options</a> <code class="docutils literal notranslate"><span class="pre">att_syntax</span></code> and <code class="docutils literal notranslate"><span class="pre">raw</span></code> shall appear only in
+<a class="reference internal" href="#syntax_globalasmarguments"><code class="docutils literal notranslate"><span class="pre">GlobalAsmArguments</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_2drikpht6md9">22.6:18</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly options</a> <code class="docutils literal notranslate"><span class="pre">nomem</span></code> and <code class="docutils literal notranslate"><span class="pre">readonly</span></code> shall not be used together.</p>
+<p><span class="spec-paragraph-id" id="fls_x66j1cn6zi6p">22.6:19</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">noreturn</span></code> shall not be specified on an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> that has <a class="reference internal" href="glossary.html#term_output_register">output registers</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ikwbu1ho33is">22.6:20</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">pure</span></code> shall appear with either <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a>
+<code class="docutils literal notranslate"><span class="pre">nomem</span></code> or <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> <code class="docutils literal notranslate"><span class="pre">readonly</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_nf0h9crdzhfg">22.6:21</span>
+<a class="reference internal" href="glossary.html#term_assembly_option">Assembly option</a> <code class="docutils literal notranslate"><span class="pre">pure</span></code> shall not be specified on an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> that either lacks <a class="reference internal" href="glossary.html#term_output_register">output registers</a> or all
+<a class="reference internal" href="glossary.html#term_register_expression">register expressions</a> of <a class="reference internal" href="glossary.html#term_output_register">output registers</a> are
+<a class="reference internal" href="glossary.html#term_underscore_expression">underscore expressions</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_wh0wasawjj5s">22.6:22</span>
+It is undefined behavior if an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> subject to
+<a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> <code class="docutils literal notranslate"><span class="pre">pure</span></code> has side effects other than its direct outputs.</p>
+<p><span class="spec-paragraph-id" id="fls_s0ivlbjefh1u">22.6:23</span>
+It is undefined behavior if control reaches the end of an
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> subject to <a class="reference internal" href="glossary.html#term_assembly_option">assembly option</a> <code class="docutils literal notranslate"><span class="pre">noreturn</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">(</span><span class="n">nomem</span><span class="p">,</span><span class="w"> </span><span class="n">pure</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="macros-asm-and-global-asm">
+<span id="fls_qezwyridmjob"></span><h2><span class="section-number">22.7. </span>Macros asm and global_asm<a class="headerlink" href="#macros-asm-and-global-asm" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_asmarguments"><span class="pre">AsmArguments</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_assemblycodeblock"><code class="docutils literal notranslate"><span class="pre">AssemblyCodeBlock</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_registerargument"><code class="docutils literal notranslate"><span class="pre">RegisterArgument</span></code></a>)* (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_abiclobber"><code class="docutils literal notranslate"><span class="pre">AbiClobber</span></code></a>)* (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_assemblyoption"><code class="docutils literal notranslate"><span class="pre">AssemblyOption</span></code></a>)* <strong class="spec-syntax-literal">,</strong>? <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_globalasmarguments"><span class="pre">GlobalAsmArguments</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_assemblycodeblock"><code class="docutils literal notranslate"><span class="pre">AssemblyCodeBlock</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_registerargument"><code class="docutils literal notranslate"><span class="pre">RegisterArgument</span></code></a>)* (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_assemblyoption"><code class="docutils literal notranslate"><span class="pre">AssemblyOption</span></code></a>)* <strong class="spec-syntax-literal">,</strong>? <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ecteot716j8j">22.7:1</span>
+<a class="reference internal" href="glossary.html#term_assembly_code_block">Assembly code blocks</a> are embedded within Rust source code using
+<a class="reference internal" href="glossary.html#term_macro">macros</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a> and <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aglobal_asm"><code class="docutils literal notranslate"><span class="pre">core::arch::global_asm</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1ikzov7cxic1">22.7:2</span>
+When invoking <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a>, the <a class="reference internal" href="macros.html#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of
+the related <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> shall follow the syntax of <a class="reference internal" href="#syntax_asmarguments"><code class="docutils literal notranslate"><span class="pre">AsmArguments</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4lb6yh12w1cv">22.7:3</span>
+Invoking <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a> causes the related
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> to be integrated into the generated assembly of the
+<a class="reference internal" href="glossary.html#term_function">function</a> where the <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> took place. A tool is free to
+encapsulate the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> in a separate <a class="reference internal" href="glossary.html#term_function">function</a> and
+generate a <a class="reference internal" href="glossary.html#term_call_expression">call expression</a> to it.</p>
+<p><span class="spec-paragraph-id" id="fls_tgzga1lanfuo">22.7:4</span>
+When invoking <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aglobal_asm"><code class="docutils literal notranslate"><span class="pre">core::arch::global_asm</span></code></a>, the
+<a class="reference internal" href="macros.html#syntax_delimitedtokentree"><code class="docutils literal notranslate"><span class="pre">DelimitedTokenTree</span></code></a> of the related <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> shall follow the
+syntax of <a class="reference internal" href="#syntax_globalasmarguments"><code class="docutils literal notranslate"><span class="pre">GlobalAsmArguments</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_nfkbvs86d6kz">22.7:5</span>
+Invoking <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aglobal_asm"><code class="docutils literal notranslate"><span class="pre">core::arch::global_asm</span></code></a> causes the related
+<a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> to be emitted outside the <a class="reference internal" href="glossary.html#term_function">function</a> where the
+<a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> took place.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_98vyqh9bzigx">22.7:6</span>
+The <a class="reference internal" href="glossary.html#term_evaluation">evaluation</a> of a <a class="reference internal" href="glossary.html#term_macro_invocation">macro invocation</a> to <a class="reference internal" href="glossary.html#term_macro">macro</a>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aasm"><code class="docutils literal notranslate"><span class="pre">core::arch::asm</span></code></a> or <a class="reference internal" href="glossary.html#term_macro">macro</a> <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aarch%3A%3Aglobal_asm"><code class="docutils literal notranslate"><span class="pre">core::arch::global_asm</span></code></a> evaluates
+<a class="reference internal" href="glossary.html#term_register_argument">register arguments</a> in declarative order.</p>
+<p><span class="spec-paragraph-id" id="fls_ppnj8bcncdp9">22.7:7</span>
+The <a class="reference internal" href="glossary.html#term_execution">execution</a> of an <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> produced by
+<a class="reference internal" href="glossary.html#term_inline_assembly">inline assembly</a> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_wmay1vd8u0da">22.7:8</span>
+All <a class="reference internal" href="glossary.html#term_input_register">input registers</a> are initialized to the <a class="reference internal" href="glossary.html#term_value">values</a> provided by
+the respective <a class="reference internal" href="glossary.html#term_register_argument">register arguments</a>, in an undefined order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_e613hpr50t9">22.7:9</span>
+The <a class="reference internal" href="glossary.html#term_assembly_instruction">assembly instructions</a> of the <a class="reference internal" href="glossary.html#term_assembly_code_block">assembly code block</a> are executed
+in declarative order.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_bic6iyd1nvfm">22.7:10</span>
+The <a class="reference internal" href="glossary.html#term_value">values</a> of all <a class="reference internal" href="glossary.html#term_output_register">output registers</a> are assigned to the
+<a class="reference internal" href="glossary.html#term_register_expression">register expressions</a> provided by the respective
+<a class="reference internal" href="glossary.html#term_register_argument">register arguments</a>, in an undefined order.</p></li>
+</ol>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">fn</span><span class="w"> </span><span class="nf">asm_example</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">basepri</span><span class="p">;</span>
+<span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="fm">asm!</span><span class="p">(</span><span class="s">&quot;</span>
+<span class="s">            mrs {}, BASEPRI</span>
+<span class="s">        &quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">out</span><span class="p">(</span><span class="n">reg</span><span class="p">)</span><span class="w"> </span><span class="n">basepri</span><span class="p">,</span>
+<span class="w">        </span><span class="n">options</span><span class="p">(</span><span class="n">nomem</span><span class="p">,</span><span class="w"> </span><span class="n">nostack</span><span class="p">,</span><span class="w"> </span><span class="n">preserves_flags</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">basepri</span>
+<span class="p">}</span>
+
+<span class="fm">global_asm!</span><span class="p">(</span><span class="s">&quot;</span>
+<span class="s">    do_nothing:</span>
+<span class="s">        push {r7, lr}</span>
+<span class="s">        mov  r7, sp</span>
+<span class="s">        pop  {r7, pc}</span>
+<span class="s">    &quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">options</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">fn</span><span class="w"> </span><span class="nf">global_asm_example</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">fn</span><span class="w"> </span><span class="nf">do_nothing</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">do_nothing</span><span class="p">()</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

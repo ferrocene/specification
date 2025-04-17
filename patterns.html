@@ -1,0 +1,1369 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>5. Patterns &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Expressions" href="expressions.html" />
+    <link rel="prev" title="4. Types and Traits" href="types-and-traits.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="attributes.html">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="patterns">
+<span id="fls_xgqh0ju6bmbn"></span><h1><span class="section-number">5. </span>Patterns<a class="headerlink" href="#patterns" title="Link to this heading">¶</a></h1>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_pattern"><span class="pre">Pattern</span></code> ::=
+    <strong class="spec-syntax-literal">|</strong>? <a class="reference internal" href="#syntax_patternwithoutalternation"><code class="docutils literal notranslate"><span class="pre">PatternWithoutAlternation</span></code></a> (<strong class="spec-syntax-literal">|</strong> <a class="reference internal" href="#syntax_patternwithoutalternation"><code class="docutils literal notranslate"><span class="pre">PatternWithoutAlternation</span></code></a>)*
+
+<code class="docutils literal notranslate" id="syntax_patternlist"><span class="pre">PatternList</span></code> ::=
+    <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?
+
+<code class="docutils literal notranslate" id="syntax_patternwithoutalternation"><span class="pre">PatternWithoutAlternation</span></code> ::=
+    <a class="reference internal" href="#syntax_patternwithoutrange"><code class="docutils literal notranslate"><span class="pre">PatternWithoutRange</span></code></a>
+  | <a class="reference internal" href="#syntax_rangepattern"><code class="docutils literal notranslate"><span class="pre">RangePattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_patternwithoutrange"><span class="pre">PatternWithoutRange</span></code> ::=
+    <a class="reference internal" href="#syntax_identifierpattern"><code class="docutils literal notranslate"><span class="pre">IdentifierPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_literalpattern"><code class="docutils literal notranslate"><span class="pre">LiteralPattern</span></code></a>
+  | <a class="reference internal" href="macros.html#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a>
+  | <a class="reference internal" href="#syntax_parenthesizedpattern"><code class="docutils literal notranslate"><span class="pre">ParenthesizedPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_pathpattern"><code class="docutils literal notranslate"><span class="pre">PathPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_referencepattern"><code class="docutils literal notranslate"><span class="pre">ReferencePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_slicepattern"><code class="docutils literal notranslate"><span class="pre">SlicePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_structpattern"><code class="docutils literal notranslate"><span class="pre">StructPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_tuplepattern"><code class="docutils literal notranslate"><span class="pre">TuplePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_underscorepattern"><code class="docutils literal notranslate"><span class="pre">UnderscorePattern</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_imegtsi224ts">5:1</span>
+A <a class="reference internal" href="glossary.html#term_pattern">pattern</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that matches a <a class="reference internal" href="glossary.html#term_value">value</a> which satisfies all
+the criteria of the <a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mp6i4blzexnu">5:2</span>
+A <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that cannot be alternated.</p>
+<p><span class="spec-paragraph-id" id="fls_JJ1fJa1SsaWh">5:3</span>
+A <a class="reference internal" href="glossary.html#term_pattern_without_range">pattern-without-range</a> is a <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> that
+excludes <a class="reference internal" href="glossary.html#term_range_pattern">range patterns</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6xx34zr069bj">5:4</span>
+A <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> nested within another pattern.</p>
+<p><span class="spec-paragraph-id" id="fls_8xzjb0yzftkd">5:5</span>
+A <a class="reference internal" href="glossary.html#term_pattern">pattern</a> has a <a class="reference internal" href="glossary.html#term_type">type</a>, with the exception of the <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> if
+it is not the inner <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> or the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of
+a possibly nested <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> of a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a><code class="docutils literal notranslate"><span class="pre">.</span></code></p>
+<p><span class="spec-paragraph-id" id="fls_cma5t8waon0x">5:6</span>
+The <a class="reference internal" href="types-and-traits.html#term_expected_type">expected type</a> of a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> is being matched against.</p>
+<p><span class="spec-paragraph-id" id="fls_TUanRT7WU14E">5:7</span>
+It is a static error when <a class="reference internal" href="glossary.html#term_lexical_element">lexical elements</a> match multiple alternations
+of a <a class="reference internal" href="glossary.html#term_pattern_without_range">pattern-without-range</a>, except for when the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> is <code class="docutils literal notranslate"><span class="pre">&amp;mut</span></code>
+<a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>. Such a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> is interpreted as a <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a>
+with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code> containing an <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8luyomzppck">5:8</span>
+Any two <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternations</a> that are or-ed using character 0x7C
+(vertical line) are subject to the following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_rpvdfmy3n05a">5:9</span>
+The <a class="reference internal" href="glossary.html#term_type">types</a> of the two <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternations</a> shall be
+<a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_kv533rntni1x">5:10</span>
+The <a class="reference internal" href="glossary.html#term_binding">bindings</a> of the two <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternations</a> shall
+be the same, shall have <a class="reference internal" href="glossary.html#term_unifiable_type">unifiable types</a>, and shall have the same
+<a class="reference internal" href="glossary.html#term_binding_mode">binding modes</a>.</p></li>
+</ul>
+<section id="refutability">
+<span id="fls_uh76pw6ykd57"></span><h2><span class="section-number">5.1. </span>Refutability<a class="headerlink" href="#refutability" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_9ntc4qmjmo90">5.1:1</span>
+<a class="reference internal" href="glossary.html#term_refutability">Refutability</a> is a property of <a class="reference internal" href="glossary.html#term_pattern">patterns</a> that expresses the ability to
+match all possible values of a <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9fjspnefoyvz">5.1:2</span>
+An <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that always matches any <a class="reference internal" href="glossary.html#term_value">value</a> of its <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_uq7ftuuq1sig">5.1:3</span>
+A <a class="reference internal" href="glossary.html#term_refutable_pattern">refutable pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that has a possibility of not
+matching a <a class="reference internal" href="glossary.html#term_value">value</a> of its <a class="reference internal" href="glossary.html#term_type">type</a></p>
+<p><span class="spec-paragraph-id" id="fls_mnbyt7jfYAZ9">5.1:4</span>
+A <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that is not an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> is a
+<a class="reference internal" href="glossary.html#term_refutable_pattern">refutable pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_l76ycteulo8e">5.1:5</span>
+An <a class="reference internal" href="glossary.html#term_irrefutable_constant">irrefutable constant</a> is a <a class="reference internal" href="glossary.html#term_constant">constant</a> of a <a class="reference internal" href="glossary.html#term_type">type</a> that has at most
+one <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_lh0d85tl4qvy">5.1:6</span>
+A <a class="reference internal" href="glossary.html#term_refutable_constant">refutable constant</a> is a <a class="reference internal" href="glossary.html#term_constant">constant</a> of a <a class="reference internal" href="glossary.html#term_refutable_type">refutable type</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_sgu9bnp7xajv">5.1:7</span>
+<code class="docutils literal notranslate"><span class="pre">x</span></code> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> because it matches all possible values of type <code class="docutils literal notranslate"><span class="pre">i32</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_cl1g4fxfa020">5.1:8</span>
+<code class="docutils literal notranslate"><span class="pre">core::option::Option::Some(y)</span></code> is a <a class="reference internal" href="glossary.html#term_refutable_pattern">refutable pattern</a> because it does not match <code class="docutils literal notranslate"><span class="pre">value</span></code> when
+<code class="docutils literal notranslate"><span class="pre">value</span></code> denotes <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aoption%3A%3AOption%3A%3ANone"><code class="docutils literal notranslate"><span class="pre">core::option::Option::None</span></code></a>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="kd">let</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">option</span><span class="p">::</span><span class="nb">Option</span><span class="p">::</span><span class="nb">Some</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<section id="identifier-patterns">
+<span id="fls_7bxv8lybxm18"></span><h3><span class="section-number">5.1.1. </span>Identifier Patterns<a class="headerlink" href="#identifier-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_identifierpattern"><span class="pre">IdentifierPattern</span></code> ::=
+    <strong class="spec-syntax-literal">ref</strong>? <strong class="spec-syntax-literal">mut</strong>? <a class="reference internal" href="#syntax_binding"><code class="docutils literal notranslate"><span class="pre">Binding</span></code></a> <a class="reference internal" href="#syntax_boundpattern"><code class="docutils literal notranslate"><span class="pre">BoundPattern</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_boundpattern"><span class="pre">BoundPattern</span></code> ::=
+    <strong class="spec-syntax-literal">&#64;</strong> <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_uljdw9rf7ies">5.1.1:1</span>
+An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that binds the <a class="reference internal" href="glossary.html#term_value">value</a> it
+matches to a <a class="reference internal" href="glossary.html#term_binding">binding</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vy9uw586wy0d">5.1.1:2</span>
+A <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that imposes a constraint on a related
+<a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hqwt3fvr063y">5.1.1:3</span>
+An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> yields a <a class="reference internal" href="glossary.html#term_binding">binding</a>. An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a>
+with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code> yields a <a class="reference internal" href="glossary.html#term_mutable_binding">mutable binding</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_joIQdDn44oIT">5.1.1:4</span>
+An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code> is a
+<a class="reference internal" href="glossary.html#term_reference_identifier_pattern">reference identifier pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_24c95c56tugl">5.1.1:5</span>
+The <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> enters its <a class="reference internal" href="glossary.html#term_binding">binding</a> into <a class="reference internal" href="glossary.html#term_binding_scope">binding scope</a> in
+the <a class="reference internal" href="entities-and-resolution.html#term_value_namespace">value namespace</a> if it does not resolve to a <a class="reference internal" href="glossary.html#term_constant">constant</a>, a
+<a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a> or a <a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_twcavjk7iquy">5.1.1:6</span>
+It is a static error if the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> consists of anything other
+than a <a class="reference internal" href="glossary.html#term_binding">binding</a> when the <a class="reference internal" href="glossary.html#term_binding">binding</a> resolves to a <a class="reference internal" href="glossary.html#term_constant">constant</a>, a
+<a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a>, or a <a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k1yBTstX7jEE">5.1.1:7</span>
+It is a static error if the <a class="reference internal" href="glossary.html#term_binding">binding</a> of an <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> resolves
+to a <a class="reference internal" href="glossary.html#term_tuple_struct">tuple struct</a> or a <a class="reference internal" href="glossary.html#term_tuple_enum_variant">tuple enum variant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hw26hy33guk5">5.1.1:8</span>
+An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_svfxwz4yy5i">5.1.1:9</span>
+It has a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> and the <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> is an
+<a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_x6f6q22b5jpc">5.1.1:10</span>
+It does not have a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> and its <a class="reference internal" href="glossary.html#term_binding">binding</a> resolves to an
+<a class="reference internal" href="glossary.html#term_irrefutable_constant">irrefutable constant</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_r2mb8v2lh3x0">5.1.1:11</span>
+It does not have a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> and its <a class="reference internal" href="glossary.html#term_binding">binding</a> does not resolve to
+a <a class="reference internal" href="glossary.html#term_constant">constant</a>, a <a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a>, or a <a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_7oioaitb075g">5.1.1:12</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> does not have a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> of its <a class="reference internal" href="glossary.html#term_binding">binding</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_40qin0ss5sqd">5.1.1:13</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has only <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;</span> <span class="pre">inferred_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code> is the <a class="reference internal" href="glossary.html#term_type">type</a>
+determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pivz0v7ey6sw">5.1.1:14</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has <a class="reference internal" href="glossary.html#term_keyword">keywords</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">inferred_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code> is the <a class="reference internal" href="glossary.html#term_type">type</a>
+determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2ahkrddxwj1n">5.1.1:15</span>
+Otherwise the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code> is the
+<a class="reference internal" href="glossary.html#term_type">type</a> determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_eucnafj3uedy">5.1.1:16</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a>, then the <a class="reference internal" href="glossary.html#term_type">type</a> of
+its <a class="reference internal" href="glossary.html#term_binding">binding</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_f8zo4scodhcr">5.1.1:17</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has only <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> <code class="docutils literal notranslate"><span class="pre">&amp;</span> <span class="pre">bound_pattern_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">bound_pattern_type</span></code> is the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_d3fs2h7oqjl0">5.1.1:18</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has <a class="reference internal" href="glossary.html#term_keyword">keywords</a> <code class="docutils literal notranslate"><span class="pre">ref</span> <span class="pre">mut</span></code>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">bound_pattern_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">bound_pattern_type</span></code> is the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_exo8asevh5x1">5.1.1:19</span>
+Otherwise the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code>, where <code class="docutils literal notranslate"><span class="pre">inferred_type</span></code> is the
+<a class="reference internal" href="glossary.html#term_type">type</a> determined by <a class="reference internal" href="glossary.html#term_type_inference">type inference</a>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_sfyfdxhvhk44">5.1.1:20</span>
+An identifier pattern in the context of a let expression.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_as0pqqmo1des">5.1.1:21</span>
+An identifier pattern with a bound pattern in the context of a match expression.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">small</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">..=</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="literal-patterns">
+<span id="fls_2krxnq8q9ef1"></span><h3><span class="section-number">5.1.2. </span>Literal Patterns<a class="headerlink" href="#literal-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_literalpattern"><span class="pre">LiteralPattern</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_booleanliteral"><code class="docutils literal notranslate"><span class="pre">BooleanLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_byteliteral"><code class="docutils literal notranslate"><span class="pre">ByteLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_bytestringliteral"><code class="docutils literal notranslate"><span class="pre">ByteStringLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_characterliteral"><code class="docutils literal notranslate"><span class="pre">CharacterLiteral</span></code></a>
+  | <strong class="spec-syntax-literal">-</strong>? <a class="reference internal" href="lexical-elements.html#syntax_numericliteral"><code class="docutils literal notranslate"><span class="pre">NumericLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_rawbytestringliteral"><code class="docutils literal notranslate"><span class="pre">RawByteStringLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_rawstringliteral"><code class="docutils literal notranslate"><span class="pre">RawStringLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_simplestringliteral"><code class="docutils literal notranslate"><span class="pre">SimpleStringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_pah15qa54irs">5.1.2:1</span>
+A <a class="reference internal" href="glossary.html#term_literal_pattern">literal pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a <a class="reference internal" href="glossary.html#term_literal">literal</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_COQKJC0dvtNO">5.1.2:2</span>
+A <a class="reference internal" href="glossary.html#term_numeric_literal_pattern">numeric literal pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a <a class="reference internal" href="glossary.html#term_numeric_literal">numeric
+literal</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_JP8YSbxSN0Ym">5.1.2:3</span>
+A <a class="reference internal" href="glossary.html#term_numeric_literal_pattern">numeric literal pattern</a>‘s <a class="reference internal" href="glossary.html#term_numeric_literal">numeric literal</a> value shall not be a IEEE
+floating-point <code class="docutils literal notranslate"><span class="pre">NaN</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_co60bzvwashg">5.1.2:4</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_literal_pattern">literal pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the specified
+<a class="reference internal" href="glossary.html#term_literal">literal</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_fqclaznjgtb1">5.1.2:5</span>
+Two literal patterns in the context of a match expression.
+See <a class="reference internal" href="#fls_sfyfdxhvhk44"><em>5.1.1:20</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">-</span><span class="mi">2</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="mi">36</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="parenthesized-patterns">
+<span id="fls_1xit18et4ohh"></span><h3><span class="section-number">5.1.3. </span>Parenthesized Patterns<a class="headerlink" href="#parenthesized-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_parenthesizedpattern"><span class="pre">ParenthesizedPattern</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_kvqzmt7my5dh">5.1.3:1</span>
+A <a class="reference internal" href="glossary.html#term_parenthesized_pattern">parenthesized pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that controls the precedence of
+its <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mrjhpiq5refe">5.1.3:2</span>
+A <a class="reference internal" href="glossary.html#term_parenthesized_pattern">parenthesized pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when its nested
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pe5kh8y8u664">5.1.3:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_parenthesized_pattern">parenthesized pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of its nested
+<a class="reference internal" href="glossary.html#term_pattern">pattern</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_2xq8852gihn9">5.1.3:4</span>
+See <a class="reference internal" href="#fls_sfyfdxhvhk44"><em>5.1.1:20</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">ref_x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_2dmeukyjqz9y">5.1.3:5</span>
+A parenthesized pattern inside a reference pattern in the context of a match
+expression.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">ref_x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">..=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="path-patterns">
+<span id="fls_uloyjbaso8pz"></span><h3><span class="section-number">5.1.4. </span>Path Patterns<a class="headerlink" href="#path-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_pathpattern"><span class="pre">PathPattern</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_pathexpression"><code class="docutils literal notranslate"><span class="pre">PathExpression</span></code></a>
+  | <a class="reference internal" href="entities-and-resolution.html#syntax_qualifiedpathexpression"><code class="docutils literal notranslate"><span class="pre">QualifiedPathExpression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_1crq0mexo5r1">5.1.4:1</span>
+A <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a <a class="reference internal" href="glossary.html#term_constant">constant</a>, a
+<a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>, or a <a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a> indicated by a <a class="reference internal" href="glossary.html#term_path">path</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_xz5otkhogn31">5.1.4:2</span>
+A <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> expressed as a <a class="reference internal" href="glossary.html#term_path_expression">path expression</a> shall refer to either
+an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a>, or a <a class="reference internal" href="glossary.html#term_constant">constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_t8sjzsif2ilf">5.1.4:3</span>
+When a <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> refers to an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> or a
+<a class="reference internal" href="glossary.html#term_constant">constant</a>, the <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> or <a class="reference internal" href="glossary.html#term_constant">constant</a> shall not be of a
+<a class="reference internal" href="glossary.html#term_union_type">union type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_zCswsyuitexI">5.1.4:4</span>
+When a <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> refers to an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> or a
+<a class="reference internal" href="glossary.html#term_constant">constant</a>, the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> or <a class="reference internal" href="glossary.html#term_constant">constant</a>
+shall be <a class="reference internal" href="glossary.html#term_structurally_equal">structurally equal</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_hF19K8sWU8FF">5.1.4:5</span>
+When the type of the <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> is of an <a class="reference internal" href="glossary.html#term_enum_type">enum type</a> or
+<a class="reference internal" href="glossary.html#term_struct_type">struct type</a>, then the <a class="reference internal" href="glossary.html#term_enum_type">enum type</a> or <a class="reference internal" href="glossary.html#term_struct_type">struct type</a> shall be subject
+to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="attributes.html#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a> with arguments <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Acmp%3A%3AEq"><code class="docutils literal notranslate"><span class="pre">core::cmp::Eq</span></code></a> and
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Acmp%3A%3APartialEq"><code class="docutils literal notranslate"><span class="pre">core::cmp::PartialEq</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bv9psmitxfuw">5.1.4:6</span>
+A <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> expressed as a <a class="reference internal" href="glossary.html#term_qualified_path_expression">qualified path expression</a> shall refer
+to an <a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_sl47k9oj5p7t">5.1.4:7</span>
+A <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when it refers to:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_cfoy86mkmqa4">5.1.4:8</span>
+An <a class="reference internal" href="glossary.html#term_irrefutable_constant">irrefutable constant</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rnppz6y5z8pi">5.1.4:9</span>
+An <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> of an <a class="reference internal" href="glossary.html#term_enum_type">enum type</a> with zero or more <a class="reference internal" href="glossary.html#term_visible_empty_enum_variant">visible empty enum variants</a> and one non-<a class="reference internal" href="glossary.html#term_visible_empty_enum_variant">visible empty enum variant</a> where the <a class="reference internal" href="glossary.html#term_type">types</a> of all <a class="reference internal" href="glossary.html#term_field">fields</a> are not subject to <a class="reference internal" href="glossary.html#term_visible_emptiness">visible emptiness</a></p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ag6m4mvpturw">5.1.4:10</span>
+A <a class="reference internal" href="glossary.html#term_struct">struct</a> where the <a class="reference internal" href="glossary.html#term_type">types</a> of all <a class="reference internal" href="glossary.html#term_field">fields</a> are
+<a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable patterns</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_pedy2pqrvnx7">5.1.4:11</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_constant">constant</a>,
+<a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>, or <a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a> the <a class="reference internal" href="glossary.html#term_path">path</a> resolved to.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">mod</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="k">pub</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ZERO</span><span class="p">:</span><span class="w"> </span><span class="kt">i32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">enum</span><span class="w"> </span><span class="nc">Enum</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">Variant</span><span class="w"> </span><span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_u59rilepu8z9">5.1.4:12</span>
+See <a class="reference internal" href="#fls_sfyfdxhvhk44"><em>5.1.1:20</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">module</span><span class="p">::</span><span class="n">ZERO</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">Enum</span><span class="p">::</span><span class="n">Variant</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w">  </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="range-patterns">
+<span id="fls_6tl1fx99yn6c"></span><h3><span class="section-number">5.1.5. </span>Range Patterns<a class="headerlink" href="#range-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_rangepattern"><span class="pre">RangePattern</span></code> ::=
+    <a class="reference internal" href="#syntax_halfopenrangepattern"><code class="docutils literal notranslate"><span class="pre">HalfOpenRangePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_inclusiverangepattern"><code class="docutils literal notranslate"><span class="pre">InclusiveRangePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_exclusiverangepattern"><code class="docutils literal notranslate"><span class="pre">ExclusiveRangePattern</span></code></a>
+  | <a class="reference internal" href="#syntax_obsoleterangepattern"><code class="docutils literal notranslate"><span class="pre">ObsoleteRangePattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_halfopenrangepattern"><span class="pre">HalfOpenRangePattern</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternlowbound"><code class="docutils literal notranslate"><span class="pre">RangePatternLowBound</span></code></a> <strong class="spec-syntax-literal">..</strong>
+
+<code class="docutils literal notranslate" id="syntax_inclusiverangepattern"><span class="pre">InclusiveRangePattern</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternlowbound"><code class="docutils literal notranslate"><span class="pre">RangePatternLowBound</span></code></a> <strong class="spec-syntax-literal">..=</strong> <a class="reference internal" href="#syntax_rangepatternhighbound"><code class="docutils literal notranslate"><span class="pre">RangePatternHighBound</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_exclusiverangepattern"><span class="pre">ExclusiveRangePattern</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternlowbound"><code class="docutils literal notranslate"><span class="pre">RangePatternLowBound</span></code></a> <strong class="spec-syntax-literal">..</strong> <a class="reference internal" href="#syntax_rangepatternhighbound"><code class="docutils literal notranslate"><span class="pre">RangePatternHighBound</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_obsoleterangepattern"><span class="pre">ObsoleteRangePattern</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternlowbound"><code class="docutils literal notranslate"><span class="pre">RangePatternLowBound</span></code></a> <strong class="spec-syntax-literal">...</strong> <a class="reference internal" href="#syntax_rangepatternhighbound"><code class="docutils literal notranslate"><span class="pre">RangePatternHighBound</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rangepatternlowbound"><span class="pre">RangePatternLowBound</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternbound"><code class="docutils literal notranslate"><span class="pre">RangePatternBound</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rangepatternhighbound"><span class="pre">RangePatternHighBound</span></code> ::=
+    <a class="reference internal" href="#syntax_rangepatternbound"><code class="docutils literal notranslate"><span class="pre">RangePatternBound</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_rangepatternbound"><span class="pre">RangePatternBound</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_byteliteral"><code class="docutils literal notranslate"><span class="pre">ByteLiteral</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_characterliteral"><code class="docutils literal notranslate"><span class="pre">CharacterLiteral</span></code></a>
+  | <strong class="spec-syntax-literal">-</strong>? <a class="reference internal" href="lexical-elements.html#syntax_numericliteral"><code class="docutils literal notranslate"><span class="pre">NumericLiteral</span></code></a>
+  | <a class="reference internal" href="expressions.html#syntax_pathexpression"><code class="docutils literal notranslate"><span class="pre">PathExpression</span></code></a>
+  | <a class="reference internal" href="entities-and-resolution.html#syntax_qualifiedpathexpression"><code class="docutils literal notranslate"><span class="pre">QualifiedPathExpression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_okupyoav13rm">5.1.5:1</span>
+A <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches <a class="reference internal" href="glossary.html#term_value">values</a> which fall
+within a range.</p>
+<p><span class="spec-paragraph-id" id="fls_jhchm7dy927k">5.1.5:2</span>
+A <a class="reference internal" href="glossary.html#term_half_open_range_pattern">half-open range pattern</a> is a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> with only a
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_q86j23iiqv8w">5.1.5:3</span>
+An <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range pattern</a> is a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> with both a
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> and a <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3PyquOKjA7SI">5.1.5:4</span>
+An <a class="reference internal" href="glossary.html#term_exclusive_range_pattern">exclusive range pattern</a> is a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> with both a
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> and a <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_akf9x5r6e0ta">5.1.5:5</span>
+An <a class="reference internal" href="glossary.html#term_obsolete_range_pattern">obsolete range pattern</a> is a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> that uses obsolete syntax
+to express an <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vrpr6ttpfpal">5.1.5:6</span>
+A <a class="reference internal" href="glossary.html#term_range_pattern_bound">range pattern bound</a> is a constraint on the range of a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_nk48gregn3me">5.1.5:7</span>
+A <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> is a <a class="reference internal" href="glossary.html#term_range_pattern_bound">range pattern bound</a> that specifies the
+start of a range.</p>
+<p><span class="spec-paragraph-id" id="fls_83v1xqbebs58">5.1.5:8</span>
+A <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a> is a <a class="reference internal" href="glossary.html#term_range_pattern_bound">range pattern bound</a> that specifies the
+end of a range.</p>
+<p><span class="spec-paragraph-id" id="fls_2hpuccwh2xml">5.1.5:9</span>
+A <a class="reference internal" href="glossary.html#term_half_open_range_pattern">half-open range pattern</a> shall appear within a <a class="reference internal" href="glossary.html#term_parenthesized_pattern">parenthesized pattern</a>
+when the context is a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9kk81isk0mlp">5.1.5:10</span>
+The <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> of an <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range pattern</a> shall be
+less than or equal to its <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8bdOqkO1NuJW">5.1.5:11</span>
+The <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> of an <a class="reference internal" href="glossary.html#term_exclusive_range_pattern">exclusive range pattern</a> shall be
+less than its <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_s2b5n4snc4d7">5.1.5:12</span>
+An <a class="reference internal" href="glossary.html#term_obsolete_range_pattern">obsolete range pattern</a> is equivalent to an <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_4o4ge6x9a8rs">5.1.5:13</span>
+A <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> only when it spans the
+entire set of possible <a class="reference internal" href="glossary.html#term_value">values</a> of a <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6o995ak4hywq">5.1.5:14</span>
+The <a class="reference internal" href="glossary.html#term_type">types</a> of the <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> and the
+<a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a> of a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3js1645tgh31">5.1.5:15</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_8Q6NfRx4j5V7">5.1.5:16</span>
+If the <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is expressed as an <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range pattern</a>, an
+<a class="reference internal" href="glossary.html#term_exclusive_range_pattern">exclusive range pattern</a>, or an <a class="reference internal" href="glossary.html#term_obsolete_range_pattern">obsolete range pattern</a>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is the <a class="reference internal" href="glossary.html#term_unified_type">unified type</a> of the <a class="reference internal" href="glossary.html#term_type">types</a> of the
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> and the <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rgr7t33s0m7m">5.1.5:17</span>
+Otherwise the <a class="reference internal" href="glossary.html#term_type">type</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_5ey5mj8t8knd">5.1.5:18</span>
+A <a class="reference internal" href="glossary.html#term_path_expression">path expression</a> of a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> shall refer to a <a class="reference internal" href="glossary.html#term_constant">constant</a>
+of a <a class="reference internal" href="glossary.html#term_scalar_type">scalar type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_z4js96mchcsv">5.1.5:19</span>
+A <a class="reference internal" href="glossary.html#term_qualified_path_expression">qualified path expression</a> of a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> shall refer to an
+<a class="reference internal" href="glossary.html#term_associated_constant">associated constant</a> of a <a class="reference internal" href="glossary.html#term_scalar_type">scalar type</a>.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_3wwpq8i6mo2a">5.1.5:20</span>
+Two range patterns in the context of a match expression.
+See <a class="reference internal" href="#fls_sfyfdxhvhk44"><em>5.1.1:20</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">-</span><span class="mi">30</span><span class="w"> </span><span class="o">..=</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="mi">57</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="reference-patterns">
+<span id="fls_d2sc9hl3v0mk"></span><h3><span class="section-number">5.1.6. </span>Reference Patterns<a class="headerlink" href="#reference-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_referencepattern"><span class="pre">ReferencePattern</span></code> ::=
+    <strong class="spec-syntax-literal">&amp;</strong> <strong class="spec-syntax-literal">mut</strong>? <a class="reference internal" href="#syntax_patternwithoutrange"><code class="docutils literal notranslate"><span class="pre">PatternWithoutRange</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fhahcc1mz2qh">5.1.6:1</span>
+A <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that dereferences a <a class="reference internal" href="glossary.html#term_pointer">pointer</a> that
+is being matched.</p>
+<p><span class="spec-paragraph-id" id="fls_x0bmzl1315gq">5.1.6:2</span>
+A <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when its nested <a class="reference internal" href="glossary.html#term_pattern">pattern</a> itself is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_fedo8zhgpla5">5.1.6:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_30u9ij164ww3">5.1.6:4</span>
+If the <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a> appears with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code>,
+then the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;mut</span> <span class="pre">pattern_without_range_type</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">pattern_without_range_type</span></code> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+<a class="reference internal" href="#syntax_patternwithoutrange"><code class="docutils literal notranslate"><span class="pre">PatternWithoutRange</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_d1kc73hpncpo">5.1.6:5</span>
+If the <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a> appears without <a class="reference internal" href="glossary.html#term_keyword">keyword</a>
+<code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;</span> <span class="pre">pattern_without_range_type</span></code>,
+where <code class="docutils literal notranslate"><span class="pre">pattern_without_range_type</span></code> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+<a class="reference internal" href="#syntax_patternwithoutrange"><code class="docutils literal notranslate"><span class="pre">PatternWithoutRange</span></code></a>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_mpeuhov0umfa">5.1.6:6</span>
+A reference pattern in the context of a match expression.
+See <a class="reference internal" href="#fls_2xq8852gihn9"><em>5.1.3:4</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">ref_x</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">ref_x</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="mi">23</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="rest-patterns">
+<span id="fls_7wpgnp4kjq82"></span><h3><span class="section-number">5.1.7. </span>Rest Patterns<a class="headerlink" href="#rest-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_restpattern"><span class="pre">RestPattern</span></code> ::=
+    <strong class="spec-syntax-literal">..</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_eso51epfofxb">5.1.7:1</span>
+A <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches zero or more elements that
+have not already been matched.</p>
+<p><span class="spec-paragraph-id" id="fls_5a75a2y43uev">5.1.7:2</span>
+A <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> shall appear at most once within a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>, an
+<a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> of a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>, a <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a>, and a
+<a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_rsqyza99vl3x">5.1.7:3</span>
+A <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_w1pw40phsv2o">5.1.7:4</span>
+If a <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> appears within a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> or the
+<a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> of a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>, then the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_x8ylgxrf9ca">5.1.7:5</span>
+If the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is an <a class="reference internal" href="glossary.html#term_array_type">array type</a>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">[T;</span> <span class="pre">N]</span></code> where <code class="docutils literal notranslate"><span class="pre">T</span></code> is the <a class="reference internal" href="glossary.html#term_element_type">element type</a> of the
+<a class="reference internal" href="glossary.html#term_array_type">array type</a>, and <code class="docutils literal notranslate"><span class="pre">N</span></code> is the <a class="reference internal" href="glossary.html#term_array_type">array type's</a> size minus the number
+of matched elements of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_zgoke73xrhk3">5.1.7:6</span>
+If the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is a <a class="reference internal" href="glossary.html#term_slice_type">slice type</a>, then the
+<a class="reference internal" href="glossary.html#term_type">type</a> is that <a class="reference internal" href="glossary.html#term_slice_type">slice type</a>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_bdcv6rwx0fsv">5.1.7:7</span>
+A rest pattern in an identifier pattern of a slice pattern, followed by a rest
+pattern in a slice pattern.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">slice</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="p">[</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">@</span><span class="w"> </span><span class="o">..</span><span class="p">]</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_qz9guhlg19j3">5.1.7:8</span>
+Rest patterns in tuple patterns.</p>
+<pre class="spec-syntax literal-block">match tuple {
+    (1, .., y) =&gt; (),
+    (.., 5) =&gt; (),
+    (..) =&gt; (),
+}</pre>
+</section>
+<section id="slice-patterns">
+<span id="fls_qte70mgzpras"></span><h3><span class="section-number">5.1.8. </span>Slice Patterns<a class="headerlink" href="#slice-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_slicepattern"><span class="pre">SlicePattern</span></code> ::=
+    <strong class="spec-syntax-literal">[</strong> <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a>? <strong class="spec-syntax-literal">]</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_qqiu594hki8g">5.1.8:1</span>
+A <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches <a class="reference internal" href="glossary.html#term_array">arrays</a> of fixed size
+and <a class="reference internal" href="glossary.html#term_slice">slices</a> of dynamic size.</p>
+<p><span class="spec-paragraph-id" id="fls_h6x9xlxi7y5n">5.1.8:2</span>
+A <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when it refers to:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_jbmxu7y5fnm6">5.1.8:3</span>
+An <a class="reference internal" href="glossary.html#term_array">array</a>, where each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_r78zzw7yyg34">5.1.8:4</span>
+A <a class="reference internal" href="glossary.html#term_slice">slice</a>, where the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> consists of a single
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a>, or a single possibly nested <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> whose
+last <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> is a <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_ndor56nou676">5.1.8:5</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is the same as the <a class="reference internal" href="types-and-traits.html#term_expected_type">expected type</a>.</p>
+<p class="rubric">Examples</p>
+<pre class="spec-syntax literal-block">let v = vec![1, 2, 3];</pre>
+<p><span class="spec-paragraph-id" id="fls_9yuobz1jsehf">5.1.8:6</span>
+A slice pattern in the context of a match expression.</p>
+<pre class="spec-syntax literal-block">match v.as_slice() {
+    [a, b, c] =&gt; (),
+    _ =&gt; ()
+}</pre>
+</section>
+</section>
+<section id="struct-patterns">
+<span id="fls_7dbd5t2750ce"></span><h2><span class="section-number">5.2. </span>Struct Patterns<a class="headerlink" href="#struct-patterns" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_structpattern"><span class="pre">StructPattern</span></code> ::=
+    <a class="reference internal" href="#syntax_recordstructpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_tuplestructpattern"><code class="docutils literal notranslate"><span class="pre">TupleStructPattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_deconstructee"><span class="pre">Deconstructee</span></code> ::=
+    <a class="reference internal" href="expressions.html#syntax_pathexpression"><code class="docutils literal notranslate"><span class="pre">PathExpression</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_vjdkpr3zml51">5.2:1</span>
+A <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches an <a class="reference internal" href="glossary.html#term_enum_value">enum value</a>, a
+<a class="reference internal" href="glossary.html#term_struct_value">struct value</a>, or a <a class="reference internal" href="glossary.html#term_union_value">union value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6o3x101wo478">5.2:2</span>
+A <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> indicates the <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> or <a class="reference internal" href="glossary.html#term_type">type</a> that is being
+deconstructed by a <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k9zih9s0oe5h">5.2:3</span>
+A <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a> is interpreted based on the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>. It is a
+static error if a <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a> cannot be interpreted.</p>
+<p><span class="spec-paragraph-id" id="fls_r8rat3qmc4hy">5.2:4</span>
+A <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> if</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_hUX723DmLg2a">5.2:5</span>
+All of its <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> are <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable patterns</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_p4OplpUvS04l">5.2:6</span>
+The <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> is either:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_pre3YwAv01FE">5.2:7</span>
+A <a class="reference internal" href="glossary.html#term_struct_type">struct type</a> or a <a class="reference internal" href="glossary.html#term_union_type">union type</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_MK83WE0iDqNf">5.2:8</span>
+An <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> of an <a class="reference internal" href="glossary.html#term_enum_type">enum type</a> with zero or more <a class="reference internal" href="glossary.html#term_visible_empty_enum_variant">visible empty enum variants</a> and one non-<a class="reference internal" href="glossary.html#term_visible_empty_enum_variant">visible empty enum variant</a> where the <a class="reference internal" href="glossary.html#term_type">types</a> of all <a class="reference internal" href="glossary.html#term_field">fields</a> are not subject to <a class="reference internal" href="glossary.html#term_visible_emptiness">visible emptiness</a>.</p></li>
+</ul>
+</li>
+</ul>
+<section id="record-struct-patterns">
+<span id="fls_nruvg0es3kx7"></span><h3><span class="section-number">5.2.1. </span>Record Struct Patterns<a class="headerlink" href="#record-struct-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_recordstructpattern"><span class="pre">RecordStructPattern</span></code> ::=
+    <a class="reference internal" href="#syntax_deconstructee"><code class="docutils literal notranslate"><span class="pre">Deconstructee</span></code></a> <strong class="spec-syntax-literal">{</strong> <a class="reference internal" href="#syntax_recordstructpatterncontent"><code class="docutils literal notranslate"><span class="pre">RecordStructPatternContent</span></code></a>? <strong class="spec-syntax-literal">}</strong>
+
+<code class="docutils literal notranslate" id="syntax_recordstructpatterncontent"><span class="pre">RecordStructPatternContent</span></code> ::=
+    <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>
+  | <a class="reference internal" href="#syntax_fielddeconstructorlist"><code class="docutils literal notranslate"><span class="pre">FieldDeconstructorList</span></code></a> (, <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a> | ,?)
+
+<code class="docutils literal notranslate" id="syntax_recordstructrestpattern"><span class="pre">RecordStructRestPattern</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_fielddeconstructorlist"><span class="pre">FieldDeconstructorList</span></code> ::=
+    <a class="reference internal" href="#syntax_fielddeconstructor"><code class="docutils literal notranslate"><span class="pre">FieldDeconstructor</span></code></a> (, <a class="reference internal" href="#syntax_fielddeconstructor"><code class="docutils literal notranslate"><span class="pre">FieldDeconstructor</span></code></a>)*
+
+<code class="docutils literal notranslate" id="syntax_fielddeconstructor"><span class="pre">FieldDeconstructor</span></code> ::=
+    <a class="reference internal" href="attributes.html#syntax_outerattributeordoc"><code class="docutils literal notranslate"><span class="pre">OuterAttributeOrDoc</span></code></a>* (
+        <a class="reference internal" href="#syntax_indexeddeconstructor"><code class="docutils literal notranslate"><span class="pre">IndexedDeconstructor</span></code></a>
+      | <a class="reference internal" href="#syntax_nameddeconstructor"><code class="docutils literal notranslate"><span class="pre">NamedDeconstructor</span></code></a>
+      | <a class="reference internal" href="#syntax_shorthanddeconstructor"><code class="docutils literal notranslate"><span class="pre">ShorthandDeconstructor</span></code></a>
+    )
+
+<code class="docutils literal notranslate" id="syntax_indexeddeconstructor"><span class="pre">IndexedDeconstructor</span></code> ::=
+    <a class="reference internal" href="#syntax_fieldindex"><code class="docutils literal notranslate"><span class="pre">FieldIndex</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_nameddeconstructor"><span class="pre">NamedDeconstructor</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a> <strong class="spec-syntax-literal">:</strong> <a class="reference internal" href="#syntax_pattern"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_shorthanddeconstructor"><span class="pre">ShorthandDeconstructor</span></code> ::=
+    <strong class="spec-syntax-literal">ref</strong>? <strong class="spec-syntax-literal">mut</strong>? <a class="reference internal" href="#syntax_binding"><code class="docutils literal notranslate"><span class="pre">Binding</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_fieldindex"><span class="pre">FieldIndex</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_g6dytd6aq62d">5.2.1:1</span>
+A <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a
+<a class="reference internal" href="glossary.html#term_enum_variant_value">enum variant value</a>, a <a class="reference internal" href="glossary.html#term_struct_value">struct value</a>, or a <a class="reference internal" href="glossary.html#term_union_value">union value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_3px4oiweg9dm">5.2.1:2</span>
+The <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> shall resolve to an
+<a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a>, a <a class="reference internal" href="glossary.html#term_struct_type">struct type</a>, or a <a class="reference internal" href="glossary.html#term_union_type">union type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_mnh35ehva8tx">5.2.1:3</span>
+An <a class="reference internal" href="glossary.html#term_indexed_deconstructor">indexed deconstructor</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that matches the position of
+a <a class="reference internal" href="glossary.html#term_field">field</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_p2rjnlbvifaa">5.2.1:4</span>
+An <a class="reference internal" href="glossary.html#term_indexed_deconstructor">indexed deconstructor</a> matches a <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>
+when its <a class="reference internal" href="glossary.html#term_field_index">field index</a> and the position of the <a class="reference internal" href="glossary.html#term_field">field</a> in the
+<a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> are the same. Such an <a class="reference internal" href="glossary.html#term_indexed_deconstructor">indexed deconstructor</a> is a
+<em id="term_matched_indexed_deconstructor">matched indexed deconstructor</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_23be2x50at14">5.2.1:5</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="#term_matched_indexed_deconstructor">matched indexed deconstructor</a> and the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+matched <a class="reference internal" href="glossary.html#term_field">field</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_46u4ddj0yf93">5.2.1:6</span>
+A <a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that matches the <a class="reference internal" href="glossary.html#term_name">name</a> of
+a <a class="reference internal" href="glossary.html#term_field">field</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qu3dvfdq6oy7">5.2.1:7</span>
+A <a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a> matches a <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> when
+its <a class="reference internal" href="glossary.html#term_identifier">identifier</a> and the <a class="reference internal" href="glossary.html#term_name">name</a> of the <a class="reference internal" href="glossary.html#term_field">field</a> are the same. Such a
+<a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a> is a <em id="term_matched_named_deconstructor">matched named deconstructor</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_4b2hchdzv30u">5.2.1:8</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="#term_matched_named_deconstructor">matched named deconstructor</a> and the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+matched <a class="reference internal" href="glossary.html#term_field">field</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9wfizujx0szd">5.2.1:9</span>
+A <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that matches the <a class="reference internal" href="glossary.html#term_name">name</a>
+of a <a class="reference internal" href="glossary.html#term_field">field</a> and binds the <a class="reference internal" href="glossary.html#term_value">value</a> of the matched <a class="reference internal" href="glossary.html#term_field">field</a> to a
+<a class="reference internal" href="glossary.html#term_binding">binding</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_jTh9Hur0qsIb">5.2.1:10</span>
+A <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code> yields a
+<a class="reference internal" href="glossary.html#term_mutable_binding">mutable binding</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_as54u97xis8z">5.2.1:11</span>
+It is a static error if a <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> has only <a class="reference internal" href="glossary.html#term_keyword">keyword</a>
+<code class="docutils literal notranslate"><span class="pre">ref</span></code> or <a class="reference internal" href="glossary.html#term_keyword">keywords</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, and its <a class="reference internal" href="glossary.html#term_binding">binding</a> shadows a
+<a class="reference internal" href="glossary.html#term_constant">constant</a>, a <a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a>, or a <a class="reference internal" href="glossary.html#term_unit_struct_constant">unit struct constant</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8364ueejn5y3">5.2.1:12</span>
+A <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> is equivalent to a <a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a> where
+the <a class="reference internal" href="glossary.html#term_name">name</a> of the <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> denotes the <a class="reference internal" href="glossary.html#term_identifier">identifier</a>
+of the <a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a> and the entire content of the <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand
+deconstructor</a> denotes the <a class="reference internal" href="glossary.html#term_pattern">pattern</a> of the <a class="reference internal" href="glossary.html#term_named_deconstructor">named deconstructor</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_7t0be1w2hq3c">5.2.1:13</span>
+A <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> matches a <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>
+when its <a class="reference internal" href="glossary.html#term_name">name</a> and the <a class="reference internal" href="glossary.html#term_name">name</a> of the <a class="reference internal" href="glossary.html#term_field">field</a> are the same. Such a
+<a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> is a <em id="term_matched_shorthand_deconstructor">matched shorthand deconstructor</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_3vgmkm2mzwwy">5.2.1:14</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="#term_matched_shorthand_deconstructor">matched shorthand deconstructor</a> and the <a class="reference internal" href="glossary.html#term_type">type</a> of the
+matched <a class="reference internal" href="glossary.html#term_field">field</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_m91ith3rjy79">5.2.1:15</span>
+If the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is a
+<a class="reference internal" href="glossary.html#term_record_enum_variant">record enum variant</a> or a <a class="reference internal" href="glossary.html#term_record_struct">record struct</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_c09jf2vpcr58">5.2.1:16</span>
+For each <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>, the <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a>
+shall either:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_4h00oqypa8qg">5.2.1:17</span>
+Contain at most one <a class="reference internal" href="#term_matched_named_deconstructor">matched named deconstructor</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_195mqijyrnam">5.2.1:18</span>
+Contain at most one <a class="reference internal" href="#term_matched_shorthand_deconstructor">matched shorthand deconstructor</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ta0vdoqmt2k1">5.2.1:19</span>
+Have exactly one <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>.</p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_f0u0j4q90lpl">5.2.1:20</span>
+A <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a> is allowed even if all <a class="reference internal" href="glossary.html#term_field">fields</a> of the
+<a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> have been matched.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_8bi8q3usubby">5.2.1:21</span>
+If the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is a
+<a class="reference internal" href="glossary.html#term_tuple_enum_variant">tuple enum variant</a> or a <a class="reference internal" href="glossary.html#term_tuple_struct_type">tuple struct type</a>, then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_1x0o71kxj3yq">5.2.1:22</span>
+For each <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>, the <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a>
+shall either:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_1thgpx95lfg5">5.2.1:23</span>
+Contain at most one <a class="reference internal" href="#term_matched_indexed_deconstructor">matched indexed deconstructor</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rpo1wimbmzhc">5.2.1:24</span>
+Have exactly one <code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern.</span></code></p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_brhtaaxt1s3s">5.2.1:25</span>
+A <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a> is allowed even if all <a class="reference internal" href="glossary.html#term_field">fields</a> of the
+<a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> have been matched.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_jwz3arnfkxwn">5.2.1:26</span>
+If the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is a <a class="reference internal" href="glossary.html#term_union_type">union type</a>,
+then</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_pfz8xlwezbw1">5.2.1:27</span>
+The <a class="reference internal" href="#syntax_recordstructpatterncontent"><code class="docutils literal notranslate"><span class="pre">RecordStructPatternContent</span></code></a> of the <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct
+pattern</a> shall contain exactly one <a class="reference internal" href="#syntax_fielddeconstructor"><code class="docutils literal notranslate"><span class="pre">FieldDeconstructor</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_XFKBJZe6k1o2">5.2.1:28</span>
+The <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> shall not contain a
+<a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mu166csowj71">5.2.1:29</span>
+For the single <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>, the
+<a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> shall either:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_y09fygnglu3n">5.2.1:30</span>
+Contain exactly one <a class="reference internal" href="#term_matched_named_deconstructor">matched named deconstructor</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_2tadaatmauzk">5.2.1:31</span>
+Contain exactly one <a class="reference internal" href="#term_matched_shorthand_deconstructor">matched shorthand deconstructor</a>.</p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_oq30xkmvyz72">5.2.1:32</span>
+The <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> shall require <a class="reference internal" href="glossary.html#term_unsafe_context">unsafe context</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_9y1gbv47z23o">5.2.1:33</span>
+If the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is a
+<a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a> or a <a class="reference internal" href="glossary.html#term_unit_struct">unit struct</a>, then the
+<a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> shall have at most one <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_dHtV2BPRFVBB">5.2.1:34</span>
+It is undefined behavior reading the <a class="reference internal" href="glossary.html#term_field">field</a> of a <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> that is
+a <a class="reference internal" href="glossary.html#term_union_type">union type</a> when the <a class="reference internal" href="glossary.html#term_field">field</a> contains data that is invalid for the
+<a class="reference internal" href="glossary.html#term_field">field</a>‘s type.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_zRCiKnhQebyp">5.2.1:35</span>
+A record struct pattern deconstructing a record struct.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">RecordStruct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">first</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+<span class="w">    </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">record_struct_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RecordStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">first</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">match</span><span class="w"> </span><span class="n">record_struct_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RecordStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="k">ref</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">RecordStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">first</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">RecordStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_D5tAGzrjXFTu">5.2.1:36</span>
+A record struct pattern deconstructing a tuple struct.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">TupleStruct</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="kt">u32</span><span class="p">,</span>
+<span class="w">    </span><span class="kt">u32</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">tuple_struct_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">match</span><span class="w"> </span><span class="n">tuple_struct_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_FhvMzLPRlY7p">5.2.1:37</span>
+A record struct pattern deconstructing a union.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">union</span><span class="w"> </span><span class="nc">Union</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">first</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+<span class="w">    </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="n">union_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Union</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="w"> </span><span class="p">};</span>
+
+<span class="k">unsafe</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">match</span><span class="w"> </span><span class="n">union_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Union</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">first</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">        </span><span class="n">Union</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">second</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tuple-struct-patterns">
+<span id="fls_vlrto778v49m"></span><h3><span class="section-number">5.2.2. </span>Tuple Struct Patterns<a class="headerlink" href="#tuple-struct-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_tuplestructpattern"><span class="pre">TupleStructPattern</span></code> ::=
+    <a class="reference internal" href="#syntax_deconstructee"><code class="docutils literal notranslate"><span class="pre">Deconstructee</span></code></a> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a>? <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ks6y1syab2bp">5.2.2:1</span>
+A <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a
+<a class="reference internal" href="glossary.html#term_tuple_enum_variant_value">tuple enum variant value</a>, or a <a class="reference internal" href="glossary.html#term_tuple_struct_value">tuple struct value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_t1mrijw16k9a">5.2.2:2</span>
+The <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> of a <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> shall resolve to a
+<a class="reference internal" href="glossary.html#term_tuple_enum_variant">tuple enum variant</a> or a <a class="reference internal" href="glossary.html#term_tuple_struct_type">tuple struct type</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ryfcrqrkp28y">5.2.2:3</span>
+A <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of a <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> matches a <a class="reference internal" href="glossary.html#term_field">field</a> of the
+<a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> when its position and the position of the <a class="reference internal" href="glossary.html#term_field">field</a> in
+the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> are the same. Such a <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is a
+<em id="term_matched_tuple_struct_subpattern">matched tuple struct subpattern</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_ehf9r6halgh1">5.2.2:4</span>
+The position of a <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_5lo1hs8wzz0t">5.2.2:5</span>
+If the <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> has a <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>, then</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_gwuc2xffosu">5.2.2:6</span>
+If the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> precedes the <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>, then its
+position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> in left-to-right order,
+starting from zero.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w369n8lmwr7g">5.2.2:7</span>
+If the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> succeeds the <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>, then its
+position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> list in right-to-left
+order, starting from the <a class="reference internal" href="glossary.html#term_arity">arity</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> minus one.</p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_4is6h95jj3gd">5.2.2:8</span>
+Otherwise the position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> in
+left-to-right order, starting from zero.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_budf0rpsa4lx">5.2.2:9</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of a <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a> and the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the matched <a class="reference internal" href="glossary.html#term_field">field</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vo6mtauh4qhb">5.2.2:10</span>
+For each <a class="reference internal" href="glossary.html#term_field">field</a> of the <a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a>, the <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a>
+shall either:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_rco3fwlx2a76">5.2.2:11</span>
+Contain at most one <a class="reference internal" href="#term_matched_tuple_struct_subpattern">matched tuple struct subpattern</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4vrnxslad09e">5.2.2:12</span>
+Have exactly one <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_qgilaqy5zx7q">5.2.2:13</span>
+A <a class="reference internal" href="#syntax_recordstructrestpattern"><code class="docutils literal notranslate"><span class="pre">RecordStructRestPattern</span></code></a> is allowed even if all <a class="reference internal" href="glossary.html#term_field">fields</a> of the
+<a class="reference internal" href="glossary.html#term_deconstructee">deconstructee</a> have been matched.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_2u99arsbnlnk">5.2.2:14</span>
+See <a class="reference internal" href="#fls_D5tAGzrjXFTu"><em>5.2.1:36</em></a> for the declarations of <code class="docutils literal notranslate"><span class="pre">TupleStruct</span></code> and
+<code class="docutils literal notranslate"><span class="pre">tuple_struct_value</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">match</span><span class="w"> </span><span class="n">tuple_struct_value</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">22</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="p">,</span><span class="w"> </span><span class="mi">44</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">..</span><span class="p">,</span><span class="w"> </span><span class="mi">55</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mi">66</span><span class="p">,</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="w">    </span><span class="n">TupleStruct</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">..</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tuple-patterns">
+<span id="fls_urbr5rg9206v"></span><h3><span class="section-number">5.2.3. </span>Tuple Patterns<a class="headerlink" href="#tuple-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_tuplepattern"><span class="pre">TuplePattern</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a>? <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_e2manugp4e0b">5.2.3:1</span>
+A <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches a <a class="reference internal" href="glossary.html#term_tuple">tuple</a> which satisfies
+all criteria defined by its <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_xk8udu4k61kj">5.2.3:2</span>
+A <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a> when all of its
+<a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> are <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable patterns</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_yhcaz6v49ub2">5.2.3:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of a <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_tuple">tuple</a> being
+destructured.</p>
+<p><span class="spec-paragraph-id" id="fls_6WCm0Ra8NQl4">5.2.3:4</span>
+A <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of a <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> matches a <a class="reference internal" href="glossary.html#term_tuple_field">tuple field</a> of the
+<a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a> when its position and the position of the <a class="reference internal" href="glossary.html#term_tuple_field">tuple field</a> in
+the <a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a> are the same. Such a <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is a
+<em id="term_matched_tuple_subpattern">matched tuple subpattern</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_a3qvQjyilORx">5.2.3:5</span>
+The position of a <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is determined as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_KmIHFxlBYelZ">5.2.3:6</span>
+If the <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> has a <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>, then</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_5bXqIaKiFcLg">5.2.3:7</span>
+If the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> precedes the <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>, then its
+position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> in left-to-right order,
+starting from zero.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_soHCAVfGlv5f">5.2.3:8</span>
+If the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> succeeds the <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>, then its
+position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> list in right-to-left
+order, starting from the <a class="reference internal" href="glossary.html#term_arity">arity</a> of the <a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a> minus one.</p></li>
+</ul>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_iiKvYs61959S">5.2.3:9</span>
+Otherwise the position is the position within the <a class="reference internal" href="#syntax_patternlist"><code class="docutils literal notranslate"><span class="pre">PatternList</span></code></a> in
+left-to-right order, starting from zero.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_F4k6ljuP8Amf">5.2.3:10</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of a <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> and the
+<a class="reference internal" href="glossary.html#term_type">type</a> of the matched <a class="reference internal" href="glossary.html#term_tuple_field">tuple field</a> shall be <a class="reference internal" href="glossary.html#term_unifiable">unifiable</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_GjjCDkVJPQS8">5.2.3:11</span>
+For each <a class="reference internal" href="glossary.html#term_tuple_field">tuple field</a> of the <a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a>, the <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a> shall
+either:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_9Qw9N87swwNe">5.2.3:12</span>
+Contain at most one <a class="reference internal" href="#term_matched_tuple_subpattern">matched tuple subpattern</a>, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_CQ84wkLyrAJv">5.2.3:13</span>
+Have exactly one <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_cC6ohNuiltfL">5.2.3:14</span>
+A <a class="reference internal" href="#syntax_restpattern"><code class="docutils literal notranslate"><span class="pre">RestPattern</span></code></a> is allowed even if all <a class="reference internal" href="glossary.html#term_tuple_field">tuple fields</a> of the
+<a class="reference internal" href="glossary.html#term_tuple_type">tuple type</a> have been matched.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_8r81vtv5hnrd">5.2.3:15</span>
+A tuple pattern in the context of a let statement.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;two&quot;</span><span class="p">);</span>
+<span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pair</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="underscore-patterns">
+<span id="fls_qfsfnql1t7m"></span><h3><span class="section-number">5.2.4. </span>Underscore Patterns<a class="headerlink" href="#underscore-patterns" title="Link to this heading">¶</a></h3>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_underscorepattern"><span class="pre">UnderscorePattern</span></code> ::=
+    <strong class="spec-syntax-literal">_</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_dreny9e0ei6r">5.2.4:1</span>
+An <a class="reference internal" href="glossary.html#term_underscore_pattern">underscore pattern</a> is a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> that matches any single <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_42fye1v0th8l">5.2.4:2</span>
+An <a class="reference internal" href="glossary.html#term_underscore_pattern">underscore pattern</a> is an <a class="reference internal" href="glossary.html#term_irrefutable_pattern">irrefutable pattern</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_b87mvrcc13f2">5.2.4:3</span>
+The <a class="reference internal" href="glossary.html#term_type">type</a> of an <a class="reference internal" href="glossary.html#term_underscore_pattern">underscore pattern</a> is the <a class="reference internal" href="glossary.html#term_type">type</a> of the <a class="reference internal" href="glossary.html#term_value">value</a>
+it matches.</p>
+<p class="rubric">Examples</p>
+<p><span class="spec-paragraph-id" id="fls_j3u6x1ensrbe">5.2.4:4</span>
+An underscore pattern in the context of a let statement.
+See <a class="reference internal" href="#fls_8r81vtv5hnrd"><em>5.2.3:15</em></a> for the declaration of <code class="docutils literal notranslate"><span class="pre">pair</span></code>.</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="kd">let</span><span class="w"> </span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pair</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="binding-modes">
+<span id="fls_qssijtofa9i8"></span><h2><span class="section-number">5.3. </span>Binding Modes<a class="headerlink" href="#binding-modes" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_binding"><span class="pre">Binding</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7xby6d1903kw">5.3:1</span>
+A <a class="reference internal" href="glossary.html#term_binding_pattern">binding pattern</a> is either an <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> or a
+<a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_vnh9wfrvumdz">5.3:2</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> of a <a class="reference internal" href="glossary.html#term_binding_pattern">binding pattern</a> binds a matched <a class="reference internal" href="glossary.html#term_value">value</a> to a
+<a class="reference internal" href="glossary.html#term_name">name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_RViC5UEZPQUV">5.3:3</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> with <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> <em id="term_by_value">by value</em> binds the matched
+<a class="reference internal" href="glossary.html#term_value">value</a> by <a class="reference internal" href="glossary.html#term_passing_convention">passing</a> the <a class="reference internal" href="glossary.html#term_value">value</a> to the <a class="reference internal" href="glossary.html#term_place">place</a>
+indicated by the <a class="reference internal" href="glossary.html#term_name">name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6lXtoxebD5It">5.3:4</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> with <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> <em id="term_by_reference">by reference</em> binds an
+<a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a> to the matched <a class="reference internal" href="glossary.html#term_value">value</a> to the <a class="reference internal" href="glossary.html#term_name">name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_xNxQN8sgpZ3O">5.3:5</span>
+A <a class="reference internal" href="glossary.html#term_binding">binding</a> with <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> <em id="term_by_mutable_reference">by mutable reference</em> binds a
+<a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> to the matched <a class="reference internal" href="glossary.html#term_value">value</a> to the <a class="reference internal" href="glossary.html#term_name">name</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_dqe75i8h2fie">5.3:6</span>
+A <a class="reference internal" href="glossary.html#term_non_reference_pattern">non-reference pattern</a> is any <a class="reference internal" href="glossary.html#term_pattern">pattern</a> except
+<a class="reference internal" href="glossary.html#term_binding_pattern">non-binding patterns</a>, <a class="reference internal" href="glossary.html#term_path_pattern">path patterns</a>, <a class="reference internal" href="glossary.html#term_reference_pattern">reference patterns</a>,
+and <a class="reference internal" href="glossary.html#term_underscore_pattern">underscore patterns</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_y3wuvj1y5j20">5.3:7</span>
+If a <a class="reference internal" href="glossary.html#term_binding_pattern">binding pattern</a> does not explicitly specify <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code>,
+<a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, or <a class="reference internal" href="glossary.html#term_keyword">keywords</a> <code class="docutils literal notranslate"><span class="pre">ref</span> <span class="pre">mut</span></code>, then its <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a>
+uses the current <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> of <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_55jtzh6a292x">5.3:8</span>
+Initially, the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> of a <a class="reference internal" href="glossary.html#term_binding">binding</a> is <a class="reference internal" href="#term_by_value">by value</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qcaf2kup7zn0">5.3:9</span>
+During the process of <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a>, each time a <a class="reference internal" href="glossary.html#term_reference">reference</a>
+is matched against a <a class="reference internal" href="glossary.html#term_reference_pattern">non-reference pattern</a>, the <a class="reference internal" href="glossary.html#term_reference">reference</a> is
+dereferenced and the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is updated as follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_6acdqz8rwnn">5.3:10</span>
+If the <a class="reference internal" href="glossary.html#term_reference">reference</a> is an <a class="reference internal" href="glossary.html#term_immutable_reference">immutable reference</a>, then the
+<a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is updated to <a class="reference internal" href="#term_by_reference">by reference</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tv0avib387bv">5.3:11</span>
+If the <a class="reference internal" href="glossary.html#term_reference">reference</a> is a <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> and the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a>
+is <a class="reference internal" href="#term_by_value">by value</a>, then the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is updated to
+<a class="reference internal" href="#term_by_mutable_reference">by mutable reference</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_dbgmwldye42e">5.3:12</span>
+The process repeats if the dereferenced <a class="reference internal" href="glossary.html#term_value">value</a> is a <a class="reference internal" href="glossary.html#term_reference">reference</a>.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_t34oqarwcusu">5.3:13</span>
+A <a class="reference internal" href="glossary.html#term_binding_pattern">binding patterns</a> binds its <a class="reference internal" href="glossary.html#term_binding">binding</a> to a matched <a class="reference internal" href="glossary.html#term_value">value</a> as
+follows:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_7gxb74u1np36">5.3:14</span>
+If the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is <a class="reference internal" href="#term_by_reference">by reference</a> or the <a class="reference internal" href="glossary.html#term_binding_pattern">binding pattern</a>
+appears only with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">ref</span></code>, then the <a class="reference internal" href="glossary.html#term_binding">binding</a> is bound to a
+<a class="reference internal" href="glossary.html#term_reference">reference</a> of the matched <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_7y56d0ulxomf">5.3:15</span>
+If the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is <a class="reference internal" href="#term_by_mutable_reference">by mutable reference</a> or the <a class="reference internal" href="glossary.html#term_binding_pattern">binding
+pattern</a> appears with keywords <code class="docutils literal notranslate"><span class="pre">ref</span></code> <code class="docutils literal notranslate"><span class="pre">mut</span></code>, then the <a class="reference internal" href="glossary.html#term_binding">binding</a> is bound
+to a <a class="reference internal" href="glossary.html#term_mutable_reference">mutable reference</a> of the matched <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pxvtqxke1enp">5.3:16</span>
+If the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a> is <a class="reference internal" href="#term_by_value">by value</a>, then the <a class="reference internal" href="glossary.html#term_binding">binding</a> is
+bound to a copy of the matched <a class="reference internal" href="glossary.html#term_value">value</a> if its <a class="reference internal" href="glossary.html#term_type">type</a> implements the
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Amarker%3A%3ACopy"><code class="docutils literal notranslate"><span class="pre">core::marker::Copy</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>, otherwise the <a class="reference internal" href="glossary.html#term_binding">binding</a> is bound to
+the move of the matched <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+</ul>
+</section>
+<section id="pattern-matching">
+<span id="fls_jm6l7b90h6wa"></span><h2><span class="section-number">5.4. </span>Pattern Matching<a class="headerlink" href="#pattern-matching" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_tlwr4u7bjhh5">5.4:1</span>
+<a class="reference internal" href="glossary.html#term_pattern_matching">Pattern matching</a> that involves a <a class="reference internal" href="glossary.html#term_pattern">pattern</a> and a context <a class="reference internal" href="glossary.html#term_value">value</a>
+proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_67ajub7d2b4c">5.4:2</span>
+For each <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> of the <a class="reference internal" href="glossary.html#term_pattern">pattern</a>:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_62626ws222op">5.4:3</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is an <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a>,
+then perform <a class="reference internal" href="#term_identifier_pattern_matching">identifier pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_q0z46h1gnzez">5.4:4</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_literal_pattern">literal pattern</a>, then
+perform <a class="reference internal" href="#term_literal_pattern_matching">literal pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_1r0vm6rg13o9">5.4:5</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_parenthesized_pattern">parenthesized pattern</a>,
+then perform <a class="reference internal" href="#term_parenthesized_pattern_matching">parenthesized pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_am5h8r887bz5">5.4:6</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a>, then
+perform <a class="reference internal" href="#term_path_pattern_matching">path pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eppmiloh7bgg">5.4:7</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a>, then
+perform <a class="reference internal" href="#term_range_pattern_matching">range pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gwc08xayno7q">5.4:8</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_reference_pattern">reference pattern</a>, then
+perform <a class="reference internal" href="#term_reference_pattern_matching">reference pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_19iygu12s315">5.4:9</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>, then
+perform <a class="reference internal" href="#term_slice_pattern_matching">slice pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_r307spfk6cs9">5.4:10</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a>,
+then perform <a class="reference internal" href="#term_record_struct_pattern_matching">record struct pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qhdofvbso3gl">5.4:11</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a>,
+then perform <a class="reference internal" href="#term_tuple_struct_pattern_matching">tuple struct pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_drb114dtvlpt">5.4:12</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is a <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a>, then
+perform <a class="reference internal" href="#term_tuple_pattern_matching">tuple pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_uxysntb3u03j">5.4:13</span>
+If the <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> is an <a class="reference internal" href="glossary.html#term_underscore_pattern">underscore pattern</a>,
+then perform <a class="reference internal" href="#term_underscore_pattern_matching">underscore pattern matching</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wh201rmh6u6d">5.4:14</span>
+Otherwise <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> fails.</p></li>
+</ol>
+</li>
+</ol>
+<p><span class="spec-paragraph-id" id="fls_vstdqifqipbh">5.4:15</span>
+Only the <a class="reference internal" href="glossary.html#term_binding">bindings</a> of a matched <a class="reference internal" href="glossary.html#term_pattern_without_alternation">pattern-without-alternation</a> are
+introduced into a <a class="reference internal" href="glossary.html#term_binding_scope">binding scope</a>.</p>
+<section id="identifier-pattern-matching">
+<span id="fls_vnai6ag4qrdb"></span><h3><span class="section-number">5.4.1. </span>Identifier Pattern Matching<a class="headerlink" href="#identifier-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_4f3lzw64myhk">5.4.1:1</span>
+An <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> with <a class="reference internal" href="glossary.html#term_keyword">keyword</a> <code class="docutils literal notranslate"><span class="pre">mut</span></code> shall require that the
+context <a class="reference internal" href="glossary.html#term_value">value</a> is a <a class="reference internal" href="glossary.html#term_mutable_place_expression">mutable place expression</a>.</p>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_wauqwmdbcpna">5.4.1:2</span>
+<em id="term_identifier_pattern_matching">Identifier pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_3jyog8n6x2aa">5.4.1:3</span>
+If the <a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> has a <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a>, then</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_w637uvlbzsyo">5.4.1:4</span>
+Performed <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> and the same
+context <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_arz8ik3gf6u4">5.4.1:5</span>
+If matching the <a class="reference internal" href="glossary.html#term_bound_pattern">bound pattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_u6o5ndnezwbe">5.4.1:6</span>
+The context <a class="reference internal" href="glossary.html#term_value">value</a> is bound to the <a class="reference internal" href="glossary.html#term_binding">binding</a> of the
+<a class="reference internal" href="glossary.html#term_identifier_pattern">identifier pattern</a> according to the <a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_h1er04t0yta7">5.4.1:7</span>
+Matching succeeds.</p></li>
+</ol>
+</section>
+<section id="literal-pattern-matching">
+<span id="fls_azzf1llv3wf"></span><h3><span class="section-number">5.4.2. </span>Literal Pattern Matching<a class="headerlink" href="#literal-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_fqkhhgushje9">5.4.2:1</span>
+<em id="term_literal_pattern_matching">Literal pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_m01eo9sa55s">5.4.2:2</span>
+If the <a class="reference internal" href="glossary.html#term_literal">literal</a> of the <a class="reference internal" href="glossary.html#term_literal_pattern">literal pattern</a> and the context <a class="reference internal" href="glossary.html#term_value">value</a>
+are equal, then matching succeeds.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_294jtwbfq3p9">5.4.2:3</span>
+Otherwise matching fails.</p></li>
+</ol>
+</section>
+<section id="parenthesized-pattern-matching">
+<span id="fls_5loglxds6zik"></span><h3><span class="section-number">5.4.3. </span>Parenthesized Pattern Matching<a class="headerlink" href="#parenthesized-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_jajvvwoy3399">5.4.3:1</span>
+<em id="term_parenthesized_pattern_matching">Parenthesized pattern matching</em> performs <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with its
+<a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the same context <a class="reference internal" href="glossary.html#term_value">value</a>.</p>
+</section>
+<section id="path-pattern-matching">
+<span id="fls_d44aflefat88"></span><h3><span class="section-number">5.4.4. </span>Path Pattern Matching<a class="headerlink" href="#path-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_4faltss0xbn4">5.4.4:1</span>
+<em id="term_path_pattern_matching">Path pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_fqt5w3qsykca">5.4.4:2</span>
+If the <a class="reference internal" href="glossary.html#term_constant">constant</a>, <a class="reference internal" href="glossary.html#term_unit_enum_variant">unit enum variant</a> or <a class="reference internal" href="glossary.html#term_unit_struct">unit struct</a> the
+<a class="reference internal" href="glossary.html#term_path">path</a> of the <a class="reference internal" href="glossary.html#term_path_pattern">path pattern</a> resolved to and the context <a class="reference internal" href="glossary.html#term_value">value</a>
+are equal, then matching succeeds.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_h3y8r4298s53">5.4.4:3</span>
+Otherwise matching fails.</p></li>
+</ol>
+</section>
+<section id="range-pattern-matching">
+<span id="fls_fyskeih6twyb"></span><h3><span class="section-number">5.4.5. </span>Range Pattern Matching<a class="headerlink" href="#range-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_mrh9vfdek5fi">5.4.5:1</span>
+<em id="term_range_pattern_matching">Range pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_7nxkgls0a5os">5.4.5:2</span>
+If the <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is expressed as a <a class="reference internal" href="glossary.html#term_half_open_range_pattern">half-open range pattern</a> and
+the context <a class="reference internal" href="glossary.html#term_value">value</a> is in the inclusive range from the
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> to the maximum <a class="reference internal" href="glossary.html#term_value">value</a> of the
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a>‘s <a class="reference internal" href="glossary.html#term_type">type</a>, then matching succeeds.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6kgj2fjccoig">5.4.5:3</span>
+If the <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is expressed as either an <a class="reference internal" href="glossary.html#term_inclusive_range_pattern">inclusive range
+pattern</a> or an <a class="reference internal" href="glossary.html#term_obsolete_range_pattern">obsolete range pattern</a> and the context <a class="reference internal" href="glossary.html#term_value">value</a> is in
+the inclusive range from the <a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> to the
+<a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>, then matching succeeds.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_EDL1Pi56KQ2H">5.4.5:4</span>
+If the <a class="reference internal" href="glossary.html#term_range_pattern">range pattern</a> is expressed as an <a class="reference internal" href="glossary.html#term_exclusive_range_pattern">exclusive range pattern</a>
+and the context <a class="reference internal" href="glossary.html#term_value">value</a> is in the exclusive range from the
+<a class="reference internal" href="glossary.html#term_range_pattern_low_bound">range pattern low bound</a> to the <a class="reference internal" href="glossary.html#term_range_pattern_high_bound">range pattern high bound</a>, then
+matching succeeds.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n4t3xah1pk7i">5.4.5:5</span>
+Otherwise matching fails.</p></li>
+</ol>
+</section>
+<section id="reference-pattern-matching">
+<span id="fls_org6hqv397fp"></span><h3><span class="section-number">5.4.6. </span>Reference Pattern Matching<a class="headerlink" href="#reference-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_ysfgdzaiww8z">5.4.6:1</span>
+<em id="term_reference_pattern_matching">Reference pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_7rxnxd4ybxbt">5.4.6:2</span>
+Dereference the context <a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_l2nwz166curc">5.4.6:3</span>
+Perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with its <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the dereferenced
+<a class="reference internal" href="glossary.html#term_value">value</a>.</p></li>
+</ol>
+</section>
+<section id="slice-pattern-matching">
+<span id="fls_57ic33pwdvp3"></span><h3><span class="section-number">5.4.7. </span>Slice Pattern Matching<a class="headerlink" href="#slice-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_hzyv4ofu0ny">5.4.7:1</span>
+<em id="term_slice_pattern_matching">Slice pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_x10AKxoXXbs8">5.4.7:2</span>
+If the expected <a class="reference internal" href="glossary.html#term_type">type</a> is a <a class="reference internal" href="glossary.html#term_slice_type">slice type</a> then,</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_69bnxrtj0nar">5.4.7:3</span>
+If the number of <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is greater
+than the length of the context <a class="reference internal" href="glossary.html#term_value">value</a>, then matching fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_twhwiy213ibf">5.4.7:4</span>
+If the number of <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a> is less than
+the size of the context <a class="reference internal" href="glossary.html#term_value">value</a> and one of those <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> is
+not a <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a>, then matching fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ei7y4ul6n6hu">5.4.7:5</span>
+For each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_ad2jud5h1rfp">5.4.7:6</span>
+Perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the
+corresponding <a class="reference internal" href="glossary.html#term_value">value</a> from the context <a class="reference internal" href="glossary.html#term_value">value</a>, ignoring
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_pc97m47p34wq">5.4.7:7</span>
+If matching the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p><span class="spec-paragraph-id" id="fls_kwQyiSoyAwZ8">5.4.7:8</span>
+Otherwise, if the expected <a class="reference internal" href="glossary.html#term_type">type</a> is an <a class="reference internal" href="glossary.html#term_array_type">array type</a>, then</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_zAdtysiuUwBX">5.4.7:9</span>
+For each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of the <a class="reference internal" href="glossary.html#term_slice_pattern">slice pattern</a>:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_SezcYXcSlEq7">5.4.7:10</span>
+Perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the
+corresponding <a class="reference internal" href="glossary.html#term_value">value</a> from the context <a class="reference internal" href="glossary.html#term_value">value</a>, ignoring
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6xRXEt2pGnZi">5.4.7:11</span>
+If matching the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="record-struct-pattern-matching">
+<span id="fls_asj8rgccvkoe"></span><h3><span class="section-number">5.4.8. </span>Record Struct Pattern Matching<a class="headerlink" href="#record-struct-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_evuhau2rwm8i">5.4.8:1</span>
+<em id="term_record_struct_pattern_matching">Record struct pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_bde1hpvrosui">5.4.8:2</span>
+If the number of <a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> of the <a class="reference internal" href="glossary.html#term_record_struct_pattern">record struct pattern</a> is less
+than the number of <a class="reference internal" href="glossary.html#term_field">fields</a> of the context <a class="reference internal" href="glossary.html#term_value">value</a> and one of those
+<a class="reference internal" href="glossary.html#term_subpattern">subpatterns</a> is not a <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a>, then matching fails.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_447s4hc07ozn">5.4.8:3</span>
+For each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of the <a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a></p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_vfdb1i5l41yk">5.4.8:4</span>
+If the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> is a <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a>, then the
+corresponding <a class="reference internal" href="glossary.html#term_field">field</a> of the context <a class="reference internal" href="glossary.html#term_value">value</a> is bound to the
+<a class="reference internal" href="glossary.html#term_binding">binding</a> of the <a class="reference internal" href="glossary.html#term_shorthand_deconstructor">shorthand deconstructor</a> according to the
+<a class="reference internal" href="glossary.html#term_binding_mode">binding mode</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_yfk52fr7trw3">5.4.8:5</span>
+Otherwise perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the
+corresponding <a class="reference internal" href="glossary.html#term_field">field</a> from the context <a class="reference internal" href="glossary.html#term_value">value</a>, ignoring <a class="reference internal" href="glossary.html#term_rest_pattern">rest
+patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6sdcykdrpe5d">5.4.8:6</span>
+If matching the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="tuple-struct-pattern-matching">
+<span id="fls_eexupzdsu7f"></span><h3><span class="section-number">5.4.9. </span>Tuple Struct Pattern Matching<a class="headerlink" href="#tuple-struct-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_dexg9g9cct30">5.4.9:1</span>
+<em id="term_tuple_struct_pattern_matching">Tuple struct pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_boc7juqj69hw">5.4.9:2</span>
+For each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of the <a class="reference internal" href="glossary.html#term_tuple_struct_pattern">tuple struct pattern</a></p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_4dr1stiw82v9">5.4.9:3</span>
+Otherwise perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the
+corresponding <a class="reference internal" href="glossary.html#term_field">field</a> from the context <a class="reference internal" href="glossary.html#term_value">value</a>, ignoring
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_h14emtt6iyk3">5.4.9:4</span>
+If matching the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="tuple-pattern-matching">
+<span id="fls_rce8bb7nz2jy"></span><h3><span class="section-number">5.4.10. </span>Tuple Pattern Matching<a class="headerlink" href="#tuple-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_w4xypnrnhycb">5.4.10:1</span>
+<em id="term_tuple_pattern_matching">Tuple pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_vnx1bpval595">5.4.10:2</span>
+For each <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> of the <a class="reference internal" href="glossary.html#term_tuple_pattern">tuple pattern</a></p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_dzf32f40y7fr">5.4.10:3</span>
+Perform <a class="reference internal" href="glossary.html#term_pattern_matching">pattern matching</a> with the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> and the
+corresponding <a class="reference internal" href="glossary.html#term_field">field</a> from the context <a class="reference internal" href="glossary.html#term_value">value</a>, ignoring
+<a class="reference internal" href="glossary.html#term_rest_pattern">rest patterns</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_krl32txvxxkz">5.4.10:4</span>
+If matching the <a class="reference internal" href="glossary.html#term_subpattern">subpattern</a> fails, then matching fails.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="underscore-pattern-matching">
+<span id="fls_yc4xm4hrfyw7"></span><h3><span class="section-number">5.4.11. </span>Underscore Pattern Matching<a class="headerlink" href="#underscore-pattern-matching" title="Link to this heading">¶</a></h3>
+<p class="rubric">Dynamic Semantics</p>
+<p><span class="spec-paragraph-id" id="fls_dvk7r1gf7pwp">5.4.11:1</span>
+<em id="term_underscore_pattern_matching">Underscore pattern matching</em> proceeds as follows:</p>
+<ol class="arabic simple">
+<li><p><span class="spec-paragraph-id" id="fls_e0uprihqn1y6">5.4.11:2</span>
+The context <a class="reference internal" href="glossary.html#term_value">value</a> is matched unconditionally.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ljcq2vyo052q">5.4.11:3</span>
+Matching succeeds.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>

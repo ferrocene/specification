@@ -1,0 +1,1707 @@
+
+
+
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>13. Attributes &#8212; Ferrocene Language Specification</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8e8a900e" />
+    <link rel="stylesheet" type="text/css" href="_static/ferrocene.css?v=42536886" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="14. Entities and Resolution" href="entities-and-resolution.html" />
+    <link rel="prev" title="12. Generics" href="generics.html" />
+     
+    <link rel="icon" href="_static/favicon.svg" sizes="any" type="image/svg+xml" />
+
+  </head><body>
+
+<div class="wrapper">
+    <div class="sidebar">
+        <header>
+            <a href="index.html">
+                <img src="_static/ferrocene.svg" alt="Ferrocene logo">
+                <h1>Language Specification</h1>
+            </a>
+        </header>
+        <form action="search.html" method="get" class="side-search">
+            <input type="text" name="q" placeholder="Search...">
+            <button type="submit">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+        <path d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"/>
+    </svg>
+</button>
+        </form>
+        <nav>
+            <label for="toggle-toctree" class="toggle">Toggle navigation</label>
+            <input type="checkbox" id="toggle-toctree">
+            <div class="toctree">
+                <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general.html">1. General</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lexical-elements.html">2. Lexical Elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="items.html">3. Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="types-and-traits.html">4. Types and Traits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patterns.html">5. Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="expressions.html">6. Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="values.html">7. Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="statements.html">8. Statements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="functions.html">9. Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="associated-items.html">10. Associated Items</a></li>
+<li class="toctree-l1"><a class="reference internal" href="implementations.html">11. Implementations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generics.html">12. Generics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">13. Attributes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="entities-and-resolution.html">14. Entities and Resolution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ownership-and-deconstruction.html">15. Ownership and Destruction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions-and-errors.html">16. Exceptions and Errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">17. Concurrency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="program-structure-and-compilation.html">18. Program Structure and Compilation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="unsafety.html">19. Unsafety</a></li>
+<li class="toctree-l1"><a class="reference internal" href="macros.html">20. Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ffi.html">21. FFI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inline-assembly.html">22. Inline Assembly</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendices:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="licenses.html">A. Licenses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">B. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="undefined-behavior.html">C. List of undefined behavior</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">D. FLS Changelog</a></li>
+</ul>
+
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+        <div class="page">
+            
+  <section id="attributes">
+<span id="fls_gvwd0kf72jt"></span><h1><span class="section-number">13. </span>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">¶</a></h1>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_innerattributeordoc"><span class="pre">InnerAttributeOrDoc</span></code> ::=
+    <a class="reference internal" href="#syntax_innerattribute"><code class="docutils literal notranslate"><span class="pre">InnerAttribute</span></code></a>
+  | <a class="reference internal" href="#syntax_innerbuiltinattribute"><code class="docutils literal notranslate"><span class="pre">InnerBuiltinAttribute</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_innerblockdoc"><code class="docutils literal notranslate"><span class="pre">InnerBlockDoc</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_innerlinedoc"><code class="docutils literal notranslate"><span class="pre">InnerLineDoc</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_innerattribute"><span class="pre">InnerAttribute</span></code> ::=
+    <strong class="spec-syntax-literal">#![</strong> <a class="reference internal" href="#syntax_attributecontent"><code class="docutils literal notranslate"><span class="pre">AttributeContent</span></code></a> <strong class="spec-syntax-literal">]</strong>
+
+<code class="docutils literal notranslate" id="syntax_outerattributeordoc"><span class="pre">OuterAttributeOrDoc</span></code> ::=
+    <a class="reference internal" href="#syntax_outerattribute"><code class="docutils literal notranslate"><span class="pre">OuterAttribute</span></code></a>
+  | <a class="reference internal" href="#syntax_outerbuiltinattribute"><code class="docutils literal notranslate"><span class="pre">OuterBuiltinAttribute</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_outerblockdoc"><code class="docutils literal notranslate"><span class="pre">OuterBlockDoc</span></code></a>
+  | <a class="reference internal" href="lexical-elements.html#syntax_outerlinedoc"><code class="docutils literal notranslate"><span class="pre">OuterLineDoc</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_outerattribute"><span class="pre">OuterAttribute</span></code> ::=
+    <strong class="spec-syntax-literal">#[</strong> <a class="reference internal" href="#syntax_attributecontent"><code class="docutils literal notranslate"><span class="pre">AttributeContent</span></code></a> <strong class="spec-syntax-literal">]</strong>
+
+<code class="docutils literal notranslate" id="syntax_attributecontent"><span class="pre">AttributeContent</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_simplepath"><code class="docutils literal notranslate"><span class="pre">SimplePath</span></code></a> <a class="reference internal" href="#syntax_attributeinput"><code class="docutils literal notranslate"><span class="pre">AttributeInput</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_attributeinput"><span class="pre">AttributeInput</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="macros.html#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">)</strong>
+  | <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="expressions.html#syntax_expression"><code class="docutils literal notranslate"><span class="pre">Expression</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_attributecontentlist"><span class="pre">AttributeContentList</span></code> ::=
+    <a class="reference internal" href="#syntax_attributecontent"><code class="docutils literal notranslate"><span class="pre">AttributeContent</span></code></a> (, <a class="reference internal" href="#syntax_attributecontent"><code class="docutils literal notranslate"><span class="pre">AttributeContent</span></code></a>)* ,?</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_rnzxj1t0hehl">13:1</span>
+An <a class="reference internal" href="glossary.html#term_attribute">attribute</a> is a general, free-form metadatum that is interpreted based on
+its <a class="reference internal" href="glossary.html#term_name">name</a>, convention, language, and tool.</p>
+<p><span class="spec-paragraph-id" id="fls_yd0ehw5csaur">13:2</span>
+An <a class="reference internal" href="glossary.html#term_inner_attribute">inner attribute</a> is an <a class="reference internal" href="glossary.html#term_attribute">attribute</a> that applies to an enclosing
+<a class="reference internal" href="glossary.html#term_item">item</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8o6vmzbw1b1j">13:3</span>
+An <a class="reference internal" href="glossary.html#term_outer_attribute">outer attribute</a> is an <a class="reference internal" href="glossary.html#term_attribute">attribute</a> that applies to a subsequent
+<a class="reference internal" href="glossary.html#term_item">item</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9TMRVlQwAdTB">13:4</span>
+An <a class="reference internal" href="glossary.html#term_attribute_content">attribute content</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that provides the content of
+an <a class="reference internal" href="glossary.html#term_attribute">attribute</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[cfg[target_os = </span><span class="s">&quot;linux&quot;</span><span class="cp">]]</span>
+<span class="k">mod</span><span class="w"> </span><span class="nn">linux_only_module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#![allow(unused_variables)]</span>
+
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">unused</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="attribute-properties">
+<span id="fls_i52cujixq9qs"></span><h2><span class="section-number">13.1. </span>Attribute Properties<a class="headerlink" href="#attribute-properties" title="Link to this heading">¶</a></h2>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_p4potvq7x532">13.1:1</span>
+An <a class="reference internal" href="glossary.html#term_active_attribute">active attribute</a> is an <a class="reference internal" href="glossary.html#term_attribute">attribute</a> that is removed from the <a class="reference internal" href="glossary.html#term_item">item</a>
+it decorates.</p>
+<p><span class="spec-paragraph-id" id="fls_xk7lb2g02sy7">13.1:2</span>
+An <a class="reference internal" href="glossary.html#term_inert_attribute">inert attribute</a> is an <a class="reference internal" href="glossary.html#term_attribute">attribute</a> that remains with the <a class="reference internal" href="glossary.html#term_item">item</a>
+it decorates.</p>
+<p><span class="spec-paragraph-id" id="fls_q8wl7pidx2za">13.1:3</span>
+The following <a class="reference internal" href="glossary.html#term_attribute">attributes</a> are <a class="reference internal" href="glossary.html#term_active_attribute">active attributes</a>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_jottio69o9e7">13.1:4</span>
+<a class="reference internal" href="glossary.html#term_attribute_macro">Attribute macros</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gzyx9lfi5pvd">13.1:5</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_elsfqsiqor1y">13.1:6</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cfg_attr"><code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_4xu1rwecd9au">13.1:7</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_test"><code class="docutils literal notranslate"><span class="pre">test</span></code></a> is an <a class="reference internal" href="glossary.html#term_inert_attribute">inert attribute</a> when compiling for testing
+purposes, otherwise it is an <a class="reference internal" href="glossary.html#term_active_attribute">active attribute</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_n3737i320qum">13.1:8</span>
+All remaining <a class="reference internal" href="glossary.html#term_attribute">attributes</a> are <a class="reference internal" href="glossary.html#term_inert_attribute">inert attributes</a>.</p>
+</section>
+<section id="built-in-attributes">
+<span id="fls_ahmnqhm8anlb"></span><h2><span class="section-number">13.2. </span>Built-in Attributes<a class="headerlink" href="#built-in-attributes" title="Link to this heading">¶</a></h2>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_innerbuiltinattribute"><span class="pre">InnerBuiltinAttribute</span></code> ::=
+    <strong class="spec-syntax-literal">#![</strong> <a class="reference internal" href="#syntax_builtinattributecontent"><code class="docutils literal notranslate"><span class="pre">BuiltinAttributeContent</span></code></a> <strong class="spec-syntax-literal">]</strong>
+
+<code class="docutils literal notranslate" id="syntax_outerbuiltinattribute"><span class="pre">OuterBuiltinAttribute</span></code> ::=
+    <strong class="spec-syntax-literal">#[</strong> <a class="reference internal" href="#syntax_builtinattributecontent"><code class="docutils literal notranslate"><span class="pre">BuiltinAttributeContent</span></code></a> <strong class="spec-syntax-literal">]</strong>
+
+<code class="docutils literal notranslate" id="syntax_builtinattributecontent"><span class="pre">BuiltinAttributeContent</span></code> ::=
+    <a class="reference internal" href="#syntax_automaticallyderivedcontent"><code class="docutils literal notranslate"><span class="pre">AutomaticallyDerivedContent</span></code></a>
+  | <a class="reference internal" href="#syntax_cfgattrcontent"><code class="docutils literal notranslate"><span class="pre">CfgAttrContent</span></code></a>
+  | <a class="reference internal" href="#syntax_cfgcontent"><code class="docutils literal notranslate"><span class="pre">CfgContent</span></code></a>
+  | <a class="reference internal" href="#syntax_collapsedebuginfocontent"><code class="docutils literal notranslate"><span class="pre">CollapseDebuginfoContent</span></code></a>
+  | <a class="reference internal" href="#syntax_coldcontent"><code class="docutils literal notranslate"><span class="pre">ColdContent</span></code></a>
+  | <a class="reference internal" href="#syntax_cratenamecontent"><code class="docutils literal notranslate"><span class="pre">CrateNameContent</span></code></a>
+  | <a class="reference internal" href="#syntax_cratetypecontent"><code class="docutils literal notranslate"><span class="pre">CrateTypeContent</span></code></a>
+  | <a class="reference internal" href="#syntax_derivecontent"><code class="docutils literal notranslate"><span class="pre">DeriveContent</span></code></a>
+  | <a class="reference internal" href="#syntax_doccontent"><code class="docutils literal notranslate"><span class="pre">DocContent</span></code></a>
+  | <a class="reference internal" href="#syntax_exportnamecontent"><code class="docutils literal notranslate"><span class="pre">ExportNameContent</span></code></a>
+  | <a class="reference internal" href="#syntax_globalallocatorcontent"><code class="docutils literal notranslate"><span class="pre">GlobalAllocatorContent</span></code></a>
+  | <a class="reference internal" href="#syntax_inlinecontent"><code class="docutils literal notranslate"><span class="pre">InlineContent</span></code></a>
+  | <a class="reference internal" href="#syntax_ignorecontent"><code class="docutils literal notranslate"><span class="pre">IgnoreContent</span></code></a>
+  | <a class="reference internal" href="#syntax_linkcontent"><code class="docutils literal notranslate"><span class="pre">LinkContent</span></code></a>
+  | <a class="reference internal" href="#syntax_linknamecontent"><code class="docutils literal notranslate"><span class="pre">LinkNameContent</span></code></a>
+  | <a class="reference internal" href="#syntax_linksectioncontent"><code class="docutils literal notranslate"><span class="pre">LinkSectionContent</span></code></a>
+  | <a class="reference internal" href="#syntax_linkordinalcontent"><code class="docutils literal notranslate"><span class="pre">LinkOrdinalContent</span></code></a>
+  | <a class="reference internal" href="#syntax_macroexportcontent"><code class="docutils literal notranslate"><span class="pre">MacroExportContent</span></code></a>
+  | <a class="reference internal" href="#syntax_macrousecontent"><code class="docutils literal notranslate"><span class="pre">MacroUseContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nobinutilscontent"><code class="docutils literal notranslate"><span class="pre">NoBinutilsContent</span></code></a>
+  | <a class="reference internal" href="#syntax_noimplicitpreludecontent"><code class="docutils literal notranslate"><span class="pre">NoImplicitPreludeContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nolinkcontent"><code class="docutils literal notranslate"><span class="pre">NoLinkContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nomaincontent"><code class="docutils literal notranslate"><span class="pre">NoMainContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nomanglecontent"><code class="docutils literal notranslate"><span class="pre">NoMangleContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nonexhaustivecontent"><code class="docutils literal notranslate"><span class="pre">NonExhaustiveContent</span></code></a>
+  | <a class="reference internal" href="#syntax_nostdcontent"><code class="docutils literal notranslate"><span class="pre">NoStdContent</span></code></a>
+  | <a class="reference internal" href="#syntax_panichandlercontent"><code class="docutils literal notranslate"><span class="pre">PanicHandlerContent</span></code></a>
+  | <a class="reference internal" href="#syntax_pathcontent"><code class="docutils literal notranslate"><span class="pre">PathContent</span></code></a>
+  | <a class="reference internal" href="#syntax_procmacroattributecontent"><code class="docutils literal notranslate"><span class="pre">ProcMacroAttributeContent</span></code></a>
+  | <a class="reference internal" href="#syntax_procmacrocontent"><code class="docutils literal notranslate"><span class="pre">ProcMacroContent</span></code></a>
+  | <a class="reference internal" href="#syntax_procmacroderivecontent"><code class="docutils literal notranslate"><span class="pre">ProcMacroDeriveContent</span></code></a>
+  | <a class="reference internal" href="#syntax_recursionlimitcontent"><code class="docutils literal notranslate"><span class="pre">RecursionLimitContent</span></code></a>
+  | <a class="reference internal" href="#syntax_reprcontent"><code class="docutils literal notranslate"><span class="pre">ReprContent</span></code></a>
+  | <a class="reference internal" href="#syntax_shouldpaniccontent"><code class="docutils literal notranslate"><span class="pre">ShouldPanicContent</span></code></a>
+  | <a class="reference internal" href="#syntax_targetfeaturecontent"><code class="docutils literal notranslate"><span class="pre">TargetFeatureContent</span></code></a>
+  | <a class="reference internal" href="#syntax_testcontent"><code class="docutils literal notranslate"><span class="pre">TestContent</span></code></a>
+  | <a class="reference internal" href="#syntax_trackcallercontent"><code class="docutils literal notranslate"><span class="pre">TrackCallerContent</span></code></a>
+  | <a class="reference internal" href="#syntax_typelengthlimitcontent"><code class="docutils literal notranslate"><span class="pre">TypeLengthLimitContent</span></code></a>
+  | <a class="reference internal" href="#syntax_unsafecontent"><code class="docutils literal notranslate"><span class="pre">UnsafeContent</span></code></a>
+  | <a class="reference internal" href="#syntax_usedcontent"><code class="docutils literal notranslate"><span class="pre">UsedContent</span></code></a>
+  | <a class="reference internal" href="#syntax_windowssubsystemcontent"><code class="docutils literal notranslate"><span class="pre">WindowsSubsystemContent</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_92tqo8uas8kd">13.2:1</span>
+A <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attribute</a> is a language-defined <a class="reference internal" href="glossary.html#term_attribute">attribute</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bxucstrfcco8">13.2:2</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_code_generation_attribute">code generation attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_wle815gb9ai2">13.2:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cold"><code class="docutils literal notranslate"><span class="pre">cold</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_tvn08dtuilue">13.2:4</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_q4c023zdsfgn">13.2:5</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_builtins"><code class="docutils literal notranslate"><span class="pre">no_builtins</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xtu3p0kzwn7b">13.2:6</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_target_feature"><code class="docutils literal notranslate"><span class="pre">target_feature</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_gxxbf6eag3et">13.2:7</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_87o6n9et9jio">13.2:8</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are
+<em id="term_conditional_compilation_attribute">conditional compilation attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ui0i3rpt5v5u">13.2:9</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_6utorag4adlv">13.2:10</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cfg_attr"><code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_d8spdkjzp496">13.2:11</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_derivation_attribute">derivation attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_vidbcv25dyud">13.2:12</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_automatically_derived"><code class="docutils literal notranslate"><span class="pre">automatically_derived</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_d0298bmlyuu4">13.2:13</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_dtb3t5ht5ngf">13.2:14</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_diagnostics_attribute">diagnostics attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_c5n4gzgs79vv">13.2:15</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">allow</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xheohvupr8kb">13.2:16</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">deny</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_s5z2q5pl14p4">13.2:17</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">deprecated</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5ko0q9jnxv5a">13.2:18</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">forbid</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rgjf5ibhurda">13.2:19</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">must_use</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_29y8icoou1gx">13.2:20</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">warn</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_NrTL2FruARAv">13.2:21</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">expect</span></code>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4d2ArC50kNWL">13.2:22</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <code class="docutils literal notranslate"><span class="pre">unsafe</span></code>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_3fxhz0olhbcy">13.2:23</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_documentation_attribute">documentation attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_oexj0952o05u">13.2:24</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_q579e97n1m8j">13.2:25</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are
+<em id="term_foreign_function_interface_attribute">foreign function interface attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_sn43rofpq6ld">13.2:26</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_crate_name"><code class="docutils literal notranslate"><span class="pre">crate_name</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_56d70gkmin4p">13.2:27</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_crate_type"><code class="docutils literal notranslate"><span class="pre">crate_type</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_mgb1xipm0qwo">13.2:28</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_export_name"><code class="docutils literal notranslate"><span class="pre">export_name</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_rmhlssasdtkj">13.2:29</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_josaywt6g3rq">13.2:30</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_name"><code class="docutils literal notranslate"><span class="pre">link_name</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qk4vkn42c2jh">13.2:31</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_section"><code class="docutils literal notranslate"><span class="pre">link_section</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_f21azsygoovw">13.2:32</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_link"><code class="docutils literal notranslate"><span class="pre">no_link</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4d31lwzblg91">13.2:33</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_main"><code class="docutils literal notranslate"><span class="pre">no_main</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_muucfla1s8yn">13.2:34</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wbdtpntjr95w">13.2:35</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_repr"><code class="docutils literal notranslate"><span class="pre">repr</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lglwcbsvi9yj">13.2:36</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_used"><code class="docutils literal notranslate"><span class="pre">used</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_1gyg8hfb13n7">13.2:37</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_limits_attribute">limits attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_6005g57evfbp">13.2:38</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_recursion_limit"><code class="docutils literal notranslate"><span class="pre">recursion_limit</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3y4o8kq58dt8">13.2:39</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_type_length_limit"><code class="docutils literal notranslate"><span class="pre">type_length_limit</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_vsix3pqf519x">13.2:40</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_macro_attribute">macro attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_c8uqw8p0qrh5">13.2:41</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_b3jobjxmqppy">13.2:42</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_macro_use"><code class="docutils literal notranslate"><span class="pre">macro_use</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_xyhoxm30i7wn">13.2:43</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro"><code class="docutils literal notranslate"><span class="pre">proc_macro</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_nowfw1ffhupd">13.2:44</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro_attribute"><code class="docutils literal notranslate"><span class="pre">proc_macro_attribute</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5i27houut1mu">13.2:45</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro_derive"><code class="docutils literal notranslate"><span class="pre">proc_macro_derive</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_1v9p4vr1nszn">13.2:46</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_modules_attribute">modules attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_jvkgtnulrqgh">13.2:47</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_k9p2xrs3dotn">13.2:48</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_prelude_attribute">prelude attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_73n30xdcx8e">13.2:49</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_implicit_prelude"><code class="docutils literal notranslate"><span class="pre">no_implicit_prelude</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_e7zusnfka5dt">13.2:50</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_std"><code class="docutils literal notranslate"><span class="pre">no_std</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_85ul6x76ew9">13.2:51</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_runtime_attribute">runtime attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_xkhm1sht2ju5">13.2:52</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_global_allocator"><code class="docutils literal notranslate"><span class="pre">global_allocator</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_w9za4moh6gb3">13.2:53</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_panic_handler"><code class="docutils literal notranslate"><span class="pre">panic_handler</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_3vubhygy9jje">13.2:54</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_windows_subsystem"><code class="docutils literal notranslate"><span class="pre">windows_subsystem</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_mhaplbf40j02">13.2:55</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_testing_attribute">testing attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_23huzf3c4arx">13.2:56</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_ignore"><code class="docutils literal notranslate"><span class="pre">ignore</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_i63y9xnnwq2z">13.2:57</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_should_panic"><code class="docutils literal notranslate"><span class="pre">should_panic</span></code></a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_yic8ksed28no">13.2:58</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_test"><code class="docutils literal notranslate"><span class="pre">test</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_p1ugiol1e5v5">13.2:59</span>
+The following <a class="reference internal" href="glossary.html#term_built_in_attribute">built-in attributes</a> are <em id="term_type_attribute">type attributes</em>:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_7xh2iphiteam">13.2:60</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_non_exhaustive"><code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code></a>.</p></li>
+</ul>
+<section id="code-generation-attributes">
+<span id="fls_h4k49eadninz"></span><h3><span class="section-number">13.2.1. </span>Code Generation Attributes<a class="headerlink" href="#code-generation-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-cold">
+<span id="fls_kpwbpp5hc00s"></span><h4><span class="section-number">13.2.1.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">cold</span></code><a class="headerlink" href="#attribute-cold" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_coldcontent"><span class="pre">ColdContent</span></code> ::=
+    <strong class="spec-syntax-literal">cold</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_x860jl4103p">13.2.1.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_cold"><code class="docutils literal notranslate"><span class="pre">cold</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_function">functions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_8zdexi5lgm2f">13.2.1.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_cold"><code class="docutils literal notranslate"><span class="pre">cold</span></code></em> indicates that its related <a class="reference internal" href="glossary.html#term_function">function</a> is unlikely
+to be called.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[cold]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">rarely_called_function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-inline">
+<span id="fls_ypio6boj3pwf"></span><h4><span class="section-number">13.2.1.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">inline</span></code><a class="headerlink" href="#attribute-inline" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_inlinecontent"><span class="pre">InlineContent</span></code> ::=
+    <strong class="spec-syntax-literal">inline</strong> <a class="reference internal" href="#syntax_inlinehint"><code class="docutils literal notranslate"><span class="pre">InlineHint</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_inlinehint"><span class="pre">InlineHint</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> (<strong class="spec-syntax-literal">always</strong> | <strong class="spec-syntax-literal">never</strong>) <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_jwyhky49ssup">13.2.1.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_closure_expression">closure expressions</a> and
+<a class="reference internal" href="glossary.html#term_function">functions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_s7bf7tf9206d">13.2.1.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></em> marks its related <a class="reference internal" href="glossary.html#term_function">function</a> as <em id="term_inlined">inlined</em>.
+The process of replacing a <a class="reference internal" href="glossary.html#term_call_expression">call expression</a> to an <a class="reference internal" href="#term_inlined">inlined</a> <a class="reference internal" href="glossary.html#term_function">function</a>
+with the <a class="reference internal" href="glossary.html#term_function_body">function body</a> is referred to as <em id="term_inlining">inlining</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_930o6urn669w">13.2.1.2:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></a> without an <a class="reference internal" href="#syntax_inlinehint"><code class="docutils literal notranslate"><span class="pre">InlineHint</span></code></a> suggests to a tool that
+<a class="reference internal" href="#term_inlining">inlining</a> should be performed.</p>
+<p><span class="spec-paragraph-id" id="fls_z7ufiqqujgdh">13.2.1.2:4</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></a> with <a class="reference internal" href="#syntax_inlinehint"><code class="docutils literal notranslate"><span class="pre">InlineHint</span></code></a> <code class="docutils literal notranslate"><span class="pre">always</span></code> suggests to a tool
+that <a class="reference internal" href="#term_inlining">inlining</a> should always be performed.</p>
+<p><span class="spec-paragraph-id" id="fls_f0n4g5uky9tp">13.2.1.2:5</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_inline"><code class="docutils literal notranslate"><span class="pre">inline</span></code></a> with <a class="reference internal" href="#syntax_inlinehint"><code class="docutils literal notranslate"><span class="pre">InlineHint</span></code></a> <code class="docutils literal notranslate"><span class="pre">never</span></code> suggests to a tool
+that <a class="reference internal" href="#term_inlining">inlining</a> should never be performed.</p>
+<p><span class="spec-paragraph-id" id="fls_r3p4din7rjz8">13.2.1.2:6</span>
+A tool is not obliged to perform <a class="reference internal" href="#term_inlining">inlining</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[inline]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">suggests_inlining</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="cp">#[inline(always)]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">requests_consistent_inlining</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="cp">#[inline(never)]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">requests_suppressed_inlining</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-no-builtins">
+<span id="fls_zakwockktml8"></span><h4><span class="section-number">13.2.1.3. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_builtins</span></code><a class="headerlink" href="#attribute-no-builtins" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nobinutilscontent"><span class="pre">NoBinutilsContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_builtins</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_x36c6j1ivbvp">13.2.1.3:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_builtins"><code class="docutils literal notranslate"><span class="pre">no_builtins</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k2k10qtn6f0g">13.2.1.3:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_builtins"><code class="docutils literal notranslate"><span class="pre">no_builtins</span></code></em> prevents the tool from replacing certain code
+patterns with calls to intrinsic functions.</p>
+<p class="rubric">Examples</p>
+<pre class="spec-syntax literal-block"><strong class="spec-syntax-literal">#![no_builtins]</strong></pre>
+</section>
+<section id="attribute-target-feature">
+<span id="fls_spdmit5fy7el"></span><h4><span class="section-number">13.2.1.4. </span>Attribute <code class="docutils literal notranslate"><span class="pre">target_feature</span></code><a class="headerlink" href="#attribute-target-feature" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_targetfeaturecontent"><span class="pre">TargetFeatureContent</span></code> ::=
+    <strong class="spec-syntax-literal">target_feature</strong> <strong class="spec-syntax-literal">(</strong> <strong class="spec-syntax-literal">enable</strong> <strong class="spec-syntax-literal">=</strong> <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_featurelist"><code class="docutils literal notranslate"><span class="pre">FeatureList</span></code></a> <strong class="spec-syntax-literal">&quot;</strong> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_featurelist"><span class="pre">FeatureList</span></code> ::=
+    <a class="reference internal" href="#syntax_feature"><code class="docutils literal notranslate"><span class="pre">Feature</span></code></a> (, <a class="reference internal" href="#syntax_feature"><code class="docutils literal notranslate"><span class="pre">Feature</span></code></a>)*
+
+<code class="docutils literal notranslate" id="syntax_feature"><span class="pre">Feature</span></code> ::=
+    <strong class="spec-syntax-literal">adx</strong>
+  | <strong class="spec-syntax-literal">aes</strong>
+  | <strong class="spec-syntax-literal">avx</strong>
+  | <strong class="spec-syntax-literal">avx2</strong>
+  | <strong class="spec-syntax-literal">bmi1</strong>
+  | <strong class="spec-syntax-literal">bmi2</strong>
+  | <strong class="spec-syntax-literal">fma</strong>
+  | <strong class="spec-syntax-literal">fxsr</strong>
+  | <strong class="spec-syntax-literal">lzcnt</strong>
+  | <strong class="spec-syntax-literal">pclmulqdq</strong>
+  | <strong class="spec-syntax-literal">popcnt</strong>
+  | <strong class="spec-syntax-literal">rdrand</strong>
+  | <strong class="spec-syntax-literal">rdseed</strong>
+  | <strong class="spec-syntax-literal">sha</strong>
+  | <strong class="spec-syntax-literal">sse</strong>
+  | <strong class="spec-syntax-literal">sse2</strong>
+  | <strong class="spec-syntax-literal">sse3</strong>
+  | <strong class="spec-syntax-literal">sse4.1</strong>
+  | <strong class="spec-syntax-literal">sse4.2</strong>
+  | <strong class="spec-syntax-literal">ssse3</strong>
+  | <strong class="spec-syntax-literal">xsave</strong>
+  | <strong class="spec-syntax-literal">xsavec</strong>
+  | <strong class="spec-syntax-literal">xsaveopt</strong>
+  | <strong class="spec-syntax-literal">xsaves</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3qj3jvmtxvx6">13.2.1.4:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_target_feature"><code class="docutils literal notranslate"><span class="pre">target_feature</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_unsafe_function">unsafe functions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_agpkz1v3c281">13.2.1.4:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_target_feature"><code class="docutils literal notranslate"><span class="pre">target_feature</span></code></em> enables target architecture features for its
+related <a class="reference internal" href="glossary.html#term_function">function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_91b7nd6qslsb">13.2.1.4:3</span>
+The target architecture features are as follows:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_yz4itbk700ot">13.2.1.4:4</span></p></td>
+<td><p><strong>Feature</strong></p></td>
+<td><p><strong>implicitly enables</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_pdyotoq8uqi2">13.2.1.4:5</span></p></td>
+<td><p>adx</p></td>
+<td></td>
+<td><p>Intel Multi-Precision Add-Cary Instruction Extensions</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_vdbjoy6gbk7l">13.2.1.4:6</span></p></td>
+<td><p>aes</p></td>
+<td><p>sse2</p></td>
+<td><p>Advanced Encryption Standard</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_k3szii6nviza">13.2.1.4:7</span></p></td>
+<td><p>avx</p></td>
+<td><p>sse4.2</p></td>
+<td><p>Advanced Vector Extensions</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_xsdkkfgv0pz6">13.2.1.4:8</span></p></td>
+<td><p>avx2</p></td>
+<td><p>avx</p></td>
+<td><p>Advanced Vector Extensions 2</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_eglaup5zyfsk">13.2.1.4:9</span></p></td>
+<td><p>bmi1</p></td>
+<td></td>
+<td><p>Bit Manipulation Instruction Sets</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_tkayqh7li81o">13.2.1.4:10</span></p></td>
+<td><p>bmi2</p></td>
+<td></td>
+<td><p>Bit Manipulation Instruction Sets 2</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_vv8o31s0zmli">13.2.1.4:11</span></p></td>
+<td><p>fma</p></td>
+<td><p>avx</p></td>
+<td><p>Three-operand fused multiply-add</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_g0762ekvl2ah">13.2.1.4:12</span></p></td>
+<td><p>fxsr</p></td>
+<td></td>
+<td><p>Save and restore x87 FPU, MMX technology, and SSE state</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_406ltkru11tk">13.2.1.4:13</span></p></td>
+<td><p>lzcnt</p></td>
+<td></td>
+<td><p>Leading zeros count</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_4mhyvwj8pbpk">13.2.1.4:14</span></p></td>
+<td><p>pclmulqdq</p></td>
+<td><p>sse2</p></td>
+<td><p>Packed carry-less multiplication quadword</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_ijsmqk7pgyiz">13.2.1.4:15</span></p></td>
+<td><p>popcnt</p></td>
+<td></td>
+<td><p>Count of bits set to 1</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_a1jggfetycxh">13.2.1.4:16</span></p></td>
+<td><p>rdrand</p></td>
+<td></td>
+<td><p>Read random number</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_rmbadmoeaoxu">13.2.1.4:17</span></p></td>
+<td><p>rdseed</p></td>
+<td></td>
+<td><p>Read random seed</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_f9ydn049isbv">13.2.1.4:18</span></p></td>
+<td><p>sha</p></td>
+<td><p>sse2</p></td>
+<td><p>Secure Hash Algorithm</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_7c31e21g6bdj">13.2.1.4:19</span></p></td>
+<td><p>sse</p></td>
+<td></td>
+<td><p>Streaming SIMD Extensions</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_6d5a375j2775">13.2.1.4:20</span></p></td>
+<td><p>sse2</p></td>
+<td><p>sse</p></td>
+<td><p>Streaming SIMD Extensions 2</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_xthidh2nyrno">13.2.1.4:21</span></p></td>
+<td><p>sse3</p></td>
+<td><p>sse2</p></td>
+<td><p>Streaming SIMD Extensions 3</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_w02pk6kf9w9e">13.2.1.4:22</span></p></td>
+<td><p>sse4.1</p></td>
+<td><p>sse3</p></td>
+<td><p>Streaming SIMD Extensions 4.1</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_lzl1gpco3osx">13.2.1.4:23</span></p></td>
+<td><p>sse4.2.</p></td>
+<td><p>sse4.1</p></td>
+<td><p>Streaming SIMD Extensions 4.2</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_9x2on8w44k4f">13.2.1.4:24</span></p></td>
+<td><p>ssse3</p></td>
+<td><p>sse3</p></td>
+<td><p>Supplemental Streaming SIMD Extensions 3</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_rilqwazchfpp">13.2.1.4:25</span></p></td>
+<td><p>xsave</p></td>
+<td></td>
+<td><p>Save processor extended status</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_f0of1395z9pn">13.2.1.4:26</span></p></td>
+<td><p>xsavec</p></td>
+<td></td>
+<td><p>Save processor extended status with compaction</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_v9gf6selc17l">13.2.1.4:27</span></p></td>
+<td><p>xsaveopt</p></td>
+<td></td>
+<td><p>Save processor extended states optimized</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_jyb5s2r8w1po">13.2.1.4:28</span></p></td>
+<td><p>xsaves</p></td>
+<td></td>
+<td><p>Save processor extended states supervizor</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_xx51fjkbgg5g">13.2.1.4:29</span>
+It is undefined behavior to execute a program compiled with target architecture
+features that are not supported.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[target_feature(enable=</span><span class="s">&quot;bmi1,sse4.1&quot;</span><span class="cp">)]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">requires_target_architecture_features</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-track-caller">
+<span id="fls_6qj249hphj1s"></span><h4><span class="section-number">13.2.1.5. </span>Attribute <code class="docutils literal notranslate"><span class="pre">track_caller</span></code><a class="headerlink" href="#attribute-track-caller" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_trackcallercontent"><span class="pre">TrackCallerContent</span></code> ::=
+    <strong class="spec-syntax-literal">track_caller</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_h8yepgchjxv9">13.2.1.5:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></a> shall apply to <span class="spec-missing-ref">non-main functions</span> with
+<a class="reference internal" href="glossary.html#term_abi">ABI</a> “Rust”.</p>
+<p><span class="spec-paragraph-id" id="fls_w1pxtzp7acty">13.2.1.5:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></em> allows the <a class="reference internal" href="glossary.html#term_function_body">function body</a> of its
+related <a class="reference internal" href="glossary.html#term_function">function</a> to obtain a <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Apanic%3A%3ALocation"><code class="docutils literal notranslate"><span class="pre">core::panic::Location</span></code></a> which indicates
+the topmost untracked caller that ultimately led to the invocation of the
+<a class="reference internal" href="glossary.html#term_function">function</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_zch43jpetmdu">13.2.1.5:3</span>
+A tool is not required to implement this indication in an effective manner.</p>
+<p><span class="spec-paragraph-id" id="fls_y1e258p4rby5">13.2.1.5:4</span>
+When applied to an <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a>, <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="#codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></a> applies to all <a class="reference internal" href="glossary.html#term_associated_function">associated functions</a> of the
+<a class="reference internal" href="glossary.html#term_implemented_trait">implemented trait</a>. If the <a class="reference internal" href="glossary.html#term_associated_trait_function">associated trait function</a> has a default
+<a class="reference internal" href="glossary.html#term_implementation">implementation</a>, then the <a class="reference internal" href="glossary.html#term_attribute">attribute</a> applies to all overriding
+<a class="reference internal" href="glossary.html#term_function">functions</a>.</p>
+<p class="rubric">Undefined Behavior</p>
+<p><span class="spec-paragraph-id" id="fls_vkz8t751gfhk">13.2.1.5:5</span>
+It is undefined behavior when <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></a> applies to an
+<a class="reference internal" href="glossary.html#term_external_function">external function</a> but does not apply to all linked <a class="reference internal" href="glossary.html#term_implementation">implementations</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ddg0u5lej74x">13.2.1.5:6</span>
+It is undefined behavior when <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_track_caller"><code class="docutils literal notranslate"><span class="pre">track_caller</span></code></a> is applied to
+an <a class="reference internal" href="glossary.html#term_exported_function">exported function</a> but the <a class="reference internal" href="glossary.html#term_external_function">external function</a> it links to is missing
+the <a class="reference internal" href="glossary.html#term_attribute">attribute</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[track_caller]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">who_called_me</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="conditional-compilation-attributes">
+<span id="fls_cdx9zb1yxcc8"></span><h3><span class="section-number">13.2.2. </span>Conditional Compilation Attributes<a class="headerlink" href="#conditional-compilation-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-cfg">
+<span id="fls_fymvsy6ig99a"></span><h4><span class="section-number">13.2.2.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">cfg</span></code><a class="headerlink" href="#attribute-cfg" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_cfgcontent"><span class="pre">CfgContent</span></code> ::=
+    <strong class="spec-syntax-literal">cfg</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_configurationpredicate"><span class="pre">ConfigurationPredicate</span></code> ::=
+    <a class="reference internal" href="#syntax_configurationoption"><code class="docutils literal notranslate"><span class="pre">ConfigurationOption</span></code></a>
+  | <a class="reference internal" href="#syntax_configurationpredicateall"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicateAll</span></code></a>
+  | <a class="reference internal" href="#syntax_configurationpredicateany"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicateAny</span></code></a>
+  | <a class="reference internal" href="#syntax_configurationpredicatenot"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicateNot</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_configurationoption"><span class="pre">ConfigurationOption</span></code> ::=
+    <a class="reference internal" href="#syntax_configurationoptionname"><code class="docutils literal notranslate"><span class="pre">ConfigurationOptionName</span></code></a> <a class="reference internal" href="#syntax_configurationoptionvalue"><code class="docutils literal notranslate"><span class="pre">ConfigurationOptionValue</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_configurationoptionname"><span class="pre">ConfigurationOptionName</span></code> ::=
+    <a class="reference internal" href="lexical-elements.html#syntax_identifier"><code class="docutils literal notranslate"><span class="pre">Identifier</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_configurationoptionvalue"><span class="pre">ConfigurationOptionValue</span></code> ::=
+    <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_configurationpredicateall"><span class="pre">ConfigurationPredicateAll</span></code> ::=
+    <strong class="spec-syntax-literal">all</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_configurationpredicatelist"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicateList</span></code></a>? <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_configurationpredicateany"><span class="pre">ConfigurationPredicateAny</span></code> ::=
+    <strong class="spec-syntax-literal">any</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_configurationpredicatelist"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicateList</span></code></a>? <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_configurationpredicatenot"><span class="pre">ConfigurationPredicateNot</span></code> ::=
+    <strong class="spec-syntax-literal">not</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_configurationpredicatelist"><span class="pre">ConfigurationPredicateList</span></code> ::=
+    <a class="reference internal" href="#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a>)* <strong class="spec-syntax-literal">,</strong>?</pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_xrjp7xw9jutz">13.2.2.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_cfg"><code class="docutils literal notranslate"><span class="pre">cfg</span></code></em> enables <a class="reference internal" href="glossary.html#term_conditional_compilation">conditional compilation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_l96kyix5xsof">13.2.2.1:2</span>
+A <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> is a <a class="reference internal" href="glossary.html#term_construct">construct</a> that evaluates statically
+to either <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, and controls <a class="reference internal" href="glossary.html#term_conditional_compilation">conditional compilation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_y1MUhnKCxK6T">13.2.2.1:3</span>
+An <a class="reference internal" href="glossary.html#term_all_configuration_predicate">all configuration predicate</a> is a <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> that
+models existential quantifier ALL.</p>
+<p><span class="spec-paragraph-id" id="fls_tncxxsyutppf">13.2.2.1:4</span>
+An <a class="reference internal" href="glossary.html#term_all_configuration_predicate">all configuration predicate</a> evaluates statically to <code class="docutils literal notranslate"><span class="pre">true</span></code> when either
+all nested configuration predicates evaluate to <code class="docutils literal notranslate"><span class="pre">true</span></code>, or there are no nested
+configuration predicates.</p>
+<p><span class="spec-paragraph-id" id="fls_Rp73YEE3aFdI">13.2.2.1:5</span>
+An <a class="reference internal" href="glossary.html#term_any_configuration_predicate">any configuration predicate</a> is a <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> that
+models existential quantifier ANY.</p>
+<p><span class="spec-paragraph-id" id="fls_m0zxktz168e0">13.2.2.1:6</span>
+An <a class="reference internal" href="glossary.html#term_any_configuration_predicate">any configuration predicate</a> evaluates statically to <code class="docutils literal notranslate"><span class="pre">true</span></code> when any
+nested configuration predicate evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_XsxeOd32JI8x">13.2.2.1:7</span>
+A <a class="reference internal" href="glossary.html#term_not_configuration_predicate">not configuration predicate</a> is a <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> that
+negates the Boolean <a class="reference internal" href="glossary.html#term_value">value</a> of its nested <a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_tvsadfy9uibu">13.2.2.1:8</span>
+A <a class="reference internal" href="glossary.html#term_not_configuration_predicate">not configuration predicate</a> evaluates statically to <code class="docutils literal notranslate"><span class="pre">true</span></code> when its
+nested configuration predicate evaluates to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_jbl9xyynjo0g">13.2.2.1:9</span>
+The <a class="reference internal" href="glossary.html#term_evaluation">evaluation</a> of a configuration option is tool-defined.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[cfg(all(unix, target_pointer_width = </span><span class="s">&quot;32&quot;</span><span class="cp">))]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">on_32bit_unix</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-cfg-attr">
+<span id="fls_dd9xh3wdjudo"></span><h4><span class="section-number">13.2.2.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code><a class="headerlink" href="#attribute-cfg-attr" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_cfgattrcontent"><span class="pre">CfgAttrContent</span></code> ::=
+    <strong class="spec-syntax-literal">cfg_attr</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_configurationpredicate"><code class="docutils literal notranslate"><span class="pre">ConfigurationPredicate</span></code></a> <strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_attributecontentlist"><code class="docutils literal notranslate"><span class="pre">AttributeContentList</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_r66jhict6rlq">13.2.2.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_cfg_attr"><code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code></em> enables <a class="reference internal" href="glossary.html#term_conditional_compilation">conditional compilation</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_rzw12sagm585">13.2.2.2:2</span>
+An <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_cfg_attr"><code class="docutils literal notranslate"><span class="pre">cfg_attr</span></code></a> where the related
+<a class="reference internal" href="glossary.html#term_configuration_predicate">configuration predicate</a> evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> is replaced with a new
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> for each <a class="reference internal" href="#syntax_attributecontent"><code class="docutils literal notranslate"><span class="pre">AttributeContent</span></code></a> enumerated in the
+<a class="reference internal" href="glossary.html#term_attribute">attribute's</a> <a class="reference internal" href="#syntax_attributecontentlist"><code class="docutils literal notranslate"><span class="pre">AttributeContentList</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[cfg_attr(windows, path=</span><span class="s">&quot;windows.rs&quot;</span><span class="cp">)]</span>
+<span class="k">mod</span><span class="w"> </span><span class="nn">os</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="derivation-attributes">
+<span id="fls_wednba84zi3y"></span><h3><span class="section-number">13.2.3. </span>Derivation Attributes<a class="headerlink" href="#derivation-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-automatically-derived">
+<span id="fls_bqw87nz4qbrb"></span><h4><span class="section-number">13.2.3.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">automatically_derived</span></code><a class="headerlink" href="#attribute-automatically-derived" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_automaticallyderivedcontent"><span class="pre">AutomaticallyDerivedContent</span></code> ::=
+    <strong class="spec-syntax-literal">automatically_derived</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_5u1e0lkt0ab1">13.2.3.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_automatically_derived"><code class="docutils literal notranslate"><span class="pre">automatically_derived</span></code></em> is automatically added to
+<a class="reference internal" href="glossary.html#term_implementation">implementations</a> that are created by <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a> for
+<a class="reference internal" href="glossary.html#term_built_in_trait">built-in traits</a>.</p>
+</section>
+<section id="attribute-derive">
+<span id="fls_r6gj1p4gajnq"></span><h4><span class="section-number">13.2.3.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">derive</span></code><a class="headerlink" href="#attribute-derive" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_derivecontent"><span class="pre">DeriveContent</span></code> ::=
+    <strong class="spec-syntax-literal">derive</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="entities-and-resolution.html#syntax_simplepathlist"><code class="docutils literal notranslate"><span class="pre">SimplePathList</span></code></a>? <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_4btm6zwf445a">13.2.3.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_pjmbmj2b35y8">13.2.3.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></em> lists <a class="reference internal" href="glossary.html#term_derive_macro">derive macros</a> for automatic
+implementation by a tool.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[derive(PartialEq)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">S</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">field</span><span class="p">:</span><span class="w"> </span><span class="nc">T</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><span class="spec-paragraph-id" id="fls_xtty2ino4vwc">13.2.3.2:3</span>
+Attribute <code class="docutils literal notranslate"><span class="pre">derive</span></code> causes trait <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Acmp%3A%3APartialEq"><code class="docutils literal notranslate"><span class="pre">core::cmp::PartialEq</span></code></a> to be
+automatically implemented for struct <code class="docutils literal notranslate"><span class="pre">S&lt;T&gt;</span></code> as follows:</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="p">:</span><span class="w"> </span><span class="nc">core</span><span class="p">::</span><span class="n">cmp</span><span class="p">::</span><span class="nb">PartialEq</span><span class="o">&gt;</span><span class="w"> </span><span class="n">core</span><span class="p">::</span><span class="n">cmp</span><span class="p">::</span><span class="nb">PartialEq</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">S</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">eq</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">S</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="bp">self</span><span class="p">.</span><span class="n">field</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">field</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">ne</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">S</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="p">{</span>
+<span class="w">       </span><span class="bp">self</span><span class="p">.</span><span class="n">field</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">field</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="diagnostics-attributes">
+<span id="fls_t2590yyvclgb"></span><h3><span class="section-number">13.2.4. </span>Diagnostics Attributes<a class="headerlink" href="#diagnostics-attributes" title="Link to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The contents of this section are informational.</p>
+</div>
+<p><span class="spec-paragraph-id" id="fls_ghumzt9ybtit">13.2.4:1</span>
+Diagnostic <a class="reference internal" href="glossary.html#term_attribute">attributes</a> are related to linting, and are not defined in
+this document.</p>
+</section>
+<section id="documentation-attributes">
+<span id="fls_8wcliky2svcs"></span><h3><span class="section-number">13.2.5. </span>Documentation Attributes<a class="headerlink" href="#documentation-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-doc">
+<span id="fls_63v1fqedzwfd"></span><h4><span class="section-number">13.2.5.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">doc</span></code><a class="headerlink" href="#attribute-doc" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_doccontent"><span class="pre">DocContent</span></code> ::=
+    <strong class="spec-syntax-literal">doc</strong> <a class="reference internal" href="#syntax_docinput"><code class="docutils literal notranslate"><span class="pre">DocInput</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_docinput"><span class="pre">DocInput</span></code> ::=
+    <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="macros.html#syntax_macroinvocation"><code class="docutils literal notranslate"><span class="pre">MacroInvocation</span></code></a>
+  | <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a>
+  | <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="macros.html#syntax_tokentree"><code class="docutils literal notranslate"><span class="pre">TokenTree</span></code></a>* <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_1ee9qjcgbwme">13.2.5.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_doc"><code class="docutils literal notranslate"><span class="pre">doc</span></code></em> associates documentation with a <a class="reference internal" href="glossary.html#term_construct">construct</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![doc = </span><span class="s">&quot;This is a doc comment written as an attribute.&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="foreign-function-interface-attributes">
+<span id="fls_pgp7ezcc9lh8"></span><h3><span class="section-number">13.2.6. </span>Foreign Function Interface Attributes<a class="headerlink" href="#foreign-function-interface-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-crate-name">
+<span id="fls_sun645voqex6"></span><h4><span class="section-number">13.2.6.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">crate_name</span></code><a class="headerlink" href="#attribute-crate-name" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_cratenamecontent"><span class="pre">CrateNameContent</span></code> ::=
+    <strong class="spec-syntax-literal">crate_name</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_tsdk8jyajcg">13.2.6.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_crate_name"><code class="docutils literal notranslate"><span class="pre">crate_name</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6riphqysh0gd">13.2.6.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_crate_name"><code class="docutils literal notranslate"><span class="pre">crate_name</span></code></em> shall specify the name of the related
+<a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![crate_name = </span><span class="s">&quot;factories&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-crate-type">
+<span id="fls_ujig607lmwbm"></span><h4><span class="section-number">13.2.6.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">crate_type</span></code><a class="headerlink" href="#attribute-crate-type" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_cratetypecontent"><span class="pre">CrateTypeContent</span></code> ::=
+    <strong class="spec-syntax-literal">crate_type</strong> <strong class="spec-syntax-literal">=</strong> <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_cratetype"><code class="docutils literal notranslate"><span class="pre">CrateType</span></code></a> <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_cratetype"><span class="pre">CrateType</span></code> ::=
+    <strong class="spec-syntax-literal">bin</strong>
+  | <strong class="spec-syntax-literal">cdylib</strong>
+  | <strong class="spec-syntax-literal">dylib</strong>
+  | <strong class="spec-syntax-literal">lib</strong>
+  | <strong class="spec-syntax-literal">proc-macro</strong>
+  | <strong class="spec-syntax-literal">rlib</strong>
+  | <strong class="spec-syntax-literal">staticlib</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_2i2g55nqqpc1">13.2.6.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_crate_type"><code class="docutils literal notranslate"><span class="pre">crate_type</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1zziddjuzjeq">13.2.6.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_crate_type"><code class="docutils literal notranslate"><span class="pre">crate_type</span></code></em> shall specify the linkage <a class="reference internal" href="glossary.html#term_type">type</a> of the
+<a class="reference internal" href="glossary.html#term_crate">crate</a> it appears in.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![crate_type = </span><span class="s">&quot;cdylib&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-export-name">
+<span id="fls_olzilmy8n0nl"></span><h4><span class="section-number">13.2.6.3. </span>Attribute <code class="docutils literal notranslate"><span class="pre">export_name</span></code><a class="headerlink" href="#attribute-export-name" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_exportnamecontent"><span class="pre">ExportNameContent</span></code> ::=
+    <strong class="spec-syntax-literal">export_name</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_r3fwpuuaoeie">13.2.6.3:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_export_name"><code class="docutils literal notranslate"><span class="pre">export_name</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_function">functions</a> and
+<a class="reference internal" href="glossary.html#term_static">statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_spwr6gf7kpds">13.2.6.3:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_export_name"><code class="docutils literal notranslate"><span class="pre">export_name</span></code></em> shall specify the exported symbol of the
+related <a class="reference internal" href="glossary.html#term_function">function</a> or <a class="reference internal" href="glossary.html#term_static">static</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[export_name = </span><span class="s">&quot;exported_symbol&quot;</span><span class="cp">]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">rust_name</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-link">
+<span id="fls_o0f9ae22ug1x"></span><h4><span class="section-number">13.2.6.4. </span>Attribute <code class="docutils literal notranslate"><span class="pre">link</span></code><a class="headerlink" href="#attribute-link" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_linkcontent"><span class="pre">LinkContent</span></code> ::=
+    <strong class="spec-syntax-literal">link</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_linkoption"><code class="docutils literal notranslate"><span class="pre">LinkOption</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_linkoption"><span class="pre">LinkOption</span></code> ::=
+    <a class="reference internal" href="#syntax_nativelibraryname"><code class="docutils literal notranslate"><span class="pre">NativeLibraryName</span></code></a>
+  | <a class="reference internal" href="#syntax_nativelibrarynamewithkind"><code class="docutils literal notranslate"><span class="pre">NativeLibraryNameWithKind</span></code></a>
+  | <a class="reference internal" href="#syntax_webassemblymodulename"><code class="docutils literal notranslate"><span class="pre">WebAssemblyModuleName</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_nativelibraryname"><span class="pre">NativeLibraryName</span></code> ::=
+    <strong class="spec-syntax-literal">name</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_nativelibrarynamewithkind"><span class="pre">NativeLibraryNameWithKind</span></code> ::=
+    <a class="reference internal" href="#syntax_nativelibraryname"><code class="docutils literal notranslate"><span class="pre">NativeLibraryName</span></code></a> , <a class="reference internal" href="#syntax_nativelibraykind"><code class="docutils literal notranslate"><span class="pre">NativeLibrayKind</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_webassemblymodulename"><span class="pre">WebAssemblyModuleName</span></code> ::=
+    <strong class="spec-syntax-literal">wasm_import_module</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_nativelibraykind"><span class="pre">NativeLibrayKind</span></code> ::=
+    <strong class="spec-syntax-literal">kind</strong> <strong class="spec-syntax-literal">=</strong> &quot; <a class="reference internal" href="#syntax_nativelibraykindtype"><code class="docutils literal notranslate"><span class="pre">NativeLibrayKindType</span></code></a> &quot;
+
+<code class="docutils literal notranslate" id="syntax_nativelibraykindtype"><span class="pre">NativeLibrayKindType</span></code> ::=
+    <strong class="spec-syntax-literal">dylib</strong>
+  | <strong class="spec-syntax-literal">raw-dylib</strong>
+  | <strong class="spec-syntax-literal">framework</strong>
+  | <strong class="spec-syntax-literal">static</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_yslpkdngo8hj">13.2.6.4:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_external_block">external blocks</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6rohnk4swj6c">13.2.6.4:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></em> shall specify the name of a native library that a tool
+should link with.</p>
+<p><span class="spec-paragraph-id" id="fls_o83pf3bcrzma">13.2.6.4:3</span>
+The following native library kinds are available:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_5541q1qoxdpf">13.2.6.4:4</span></p></td>
+<td><p><strong>Native Library Kind</strong></p></td>
+<td><p><strong>Description</strong></p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_wpqawdpevkj6">13.2.6.4:5</span></p></td>
+<td><p>dylib</p></td>
+<td><p>Dynamic library</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_HPl6poXGiAqV">13.2.6.4:6</span></p></td>
+<td><p>raw-dylib</p></td>
+<td><p>Dynamic library</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="spec-paragraph-id" id="fls_h9dfs6kzmobp">13.2.6.4:7</span></p></td>
+<td><p>framework</p></td>
+<td><p>macOS framework</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="spec-paragraph-id" id="fls_3a3r4jf7hzqr">13.2.6.4:8</span></p></td>
+<td><p>static</p></td>
+<td><p>Static library</p></td>
+</tr>
+</tbody>
+</table>
+<p><span class="spec-paragraph-id" id="fls_1tdheukgm6ai">13.2.6.4:9</span>
+When <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> appears without a native library kind, its native
+library kind defaults to <code class="docutils literal notranslate"><span class="pre">dylib</span></code>. Native library kind framework is only valid
+on macOS targets.</p>
+<p><span class="spec-paragraph-id" id="fls_3i9ijypnh8nx">13.2.6.4:10</span>
+If <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> appears without a WebAssembly module name, then the
+WebAssembly module name defaults to <code class="docutils literal notranslate"><span class="pre">env</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_iDjcQczFQknm">13.2.6.4:11</span>
+When <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> appears with <code class="docutils literal notranslate"><span class="pre">raw-dylib</span></code> as the native library
+kind, the supplied name must include the file extension.</p>
+<p><span class="spec-paragraph-id" id="fls_rcERq1PfKPJI">13.2.6.4:12</span>
+When <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> appears with <code class="docutils literal notranslate"><span class="pre">raw-dylib</span></code> as the native library
+kind, the <a class="reference internal" href="glossary.html#term_external_function">external functions</a> and <a class="reference internal" href="glossary.html#term_external_static">external statics</a> of the related
+<a class="reference internal" href="glossary.html#term_external_block">external block</a> shall not be subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[link(name = </span><span class="s">&quot;CoreFoundation&quot;</span><span class="cp">, kind = </span><span class="s">&quot;framework&quot;</span><span class="cp">)]</span>
+<span class="k">extern</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-link-name">
+<span id="fls_p44fky7fifc"></span><h4><span class="section-number">13.2.6.5. </span>Attribute <code class="docutils literal notranslate"><span class="pre">link_name</span></code><a class="headerlink" href="#attribute-link-name" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_linknamecontent"><span class="pre">LinkNameContent</span></code> ::=
+    <strong class="spec-syntax-literal">link_name</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_g09jhukl0ez2">13.2.6.5:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_name"><code class="docutils literal notranslate"><span class="pre">link_name</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_external_function">external functions</a> and
+<a class="reference internal" href="glossary.html#term_external_static">external statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_d00wni4edi8f">13.2.6.5:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_link_name"><code class="docutils literal notranslate"><span class="pre">link_name</span></code></em> shall specify the linking symbol of the related
+<a class="reference internal" href="glossary.html#term_external_function">external function</a> or <a class="reference internal" href="glossary.html#term_external_static">external static</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_0Athv8KFA5FO">13.2.6.5:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_name"><code class="docutils literal notranslate"><span class="pre">link_name</span></code></a> shall not be applied to <a class="reference internal" href="glossary.html#term_external_function">external functions</a>
+and <a class="reference internal" href="glossary.html#term_external_static">external statics</a> that are annotated with <a class="reference internal" href="glossary.html#term_attribute">Attribute</a>
+<a class="reference internal" href="#codeterm_link_ordinal"><code class="docutils literal notranslate"><span class="pre">link_ordinal</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="k">extern</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[link_name = </span><span class="s">&quot;linking_symbol&quot;</span><span class="cp">]</span>
+<span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">rust_name</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-link-section">
+<span id="fls_hffpo88r61rh"></span><h4><span class="section-number">13.2.6.6. </span>Attribute <code class="docutils literal notranslate"><span class="pre">link_section</span></code><a class="headerlink" href="#attribute-link-section" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_linksectioncontent"><span class="pre">LinkSectionContent</span></code> ::=
+    <strong class="spec-syntax-literal">link_section</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_5loqzajiz34m">13.2.6.6:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_section"><code class="docutils literal notranslate"><span class="pre">link_section</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_function">functions</a> and
+<a class="reference internal" href="glossary.html#term_static">statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cyxk12wuicml">13.2.6.6:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_link_section"><code class="docutils literal notranslate"><span class="pre">link_section</span></code></em> specifies the object file section where the
+symbol of the related <a class="reference internal" href="glossary.html#term_function">function</a> or <a class="reference internal" href="glossary.html#term_static">static</a> will be placed.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[link_section = </span><span class="s">&quot;.example_section&quot;</span><span class="cp">]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">THE_ANSWER</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-link-ordinal">
+<span id="fls_obik2w9gvhln"></span><h4><span class="section-number">13.2.6.7. </span>Attribute <code class="docutils literal notranslate"><span class="pre">link_ordinal</span></code><a class="headerlink" href="#attribute-link-ordinal" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_linkordinalcontent"><span class="pre">LinkOrdinalContent</span></code> ::=
+    <strong class="spec-syntax-literal">link_ordinal</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="lexical-elements.html#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_fuv29BIqcawW">13.2.6.7:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_link_ordinal"><code class="docutils literal notranslate"><span class="pre">link_ordinal</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_external_function">external functions</a> and
+<a class="reference internal" href="glossary.html#term_external_static">external statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qh5sXG4znAXa">13.2.6.7:2</span>
+The related <span class="spec-missing-ref">extern block</span> of the <a class="reference internal" href="glossary.html#term_external_function">external function</a> or
+<a class="reference internal" href="glossary.html#term_external_static">external static</a> shall be subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link"><code class="docutils literal notranslate"><span class="pre">link</span></code></a> with
+<code class="docutils literal notranslate"><span class="pre">raw-dylib</span></code> as the native library kind.</p>
+<p><span class="spec-paragraph-id" id="fls_ASnJJiXWGlKI">13.2.6.7:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_link_ordinal"><code class="docutils literal notranslate"><span class="pre">link_ordinal</span></code></em> shall specify the linking symbol of the
+related <a class="reference internal" href="glossary.html#term_external_function">external function</a> or <a class="reference internal" href="glossary.html#term_external_static">external static</a> by ordinal number.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[link(name = </span><span class="s">&quot;lib.dll&quot;</span><span class="cp">, kind = </span><span class="s">&quot;raw-dylib&quot;</span><span class="cp">)]</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;system&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[link_ordinal(16)]</span>
+<span class="w">    </span><span class="k">fn</span><span class="w"> </span><span class="nf">function</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-no-link">
+<span id="fls_ch9nkxkloozv"></span><h4><span class="section-number">13.2.6.8. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_link</span></code><a class="headerlink" href="#attribute-no-link" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nolinkcontent"><span class="pre">NoLinkContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_link</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ayhn6g6sgt3h">13.2.6.8:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_link"><code class="docutils literal notranslate"><span class="pre">no_link</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_crate_import">crate imports</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_76ox8n3eef5">13.2.6.8:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_link"><code class="docutils literal notranslate"><span class="pre">no_link</span></code></em> indicates that the imported external <a class="reference internal" href="glossary.html#term_crate">crate</a>
+will not be linked into the resulting binary or library.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[no_link]</span>
+<span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">do_not_link</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-no-main">
+<span id="fls_fh27ljezn3qz"></span><h4><span class="section-number">13.2.6.9. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_main</span></code><a class="headerlink" href="#attribute-no-main" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nomaincontent"><span class="pre">NoMainContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_main</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_84a9k0fzmnfk">13.2.6.9:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_main"><code class="docutils literal notranslate"><span class="pre">no_main</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_6qig3s3qpj0i">13.2.6.9:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_main"><code class="docutils literal notranslate"><span class="pre">no_main</span></code></em> indicates that the symbols of the
+<a class="reference internal" href="glossary.html#term_program_entry_point">program entry point</a> will not be present in a binary.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![no_main]</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-no-mangle">
+<span id="fls_mvd7nz8k3wcy"></span><h4><span class="section-number">13.2.6.10. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_mangle</span></code><a class="headerlink" href="#attribute-no-mangle" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nomanglecontent"><span class="pre">NoMangleContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_mangle</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_q5swm5meafmx">13.2.6.10:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a> has no effect on <a class="reference internal" href="glossary.html#term_construct">constructs</a> other than
+<a class="reference internal" href="glossary.html#term_function">functions</a> and <a class="reference internal" href="glossary.html#term_static">statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_esaew4fqk8mm">13.2.6.10:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></em> indicates that the <a class="reference internal" href="glossary.html#term_name">name</a> of the related
+<a class="reference internal" href="glossary.html#term_function">function</a> or <a class="reference internal" href="glossary.html#term_static">static</a> will be used as the symbol for that <a class="reference internal" href="glossary.html#term_function">function</a>
+or <a class="reference internal" href="glossary.html#term_static">static</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_lvnclpxbye9u">13.2.6.10:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a> causes the related <a class="reference internal" href="glossary.html#term_function">function</a> or <a class="reference internal" href="glossary.html#term_static">static</a> to
+be publicly exported from the produced library or object file.</p>
+<p><span class="spec-paragraph-id" id="fls_VKuSiswPMll7">13.2.6.10:4</span>
+An <a class="reference internal" href="glossary.html#term_exported_function">exported function</a> is a <a class="reference internal" href="glossary.html#term_function">function</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_I029Rvr5BX5P">13.2.6.10:5</span>
+An <a class="reference internal" href="glossary.html#term_exported_static">exported static</a> is a <a class="reference internal" href="glossary.html#term_static">static</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[no_mangle]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">symbol_name</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-repr">
+<span id="fls_aibb2quva4mn"></span><h4><span class="section-number">13.2.6.11. </span>Attribute <code class="docutils literal notranslate"><span class="pre">repr</span></code><a class="headerlink" href="#attribute-repr" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_reprcontent"><span class="pre">ReprContent</span></code> ::=
+    <strong class="spec-syntax-literal">repr</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_representation"><code class="docutils literal notranslate"><span class="pre">Representation</span></code></a> <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_representation"><span class="pre">Representation</span></code> ::=
+    <a class="reference internal" href="#syntax_representationkind"><code class="docutils literal notranslate"><span class="pre">RepresentationKind</span></code></a> <a class="reference internal" href="#syntax_alignment"><code class="docutils literal notranslate"><span class="pre">Alignment</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_representationkind"><span class="pre">RepresentationKind</span></code> ::=
+    <a class="reference internal" href="#syntax_primitiverepresentation"><code class="docutils literal notranslate"><span class="pre">PrimitiveRepresentation</span></code></a>
+  | <strong class="spec-syntax-literal">C</strong>
+  | <strong class="spec-syntax-literal">Rust</strong>
+  | <strong class="spec-syntax-literal">transparent</strong>
+
+<code class="docutils literal notranslate" id="syntax_alignment"><span class="pre">Alignment</span></code> ::=
+    <a class="reference internal" href="#syntax_alignmentdecrease"><code class="docutils literal notranslate"><span class="pre">AlignmentDecrease</span></code></a>
+  | <a class="reference internal" href="#syntax_alignmentincrease"><code class="docutils literal notranslate"><span class="pre">AlignmentIncrease</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_primitiverepresentation"><span class="pre">PrimitiveRepresentation</span></code> ::=
+    <strong class="spec-syntax-literal">i8</strong>
+  | <strong class="spec-syntax-literal">i16</strong>
+  | <strong class="spec-syntax-literal">i32</strong>
+  | <strong class="spec-syntax-literal">i64</strong>
+  | <strong class="spec-syntax-literal">i128</strong>
+  | <strong class="spec-syntax-literal">isize</strong>
+  | <strong class="spec-syntax-literal">u8</strong>
+  | <strong class="spec-syntax-literal">u16</strong>
+  | <strong class="spec-syntax-literal">u32</strong>
+  | <strong class="spec-syntax-literal">u64</strong>
+  | <strong class="spec-syntax-literal">u128</strong>
+  | <strong class="spec-syntax-literal">usize</strong>
+
+<code class="docutils literal notranslate" id="syntax_alignmentdecrease"><span class="pre">AlignmentDecrease</span></code> ::=
+    <strong class="spec-syntax-literal">packed</strong>
+
+<code class="docutils literal notranslate" id="syntax_alignmentincrease"><span class="pre">AlignmentIncrease</span></code> ::=
+    <strong class="spec-syntax-literal">align</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="lexical-elements.html#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_vetjq9sw84qc">13.2.6.11:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_repr"><code class="docutils literal notranslate"><span class="pre">repr</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_is2esjz1sy36">13.2.6.11:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_repr"><code class="docutils literal notranslate"><span class="pre">repr</span></code></em> shall indicate the <a class="reference internal" href="glossary.html#term_type_representation">type representation</a> of the
+related <a class="reference internal" href="glossary.html#term_type">type</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[repr(C, align(8))]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">c_struct</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">first_field</span><span class="p">:</span><span class="w"> </span><span class="kt">i16</span><span class="p">,</span>
+<span class="w">    </span><span class="n">second_field</span><span class="p">:</span><span class="w"> </span><span class="kt">i8</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-unsafe">
+<span id="fls_19lnti3wabfd"></span><h4><span class="section-number">13.2.6.12. </span>Attribute <code class="docutils literal notranslate"><span class="pre">unsafe</span></code><a class="headerlink" href="#attribute-unsafe" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_unsafecontent"><span class="pre">UnsafeContent</span></code> ::=
+    <strong class="spec-syntax-literal">unsafe</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_builtinattributecontent"><code class="docutils literal notranslate"><span class="pre">BuiltinAttributeContent</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_5pjo3nGOxbVw">13.2.6.12:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <span class="spec-missing-ref"><code class="docutils literal notranslate"><span class="pre">unsafe</span></code></span> shall apply to what the contained <a class="reference internal" href="glossary.html#term_attribute">attribute</a> applies to.</p>
+<p><span class="spec-paragraph-id" id="fls_gpxlWbQUNsj8">13.2.6.12:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <span class="spec-missing-ref"><code class="docutils literal notranslate"><span class="pre">unsafe</span></code></span> behaves like the contained <a class="reference internal" href="glossary.html#term_attribute">attribute</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_PhrfxSBvXTPV">13.2.6.12:3</span>
+The contained <a class="reference internal" href="glossary.html#term_attribute">attribute</a> shall be one of:</p>
+<ul>
+<li><p><span class="spec-paragraph-id" id="fls_pCSew95bKJJ5">13.2.6.12:4</span>
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_no_mangle"><code class="docutils literal notranslate"><span class="pre">no_mangle</span></code></a>,</p>
+<p><span class="spec-paragraph-id" id="fls_NRLgmOXxuljQ">13.2.6.12:5</span>
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_export_name"><code class="docutils literal notranslate"><span class="pre">export_name</span></code></a>, or</p>
+<p><span class="spec-paragraph-id" id="fls_ykpxNByUDyHG">13.2.6.12:6</span>
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_link_section"><code class="docutils literal notranslate"><span class="pre">link_section</span></code></a>,</p>
+</li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[unsafe(no_mangle)]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">clear_name</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-used">
+<span id="fls_7skf24auayqy"></span><h4><span class="section-number">13.2.6.13. </span>Attribute <code class="docutils literal notranslate"><span class="pre">used</span></code><a class="headerlink" href="#attribute-used" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_usedcontent"><span class="pre">UsedContent</span></code> ::=
+    <strong class="spec-syntax-literal">used</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_s4ii078wgpk">13.2.6.13:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_used"><code class="docutils literal notranslate"><span class="pre">used</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_static">statics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_k293nzcffks4">13.2.6.13:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_used"><code class="docutils literal notranslate"><span class="pre">used</span></code></em> forces a tool to keep the related <a class="reference internal" href="glossary.html#term_static">static</a> in the
+output object file even if the <a class="reference internal" href="glossary.html#term_static">static</a> is not used or referenced by other
+<a class="reference internal" href="glossary.html#term_item">items</a> in the <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[used]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">THE_ANSWER</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="limits-attributes">
+<span id="fls_cjq792yj6vft"></span><h3><span class="section-number">13.2.7. </span>Limits Attributes<a class="headerlink" href="#limits-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-recursion-limit">
+<span id="fls_u2hzlzpzh7yy"></span><h4><span class="section-number">13.2.7.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">recursion_limit</span></code><a class="headerlink" href="#attribute-recursion-limit" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_recursionlimitcontent"><span class="pre">RecursionLimitContent</span></code> ::=
+    <strong class="spec-syntax-literal">recursion_limit</strong> <strong class="spec-syntax-literal">=</strong> <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="lexical-elements.html#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">&quot;</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_o55cxc67sya7">13.2.7.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_recursion_limit"><code class="docutils literal notranslate"><span class="pre">recursion_limit</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_o9p8fa8zhe15">13.2.7.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_recursion_limit"><code class="docutils literal notranslate"><span class="pre">recursion_limit</span></code></em> sets the maximum depth of
+<a class="reference internal" href="glossary.html#term_macro_expansion">macro expansion</a> and <span class="spec-missing-ref">auto-dereferencing</span>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![recursion_limit = </span><span class="s">&quot;42&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-type-length-limit">
+<span id="fls_tdjjuwbr7mkg"></span><h4><span class="section-number">13.2.7.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">type_length_limit</span></code><a class="headerlink" href="#attribute-type-length-limit" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_typelengthlimitcontent"><span class="pre">TypeLengthLimitContent</span></code> ::=
+    <strong class="spec-syntax-literal">type_length_limit</strong> <strong class="spec-syntax-literal">=</strong> <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="lexical-elements.html#syntax_decimalliteral"><code class="docutils literal notranslate"><span class="pre">DecimalLiteral</span></code></a> <strong class="spec-syntax-literal">&quot;</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_dfnkzj8ob3uq">13.2.7.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_type_length_limit"><code class="docutils literal notranslate"><span class="pre">type_length_limit</span></code></a> shall apply to the
+<a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_61vt1r8g51nh">13.2.7.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_type_length_limit"><code class="docutils literal notranslate"><span class="pre">type_length_limit</span></code></em> sets the maximum number of
+<a class="reference internal" href="glossary.html#term_generic_substitution">generic substitutions</a> for <a class="reference internal" href="glossary.html#term_type_parameter">type parameters</a> when constructing a
+<a class="reference internal" href="glossary.html#term_concrete_type">concrete type</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![type_length_limit = </span><span class="s">&quot;42&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="macros-attributes">
+<span id="fls_2084b06dr0wz"></span><h3><span class="section-number">13.2.8. </span>Macros Attributes<a class="headerlink" href="#macros-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-collapse-debuginfo">
+<span id="fls_qyudjghzfyjh"></span><h4><span class="section-number">13.2.8.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">collapse_debuginfo</span></code><a class="headerlink" href="#attribute-collapse-debuginfo" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_collapsedebuginfocontent"><span class="pre">CollapseDebuginfoContent</span></code> ::=
+    <strong class="spec-syntax-literal">collapse_debuginfo</strong>  <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_collapsedebuginfokind"><code class="docutils literal notranslate"><span class="pre">CollapseDebuginfoKind</span></code></a> <strong class="spec-syntax-literal">)</strong>
+<code class="docutils literal notranslate" id="syntax_collapsedebuginfokind"><span class="pre">CollapseDebuginfoKind</span></code> ::=
+    <strong class="spec-syntax-literal">no</strong>
+  | <strong class="spec-syntax-literal">external</strong>
+  | <strong class="spec-syntax-literal">yes</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_EzKHtWHmXMAZ">13.2.8.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_collapse_debuginfo"><code class="docutils literal notranslate"><span class="pre">collapse_debuginfo</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macros</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_BCvJpfQMYEcD">13.2.8.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_collapse_debuginfo"><code class="docutils literal notranslate"><span class="pre">collapse_debuginfo</span></code></em> changes the debug location information
+for the expanded code of the <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> to its invocation site. This
+repeats recursively to the top most expansion of a <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> that
+is not annotated with <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_collapse_debuginfo"><code class="docutils literal notranslate"><span class="pre">collapse_debuginfo</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[collapse_debuginfo(yes)]</span>
+<span class="fm">macro_rules!</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-macro-export">
+<span id="fls_e0a96eb6ux3y"></span><h4><span class="section-number">13.2.8.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">macro_export</span></code><a class="headerlink" href="#attribute-macro-export" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macroexportcontent"><span class="pre">MacroExportContent</span></code> ::=
+    <strong class="spec-syntax-literal">macro_export</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_3ma7zkk6john">13.2.8.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macros</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_h26iw5wh4lla">13.2.8.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></em> changes the <a class="reference internal" href="glossary.html#term_visibility">visibility</a> of the related
+<a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> to <a class="reference internal" href="glossary.html#term_public_visibility">public visibility</a> and introduces the <a class="reference internal" href="glossary.html#term_name">name</a>
+of the <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macro</a> into the <a class="reference internal" href="glossary.html#term_item_scope">item scope</a> of the
+<a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[macro_export]</span>
+<span class="fm">macro_rules!</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{};</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-macro-use">
+<span id="fls_qxjy0f758x5s"></span><h4><span class="section-number">13.2.8.3. </span>Attribute <code class="docutils literal notranslate"><span class="pre">macro_use</span></code><a class="headerlink" href="#attribute-macro-use" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_macrousecontent"><span class="pre">MacroUseContent</span></code> ::=
+    <strong class="spec-syntax-literal">macro_use</strong> <a class="reference internal" href="#syntax_importedmacrolist"><code class="docutils literal notranslate"><span class="pre">ImportedMacroList</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_importedmacrolist"><span class="pre">ImportedMacroList</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="lexical-elements.html#syntax_identifierlist"><code class="docutils literal notranslate"><span class="pre">IdentifierList</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_uua0nthq9id">13.2.8.3:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_macro_use"><code class="docutils literal notranslate"><span class="pre">macro_use</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_crate_import">crate imports</a> and
+<a class="reference internal" href="glossary.html#term_module">modules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_oq4kyo5z5tj5">13.2.8.3:2</span>
+An <a class="reference internal" href="#syntax_importedmacrolist"><code class="docutils literal notranslate"><span class="pre">ImportedMacroList</span></code></a> enumerates macros-to-import. A macro-to-import shall
+be subject to attribute <a class="reference internal" href="#codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_skexvtpbjknn">13.2.8.3:3</span>
+When applied to a <a class="reference internal" href="glossary.html#term_crate_import">crate import</a>, <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <em id="codeterm_macro_use"><code class="docutils literal notranslate"><span class="pre">macro_use</span></code></em>
+imports from the related <a class="reference internal" href="glossary.html#term_crate">crate</a> either:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_v03924dr0u0z">13.2.8.3:4</span>
+The enumerated macros-to-import, or</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_eha2hoey857x">13.2.8.3:5</span>
+If no macros-to-import have been specified, all <a class="reference internal" href="glossary.html#term_macro">macros</a> subject to
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_p6jlgmn2sg7j">13.2.8.3:6</span>
+When applied to a <a class="reference internal" href="glossary.html#term_module">module</a>, <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_macro_use"><code class="docutils literal notranslate"><span class="pre">macro_use</span></code></a> extends the
+<a class="reference internal" href="glossary.html#term_textual_macro_scope">textual macro scope</a> of the related <a class="reference internal" href="glossary.html#term_macro">macro</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[macro_use(first_macro, second_macro)]</span>
+<span class="k">extern</span><span class="w"> </span><span class="k">crate</span><span class="w"> </span><span class="n">macros</span><span class="p">;</span>
+<span class="cp">#[macro_use]</span>
+<span class="k">mod</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-proc-macro">
+<span id="fls_qkmkev85o5jf"></span><h4><span class="section-number">13.2.8.4. </span>Attribute <code class="docutils literal notranslate"><span class="pre">proc_macro</span></code><a class="headerlink" href="#attribute-proc-macro" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_procmacrocontent"><span class="pre">ProcMacroContent</span></code> ::=
+    <strong class="spec-syntax-literal">proc_macro</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_u48dtmh97g">13.2.8.4:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro"><code class="docutils literal notranslate"><span class="pre">proc_macro</span></code></a> shall apply to public <a class="reference internal" href="glossary.html#term_function">functions</a> in the
+<a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> of a <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_t4ez0zg1m569">13.2.8.4:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_proc_macro"><code class="docutils literal notranslate"><span class="pre">proc_macro</span></code></em> turns the related <a class="reference internal" href="glossary.html#term_function">function</a> into a
+<a class="reference internal" href="glossary.html#term_function_like_macro">function-like macro</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">make_answer_to_life</span><span class="p">(</span><span class="n">_items</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;fn answer_to_life() -&gt; u32 { 42 }&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-proc-macro-attribute">
+<span id="fls_ejhlylrcajo"></span><h4><span class="section-number">13.2.8.5. </span>Attribute <code class="docutils literal notranslate"><span class="pre">proc_macro_attribute</span></code><a class="headerlink" href="#attribute-proc-macro-attribute" title="Link to this heading">¶</a></h4>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_procmacroattributecontent"><span class="pre">ProcMacroAttributeContent</span></code> ::=
+    <strong class="spec-syntax-literal">proc_macro_attribute</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_huznzmkuhdky">13.2.8.5:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro_attribute"><code class="docutils literal notranslate"><span class="pre">proc_macro_attribute</span></code></a> shall apply to public <a class="reference internal" href="glossary.html#term_function">functions</a>
+in the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> of a <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_gc3ly8fsodf1">13.2.8.5:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_proc_macro_attribute"><code class="docutils literal notranslate"><span class="pre">proc_macro_attribute</span></code></em> turns the related <a class="reference internal" href="glossary.html#term_function">function</a> into
+an <a class="reference internal" href="glossary.html#term_attribute_macro">attribute macro</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro_attribute]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">output_and_return_item</span>
+<span class="w">    </span><span class="p">(</span><span class="n">attr</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;attr: </span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attr</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span>
+<span class="w">    </span><span class="fm">println!</span><span class="p">(</span><span class="s">&quot;item: </span><span class="se">\&quot;</span><span class="s">{}</span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">item</span><span class="p">.</span><span class="n">to_string</span><span class="p">());</span>
+<span class="w">    </span><span class="n">item</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-proc-macro-derive">
+<span id="fls_q6qecp6e413"></span><h4><span class="section-number">13.2.8.6. </span>Attribute <code class="docutils literal notranslate"><span class="pre">proc_macro_derive</span></code><a class="headerlink" href="#attribute-proc-macro-derive" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_procmacroderivecontent"><span class="pre">ProcMacroDeriveContent</span></code> ::=
+    <strong class="spec-syntax-literal">proc_macro_derive</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="#syntax_derivename"><code class="docutils literal notranslate"><span class="pre">DeriveName</span></code></a> (<strong class="spec-syntax-literal">,</strong> <a class="reference internal" href="#syntax_helperattributelist"><code class="docutils literal notranslate"><span class="pre">HelperAttributeList</span></code></a>)? <strong class="spec-syntax-literal">)</strong>
+
+<code class="docutils literal notranslate" id="syntax_derivename"><span class="pre">DeriveName</span></code> ::=
+    <a class="reference internal" href="entities-and-resolution.html#syntax_name"><code class="docutils literal notranslate"><span class="pre">Name</span></code></a>
+
+<code class="docutils literal notranslate" id="syntax_helperattributelist"><span class="pre">HelperAttributeList</span></code> ::=
+    <strong class="spec-syntax-literal">attributes</strong> <strong class="spec-syntax-literal">(</strong> <a class="reference internal" href="lexical-elements.html#syntax_identifierlist"><code class="docutils literal notranslate"><span class="pre">IdentifierList</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_l82yswg0k3px">13.2.8.6:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_proc_macro_derive"><code class="docutils literal notranslate"><span class="pre">proc_macro_derive</span></code></a> shall apply to public <a class="reference internal" href="glossary.html#term_function">functions</a> in
+the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> of a <a class="reference internal" href="glossary.html#term_proc_macro_crate">proc-macro crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ir9i4i2x5gyx">13.2.8.6:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_proc_macro_derive"><code class="docutils literal notranslate"><span class="pre">proc_macro_derive</span></code></em> turns the related <a class="reference internal" href="glossary.html#term_function">function</a> into a
+<a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a>, where <a class="reference internal" href="#syntax_derivename"><code class="docutils literal notranslate"><span class="pre">DeriveName</span></code></a> defines the <a class="reference internal" href="glossary.html#term_name">name</a> of the
+<a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a> available to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_derive"><code class="docutils literal notranslate"><span class="pre">derive</span></code></a>.</p>
+<p><span class="spec-paragraph-id" id="fls_NydVxyb43TH6">13.2.8.6:3</span>
+The <a class="reference internal" href="#syntax_helperattributelist"><code class="docutils literal notranslate"><span class="pre">HelperAttributeList</span></code></a> declares the <a class="reference internal" href="macros.html#term_derive_helper_attribute">derive helper attributes</a> of
+the <a class="reference internal" href="glossary.html#term_derive_macro">derive macro</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[proc_macro_derive(Answer, attributes(marker))]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">fn</span><span class="w"> </span><span class="nf">derive_answer_to_life</span><span class="p">(</span><span class="n">_items</span><span class="p">:</span><span class="w"> </span><span class="nc">TokenStream</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">TokenStream</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s">&quot;fn answer_to_life() -&gt; u32 { 42 }&quot;</span><span class="p">.</span><span class="n">parse</span><span class="p">().</span><span class="n">unwrap</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="cp">#[derive(Answer)]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">S</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[marker]</span><span class="w"> </span><span class="n">field</span><span class="p">:</span><span class="w"> </span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="modules-attributes">
+<span id="fls_7bb5ua4g06k8"></span><h3><span class="section-number">13.2.9. </span>Modules Attributes<a class="headerlink" href="#modules-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-path">
+<span id="fls_1zbaajz5prpn"></span><h4><span class="section-number">13.2.9.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">path</span></code><a class="headerlink" href="#attribute-path" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_pathcontent"><span class="pre">PathContent</span></code> ::=
+    <strong class="spec-syntax-literal">path</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_lht4pcezmbxw">13.2.9.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_path"><code class="docutils literal notranslate"><span class="pre">path</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_module">modules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_qb6anohvc03k">13.2.9.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_path"><code class="docutils literal notranslate"><span class="pre">path</span></code></em> specifies the <em id="term_module_path">module path</em> of the respective
+<a class="reference internal" href="glossary.html#term_module">module</a> as a <a class="reference internal" href="glossary.html#term_string_literal">string literal</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_18tcecx4p2wp">13.2.9.1:3</span>
+A tool is free to define the format of a <a class="reference internal" href="#term_module_path">module path</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[path = </span><span class="s">&quot;path/to/inline_module&quot;</span><span class="cp">]</span>
+<span class="k">mod</span><span class="w"> </span><span class="nn">inline_module</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[path = </span><span class="s">&quot;path/to/outline_module&quot;</span><span class="cp">]</span>
+<span class="w">    </span><span class="k">mod</span><span class="w"> </span><span class="nn">outline_module</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="prelude-attributes">
+<span id="fls_go457hpaf7ov"></span><h3><span class="section-number">13.2.10. </span>Prelude Attributes<a class="headerlink" href="#prelude-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-no-implicit-prelude">
+<span id="fls_iikmhqsp1r5a"></span><h4><span class="section-number">13.2.10.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_implicit_prelude</span></code><a class="headerlink" href="#attribute-no-implicit-prelude" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_noimplicitpreludecontent"><span class="pre">NoImplicitPreludeContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_implicit_prelude</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_tki5k5uo74gw">13.2.10.1:1</span>
+The <a class="reference internal" href="glossary.html#term_inner_attribute">inner attribute</a> version of <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_no_implicit_prelude"><code class="docutils literal notranslate"><span class="pre">no_implicit_prelude</span></code></a>
+shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a> or to <a class="reference internal" href="glossary.html#term_module">modules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cmrqxc5oax4r">13.2.10.1:2</span>
+The <a class="reference internal" href="glossary.html#term_outer_attribute">outer attribute</a> version of <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_no_implicit_prelude"><code class="docutils literal notranslate"><span class="pre">no_implicit_prelude</span></code></a>
+shall apply to <a class="reference internal" href="glossary.html#term_module">modules</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_c7v2hbdb7g2d">13.2.10.1:3</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_implicit_prelude"><code class="docutils literal notranslate"><span class="pre">no_implicit_prelude</span></code></em> prevents the import of the
+<a class="reference internal" href="entities-and-resolution.html#term_external_prelude">external prelude</a>, the standard library <a class="reference internal" href="glossary.html#term_prelude">prelude</a>, and the tool
+<a class="reference internal" href="glossary.html#term_prelude">prelude</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[no_implicit_prelude]</span>
+<span class="k">mod</span><span class="w"> </span><span class="nn">module</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-no-std">
+<span id="fls_9xnaxd7qbakp"></span><h4><span class="section-number">13.2.10.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">no_std</span></code><a class="headerlink" href="#attribute-no-std" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nostdcontent"><span class="pre">NoStdContent</span></code> ::=
+    <strong class="spec-syntax-literal">no_std</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_qnxihxsvkyf6">13.2.10.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_no_std"><code class="docutils literal notranslate"><span class="pre">no_std</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_kxav9vw59ts4">13.2.10.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_no_std"><code class="docutils literal notranslate"><span class="pre">no_std</span></code></em> has the following effects:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ve1shwjq09pl">13.2.10.2:3</span>
+Prevents the import of the standard library <a class="reference internal" href="glossary.html#term_prelude">prelude</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_wgwsn7laoju7">13.2.10.2:4</span>
+Imports the <a class="reference internal" href="entities-and-resolution.html#term_core_prelude">core prelude</a>.</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_lxkd6hdboav4">13.2.10.2:5</span>
+Imports all <a class="reference internal" href="glossary.html#term_declarative_macro">declarative macros</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="#codeterm_macro_export"><code class="docutils literal notranslate"><span class="pre">macro_export</span></code></a> of the <code class="docutils literal notranslate"><span class="pre">core</span></code> <a class="reference internal" href="glossary.html#term_crate">crate</a> into the <a class="reference internal" href="entities-and-resolution.html#term_macro_use_prelude">macro_use prelude</a>.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![no_std]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="runtime-attributes">
+<span id="fls_nbbvukrdngev"></span><h3><span class="section-number">13.2.11. </span>Runtime Attributes<a class="headerlink" href="#runtime-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-global-allocator">
+<span id="fls_fs0lcfllamj"></span><h4><span class="section-number">13.2.11.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">global_allocator</span></code><a class="headerlink" href="#attribute-global-allocator" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_globalallocatorcontent"><span class="pre">GlobalAllocatorContent</span></code> ::=
+    <strong class="spec-syntax-literal">global_allocator</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_5b8aewlgeon8">13.2.11.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_global_allocator"><code class="docutils literal notranslate"><span class="pre">global_allocator</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_static">statics</a> whose
+<a class="reference internal" href="glossary.html#term_type">types</a> implement the <a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Aalloc%3A%3AGlobalAlloc"><code class="docutils literal notranslate"><span class="pre">core::alloc::GlobalAlloc</span></code></a> <a class="reference internal" href="glossary.html#term_trait">trait</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_homoidh8mu1r">13.2.11.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_global_allocator"><code class="docutils literal notranslate"><span class="pre">global_allocator</span></code></em> sets the global allocator to the related
+<a class="reference internal" href="glossary.html#term_static">static</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[global_allocator]</span>
+<span class="k">pub</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">THE_ANSWER</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-panic-handler">
+<span id="fls_ls5eryuoxlp9"></span><h4><span class="section-number">13.2.11.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">panic_handler</span></code><a class="headerlink" href="#attribute-panic-handler" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_panichandlercontent"><span class="pre">PanicHandlerContent</span></code> ::=
+    <strong class="spec-syntax-literal">panic_handler</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_ryz8qy1wdnma">13.2.11.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_panic_handler"><code class="docutils literal notranslate"><span class="pre">panic_handler</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_function">functions</a> with the
+following restrictions:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ncyod5gegMqL">13.2.11.2:2</span>
+It lacks <a class="reference internal" href="glossary.html#term_function_qualifier">function qualifiers</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_jzIHzPkJqVm8">13.2.11.2:3</span>
+Its <a class="reference internal" href="glossary.html#term_abi">ABI</a> is Rust,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_qXii07xWRUoT">13.2.11.2:4</span>
+It lacks <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_ZEjvn4mmfSct">13.2.11.2:5</span>
+It has a single <a class="reference internal" href="glossary.html#term_function_parameter">function parameter</a> whose <a class="reference internal" href="glossary.html#term_type">type</a> is <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>
+<a class="reference external" href="https://doc.rust-lang.org/stable/std/?search=core%3A%3Apanic%3A%3APanicInfo"><code class="docutils literal notranslate"><span class="pre">core::panic::PanicInfo</span></code></a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_iWPw0QFE5TrP">13.2.11.2:6</span>
+It has the <a class="reference internal" href="glossary.html#term_never_type">never type</a> as its <a class="reference internal" href="glossary.html#term_return_type">return type</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_WirXqd7UV4M0">13.2.11.2:7</span>
+It lacks a <a class="reference internal" href="glossary.html#term_where_clause">where clause</a>,</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_5CGTQTuT0I5v">13.2.11.2:8</span>
+It has a <a class="reference internal" href="glossary.html#term_function_body">function body</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_8gqun8lma9wz">13.2.11.2:9</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_panic_handler"><code class="docutils literal notranslate"><span class="pre">panic_handler</span></code></em> indicates that its related <a class="reference internal" href="glossary.html#term_function">function</a>
+defines the behavior of <a class="reference internal" href="glossary.html#term_panic">panics</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_ka66jcu8gir7">13.2.11.2:10</span>
+A <a class="reference internal" href="glossary.html#term_crate">crate</a> graph shall contain exactly one <a class="reference internal" href="glossary.html#term_function">function</a> subject to
+<a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_panic_handler"><code class="docutils literal notranslate"><span class="pre">panic_handler</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[panic_handler]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">panic</span><span class="p">(</span><span class="n">info</span><span class="p">:</span><span class="w"> </span><span class="kp">&amp;</span><span class="nc">core</span><span class="p">::</span><span class="n">panic</span><span class="p">::</span><span class="n">PanicInfo</span><span class="p">)</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-windows-subsystem">
+<span id="fls_1l4mnlfk5rr2"></span><h4><span class="section-number">13.2.11.3. </span>Attribute <code class="docutils literal notranslate"><span class="pre">windows_subsystem</span></code><a class="headerlink" href="#attribute-windows-subsystem" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_windowssubsystemcontent"><span class="pre">WindowsSubsystemContent</span></code> ::=
+    <strong class="spec-syntax-literal">windows_subsystem</strong> <strong class="spec-syntax-literal">=</strong> <strong class="spec-syntax-literal">&quot;</strong> <a class="reference internal" href="#syntax_subsystemkind"><code class="docutils literal notranslate"><span class="pre">SubsystemKind</span></code></a> <strong class="spec-syntax-literal">&quot;</strong>
+
+<code class="docutils literal notranslate" id="syntax_subsystemkind"><span class="pre">SubsystemKind</span></code> ::=
+    <strong class="spec-syntax-literal">console</strong>
+  | <strong class="spec-syntax-literal">windows</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_7mzjahvdzpy5">13.2.11.3:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_windows_subsystem"><code class="docutils literal notranslate"><span class="pre">windows_subsystem</span></code></a> shall apply to the <a class="reference internal" href="glossary.html#term_crate_root_module">crate root module</a>
+of a <a class="reference internal" href="glossary.html#term_binary_crate">binary crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_t3c0t3lcnebk">13.2.11.3:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_windows_subsystem"><code class="docutils literal notranslate"><span class="pre">windows_subsystem</span></code></em> specifies the subsystem on Windows.</p>
+<p><span class="spec-paragraph-id" id="fls_go7pfkgpjk2t">13.2.11.3:3</span>
+If <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_windows_subsystem"><code class="docutils literal notranslate"><span class="pre">windows_subsystem</span></code></a> is missing, the subsystem of the
+related <a class="reference internal" href="glossary.html#term_binary_crate">binary crate</a> defaults to <code class="docutils literal notranslate"><span class="pre">console</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#![windows_subsystem = </span><span class="s">&quot;console&quot;</span><span class="cp">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-attributes">
+<span id="fls_riyi0gy48fxw"></span><h3><span class="section-number">13.2.12. </span>Testing Attributes<a class="headerlink" href="#testing-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-ignore">
+<span id="fls_x849a4u7h82j"></span><h4><span class="section-number">13.2.12.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">ignore</span></code><a class="headerlink" href="#attribute-ignore" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_ignorecontent"><span class="pre">IgnoreContent</span></code> ::=
+    <strong class="spec-syntax-literal">ignore</strong> <a class="reference internal" href="#syntax_ignorereason"><code class="docutils literal notranslate"><span class="pre">IgnoreReason</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_ignorereason"><span class="pre">IgnoreReason</span></code> ::=
+    <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_qmdylxse9yhu">13.2.12.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_ignore"><code class="docutils literal notranslate"><span class="pre">ignore</span></code></a> shall apply to <a class="reference internal" href="#term_testing_function">testing functions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_9m8e59fc1tyh">13.2.12.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_ignore"><code class="docutils literal notranslate"><span class="pre">ignore</span></code></em> prevents the execution of its related
+<a class="reference internal" href="#term_testing_function">testing function</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[test]</span>
+<span class="cp">#[ignore = </span><span class="s">&quot;not implemented yet&quot;</span><span class="cp">]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">unit_testing_function</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-should-panic">
+<span id="fls_aes2d94g12b9"></span><h4><span class="section-number">13.2.12.2. </span>Attribute <code class="docutils literal notranslate"><span class="pre">should_panic</span></code><a class="headerlink" href="#attribute-should-panic" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_shouldpaniccontent"><span class="pre">ShouldPanicContent</span></code> ::=
+    <strong class="spec-syntax-literal">should_panic</strong> <a class="reference internal" href="#syntax_expectedpanicmessage"><code class="docutils literal notranslate"><span class="pre">ExpectedPanicMessage</span></code></a>?
+
+<code class="docutils literal notranslate" id="syntax_expectedpanicmessage"><span class="pre">ExpectedPanicMessage</span></code> ::=
+    <strong class="spec-syntax-literal">(</strong> <strong class="spec-syntax-literal">expected</strong> <strong class="spec-syntax-literal">=</strong> <a class="reference internal" href="lexical-elements.html#syntax_stringliteral"><code class="docutils literal notranslate"><span class="pre">StringLiteral</span></code></a> <strong class="spec-syntax-literal">)</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_w7dq8gnzel36">13.2.12.2:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_should_panic"><code class="docutils literal notranslate"><span class="pre">should_panic</span></code></a> shall apply to <a class="reference internal" href="#term_testing_function">testing functions</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bm5x846zfnb8">13.2.12.2:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_should_panic"><code class="docutils literal notranslate"><span class="pre">should_panic</span></code></em> indicates that for the related
+<a class="reference internal" href="#term_testing_function">testing function</a> to pass, it should <a class="reference internal" href="glossary.html#term_panic">panic</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_bcoq5aus8nkr">13.2.12.2:3</span>
+If <a class="reference internal" href="#syntax_expectedpanicmessage"><code class="docutils literal notranslate"><span class="pre">ExpectedPanicMessage</span></code></a> is specified, then the related
+<a class="reference internal" href="#term_testing_function">testing function</a> passes only when the <a class="reference internal" href="glossary.html#term_panic">panic</a> message contains the
+<a class="reference internal" href="#syntax_expectedpanicmessage"><code class="docutils literal notranslate"><span class="pre">ExpectedPanicMessage</span></code></a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[test]</span>
+<span class="cp">#[should_panic(expected = </span><span class="s">&quot;did not get meaning of life&quot;</span><span class="cp">)]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">test_meaning_of_life</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="fm">assert_eq!</span><span class="p">(</span><span class="n">meaning_of_life</span><span class="p">(),</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;did not get meaning of life&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="attribute-test">
+<span id="fls_dv2j1fvvnk1t"></span><h4><span class="section-number">13.2.12.3. </span>Attribute <code class="docutils literal notranslate"><span class="pre">test</span></code><a class="headerlink" href="#attribute-test" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_testcontent"><span class="pre">TestContent</span></code> ::=
+    <strong class="spec-syntax-literal">test</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_o2elhg5w1rj9">13.2.12.3:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_test"><code class="docutils literal notranslate"><span class="pre">test</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_function">functions</a> that:</p>
+<ul class="simple">
+<li><p><span class="spec-paragraph-id" id="fls_ert22u8rvkxt">13.2.12.3:2</span>
+Is not an <a class="reference internal" href="glossary.html#term_async_function">async function</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_c9ckjrq6emdj">13.2.12.3:3</span>
+Is not an <a class="reference internal" href="glossary.html#term_unsafe_function">unsafe function</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_4uykzqpq6svl">13.2.12.3:4</span>
+Lacks <a class="reference internal" href="glossary.html#term_generic_parameter">generic parameters</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_aqzd30s267pt">13.2.12.3:5</span>
+Lacks <a class="reference internal" href="glossary.html#term_function_parameter">function parameters</a>, and</p></li>
+<li><p><span class="spec-paragraph-id" id="fls_n3hjhh3d7tyx">13.2.12.3:6</span>
+Its <a class="reference internal" href="glossary.html#term_return_type">return type</a> is the <a class="reference internal" href="glossary.html#term_unit_type">unit type</a>.</p></li>
+</ul>
+<p><span class="spec-paragraph-id" id="fls_ze6cs75y9aft">13.2.12.3:7</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_test"><code class="docutils literal notranslate"><span class="pre">test</span></code></em> indicates that the respective <a class="reference internal" href="glossary.html#term_function">function</a> is a
+<em id="term_testing_function">testing function</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_pcs0prrh23y3">13.2.12.3:8</span>
+A <a class="reference internal" href="#term_testing_function">testing function</a> that returns the <a class="reference internal" href="glossary.html#term_unit_type">unit type</a> passes when it
+terminates and does not <a class="reference internal" href="glossary.html#term_panic">panic</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_niky8lbkvej9">13.2.12.3:9</span>
+A <a class="reference internal" href="#term_testing_function">testing function</a> that returns <code class="docutils literal notranslate"><span class="pre">core::result::Result&lt;(),</span> <span class="pre">E&gt;</span></code> passes when
+it returns <code class="docutils literal notranslate"><span class="pre">core::result::Result::OK(())</span></code>.</p>
+<p><span class="spec-paragraph-id" id="fls_qfuntdm2g184">13.2.12.3:10</span>
+A <a class="reference internal" href="#term_testing_function">testing function</a> that does not terminate shall pass and fail according to
+the tool.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[test]</span>
+<span class="k">fn</span><span class="w"> </span><span class="nf">test_the_thing</span><span class="p">()</span><span class="w"> </span><span class="p">-&gt;</span><span class="w"> </span><span class="nc">core</span><span class="p">::</span><span class="n">result</span><span class="p">::</span><span class="nb">Result</span><span class="o">&lt;</span><span class="p">()</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">create_input</span><span class="p">()</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="n">do_the_thing</span><span class="p">(</span><span class="o">&amp;</span><span class="n">input</span><span class="p">)</span><span class="o">?</span><span class="p">;</span>
+<span class="w">    </span><span class="n">core</span><span class="p">::</span><span class="n">result</span><span class="p">::</span><span class="nb">Result</span><span class="p">::</span><span class="nb">Ok</span><span class="p">(());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="type-attributes">
+<span id="fls_r3zwgf9sg1xp"></span><h3><span class="section-number">13.2.13. </span>Type Attributes<a class="headerlink" href="#type-attributes" title="Link to this heading">¶</a></h3>
+<section id="attribute-non-exhaustive">
+<span id="fls_9tmvuqrmk3ug"></span><h4><span class="section-number">13.2.13.1. </span>Attribute <code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code><a class="headerlink" href="#attribute-non-exhaustive" title="Link to this heading">¶</a></h4>
+<p class="rubric">Syntax</p>
+<pre class="spec-syntax literal-block"><code class="docutils literal notranslate" id="syntax_nonexhaustivecontent"><span class="pre">NonExhaustiveContent</span></code> ::=
+    <strong class="spec-syntax-literal">non_exhaustive</strong></pre>
+<p class="rubric">Legality Rules</p>
+<p><span class="spec-paragraph-id" id="fls_szvrd79cgzsg">13.2.13.1:1</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <a class="reference internal" href="#codeterm_non_exhaustive"><code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code></a> shall apply to <a class="reference internal" href="glossary.html#term_enum_type">enum types</a>,
+<a class="reference internal" href="glossary.html#term_enum_variant">enum variants</a>, and <a class="reference internal" href="glossary.html#term_struct_type">struct types</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_1of56vl2ewq0">13.2.13.1:2</span>
+<a class="reference internal" href="glossary.html#term_attribute">Attribute</a> <em id="codeterm_non_exhaustive"><code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code></em> indicates that the related
+<a class="reference internal" href="glossary.html#term_abstract_data_type">abstract data type</a> or <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> may have more <a class="reference internal" href="glossary.html#term_field">fields</a> or
+<a class="reference internal" href="glossary.html#term_enum_variant">enum variants</a> added in the future. A <a class="reference internal" href="glossary.html#term_type">type</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a>
+<a class="reference internal" href="#codeterm_non_exhaustive"><code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code></a> is referred to as a <em id="term_non_exhaustive_type">non-exhaustive type</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_hkyzdmmdyoin">13.2.13.1:3</span>
+A <a class="reference internal" href="#term_non_exhaustive_type">non-exhaustive type</a> shall not be constructed outside of its defining
+<a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_7b0fvwrmz0mh">13.2.13.1:4</span>
+An <a class="reference internal" href="glossary.html#term_enum_variant">enum variant</a> subject to <a class="reference internal" href="glossary.html#term_attribute">attribute</a> <a class="reference internal" href="#codeterm_non_exhaustive"><code class="docutils literal notranslate"><span class="pre">non_exhaustive</span></code></a> is referred
+to as a <em id="term_non_exhaustive_variant">non-exhaustive variant</em>.</p>
+<p><span class="spec-paragraph-id" id="fls_oqfrg9tqgaj8">13.2.13.1:5</span>
+A <a class="reference internal" href="#term_non_exhaustive_variant">non-exhaustive variant</a> shall not be constructed outside of its defining
+<a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_aql3c89840ix">13.2.13.1:6</span>
+<a class="reference internal" href="glossary.html#term_pattern_matching">Pattern matching</a> a <a class="reference internal" href="#term_non_exhaustive_variant">non-exhaustive variant</a> shall require a
+<a class="reference internal" href="glossary.html#term_struct_pattern">struct pattern</a> with a <a class="reference internal" href="glossary.html#term_rest_pattern">rest pattern</a> outside its defining <a class="reference internal" href="glossary.html#term_crate">crate</a>.</p>
+<p><span class="spec-paragraph-id" id="fls_cez7yxfc376c">13.2.13.1:7</span>
+<a class="reference internal" href="glossary.html#term_pattern_matching">Pattern matching</a> a <a class="reference internal" href="#term_non_exhaustive_variant">non-exhaustive variant</a> does not contribute towards
+the exhaustiveness of <a class="reference internal" href="glossary.html#term_match_arm">match arms</a>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[non_exhaustive]</span>
+<span class="k">enum</span><span class="w"> </span><span class="nc">enum_with_future_variants</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Variant</span>
+<span class="p">}</span>
+
+<span class="k">enum</span><span class="w"> </span><span class="nc">enum_variants_with_future_fields</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cp">#[non_exhaustive]</span><span class="w"> </span><span class="nb">Send</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">from</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="cp">#[non_exhaustive]</span><span class="w"> </span><span class="n">Quit</span>
+<span class="p">}</span>
+
+<span class="cp">#[non_exhaustive]</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">struct_with_future_fields</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">field</span><span class="p">:</span><span class="w"> </span><span class="kt">u32</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+        </div>
+        <footer>
+            <p>
+                Copyright &copy; The Ferrocene Developers.
+                
+                    Contents released under the MIT or Apache 2.0 license.
+                
+            </p>
+            
+            
+                <p>Built from commit: <code>3da913f492ce7d47198bb0fde5a759d119840dd4</code></p>
+            
+            <p>Ferrocene is a registered trademark of Critical Section GmbH.</p>
+        </footer>
+    </div>
+</div>
+
+  </body>
+</html>
